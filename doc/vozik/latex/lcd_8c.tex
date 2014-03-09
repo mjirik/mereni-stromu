@@ -1,0 +1,151 @@
+\section{Dokumentace souboru lcd.c}
+\label{lcd_8c}\index{lcd.c@{lcd.c}}
+
+
+Modul obstarává nenižší úroveň pro vypisování dat na LCD.  
+{\ttfamily \#include $<$stdio.h$>$}\par
+{\ttfamily \#include $<$avr/io.h$>$}\par
+{\ttfamily \#include $<$util/delay.h$>$}\par
+{\ttfamily \#include \char`\"{}lcd.h\char`\"{}}\par
+{\ttfamily \#include \char`\"{}convert.h\char`\"{}}\par
+{\ttfamily \#include \char`\"{}error.h\char`\"{}}\par
+{\ttfamily \#include $<$avr/pgmspace.h$>$}\par
+\subsection*{Definice maker}
+\begin{DoxyCompactItemize}
+\item 
+\#define {\bf F\_\-CPU}~8000000UL
+\begin{DoxyCompactList}\small\item\em Frekvence oscilátoru 8MHz. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Funkce}
+\begin{DoxyCompactItemize}
+\item 
+char {\bf lcd\_\-new\_\-frame} (void)
+\item 
+void {\bf d10} (void)
+\begin{DoxyCompactList}\small\item\em Jen taková zdržovací funkce pro odlazování. \item\end{DoxyCompactList}\item 
+void {\bf clear\_\-dscreen} (void)
+\begin{DoxyCompactList}\small\item\em Vymaže default screen. \item\end{DoxyCompactList}\item 
+void {\bf clear\_\-screen} (char($\ast$screen)[LCD\_\-X\_\-MAX])
+\item 
+void {\bf printc} (char c)
+\item 
+void {\bf printnt\_\-P} (char $\ast$s)
+\item 
+void {\bf print} (char $\ast$s)
+\begin{DoxyCompactList}\small\item\em vytiskne text do default\_\-screenu. \item\end{DoxyCompactList}\item 
+void {\bf printcxyd} (int y, int x, char c)
+\begin{DoxyCompactList}\small\item\em Vytiskne znak do defaultscreenu na souřadnici x,y. \item\end{DoxyCompactList}\item 
+void {\bf printnxyd} (int y, int x, char $\ast$s, int n)
+\begin{DoxyCompactList}\small\item\em Vytiskne n znaků do defaultscreenu na souřadnici x,y. \item\end{DoxyCompactList}\item 
+void {\bf printxyd} (int y, int x, char $\ast$s)
+\begin{DoxyCompactList}\small\item\em Tiskne do default\_\-screenu. \item\end{DoxyCompactList}\item 
+void {\bf printxy} (char($\ast$screen)[LCD\_\-X\_\-MAX], int y, int x, char $\ast$s)
+\begin{DoxyCompactList}\small\item\em Funkce vloží na danou pozici řetězec {\itshape s\/}. \item\end{DoxyCompactList}\item 
+void {\bf printxyd\_\-P} (int y, int x, void $\ast$s)
+\begin{DoxyCompactList}\small\item\em Funkce vloží na danou pozici řetězec {\itshape s\/}. \item\end{DoxyCompactList}\item 
+void {\bf lcd\_\-w\_\-inst} (char c)
+\begin{DoxyCompactList}\small\item\em Zapiš instrukci. \item\end{DoxyCompactList}\item 
+void {\bf lcd\_\-init} (void)
+\item 
+void {\bf lcd\_\-control} (void)
+\end{DoxyCompactItemize}
+\subsection*{Proměnné}
+\begin{DoxyCompactItemize}
+\item 
+int {\bf lcd\_\-ctrl\_\-count} = 0
+\item 
+int {\bf lcd\_\-ctrl\_\-x} = 0
+\item 
+int {\bf lcd\_\-ctrl\_\-y} = LCD\_\-Y\_\-MAX
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailní popis}
+Modul obstarává nenižší úroveň pro vypisování dat na LCD. 
+
+\subsection{Dokumentace k definicím maker}
+\index{lcd.c@{lcd.c}!F\_\-CPU@{F\_\-CPU}}
+\index{F\_\-CPU@{F\_\-CPU}!lcd.c@{lcd.c}}
+\subsubsection[{F\_\-CPU}]{\setlength{\rightskip}{0pt plus 5cm}\#define F\_\-CPU~8000000UL}\label{lcd_8c_a43bafb28b29491ec7f871319b5a3b2f8}
+
+
+Frekvence oscilátoru 8MHz. 
+
+\subsection{Dokumentace funkcí}
+\index{lcd.c@{lcd.c}!clear\_\-dscreen@{clear\_\-dscreen}}
+\index{clear\_\-dscreen@{clear\_\-dscreen}!lcd.c@{lcd.c}}
+\subsubsection[{clear\_\-dscreen}]{\setlength{\rightskip}{0pt plus 5cm}void clear\_\-dscreen (void)}\label{lcd_8c_af632fc4d520fbb4468baea39b68bc17e}
+
+
+Vymaže default screen. \index{lcd.c@{lcd.c}!clear\_\-screen@{clear\_\-screen}}
+\index{clear\_\-screen@{clear\_\-screen}!lcd.c@{lcd.c}}
+\subsubsection[{clear\_\-screen}]{\setlength{\rightskip}{0pt plus 5cm}void clear\_\-screen (char($\ast$) {\em screen}[LCD\_\-X\_\-MAX])}\label{lcd_8c_a0d72a8b3fb4557babb0f1c61018f2327}
+\index{lcd.c@{lcd.c}!d10@{d10}}
+\index{d10@{d10}!lcd.c@{lcd.c}}
+\subsubsection[{d10}]{\setlength{\rightskip}{0pt plus 5cm}void d10 (void)}\label{lcd_8c_ae9bb5305a03d43b839016fcc98dfee4f}
+
+
+Jen taková zdržovací funkce pro odlazování. \index{lcd.c@{lcd.c}!lcd\_\-control@{lcd\_\-control}}
+\index{lcd\_\-control@{lcd\_\-control}!lcd.c@{lcd.c}}
+\subsubsection[{lcd\_\-control}]{\setlength{\rightskip}{0pt plus 5cm}void lcd\_\-control (void)}\label{lcd_8c_aac5a8ac84d029ba77193f158761d10da}
+Funkce řídí činnost displeje. Jejím úkolem je neustále dokola vypisovat obsah lcd\_\-data na displej. Vždy když je zavolána, zjistí si co má vypsat dál a udělá to. \index{lcd.c@{lcd.c}!lcd\_\-init@{lcd\_\-init}}
+\index{lcd\_\-init@{lcd\_\-init}!lcd.c@{lcd.c}}
+\subsubsection[{lcd\_\-init}]{\setlength{\rightskip}{0pt plus 5cm}void lcd\_\-init (void)}\label{lcd_8c_a6842775ba83d166f02b8fef8bb63b1e6}
+\index{lcd.c@{lcd.c}!lcd\_\-new\_\-frame@{lcd\_\-new\_\-frame}}
+\index{lcd\_\-new\_\-frame@{lcd\_\-new\_\-frame}!lcd.c@{lcd.c}}
+\subsubsection[{lcd\_\-new\_\-frame}]{\setlength{\rightskip}{0pt plus 5cm}char lcd\_\-new\_\-frame (void)}\label{lcd_8c_a2fdcaa04d2a5ef5f829a2c0503b95009}
+\begin{DoxyReturn}{Návratová hodnota}
+Funkce vrátí 1 pokud se při dalším zavolání lcd\_\-control začne vykreslovat nový frame jinak vrátí nula 
+\end{DoxyReturn}
+\index{lcd.c@{lcd.c}!lcd\_\-w\_\-inst@{lcd\_\-w\_\-inst}}
+\index{lcd\_\-w\_\-inst@{lcd\_\-w\_\-inst}!lcd.c@{lcd.c}}
+\subsubsection[{lcd\_\-w\_\-inst}]{\setlength{\rightskip}{0pt plus 5cm}void lcd\_\-w\_\-inst (char {\em c})}\label{lcd_8c_a98e19b75c7263dd914e04a630f43cde1}
+
+
+Zapiš instrukci. \index{lcd.c@{lcd.c}!print@{print}}
+\index{print@{print}!lcd.c@{lcd.c}}
+\subsubsection[{print}]{\setlength{\rightskip}{0pt plus 5cm}void print (char $\ast$ {\em s})}\label{lcd_8c_a51283220f829206d8ef3284047a58fbd}
+
+
+vytiskne text do default\_\-screenu. \index{lcd.c@{lcd.c}!printc@{printc}}
+\index{printc@{printc}!lcd.c@{lcd.c}}
+\subsubsection[{printc}]{\setlength{\rightskip}{0pt plus 5cm}void printc (char {\em c})}\label{lcd_8c_a7ead26e52916805b53cb705997cb90bb}
+Funkce vytiskne znak na místo kurzoru. Funkce není prováděna ve \char`\"{}vlákně\char`\"{}. \index{lcd.c@{lcd.c}!printcxyd@{printcxyd}}
+\index{printcxyd@{printcxyd}!lcd.c@{lcd.c}}
+\subsubsection[{printcxyd}]{\setlength{\rightskip}{0pt plus 5cm}void printcxyd (int {\em y}, \/  int {\em x}, \/  char {\em c})}\label{lcd_8c_ab0348002a81c8fe945f405d57b317db1}
+
+
+Vytiskne znak do defaultscreenu na souřadnici x,y. \index{lcd.c@{lcd.c}!printnt\_\-P@{printnt\_\-P}}
+\index{printnt\_\-P@{printnt\_\-P}!lcd.c@{lcd.c}}
+\subsubsection[{printnt\_\-P}]{\setlength{\rightskip}{0pt plus 5cm}void printnt\_\-P (char $\ast$ {\em s})}\label{lcd_8c_aa4fa8c7956bc27eae6a818d41199691f}
+Funkce vypíše na současnou pozici kurzoru text z programové paměti. Funkce není napsána do \char`\"{}vlákna\char`\"{}. \index{lcd.c@{lcd.c}!printnxyd@{printnxyd}}
+\index{printnxyd@{printnxyd}!lcd.c@{lcd.c}}
+\subsubsection[{printnxyd}]{\setlength{\rightskip}{0pt plus 5cm}void printnxyd (int {\em y}, \/  int {\em x}, \/  char $\ast$ {\em s}, \/  int {\em n})}\label{lcd_8c_a9b70b5f13bd19a1a5ff3de4221c1dc72}
+
+
+Vytiskne n znaků do defaultscreenu na souřadnici x,y. \index{lcd.c@{lcd.c}!printxy@{printxy}}
+\index{printxy@{printxy}!lcd.c@{lcd.c}}
+\subsubsection[{printxy}]{\setlength{\rightskip}{0pt plus 5cm}void printxy (char($\ast$) {\em screen}[LCD\_\-X\_\-MAX], \/  int {\em y}, \/  int {\em x}, \/  char $\ast$ {\em s})}\label{lcd_8c_a4aaab14a959b518f3d8191174a94b485}
+
+
+Funkce vloží na danou pozici řetězec {\itshape s\/}. \index{lcd.c@{lcd.c}!printxyd@{printxyd}}
+\index{printxyd@{printxyd}!lcd.c@{lcd.c}}
+\subsubsection[{printxyd}]{\setlength{\rightskip}{0pt plus 5cm}void printxyd (int {\em y}, \/  int {\em x}, \/  char $\ast$ {\em s})}\label{lcd_8c_af14cee58cda35b9331b261be186b3dd9}
+
+
+Tiskne do default\_\-screenu. \index{lcd.c@{lcd.c}!printxyd\_\-P@{printxyd\_\-P}}
+\index{printxyd\_\-P@{printxyd\_\-P}!lcd.c@{lcd.c}}
+\subsubsection[{printxyd\_\-P}]{\setlength{\rightskip}{0pt plus 5cm}void printxyd\_\-P (int {\em y}, \/  int {\em x}, \/  void $\ast$ {\em s})}\label{lcd_8c_ac49e278f3e1c0c3472a70b8c6efc5051}
+
+
+Funkce vloží na danou pozici řetězec {\itshape s\/}. 
+
+\subsection{Dokumentace proměnných}
+\index{lcd.c@{lcd.c}!lcd\_\-ctrl\_\-count@{lcd\_\-ctrl\_\-count}}
+\index{lcd\_\-ctrl\_\-count@{lcd\_\-ctrl\_\-count}!lcd.c@{lcd.c}}
+\subsubsection[{lcd\_\-ctrl\_\-count}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf lcd\_\-ctrl\_\-count} = 0}\label{lcd_8c_a1fabb9483b10918d452fee90b071d54c}
+\index{lcd.c@{lcd.c}!lcd\_\-ctrl\_\-x@{lcd\_\-ctrl\_\-x}}
+\index{lcd\_\-ctrl\_\-x@{lcd\_\-ctrl\_\-x}!lcd.c@{lcd.c}}
+\subsubsection[{lcd\_\-ctrl\_\-x}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf lcd\_\-ctrl\_\-x} = 0}\label{lcd_8c_a1cc294e76003b0f360663bab284352bb}
+\index{lcd.c@{lcd.c}!lcd\_\-ctrl\_\-y@{lcd\_\-ctrl\_\-y}}
+\index{lcd\_\-ctrl\_\-y@{lcd\_\-ctrl\_\-y}!lcd.c@{lcd.c}}
+\subsubsection[{lcd\_\-ctrl\_\-y}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf lcd\_\-ctrl\_\-y} = LCD\_\-Y\_\-MAX}\label{lcd_8c_ab5728eedb69611680d9b2e95c449bea2}

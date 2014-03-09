@@ -1,5 +1,5 @@
 /* 
-   $Id: conf.c 85 2007-08-16 10:30:51Z Mira $
+   $Id: conf.c 150 2009-10-28 13:30:02Z mjirik $
 */
 /**
    @file conf.c
@@ -82,9 +82,9 @@ void load_conf(void){
 
   }
   fclose(fr);
-  free(promenna);
-  free(hodnota);
-  free(line);
+  mfree(promenna);
+  mfree(hodnota);
+  mfree(line);
 #ifdef DEBUG
   printf("Konfigurace načtena\n");
   printf("Test nastaveni\n");

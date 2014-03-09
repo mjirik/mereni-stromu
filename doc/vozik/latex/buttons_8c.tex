@@ -1,0 +1,48 @@
+\section{Dokumentace souboru buttons.c}
+\label{buttons_8c}\index{buttons.c@{buttons.c}}
+
+
+Modul zabezpečuje funkci tlačítek pro ovládání základních funkcí.  
+{\ttfamily \#include $<$avr/io.h$>$}\par
+{\ttfamily \#include \char`\"{}buttons.h\char`\"{}}\par
+{\ttfamily \#include \char`\"{}keyboard.h\char`\"{}}\par
+\subsection*{Funkce}
+\begin{DoxyCompactItemize}
+\item 
+static void {\bf button\_\-on} (char button)
+\item 
+void {\bf buttons\_\-init} (void)
+\item 
+void {\bf buttons} (void)
+\end{DoxyCompactItemize}
+\subsection*{Proměnné}
+\begin{DoxyCompactItemize}
+\item 
+static char {\bf minuly\_\-stav} = 0
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailní popis}
+Modul zabezpečuje funkci tlačítek pro ovládání základních funkcí. 
+
+\subsection{Dokumentace funkcí}
+\index{buttons.c@{buttons.c}!button\_\-on@{button\_\-on}}
+\index{button\_\-on@{button\_\-on}!buttons.c@{buttons.c}}
+\subsubsection[{button\_\-on}]{\setlength{\rightskip}{0pt plus 5cm}void button\_\-on (char {\em button})\hspace{0.3cm}{\ttfamily  [static]}}\label{buttons_8c_acd06a8377fd0f71bed87188db5c904c3}
+Funkce je spouštěna při stisku tlačítka (náběžná hrana). Zde je místo pro implementaci případného filtru zákmitů. Pro každé konkrétní tlačítko je zde nabindována klávesa klávesnice. Je to provedeno voláním funkce \doxyref{keyb\_\-in\_\-buff()}{s.}{keyboard_8c_a4b4fdc8611d94ae6541af55ff1c7140f}, která přidá do bufferu klávesnice kód libovolné klávesy.
+
+
+\begin{DoxyParams}{Parametry}
+\item[{\em button}]Udává které tlačítko bylo stisknuto. \end{DoxyParams}
+\index{buttons.c@{buttons.c}!buttons@{buttons}}
+\index{buttons@{buttons}!buttons.c@{buttons.c}}
+\subsubsection[{buttons}]{\setlength{\rightskip}{0pt plus 5cm}void buttons (void)}\label{buttons_8c_a82b6a0bb2d8a5f28c7be78d77f07a471}
+\index{buttons.c@{buttons.c}!buttons\_\-init@{buttons\_\-init}}
+\index{buttons\_\-init@{buttons\_\-init}!buttons.c@{buttons.c}}
+\subsubsection[{buttons\_\-init}]{\setlength{\rightskip}{0pt plus 5cm}void buttons\_\-init (void)}\label{buttons_8c_acef6dd444cb6560da652897ee43ab306}
+
+
+\subsection{Dokumentace proměnných}
+\index{buttons.c@{buttons.c}!minuly\_\-stav@{minuly\_\-stav}}
+\index{minuly\_\-stav@{minuly\_\-stav}!buttons.c@{buttons.c}}
+\subsubsection[{minuly\_\-stav}]{\setlength{\rightskip}{0pt plus 5cm}char {\bf minuly\_\-stav} = 0\hspace{0.3cm}{\ttfamily  [static]}}\label{buttons_8c_afd49bb358edddbdb2baf13667c693378}

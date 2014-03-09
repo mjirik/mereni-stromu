@@ -1,0 +1,57 @@
+\section{Dokumentace souboru inout.c}
+\label{inout_8c}\index{inout.c@{inout.c}}
+{\ttfamily \#include $<$inttypes.h$>$}\par
+{\ttfamily \#include $<$avr/io.h$>$}\par
+{\ttfamily \#include \char`\"{}inout.h\char`\"{}}\par
+\subsection*{Definice maker}
+\begin{Indent}{\bf Pin indikace stavu}\par
+{\em \label{_amgrp462d75767ffb475eccd6940509b18b92}
+ Proměnné definují umístění pinu, jež zajišťuje indikaci stavu (msr\_\-status) \begin{Desc}
+\item[{\bf Plánované úpravy}]zjistit správný pin\end{Desc}
+}\begin{DoxyCompactItemize}
+\item 
+\#define {\bf MSR\_\-LED\_\-PORT}~PORTB
+\item 
+\#define {\bf MSR\_\-LED\_\-DDR}~DDRB
+\item 
+\#define {\bf MSR\_\-LED\_\-PIN}~PINB
+\item 
+\#define {\bf MSR\_\-LED\_\-BIT}~7
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Funkce}
+\begin{DoxyCompactItemize}
+\item 
+void {\bf inout\_\-init} (void)
+\item 
+void {\bf io\_\-msr\_\-led\_\-on} (void)
+\item 
+void {\bf io\_\-msr\_\-led\_\-off} (void)
+\end{DoxyCompactItemize}
+
+
+\subsection{Dokumentace k definicím maker}
+\index{inout.c@{inout.c}!MSR\_\-LED\_\-BIT@{MSR\_\-LED\_\-BIT}}
+\index{MSR\_\-LED\_\-BIT@{MSR\_\-LED\_\-BIT}!inout.c@{inout.c}}
+\subsubsection[{MSR\_\-LED\_\-BIT}]{\setlength{\rightskip}{0pt plus 5cm}\#define MSR\_\-LED\_\-BIT~7}\label{inout_8c_a89cea95871f81ab6e7b1581f6558b481}
+\index{inout.c@{inout.c}!MSR\_\-LED\_\-DDR@{MSR\_\-LED\_\-DDR}}
+\index{MSR\_\-LED\_\-DDR@{MSR\_\-LED\_\-DDR}!inout.c@{inout.c}}
+\subsubsection[{MSR\_\-LED\_\-DDR}]{\setlength{\rightskip}{0pt plus 5cm}\#define MSR\_\-LED\_\-DDR~DDRB}\label{inout_8c_ac6c2716ca080e960ea00fe2a60f2e5d1}
+\index{inout.c@{inout.c}!MSR\_\-LED\_\-PIN@{MSR\_\-LED\_\-PIN}}
+\index{MSR\_\-LED\_\-PIN@{MSR\_\-LED\_\-PIN}!inout.c@{inout.c}}
+\subsubsection[{MSR\_\-LED\_\-PIN}]{\setlength{\rightskip}{0pt plus 5cm}\#define MSR\_\-LED\_\-PIN~PINB}\label{inout_8c_a098ccd35a6c0243e1e3a8d379d1a4279}
+\index{inout.c@{inout.c}!MSR\_\-LED\_\-PORT@{MSR\_\-LED\_\-PORT}}
+\index{MSR\_\-LED\_\-PORT@{MSR\_\-LED\_\-PORT}!inout.c@{inout.c}}
+\subsubsection[{MSR\_\-LED\_\-PORT}]{\setlength{\rightskip}{0pt plus 5cm}\#define MSR\_\-LED\_\-PORT~PORTB}\label{inout_8c_a60c7c70e9a51aa1013666229b3b6f7aa}
+
+
+\subsection{Dokumentace funkcí}
+\index{inout.c@{inout.c}!inout\_\-init@{inout\_\-init}}
+\index{inout\_\-init@{inout\_\-init}!inout.c@{inout.c}}
+\subsubsection[{inout\_\-init}]{\setlength{\rightskip}{0pt plus 5cm}void inout\_\-init (void)}\label{inout_8c_a4ae2f3f047db9172650ff84a543eb54e}
+\index{inout.c@{inout.c}!io\_\-msr\_\-led\_\-off@{io\_\-msr\_\-led\_\-off}}
+\index{io\_\-msr\_\-led\_\-off@{io\_\-msr\_\-led\_\-off}!inout.c@{inout.c}}
+\subsubsection[{io\_\-msr\_\-led\_\-off}]{\setlength{\rightskip}{0pt plus 5cm}void io\_\-msr\_\-led\_\-off (void)}\label{inout_8c_ac1d83154054f9bf4f80e8d38adf5bf42}
+\index{inout.c@{inout.c}!io\_\-msr\_\-led\_\-on@{io\_\-msr\_\-led\_\-on}}
+\index{io\_\-msr\_\-led\_\-on@{io\_\-msr\_\-led\_\-on}!inout.c@{inout.c}}
+\subsubsection[{io\_\-msr\_\-led\_\-on}]{\setlength{\rightskip}{0pt plus 5cm}void io\_\-msr\_\-led\_\-on (void)}\label{inout_8c_a203f907fb83c309fe09d80666b7893d2}

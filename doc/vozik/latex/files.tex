@@ -1,0 +1,34 @@
+\section{Seznam souborů}
+Zde naleznete seznam všech souborů se stručnými popisy:\begin{DoxyCompactList}
+\item\contentsline{section}{{\bf buttons.c} (Modul zabezpečuje funkci tlačítek pro ovládání základních funkcí )}{\pageref{buttons_8c}}{}
+\item\contentsline{section}{{\bf buttons.h} }{\pageref{buttons_8h}}{}
+\item\contentsline{section}{{\bf convert.c} (Zde jsou prováděny konverze číselných typů na string )}{\pageref{convert_8c}}{}
+\item\contentsline{section}{{\bf convert.h} }{\pageref{convert_8h}}{}
+\item\contentsline{section}{{\bf default\_\-scr.c} }{\pageref{default__scr_8c}}{}
+\item\contentsline{section}{{\bf default\_\-scr.h} }{\pageref{default__scr_8h}}{}
+\item\contentsline{section}{{\bf eeprom.c} (Modul spravuje paměť EEPROM. Jsou zde funkce pro ukládání a načítání )}{\pageref{eeprom_8c}}{}
+\item\contentsline{section}{{\bf eeprom.h} }{\pageref{eeprom_8h}}{}
+\item\contentsline{section}{{\bf error.c} (Modul spravuje výpisy chybových hlášek. Chybové hlášky jsou uloženy v programové paměti. V případě potřeby jsou načteny do SRAM a vypsány na LCD )}{\pageref{error_8c}}{}
+\item\contentsline{section}{{\bf error.h} }{\pageref{error_8h}}{}
+\item\contentsline{section}{{\bf inout.c} }{\pageref{inout_8c}}{}
+\item\contentsline{section}{{\bf inout.h} }{\pageref{inout_8h}}{}
+\item\contentsline{section}{{\bf irc.c} (Modul \doxyref{irc.c}{s.}{irc_8c} řeří obsluhu inkrementálího čidla. Veřejná funkce irc\_\-watch() sleduje vsupy irc a obsluhuje čítač irc. Výstupem je seriový kanál. Po něm se odesílá hodnota irc přenásobená konstantou )}{\pageref{irc_8c}}{}
+\item\contentsline{section}{{\bf irc.h} }{\pageref{irc_8h}}{}
+\item\contentsline{section}{{\bf irc2.c} }{\pageref{irc2_8c}}{}
+\item\contentsline{section}{{\bf irc2.h} }{\pageref{irc2_8h}}{}
+\item\contentsline{section}{{\bf keyboard.c} (Modul obsluhuje klávesnici. Časování je připojeno k přerušení INT1, data jsou přivedena na libovolný pin. Hodnoty kláves jsou čteny dvěma funkcemi. \doxyref{get\_\-char()}{s.}{keyboard_8c_af0d08de095c0c6a062d084562f436b9e} a \doxyref{get\_\-spec()}{s.}{keyboard_8c_a6a0ab525eb476112b5b6259dd180cfa9}. Modul je vybaven výstupním bufferem, takže v případě stisku několika kláves bezprostředně po sobě, nedojde ke ztrátě v důsledku pomalého zpracovávání dalším programem )}{\pageref{keyboard_8c}}{}
+\item\contentsline{section}{{\bf keyboard.h} }{\pageref{keyboard_8h}}{}
+\item\contentsline{section}{{\bf lcd.c} (Modul obstarává nenižší úroveň pro vypisování dat na LCD )}{\pageref{lcd_8c}}{}
+\item\contentsline{section}{{\bf lcd.h} }{\pageref{lcd_8h}}{}
+\item\contentsline{section}{{\bf main.c} (Tento modul je hlavní hlavní částí programu pro zařízení na vozíku v rámci projektu měření objemu řeziva pro pilu v Němčicích. Zařízení na vozíku má za úkol zpracovávat informace, které dostává po sériové lince ze zařízení na katru, komunikovat s navazujícím databázovým systémem, obsluhovat měření vzdálenosti vozíku od katru pomoocí IRC a zajišťovat komunikaci s uživatelem prostřednictvím znakového displeje (4x20 znaků) a standartní počítačové klávesnice )}{\pageref{main_8c}}{}
+\item\contentsline{section}{{\bf main.h} }{\pageref{main_8h}}{}
+\item\contentsline{section}{{\bf memory.c} (Modul pro práci s pamětí. Funkce pro alokaci jsou vybaveny počítadlem, takže je možné zhruba zjistit kolikrát bylo žádáno o paměť a kolikrát byla vrácena )}{\pageref{memory_8c}}{}
+\item\contentsline{section}{{\bf memory.h} }{\pageref{memory_8h}}{}
+\item\contentsline{section}{{\bf msgn.h} }{\pageref{msgn_8h}}{}
+\item\contentsline{section}{{\bf usart.c} (Modul zajišťuje odesílání zpráv po sériové lince. Funkce \doxyref{new\_\-ack\_\-msg()}{s.}{usart_8c_aece32bc3ab3397ea8202203edf547eb2} vytvoří zprávu, na níž je očekávána odpověď. Při přijentí zprávy je zavolána funkce, na níž u ukazuje poínter v parametru funkce. V případě, že je překročena určitá doba (daná MAX\_\-MSG\_\-ACK\_\-DELAY) je odeslání zprávy zopakováno. Kolikrát toto opakování proběhne ukazuje proměnná MAX\_\-MSG\_\-ACK\_\-REPEATS (celkem je zpráva odeslána MAX\_\-MSG\_\-ACK\_\-REPEATS + 1 krát). Pokud ani na opakované odesílání není obdržena odpověď, je vyhlášen error )}{\pageref{usart_8c}}{}
+\item\contentsline{section}{{\bf usart.h} }{\pageref{usart_8h}}{}
+\item\contentsline{section}{{\bf usart\_\-recv.c} (Tento soubor se připojuje k souboru \doxyref{usart.c}{s.}{usart_8c} Je zde naimplementována jen jedna funkce process\_\-msg )}{\pageref{usart__recv_8c}}{}
+\item\contentsline{section}{{\bf usart\_\-recv.h} }{\pageref{usart__recv_8h}}{}
+\item\contentsline{section}{{\bf watchdog.c} (Modul zajišťuje správnou funkci watchdogu. Pro správnou funkci zařízení není monžné využívat samotný watchdog naimplementovaný výrobcem. S resetem by totiž došlo ke ztrátě dat. Proto byl vytvořen programový watchdog. Ten je resetován nastavením čítače wtch\_\-counter na nulu. Sám o sobě resetovat jednočip neumí, na to však lze však využít služby watchdogu od Atmelu )}{\pageref{watchdog_8c}}{}
+\item\contentsline{section}{{\bf watchdog.h} }{\pageref{watchdog_8h}}{}
+\end{DoxyCompactList}

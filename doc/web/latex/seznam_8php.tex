@@ -1,0 +1,126 @@
+\section{Dokumentace souboru seznam.php}
+\label{seznam_8php}\index{seznam.php@{seznam.php}}
+\subsection*{Proměnné}
+\begin{CompactItemize}
+\item 
+{\bf \$all} = \& new {\bf Template}('./tmpl/print.tmpl.php')
+\item 
+{\bf \$body} = \& new {\bf Template}('./tmpl/seznam.tmpl.php')
+\item 
+{\bf \$link} = connect\_\-db()
+\item 
+{\bf \$seznam} = seznam\_\-mereni(\$\_\-GET[\char`\"{}id\char`\"{}],\$link,true)
+\item 
+{\bf \$param} = parametry\_\-seznamu(\$\_\-GET[\char`\"{}id\char`\"{}],\$link)
+\item 
+{\bf \$zakaznik} = zakaznik(\$param[\char`\"{}IDZakaznik\char`\"{}],\$link)
+\item 
+{\bf \$parametry} = druhy\_\-dreva(\$link)
+\item 
+{\bf \$cenaCelkem} = 0
+\item 
+{\bf \$mezisoucty} = NULL
+\item 
+{\bf \$zaznam} [\char`\"{}Cena\char`\"{}] = cena\_\-strom(\$zaznam,\$param)
+\item 
+{\bf \$seznam} [\$key] = \$zaznam
+\item 
+{\bf \$mezisoucty} [\$zaznam[\char`\"{}IDDruh\_\-dreva\char`\"{}]][\$zaznam[\char`\"{}IDManipulace\char`\"{}]][\$zaznam[\char`\"{}IDDvakrat\char`\"{}]][\$zaznam[\char`\"{}IDDalsi\_\-zpracovani\char`\"{}]][\char`\"{}Cena\char`\"{}] = \$zaznam[\char`\"{}Cena\char`\"{}]
+\item 
+{\bf \$mezisoucty} [\$zaznam[\char`\"{}IDDruh\_\-dreva\char`\"{}]][\$zaznam[\char`\"{}IDManipulace\char`\"{}]][\$zaznam[\char`\"{}IDDvakrat\char`\"{}]][\$zaznam[\char`\"{}IDDalsi\_\-zpracovani\char`\"{}]][\char`\"{}Objem\char`\"{}] = \$zaznam[\char`\"{}Objem\char`\"{}]
+\item 
+{\bf \$mezisoucty} [\$zaznam[\char`\"{}IDDruh\_\-dreva\char`\"{}]][\$zaznam[\char`\"{}IDManipulace\char`\"{}]][\$zaznam[\char`\"{}IDDvakrat\char`\"{}]][\$zaznam[\char`\"{}IDDalsi\_\-zpracovani\char`\"{}]][\char`\"{}Popisek\char`\"{}]
+\item 
+{\bf \$cenaCelkem} = \$cenaCelkem + \$zaznam[\char`\"{}Cena\char`\"{}]
+\end{CompactItemize}
+
+
+\subsection{Detailní popis}
+Soubor vypisuje náhlled tisku. 
+
+\subsection{Dokumentace proměnných}
+\index{seznam.php@{seznam.php}!$all@{\$all}}
+\index{$all@{\$all}!seznam.php@{seznam.php}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}\$all = \& new {\bf Template}('./tmpl/print.tmpl.php')}\label{seznam_8php_3c74ea9d2348c9aba28d36e692bef2d2}
+
+
+\index{seznam.php@{seznam.php}!$body@{\$body}}
+\index{$body@{\$body}!seznam.php@{seznam.php}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}\$body = \& new {\bf Template}('./tmpl/seznam.tmpl.php')}\label{seznam_8php_26b9f9373f7bb79dfcf8a86dff086b45}
+
+
+\index{seznam.php@{seznam.php}!$cenaCelkem@{\$cenaCelkem}}
+\index{$cenaCelkem@{\$cenaCelkem}!seznam.php@{seznam.php}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}\$cenaCelkem = \$cenaCelkem + \$zaznam[\char`\"{}Cena\char`\"{}]}\label{seznam_8php_2599a827926830c9019f0748a076c4fe}
+
+
+\index{seznam.php@{seznam.php}!$cenaCelkem@{\$cenaCelkem}}
+\index{$cenaCelkem@{\$cenaCelkem}!seznam.php@{seznam.php}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}\$cenaCelkem = 0}\label{seznam_8php_2599a827926830c9019f0748a076c4fe}
+
+
+\index{seznam.php@{seznam.php}!$link@{\$link}}
+\index{$link@{\$link}!seznam.php@{seznam.php}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}\$link = connect\_\-db()}\label{seznam_8php_5d346e31b75d916e3bac9cb193bfc97f}
+
+
+\index{seznam.php@{seznam.php}!$mezisoucty@{\$mezisoucty}}
+\index{$mezisoucty@{\$mezisoucty}!seznam.php@{seznam.php}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}\$mezisoucty[\$zaznam[\char`\"{}IDDruh\_\-dreva\char`\"{}]][\$zaznam[\char`\"{}IDManipulace\char`\"{}]][\$zaznam[\char`\"{}IDDvakrat\char`\"{}]][\$zaznam[\char`\"{}IDDalsi\_\-zpracovani\char`\"{}]][\char`\"{}Popisek\char`\"{}]}\label{seznam_8php_40ed9d3c9da4f8c520f90fc8a4926d1e}
+
+
+\textbf{Initializer:}
+
+\begin{Code}\begin{verbatim}
+    "<i>".$zaznam["Druh_dreva"].(($zaznam["IDManipulace"]==1)?", man":"").
+        (($zaznam["IDDvakrat"]==1)?", 2x":"").($zaznam["IDDalsi_zpracovani"]>1?", ":"").
+        ($zaznam["Dalsi_zpracovani"])." (".cena_strom_m3($zaznam,$param)." kč/m³) </i>"
+\end{verbatim}
+\end{Code}
+\index{seznam.php@{seznam.php}!$mezisoucty@{\$mezisoucty}}
+\index{$mezisoucty@{\$mezisoucty}!seznam.php@{seznam.php}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}\$mezisoucty[\$zaznam[\char`\"{}IDDruh\_\-dreva\char`\"{}]][\$zaznam[\char`\"{}IDManipulace\char`\"{}]][\$zaznam[\char`\"{}IDDvakrat\char`\"{}]][\$zaznam[\char`\"{}IDDalsi\_\-zpracovani\char`\"{}]][\char`\"{}Objem\char`\"{}] = \$zaznam[\char`\"{}Objem\char`\"{}]}\label{seznam_8php_1c94fbeb3e8e94659fca2f0e763cb2e2}
+
+
+\index{seznam.php@{seznam.php}!$mezisoucty@{\$mezisoucty}}
+\index{$mezisoucty@{\$mezisoucty}!seznam.php@{seznam.php}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}\$mezisoucty[\$zaznam[\char`\"{}IDDruh\_\-dreva\char`\"{}]][\$zaznam[\char`\"{}IDManipulace\char`\"{}]][\$zaznam[\char`\"{}IDDvakrat\char`\"{}]][\$zaznam[\char`\"{}IDDalsi\_\-zpracovani\char`\"{}]][\char`\"{}Cena\char`\"{}] = \$zaznam[\char`\"{}Cena\char`\"{}]}\label{seznam_8php_99590f361e9ab2fd6cb6d2e74d739741}
+
+
+\begin{Desc}
+\item[{\bf Plánované úpravy}]Zde by se nechalo optimalizovat - některé položky se vypočítávají pro každé měření znovu. Stačilo by počítat jednou. \end{Desc}
+\index{seznam.php@{seznam.php}!$mezisoucty@{\$mezisoucty}}
+\index{$mezisoucty@{\$mezisoucty}!seznam.php@{seznam.php}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}\$mezisoucty = NULL}\label{seznam_8php_487dc80bcdd32233f1326c5baf95e7db}
+
+
+\index{seznam.php@{seznam.php}!$param@{\$param}}
+\index{$param@{\$param}!seznam.php@{seznam.php}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}\$param = parametry\_\-seznamu(\$\_\-GET[\char`\"{}id\char`\"{}],\$link)}\label{seznam_8php_efab80aedcdbb988388e43e2f52491f1}
+
+
+\index{seznam.php@{seznam.php}!$parametry@{\$parametry}}
+\index{$parametry@{\$parametry}!seznam.php@{seznam.php}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}\$parametry = druhy\_\-dreva(\$link)}\label{seznam_8php_b97286650a73a4f3f6202b2f66bbcffb}
+
+
+\index{seznam.php@{seznam.php}!$seznam@{\$seznam}}
+\index{$seznam@{\$seznam}!seznam.php@{seznam.php}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}\$seznam[\$key] = \$zaznam}\label{seznam_8php_067e7c23094c43a221e0c09497ffc90a}
+
+
+\index{seznam.php@{seznam.php}!$seznam@{\$seznam}}
+\index{$seznam@{\$seznam}!seznam.php@{seznam.php}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}\$seznam = seznam\_\-mereni(\$\_\-GET[\char`\"{}id\char`\"{}],\$link,true)}\label{seznam_8php_c3380e5da1cd2eb97cefa437bd99bea7}
+
+
+\index{seznam.php@{seznam.php}!$zakaznik@{\$zakaznik}}
+\index{$zakaznik@{\$zakaznik}!seznam.php@{seznam.php}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}\$zakaznik = zakaznik(\$param[\char`\"{}IDZakaznik\char`\"{}],\$link)}\label{seznam_8php_f532de612998acdb87d5a48bdccfb096}
+
+
+\index{seznam.php@{seznam.php}!$zaznam@{\$zaznam}}
+\index{$zaznam@{\$zaznam}!seznam.php@{seznam.php}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}\$zaznam[\char`\"{}Cena\char`\"{}] = cena\_\-strom(\$zaznam,\$param)}\label{seznam_8php_579421ac13d700561fb325c376c523b4}
+
+

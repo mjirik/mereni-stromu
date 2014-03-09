@@ -1,0 +1,91 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<title>Zařízení na vozíku pro projekt měření objemu stromů: Dokumentace souboru memory.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<!-- Generováno programem Doxygen 1.6.1 -->
+<div class="navigation" id="top">
+  <div class="tabs">
+    <ul>
+      <li><a href="index.html"><span>Hlavní&nbsp;stránka</span></a></li>
+      <li><a href="pages.html"><span>Ostatní&nbsp;stránky</span></a></li>
+      <li><a href="annotated.html"><span>Třídy</span></a></li>
+      <li class="current"><a href="files.html"><span>Soubory</span></a></li>
+    </ul>
+  </div>
+  <div class="tabs">
+    <ul>
+      <li><a href="files.html"><span>Seznam&nbsp;souborů</span></a></li>
+      <li><a href="globals.html"><span>Globální&nbsp;symboly</span></a></li>
+    </ul>
+  </div>
+</div>
+<div class="contents">
+<h1>Dokumentace souboru memory.h</h1><table border="0" cellpadding="0" cellspacing="0">
+<tr><td colspan="2"><h2>Funkce</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="memory_8h.html#ac1847e839d655a069b4c77d164f395c5">mmalloc</a> (unsigned int size)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="memory_8h.html#a9ba414662a250ef92d4296a19dafad43">mfree</a> (void *pointer)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">uint16_t&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="memory_8h.html#a8dae36488b9df941d0d6734093c03c1f">used_mem</a> (void)</td></tr>
+</table>
+<hr/><h2>Dokumentace funkcí</h2>
+<a class="anchor" id="a9ba414662a250ef92d4296a19dafad43"></a><!-- doxytag: member="memory.h::mfree" ref="a9ba414662a250ef92d4296a19dafad43" args="(void *pointer)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void mfree </td>
+          <td>(</td>
+          <td class="paramtype">void *&nbsp;</td>
+          <td class="paramname"> <em>pointer</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="ac1847e839d655a069b4c77d164f395c5"></a><!-- doxytag: member="memory.h::mmalloc" ref="ac1847e839d655a069b4c77d164f395c5" args="(unsigned int size)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void* mmalloc </td>
+          <td>(</td>
+          <td class="paramtype">unsigned int&nbsp;</td>
+          <td class="paramname"> <em>size</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Má alokační funkce. Testuje, zda nebyla naplněna paměť. Pokud ano, vypíše chybovou hlášku. </p>
+
+</div>
+</div>
+<a class="anchor" id="a8dae36488b9df941d0d6734093c03c1f"></a><!-- doxytag: member="memory.h::used_mem" ref="a8dae36488b9df941d0d6734093c03c1f" args="(void)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint16_t used_mem </td>
+          <td>(</td>
+          <td class="paramtype">void&nbsp;</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
+</div>
+<p align=left>Miroslav Jiřík</p>

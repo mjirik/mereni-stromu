@@ -1,0 +1,472 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<title>Zařízení na vozíku pro projekt měření objemu stromů: Dokumentace souboru irc2.c</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<!-- Generováno programem Doxygen 1.6.1 -->
+<div class="navigation" id="top">
+  <div class="tabs">
+    <ul>
+      <li><a href="index.html"><span>Hlavní&nbsp;stránka</span></a></li>
+      <li><a href="pages.html"><span>Ostatní&nbsp;stránky</span></a></li>
+      <li><a href="annotated.html"><span>Třídy</span></a></li>
+      <li class="current"><a href="files.html"><span>Soubory</span></a></li>
+    </ul>
+  </div>
+  <div class="tabs">
+    <ul>
+      <li><a href="files.html"><span>Seznam&nbsp;souborů</span></a></li>
+      <li><a href="globals.html"><span>Globální&nbsp;symboly</span></a></li>
+    </ul>
+  </div>
+</div>
+<div class="contents">
+<h1>Dokumentace souboru irc2.c</h1><code>#include &lt;avr/io.h&gt;</code><br/>
+<code>#include &lt;avr/interrupt.h&gt;</code><br/>
+<code>#include &lt;avr/pgmspace.h&gt;</code><br/>
+<code>#include &lt;stdio.h&gt;</code><br/>
+<code>#include &lt;stdint.h&gt;</code><br/>
+<code>#include &quot;<a class="el" href="usart_8h.html">usart.h</a>&quot;</code><br/>
+<code>#include &quot;<a class="el" href="irc2_8h.html">irc2.h</a>&quot;</code><br/>
+<code>#include &quot;<a class="el" href="eeprom_8h.html">eeprom.h</a>&quot;</code><br/>
+<code>#include &quot;<a class="el" href="error_8h.html">error.h</a>&quot;</code><br/>
+<code>#include &quot;<a class="el" href="lcd_8h.html">lcd.h</a>&quot;</code><br/>
+<table border="0" cellpadding="0" cellspacing="0">
+<tr><td colspan="2"><h2>Definice maker</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="irc2_8c.html#ac9baf768fde81ade6f9ccde1d20d5a32">A_PORT</a>&nbsp;&nbsp;&nbsp;PORTB</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="irc2_8c.html#a955d6d7f3f806537072f993708e00f65">A_PIN</a>&nbsp;&nbsp;&nbsp;PINB</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="irc2_8c.html#ae59e66b2ffaf088f18f894088f53205b">A_BIT</a>&nbsp;&nbsp;&nbsp;3</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="irc2_8c.html#a04e1bd382a6de1a30d813bb79f30fb02">B_PORT</a>&nbsp;&nbsp;&nbsp;PORTB</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="irc2_8c.html#a45bd909a8fb5205b60cd8c8d6760db7a">B_PIN</a>&nbsp;&nbsp;&nbsp;PINB</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="irc2_8c.html#a07e5089fd757ebcad8929674eecf6c80">B_BIT</a>&nbsp;&nbsp;&nbsp;4</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="irc2_8c.html#a07104d9db9a8c1da66b457a777088113">SP_PORT</a>&nbsp;&nbsp;&nbsp;PORTD</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="irc2_8c.html#acb5711bd7b75243461976cb414b29c44">SP_PIN</a>&nbsp;&nbsp;&nbsp;PINB</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="irc2_8c.html#a2401c1030e02b8da7b3586e2f788d792">SP_BIT</a>&nbsp;&nbsp;&nbsp;5</td></tr>
+<tr><td colspan="2"><h2>Funkce</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int32_t&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="irc2_8c.html#aeae106a4dc2959c7a8e13ccdb9a43d95">get_irc2_set_on_value</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Výstup je v setinách milimetru. Je třeba jej vydělit 1000 aby byl v cm.  <a href="#aeae106a4dc2959c7a8e13ccdb9a43d95"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="irc2_8c.html#abe8163b2ba712f1a83891ce75e903037">set_irc2_counter</a> (int32_t a)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int32_t&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="irc2_8c.html#a12bd5631a35458163e675a4738df8ac7">get_irc2_counter</a> (void)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="irc2_8c.html#aca073e77760684114a3d1f46adef8efc">set_irc2_k</a> (uint16_t a)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="irc2_8c.html#a20d90a499e8980683f9c54225e397a9f">set_irc2_k_mm</a> (uint16_t i)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">uint16_t&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="irc2_8c.html#a8a8e13b00bbf1550a74a1aa2fd637470">irc2_get_k</a> (void)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="irc2_8c.html#a9d85c077b39fc2e091d54dcbfff72608">set_irc2_set_on_value_mm</a> (int32_t q)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="irc2_8c.html#a41a0bca6c07f8b1245a4b59a8209fce9">set_irc2_set_on_value</a> (int32_t a)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="irc2_8c.html#a82d08977a4cf71b6cad65346a58ec837">irc2_init</a> (void)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="irc2_8c.html#ac24ca6f0906ccdfb6ffe65d2a28abaf7">irc2_watch</a> (void)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">uint16_t&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="irc2_8c.html#a9a7f216fac24f1bb5342700bdfcc865a">irc2_get_l</a> (void)</td></tr>
+<tr><td colspan="2"><h2>Proměnné</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static unsigned char&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="irc2_8c.html#ad24a7209740a83b880691380fbe8e0e9">prev_state</a></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">}  <a href="#ad24a7209740a83b880691380fbe8e0e9"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static int32_t&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="irc2_8c.html#a2420ea5087a6c97e0f0e60946bb6bed2">irc_counter</a> = 0</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">počítadlo kroků  <a href="#a2420ea5087a6c97e0f0e60946bb6bed2"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static int32_t&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="irc2_8c.html#ace11bc81992ca3824a4fb55ff1d5b47b">irc_set_on_value</a> = 100</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Hodnota pro nastavení při přejezdu přes nastavovací snímač.  <a href="#ace11bc81992ca3824a4fb55ff1d5b47b"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static unsigned char&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="irc2_8c.html#a40b68af2e4f96a1cfd2785b6d3b8aa9c">last_oper_with_irc_counter</a> = 0</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static uint16_t&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="irc2_8c.html#a2823da0ac1f311c8b12078b236bbeb67">irc_k</a> = 100</td></tr>
+</table>
+<hr/><h2>Dokumentace k definicím maker</h2>
+<a class="anchor" id="ae59e66b2ffaf088f18f894088f53205b"></a><!-- doxytag: member="irc2.c::A_BIT" ref="ae59e66b2ffaf088f18f894088f53205b" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define A_BIT&nbsp;&nbsp;&nbsp;3</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a955d6d7f3f806537072f993708e00f65"></a><!-- doxytag: member="irc2.c::A_PIN" ref="a955d6d7f3f806537072f993708e00f65" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define A_PIN&nbsp;&nbsp;&nbsp;PINB</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="ac9baf768fde81ade6f9ccde1d20d5a32"></a><!-- doxytag: member="irc2.c::A_PORT" ref="ac9baf768fde81ade6f9ccde1d20d5a32" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define A_PORT&nbsp;&nbsp;&nbsp;PORTB</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Definice pinů pro vstup A, B a setpoint { </p>
+
+</div>
+</div>
+<a class="anchor" id="a07e5089fd757ebcad8929674eecf6c80"></a><!-- doxytag: member="irc2.c::B_BIT" ref="a07e5089fd757ebcad8929674eecf6c80" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define B_BIT&nbsp;&nbsp;&nbsp;4</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a45bd909a8fb5205b60cd8c8d6760db7a"></a><!-- doxytag: member="irc2.c::B_PIN" ref="a45bd909a8fb5205b60cd8c8d6760db7a" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define B_PIN&nbsp;&nbsp;&nbsp;PINB</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a04e1bd382a6de1a30d813bb79f30fb02"></a><!-- doxytag: member="irc2.c::B_PORT" ref="a04e1bd382a6de1a30d813bb79f30fb02" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define B_PORT&nbsp;&nbsp;&nbsp;PORTB</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a2401c1030e02b8da7b3586e2f788d792"></a><!-- doxytag: member="irc2.c::SP_BIT" ref="a2401c1030e02b8da7b3586e2f788d792" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define SP_BIT&nbsp;&nbsp;&nbsp;5</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="acb5711bd7b75243461976cb414b29c44"></a><!-- doxytag: member="irc2.c::SP_PIN" ref="acb5711bd7b75243461976cb414b29c44" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define SP_PIN&nbsp;&nbsp;&nbsp;PINB</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a07104d9db9a8c1da66b457a777088113"></a><!-- doxytag: member="irc2.c::SP_PORT" ref="a07104d9db9a8c1da66b457a777088113" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define SP_PORT&nbsp;&nbsp;&nbsp;PORTD</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
+<hr/><h2>Dokumentace funkcí</h2>
+<a class="anchor" id="a12bd5631a35458163e675a4738df8ac7"></a><!-- doxytag: member="irc2.c::get_irc2_counter" ref="a12bd5631a35458163e675a4738df8ac7" args="(void)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int32_t get_irc2_counter </td>
+          <td>(</td>
+          <td class="paramtype">void&nbsp;</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="aeae106a4dc2959c7a8e13ccdb9a43d95"></a><!-- doxytag: member="irc2.c::get_irc2_set_on_value" ref="aeae106a4dc2959c7a8e13ccdb9a43d95" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int32_t get_irc2_set_on_value </td>
+          <td>(</td>
+          <td class="paramtype">void&nbsp;</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Výstup je v setinách milimetru. Je třeba jej vydělit 1000 aby byl v cm. </p>
+
+</div>
+</div>
+<a class="anchor" id="a8a8e13b00bbf1550a74a1aa2fd637470"></a><!-- doxytag: member="irc2.c::irc2_get_k" ref="a8a8e13b00bbf1550a74a1aa2fd637470" args="(void)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint16_t irc2_get_k </td>
+          <td>(</td>
+          <td class="paramtype">void&nbsp;</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a9a7f216fac24f1bb5342700bdfcc865a"></a><!-- doxytag: member="irc2.c::irc2_get_l" ref="a9a7f216fac24f1bb5342700bdfcc865a" args="(void)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint16_t irc2_get_l </td>
+          <td>(</td>
+          <td class="paramtype">void&nbsp;</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a82d08977a4cf71b6cad65346a58ec837"></a><!-- doxytag: member="irc2.c::irc2_init" ref="a82d08977a4cf71b6cad65346a58ec837" args="(void)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void irc2_init </td>
+          <td>(</td>
+          <td class="paramtype">void&nbsp;</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Inicializace IRC. </p>
+
+</div>
+</div>
+<a class="anchor" id="ac24ca6f0906ccdfb6ffe65d2a28abaf7"></a><!-- doxytag: member="irc2.c::irc2_watch" ref="ac24ca6f0906ccdfb6ffe65d2a28abaf7" args="(void)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void irc2_watch </td>
+          <td>(</td>
+          <td class="paramtype">void&nbsp;</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>V teto funkci je reseno sledovani vstupu irc a jeho nastaveni. Vzdy kdyz je funkce zavolana, je zkontrolovano, zda nedoslo okd minuleho zavolani ke zmene na vstupech irc. Pokud ano, jsou provedeny prislusne korky - zvyseni nebo snizeni citace irc a pripadne odeslani namerene hodnoty. Namerena hodnota je dana jako hodnota irc cidla krat konstanta (obvykle mensi nez jedna). </p>
+
+</div>
+</div>
+<a class="anchor" id="abe8163b2ba712f1a83891ce75e903037"></a><!-- doxytag: member="irc2.c::set_irc2_counter" ref="abe8163b2ba712f1a83891ce75e903037" args="(int32_t a)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void set_irc2_counter </td>
+          <td>(</td>
+          <td class="paramtype">int32_t&nbsp;</td>
+          <td class="paramname"> <em>a</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="aca073e77760684114a3d1f46adef8efc"></a><!-- doxytag: member="irc2.c::set_irc2_k" ref="aca073e77760684114a3d1f46adef8efc" args="(uint16_t a)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void set_irc2_k </td>
+          <td>(</td>
+          <td class="paramtype">uint16_t&nbsp;</td>
+          <td class="paramname"> <em>a</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a20d90a499e8980683f9c54225e397a9f"></a><!-- doxytag: member="irc2.c::set_irc2_k_mm" ref="a20d90a499e8980683f9c54225e397a9f" args="(uint16_t i)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void set_irc2_k_mm </td>
+          <td>(</td>
+          <td class="paramtype">uint16_t&nbsp;</td>
+          <td class="paramname"> <em>i</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Funkce vypočte a nastaví přenásobovací konstantu irc Vstupem je číslo, které odpodvídá kolik milimetrů je na jednu otáčku. </p>
+
+</div>
+</div>
+<a class="anchor" id="a41a0bca6c07f8b1245a4b59a8209fce9"></a><!-- doxytag: member="irc2.c::set_irc2_set_on_value" ref="a41a0bca6c07f8b1245a4b59a8209fce9" args="(int32_t a)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void set_irc2_set_on_value </td>
+          <td>(</td>
+          <td class="paramtype">int32_t&nbsp;</td>
+          <td class="paramname"> <em>a</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a9d85c077b39fc2e091d54dcbfff72608"></a><!-- doxytag: member="irc2.c::set_irc2_set_on_value_mm" ref="a9d85c077b39fc2e091d54dcbfff72608" args="(int32_t q)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void set_irc2_set_on_value_mm </td>
+          <td>(</td>
+          <td class="paramtype">int32_t&nbsp;</td>
+          <td class="paramname"> <em>q</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Nastavení hodnoty. Vstupem je vzdálenost nastavovacíhoo bodu od počátku v centimetrech vynásobená deseti. tj 65 cm je 650 </p>
+
+</div>
+</div>
+<hr/><h2>Dokumentace proměnných</h2>
+<a class="anchor" id="a2420ea5087a6c97e0f0e60946bb6bed2"></a><!-- doxytag: member="irc2.c::irc_counter" ref="a2420ea5087a6c97e0f0e60946bb6bed2" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int32_t <a class="el" href="irc2_8c.html#a2420ea5087a6c97e0f0e60946bb6bed2">irc_counter</a> = 0<code> [static]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>počítadlo kroků </p>
+
+</div>
+</div>
+<a class="anchor" id="a2823da0ac1f311c8b12078b236bbeb67"></a><!-- doxytag: member="irc2.c::irc_k" ref="a2823da0ac1f311c8b12078b236bbeb67" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint16_t <a class="el" href="irc2_8c.html#a2823da0ac1f311c8b12078b236bbeb67">irc_k</a> = 100<code> [static]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>irc_k konstanta, kterou se násobí irc_counter před odesláním. Tim se převádí hodnota na použitelné jednotky. </p>
+
+</div>
+</div>
+<a class="anchor" id="ace11bc81992ca3824a4fb55ff1d5b47b"></a><!-- doxytag: member="irc2.c::irc_set_on_value" ref="ace11bc81992ca3824a4fb55ff1d5b47b" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int32_t <a class="el" href="irc2_8c.html#ace11bc81992ca3824a4fb55ff1d5b47b">irc_set_on_value</a> = 100<code> [static]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Hodnota pro nastavení při přejezdu přes nastavovací snímač. </p>
+
+</div>
+</div>
+<a class="anchor" id="a40b68af2e4f96a1cfd2785b6d3b8aa9c"></a><!-- doxytag: member="irc2.c::last_oper_with_irc_counter" ref="a40b68af2e4f96a1cfd2785b6d3b8aa9c" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned char <a class="el" href="irc2_8c.html#a40b68af2e4f96a1cfd2785b6d3b8aa9c">last_oper_with_irc_counter</a> = 0<code> [static]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Poslední operace provedena s irc počítadlem 0 - bylo naposled odečítáno, 1 - přičítáno vlastně to vyjadřuje směr pohybu </p>
+
+</div>
+</div>
+<a class="anchor" id="ad24a7209740a83b880691380fbe8e0e9"></a><!-- doxytag: member="irc2.c::prev_state" ref="ad24a7209740a83b880691380fbe8e0e9" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned char <a class="el" href="irc2_8c.html#ad24a7209740a83b880691380fbe8e0e9">prev_state</a><code> [static]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>} </p>
+<p>Hodnota kanálů A a B při minulém volání funkce irc_watch(). </p>
+
+</div>
+</div>
+</div>
+<p align=left>Miroslav Jiřík</p>

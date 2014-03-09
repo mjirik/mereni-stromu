@@ -1,0 +1,102 @@
+\section{Dokumentace souboru edit\_\-seznam.php}
+\label{edit__seznam_8php}\index{edit_seznam.php@{edit\_\-seznam.php}}
+\subsection*{Proměnné}
+\begin{CompactItemize}
+\item 
+{\bf \$link} = connect\_\-db()
+\item 
+{\bf \$all} = \& new {\bf Template}('./tmpl/all.tmpl.php')
+\item 
+{\bf \$body} = \& new {\bf Template}('./tmpl/edit\_\-seznam.tmpl.php')
+\item 
+{\bf \$tisk} = \& new {\bf Template}('./tmpl/seznam.tmpl.php')
+\item 
+{\bf \$novy} = \& new {\bf Template}('./tmpl/nove\_\-mereni.tmpl.php')
+\item 
+{\bf \$chybovaHlaska} = false
+\item 
+{\bf \$chybovaHlaskaCena} = false
+\item 
+{\bf \$ceny} = parametry\_\-seznamu(\$\_\-GET[\char`\"{}id\char`\"{}],\$link)
+\item 
+{\bf \$nove\_\-mer} = null
+\item 
+{\bf \$zaznam} [\char`\"{}Cena\_\-m3\char`\"{}] = cena\_\-strom\_\-m3 (\$zaznam,\$ceny)
+\item 
+{\bf \$zaznamy} [\$key] = \$zaznam
+\item 
+{\bf \$zdruhy} = druhy\_\-dreva(\$link)
+\item 
+{\bf \$dalsi\_\-zpracovani} = dalsi\_\-zpracovani(\$link)
+\end{CompactItemize}
+
+
+\subsection{Detailní popis}
+Soubor zajišťuje editaci zakázky. 
+
+\subsection{Dokumentace proměnných}
+\index{edit_seznam.php@{edit\_\-seznam.php}!$all@{\$all}}
+\index{$all@{\$all}!edit_seznam.php@{edit\_\-seznam.php}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}\$all = \& new {\bf Template}('./tmpl/all.tmpl.php')}\label{edit__seznam_8php_3c74ea9d2348c9aba28d36e692bef2d2}
+
+
+\index{edit_seznam.php@{edit\_\-seznam.php}!$body@{\$body}}
+\index{$body@{\$body}!edit_seznam.php@{edit\_\-seznam.php}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}\$body = \& new {\bf Template}('./tmpl/edit\_\-seznam.tmpl.php')}\label{edit__seznam_8php_26b9f9373f7bb79dfcf8a86dff086b45}
+
+
+\index{edit_seznam.php@{edit\_\-seznam.php}!$ceny@{\$ceny}}
+\index{$ceny@{\$ceny}!edit_seznam.php@{edit\_\-seznam.php}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}\$ceny = parametry\_\-seznamu(\$\_\-GET[\char`\"{}id\char`\"{}],\$link)}\label{edit__seznam_8php_22c2c5c2c686d4be1f43b067588d790a}
+
+
+\index{edit_seznam.php@{edit\_\-seznam.php}!$chybovaHlaska@{\$chybovaHlaska}}
+\index{$chybovaHlaska@{\$chybovaHlaska}!edit_seznam.php@{edit\_\-seznam.php}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}\$chybovaHlaska = false}\label{edit__seznam_8php_3c37b063b89ad1a467767a3d915a3c41}
+
+
+\index{edit_seznam.php@{edit\_\-seznam.php}!$chybovaHlaskaCena@{\$chybovaHlaskaCena}}
+\index{$chybovaHlaskaCena@{\$chybovaHlaskaCena}!edit_seznam.php@{edit\_\-seznam.php}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}\$chybovaHlaskaCena = false}\label{edit__seznam_8php_78baee63a6db53573ed50117fe41fb25}
+
+
+\index{edit_seznam.php@{edit\_\-seznam.php}!$dalsi_zpracovani@{\$dalsi\_\-zpracovani}}
+\index{$dalsi_zpracovani@{\$dalsi\_\-zpracovani}!edit_seznam.php@{edit\_\-seznam.php}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}\$dalsi\_\-zpracovani = dalsi\_\-zpracovani(\$link)}\label{edit__seznam_8php_4e38bd4e6c20b5e662f40ebdde8dad2b}
+
+
+\index{edit_seznam.php@{edit\_\-seznam.php}!$link@{\$link}}
+\index{$link@{\$link}!edit_seznam.php@{edit\_\-seznam.php}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}\$link = connect\_\-db()}\label{edit__seznam_8php_5d346e31b75d916e3bac9cb193bfc97f}
+
+
+\index{edit_seznam.php@{edit\_\-seznam.php}!$nove_mer@{\$nove\_\-mer}}
+\index{$nove_mer@{\$nove\_\-mer}!edit_seznam.php@{edit\_\-seznam.php}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}\$nove\_\-mer = null}\label{edit__seznam_8php_556d395e43784391881a80244efd7788}
+
+
+\index{edit_seznam.php@{edit\_\-seznam.php}!$novy@{\$novy}}
+\index{$novy@{\$novy}!edit_seznam.php@{edit\_\-seznam.php}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}\$novy = \& new {\bf Template}('./tmpl/nove\_\-mereni.tmpl.php')}\label{edit__seznam_8php_0a14f7b921f1c1d02ff8b900d2618236}
+
+
+\index{edit_seznam.php@{edit\_\-seznam.php}!$tisk@{\$tisk}}
+\index{$tisk@{\$tisk}!edit_seznam.php@{edit\_\-seznam.php}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}\$tisk = \& new {\bf Template}('./tmpl/seznam.tmpl.php')}\label{edit__seznam_8php_f75bdb3629c27f871b739f7947703e43}
+
+
+\index{edit_seznam.php@{edit\_\-seznam.php}!$zaznam@{\$zaznam}}
+\index{$zaznam@{\$zaznam}!edit_seznam.php@{edit\_\-seznam.php}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}\$zaznam[\char`\"{}Cena\_\-m3\char`\"{}] = cena\_\-strom\_\-m3 (\$zaznam,\$ceny)}\label{edit__seznam_8php_54d6ff0dc1b9495abd4a2a289b2eb2f8}
+
+
+\index{edit_seznam.php@{edit\_\-seznam.php}!$zaznamy@{\$zaznamy}}
+\index{$zaznamy@{\$zaznamy}!edit_seznam.php@{edit\_\-seznam.php}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}\$zaznamy[\$key] = \$zaznam}\label{edit__seznam_8php_af0cfd8c2680fe31c3d4f0c74a249766}
+
+
+\index{edit_seznam.php@{edit\_\-seznam.php}!$zdruhy@{\$zdruhy}}
+\index{$zdruhy@{\$zdruhy}!edit_seznam.php@{edit\_\-seznam.php}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}\$zdruhy = druhy\_\-dreva(\$link)}\label{edit__seznam_8php_2f4727ea869082ec91e88aa9c5116231}
+
+

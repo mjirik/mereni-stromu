@@ -1,108 +1,123 @@
-/**
-@page Manual Manuál obsluhy
+ï»¿/**
+@page Manual ManuÃ¡l obsluhy
 
-@section uvod Úvod
+@section uvod Ãšvod
 
-Tyto manuálové stránky patøí do rukou obsluhy systému automatického
-mìøení objìmu stromù. Mìøící systém je rozdìlen na dvì èásti:
-- èást pro získání dat
-- èást pro zpracování dat
+Tyto manuÃ¡lovÃ© strÃ¡nky patÅ™Ã­ do rukou obsluhy systÃ©mu automatickÃ©ho
+mÄ›Å™enÃ­ objÄ›mu stromÅ¯. MÄ›Å™Ã­cÃ­ systÃ©m je rozdÄ›len na dvÄ› ÄÃ¡sti:
+- ÄÃ¡st pro zÃ­skÃ¡nÃ­ dat
+- ÄÃ¡st pro zpracovÃ¡nÃ­ dat
 
-Zaøízení zajišující získání dat se nalézá v prostorách pily,
-zpracování je provádìno prostøednictvím webové aplikace provozované na
-serveru v administraèní budovì.
+ZaÅ™Ã­zenÃ­ zajiÅ¡Å¥ujÃ­cÃ­ zÃ­skÃ¡nÃ­ dat se nalÃ©zÃ¡ v prostorÃ¡ch pily,
+zpracovÃ¡nÃ­ je provÃ¡dÄ›no prostÅ™ednictvÃ­m webovÃ© aplikace provozovanÃ© na
+serveru v administraÄnÃ­ budovÄ›.
 
-Zaøízení slouící ke sbìru dat se skládá z:
-- inkrementálního èidla pro mìøení polohy pøítlaèného válce
-- magnetického èidla pro získání referenèní vzdálenosti
-- mìøcí lišty pro mìøení vodorovného prùmìru 
-- krabice s elektronikou pro vyhodnocení dat získanıch vıše zmínìnımi
-prostøedky
-- inkrementálním èidlem pro získání polohy vozíku
-- magnetického èidla pro získání referenèní vzdálenosti
-- hlavní obsluné jednotky, která zajišuje zpracování dat a jejich
-bezpeèné odeslání na server.
+ZaÅ™Ã­zenÃ­ slouÅ¾Ã­cÃ­ ke sbÄ›ru dat se sklÃ¡dÃ¡ z:
+- inkrementÃ¡lnÃ­ho Äidla pro mÄ›Å™enÃ­ polohy pÅ™Ã­tlaÄnÃ©ho vÃ¡lce
+- magnetickÃ©ho Äidla pro zÃ­skÃ¡nÃ­ referenÄnÃ­ vzdÃ¡lenosti
+- mÄ›Å™cÃ­ liÅ¡ty pro mÄ›Å™enÃ­ vodorovnÃ©ho prÅ¯mÄ›ru 
+- krabice s elektronikou pro vyhodnocenÃ­ dat zÃ­skanÃ½ch vÃ½Å¡e zmÃ­nÄ›nÃ½mi
+prostÅ™edky
+- inkrementÃ¡lnÃ­m Äidlem pro zÃ­skÃ¡nÃ­ polohy vozÃ­ku
+- magnetickÃ©ho Äidla pro zÃ­skÃ¡nÃ­ referenÄnÃ­ vzdÃ¡lenosti
+- hlavnÃ­ obsluÅ¾nÃ© jednotky, kterÃ¡ zajiÅ¡Å¥uje zpracovÃ¡nÃ­ dat a jejich
+bezpeÄnÃ© odeslÃ¡nÃ­ na server.
 
-@section proces_mereni Proces mìøení
-Mìøení je zahájeno stisknutím pøíslušného tlaèítka. V ten okamik je
-namìøena vzdálenost vozíku od katru a ta je dále povaována za délku
-øezaného kmene. Jak je strom postupnì rozezáván je prùbìnì mìøen
-jeho svislı i vodorovnı prùmìr. Po ukonèení mìøení je z prùbìnì
-získanıch dat vypoèítána hodnota støedového prùmìru.
+@section proces_mereni Proces mÄ›Å™enÃ­
+MÄ›Å™enÃ­ je zahÃ¡jeno stisknutÃ­m pÅ™Ã­sluÅ¡nÃ©ho tlaÄÃ­tka. V ten okamÅ¾ik je
+namÄ›Å™ena vzdÃ¡lenost vozÃ­ku od katru a ta je dÃ¡le povaÅ¾ovÃ¡na za dÃ©lku
+Å™ezanÃ©ho kmene. Jak je strom postupnÄ› rozÅ¾ezÃ¡vÃ¡n je prÅ¯bÄ›Å¾nÄ› mÄ›Å™en
+jeho svislÃ½ i vodorovnÃ½ prÅ¯mÄ›r. Po ukonÄenÃ­ mÄ›Å™enÃ­ je z prÅ¯bÄ›Å¾nÄ›
+zÃ­skanÃ½ch dat vypoÄÃ­tÃ¡na hodnota stÅ™edovÃ©ho prÅ¯mÄ›ru.
 
-V pøípadì, e se vozík pøestane pohybovat s øezanou kládou nelze v
-mìøení pokraèovat. V okamiku kdy se zaène vozík pohybovat vzad, je
-mìøení automaticky pøerušeno. Pokud ji bylo získáno dostatek dat, je
-z nich vypoèítán prùmìr a data jsou zaznamenána. V opaèném pøípadì je
-mìøení neúspìšné a je vypsána chybová hláška a data jsou ztracena.
-
-
-@section obsluzna_jednotka Uivatelské rozhraní obsluné jednotky
-Obsluná jednotka komunikuje s uivatelem prostøednicvím panelu ,
-kterı obsahuje LCD displej a nìkolik tlaèítek. K systému je dále
-pøipojena klávesnice, která slouí zejména pro zadávání jmen
-zákazníkù. 
+V pÅ™Ã­padÄ›, Å¾e se vozÃ­k pÅ™estane pohybovat s Å™ezanou klÃ¡dou nelze v
+mÄ›Å™enÃ­ pokraÄovat. V okamÅ¾iku kdy se zaÄne vozÃ­k pohybovat vzad, je
+mÄ›Å™enÃ­ automaticky pÅ™eruÅ¡eno. Pokud jiÅ¾ bylo zÃ­skÃ¡no dostatek dat, je
+z nich vypoÄÃ­tÃ¡n prÅ¯mÄ›r a data jsou zaznamenÃ¡na. V opaÄnÃ©m pÅ™Ã­padÄ› je
+mÄ›Å™enÃ­ neÃºspÄ›Å¡nÃ© a je vypsÃ¡na chybovÃ¡ hlÃ¡Å¡ka a data jsou ztracena.
 
 
-K ovkádání vìtšiny funckí postaèuje sedmice tlaèítek v okolí displeje.
-- tlaèítko "ODESLAT" slouí pro odesílání namìøenıch dat na server
-- tlaèítko "START" je urèeno pro zahájení procesu mìøení
-- tlaèítko "STOP" pøeruší probíhající mìøení
-- tlaèítka šipek slouøí pro ovládání kurzoru
-- tlaèítko "OK" slouší pro potvrzování 
-- tlaèítko "ZRUŠIT" je urèeno pro pøerušení akce, návrat k pøedchozí
+@section obsluzna_jednotka UÅ¾ivatelskÃ© rozhranÃ­ obsluÅ¾nÃ© jednotky
+ObsluÅ¾nÃ¡ jednotka komunikuje s uÅ¾ivatelem prostÅ™ednicvÃ­m panelu ,
+kterÃ½ obsahuje LCD displej a nÄ›kolik tlaÄÃ­tek. K systÃ©mu je dÃ¡le
+pÅ™ipojena klÃ¡vesnice, kterÃ¡ slouÅ¾Ã­ zejmÃ©na pro zadÃ¡vÃ¡nÃ­ jmen
+zÃ¡kaznÃ­kÅ¯. 
+
+
+K ovkÃ¡dÃ¡nÃ­ vÄ›tÅ¡iny funckÃ­ postaÄuje sedmice tlaÄÃ­tek v okolÃ­ displeje.
+- tlaÄÃ­tko "ODESLAT" slouÅ¾Ã­ pro odesÃ­lÃ¡nÃ­ namÄ›Å™enÃ½ch dat na server
+- tlaÄÃ­tko "START" je urÄeno pro zahÃ¡jenÃ­ procesu mÄ›Å™enÃ­
+- tlaÄÃ­tko "STOP" pÅ™eruÅ¡Ã­ probÃ­hajÃ­cÃ­ mÄ›Å™enÃ­
+- tlaÄÃ­tka Å¡ipek slouÅ™Ã­ pro ovlÃ¡dÃ¡nÃ­ kurzoru
+- tlaÄÃ­tko "OK" slouÅ¡Ã­ pro potvrzovÃ¡nÃ­ 
+- tlaÄÃ­tko "ZRUÅ IT" je urÄeno pro pÅ™eruÅ¡enÃ­ akce, nÃ¡vrat k pÅ™edchozÃ­
 obrazovce atd.
 
-Horní tøi tlaèítka (ODESLAT, START, STOP) pracují ve všech reimech
-stejnì.
+HornÃ­ tÅ™i tlaÄÃ­tka (ODESLAT, START, STOP) pracujÃ­ ve vÅ¡ech reÅ¾imech
+stejnÄ›.
 
-Po stisknutí tlaèítka "ODESLAT" se ovládací jednotka pokusí odeslat
-dosud namìøená data na server. V pøípadì úspìchu je vypsána hláška
-oznamující úspìšné odeslání a dosud namìøená data jsou uvolnìna z
-pamìti. V pøípadì, e server nìbìí, nebo v pøípadì jiné poruchy je
-zobrazena pøíslušná chybová zpráva.
+Po stisknutÃ­ tlaÄÃ­tka "ODESLAT" se ovlÃ¡dacÃ­ jednotka pokusÃ­ odeslat
+dosud namÄ›Å™enÃ¡ data na server. V pÅ™Ã­padÄ› ÃºspÄ›chu je vypsÃ¡na hlÃ¡Å¡ka
+oznamujÃ­cÃ­ ÃºspÄ›Å¡nÃ© odeslÃ¡nÃ­ a dosud namÄ›Å™enÃ¡ data jsou uvolnÄ›na z
+pamÄ›ti. V pÅ™Ã­padÄ›, Å¾e server nÄ›bÄ›Å¾Ã­, nebo v pÅ™Ã­padÄ› jinÃ© poruchy je
+zobrazena pÅ™Ã­sluÅ¡nÃ¡ chybovÃ¡ zprÃ¡va.
 
-Tlaèíto "START" slouí pro zahájení mìøení. Je zmìøena vzdálenost
-vozíku od katru a je povaována za délku mìøeného stromu. Je proto
-nutné, aby bylo stiskuto v okamiku, kdy je mìenı kmen v tìsné
-blízkosti katru. Další mìøení je moné zahájit a po ukonèení
-pøedchozího mìøení.
+TlaÄÃ­to "START" slouÅ¾Ã­ pro zahÃ¡jenÃ­ mÄ›Å™enÃ­. Je zmÄ›Å™ena vzdÃ¡lenost
+vozÃ­ku od katru a je povaÅ¾ovÃ¡na za dÃ©lku mÄ›Å™enÃ©ho stromu. Je proto
+nutnÃ©, aby bylo stiskuto v okamÅ¾iku, kdy je mÄ›enÃ½ kmen v tÄ›snÃ©
+blÃ­zkosti katru. DalÅ¡Ã­ mÄ›Å™enÃ­ je moÅ¾nÃ© zahÃ¡jit aÅ¾ po ukonÄenÃ­
+pÅ™edchozÃ­ho mÄ›Å™enÃ­.
 
-Tlaèítko "STOP" je urèeno pro pøerušení probíhajícího mìøení. Po jeho
-stisknutí jsou dosud získaná data ztracena a systém je pøipraven mìøit
+TlaÄÃ­tko "STOP" je urÄeno pro pÅ™eruÅ¡enÃ­ probÃ­hajÃ­cÃ­ho mÄ›Å™enÃ­. Po jeho
+stisknutÃ­ jsou dosud zÃ­skanÃ¡ data ztracena a systÃ©m je pÅ™ipraven mÄ›Å™it
 znova.
 
 
-Uivatelské rozhraní je tvoøeno nìkolika obrazovkami:
-- obrazovka mìøení
-- obrazovka namìenıch dat
-- obrazovka zákazníkù
-- obrazovka pro vıpis chyb
+UÅ¾ivatelskÃ© rozhranÃ­ je tvoÅ™eno nÄ›kolika obrazovkami:
+- obrazovka mÄ›Å™enÃ­
+- obrazovka namÄ›Å¾enÃ½ch dat
+- obrazovka zÃ¡kaznÃ­kÅ¯
+- obrazovka pro vÃ½pis chyb
 
 
-@subsection obrazovka_mereni Obrazovka mìøení 
-Tato obrazovka zobrazuje nejdùleitìjší informace z probíhajícího
-mìøení a umoòuje nastavit informace pro urèení ceny za rozøezání.
+@subsection obrazovka_mereni Obrazovka mÄ›Å™enÃ­ 
+Tato obrazovka zobrazuje nejdÅ¯leÅ¾itÄ›jÅ¡Ã­ informace z probÃ­hajÃ­cÃ­ho
+mÄ›Å™enÃ­ a umoÅ¾Åˆuje nastavit informace pro urÄenÃ­ ceny za rozÅ™ezÃ¡nÃ­.
 
-V levé èásti je menu, jeho prostøednictvím lze nastavit, zda bude
-danı kmen úètován jako manipulovanı, zda jde dvakrát katrem,
-atd. Volba se provádí tak, e se šipkami pøemístí kurzor k pøíslušné
-poloce a postupnım stiskáváním tlaèítka "OK" je hodnota poloky
-mìnìna. V pøípadì vybrání jména zákazníka, dojde k pøepnutí do
-obrazovky zákazníkù, pokud je zvolena poloka "Data", zobrazí se
-obrazovka s namìøenımi daty.
+V levÃ© ÄÃ¡sti je menu, jehoÅ¾ prostÅ™ednictvÃ­m lze nastavit, zda bude
+danÃ½ kmen ÃºÄtovÃ¡n jako manipulovanÃ½, zda jde dvakrÃ¡t katrem,
+atd. Volba se provÃ¡dÃ­ tak, Å¾e se Å¡ipkami pÅ™emÃ­stÃ­ kurzor k pÅ™Ã­sluÅ¡nÃ©
+poloÅ¾ce a postupnÃ½m stiskÃ¡vÃ¡nÃ­m tlaÄÃ­tka "OK" je hodnota poloÅ¾ky
+mÄ›nÄ›na. V pÅ™Ã­padÄ› vybrÃ¡nÃ­ jmÃ©na zÃ¡kaznÃ­ka, dojde k pÅ™epnutÃ­ do
+obrazovky zÃ¡kaznÃ­kÅ¯, pokud je zvolena poloÅ¾ka "Data", zobrazÃ­ se
+obrazovka s namÄ›Å™enÃ½mi daty.
 
-@subsection obrazovka_data Obrazovka namìøenıch dat
-Zde jsou zobrazena všechna zmìøená mìøení (s vıjimkou toho, které
-ještì nebylo dokonèeno). Informace pro vıpoèet ceny lze dodateènì
-upravovat. K tomu je nutno navolit šipkami pøíslušnı øádek a
-stisknout tlaèítko "OK". Kurzor se pøesune mezi jednotlivé poloky
-(zákazník, druh døeva, atd.). Tlaèítkem "OK" lze poloky
-mìnit. Tlaèítkem "ZRUŠIT" se opouští úprava tohoto øádku. Pro úplné
-opuštìní obrazovky s daty staèí opìt stisknou tlaèítko "ZRUŠIT".
+@subsection obrazovka_data Obrazovka namÄ›Å™enÃ½ch dat
+Zde jsou zobrazena vÅ¡echna zmÄ›Å™enÃ¡ mÄ›Å™enÃ­ (s vÃ½jimkou toho, kterÃ©
+jeÅ¡tÄ› nebylo dokonÄeno). Informace pro vÃ½poÄet ceny lze dodateÄnÄ›
+upravovat. K tomu je nutno navolit Å¡ipkami pÅ™Ã­sluÅ¡nÃ½ Å™Ã¡dek a
+stisknout tlaÄÃ­tko "OK". Kurzor se pÅ™esune mezi jednotlivÃ© poloÅ¾ky
+(zÃ¡kaznÃ­k, druh dÅ™eva, atd.). TlaÄÃ­tkem "OK" lze poloÅ¾ky
+mÄ›nit. TlaÄÃ­tkem "ZRUÅ IT" se opouÅ¡tÃ­ Ãºprava tohoto Å™Ã¡dku. Pro ÃºplnÃ©
+opuÅ¡tÄ›nÃ­ obrazovky s daty staÄÃ­ opÄ›t stisknou tlaÄÃ­tko "ZRUÅ IT".
 
-@subsection obrazovka_zakaznici Obrazovka zákazníkù
+@subsection obrazovka_zakaznici Obrazovka zÃ¡kaznÃ­kÅ¯
+
+@subsection obrazovka_setup Obrazovka nastavenÃ­ parametrÅ¯
+Pro vyvolÃ¡nÃ­ obrazovky je nutno pÅ™esunout kurzor na poloÅ¾ku data a pak stisknout klÃ¡vesu F6. 
+
+v_irc_k 
+MultiplikativnÃ­ konstanta irc na vozÃ­ku. UdÃ¡vÃ¡ se v milimetrech, vÃ½chozÃ­ nastavenÃ­ je asi 420.
+
+v_irc_l 
+NastavenÃ­ vzdÃ¡lenosti resetovacÃ­ho Äidla. UdÃ¡vÃ¡ se v centimetrech.
+
+lista
+0 znamenÃ¡ Å¾e se horizontÃ¡lnÃ­ prÅ¯mÄ›r nemÄ›Å™Ã­, 1 je mÄ›Å™enÃ­ pomocÃ­ mÄ›Å™Ã­cÃ­ liÅ¡ty, 2 mÄ›Å™enÃ­ pomocÃ­ vrat (nenÃ­ naimplementovÃ¡no)
+
+@subsection obrazovka_serial Obrazovka s vyobrazenÃ­m pÅ™ijmu seriovÃ©ho kanÃ¡lu.
+Pro vyvolÃ¡nÃ­ obrazovky je nutno pÅ™esunout kurzor na poloÅ¾ku data a pak stisknout klÃ¡vesu F5. 
 
 
-@image html pic.jpg Toto je mùj obrázek
+@image html pic.jpg Toto je mÅ¯j obrÃ¡zek
 */

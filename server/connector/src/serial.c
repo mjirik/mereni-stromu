@@ -171,7 +171,7 @@ void zpracuj_zpravu(){
     //    add_zakaznik (buffer[2],0,jmn);
     //print_zakaznici();
     insertZakaznik((int) buffer[2],jmn);
-    free(jmn);
+    mfree(jmn);
     write_port("\x14");
     break;
   case '\x42':{

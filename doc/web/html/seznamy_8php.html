@@ -1,0 +1,101 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<title>Webová aplikace k projektu měření objemu řeziva: Dokumentace souboru seznamy.php</title>
+<link href="doxygen.css" rel="stylesheet" type="text/css">
+<link href="tabs.css" rel="stylesheet" type="text/css">
+</head><body>
+<!-- Generováno programem Doxygen 1.5.2 -->
+<div class="tabs">
+  <ul>
+    <li><a href="index.html"><span>Hlavní&nbsp;stránka</span></a></li>
+    <li><a href="annotated.html"><span>Třídy</span></a></li>
+    <li class="current"><a href="files.html"><span>Soubory</span></a></li>
+    <li><a href="pages.html"><span>Ostatní&nbsp;stránky</span></a></li>
+  </ul>
+</div>
+<div class="tabs">
+  <ul>
+    <li><a href="files.html"><span>Seznam&nbsp;souborů</span></a></li>
+    <li><a href="globals.html"><span>Globální&nbsp;symboly</span></a></li>
+  </ul>
+</div>
+<h1>Dokumentace souboru seznamy.php</h1>Soubor zajišťuje vypisování zakázek zákazníků. <a href="#_details">...</a>
+<p>
+<table border="0" cellpadding="0" cellspacing="0">
+<tr><td></td></tr>
+<tr><td colspan="2"><br><h2>Proměnné</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="seznamy_8php.html#5d346e31b75d916e3bac9cb193bfc97f">$link</a> = connect_db()</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="seznamy_8php.html#26b9f9373f7bb79dfcf8a86dff086b45">$body</a> = &amp; new <a class="el" href="classTemplate.html">Template</a>('./tmpl/seznamy.tmpl.php')</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="seznamy_8php.html#3c74ea9d2348c9aba28d36e692bef2d2">$all</a> = &amp; new <a class="el" href="classTemplate.html">Template</a>('./tmpl/all.tmpl.php')</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="seznamy_8php.html#69af6cd0d91dc9a06af879b8e5f0eb9d">$vysledek</a> = seznamy_zakaznika($_GET[&quot;id&quot;],$link)</td></tr>
+
+</table>
+<hr><a name="_details"></a><h2>Detailní popis</h2>
+Soubor zajišťuje vypisování zakázek zákazníků. 
+<p>
+<dl compact><dt><b><a class="el" href="todo.html#_todo000004">Plánované úpravy:</a></b></dt><dd>prověřit nezbytnost </dd></dl>
+<hr><h2>Dokumentace proměnných</h2>
+<a class="anchor" name="3c74ea9d2348c9aba28d36e692bef2d2"></a><!-- doxytag: member="seznamy.php::$all" ref="3c74ea9d2348c9aba28d36e692bef2d2" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">$all = &amp; new <a class="el" href="classTemplate.html">Template</a>('./tmpl/all.tmpl.php')          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+</div>
+</div><p>
+<a class="anchor" name="26b9f9373f7bb79dfcf8a86dff086b45"></a><!-- doxytag: member="seznamy.php::$body" ref="26b9f9373f7bb79dfcf8a86dff086b45" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">$body = &amp; new <a class="el" href="classTemplate.html">Template</a>('./tmpl/seznamy.tmpl.php')          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+</div>
+</div><p>
+<a class="anchor" name="5d346e31b75d916e3bac9cb193bfc97f"></a><!-- doxytag: member="seznamy.php::$link" ref="5d346e31b75d916e3bac9cb193bfc97f" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">$link = connect_db()          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+</div>
+</div><p>
+<a class="anchor" name="69af6cd0d91dc9a06af879b8e5f0eb9d"></a><!-- doxytag: member="seznamy.php::$vysledek" ref="69af6cd0d91dc9a06af879b8e5f0eb9d" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">$vysledek = seznamy_zakaznika($_GET[&quot;id&quot;],$link)          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+</div>
+</div><p>
+<p align=left>Miroslav Jiřík</p>

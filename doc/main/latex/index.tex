@@ -1,0 +1,10 @@
+Tento text představuje dokumentaci k projektu měření objemu řeziva na pile.
+
+Vzhledem k relativní jednoduchosti jsou jako výpočetní prostředky zvoleny jednočipové mikropočítače. V jejich prospěch hovoří, nízká pořizovací cena, široká dostupnost technologie, ale i to, že díky nim lze zařízení snadno rozdělit na dvě části.
+
+
+
+První část zajišťuje obsluhu měření průměrů na katru a odeslání získaných dat do druhé části na vozíku. Měření vertikálního průměru provádí inkrementální čidlo spojené s osou motoru, který pohybuje horním přítlačným válcem nahoru a dolu. Dále je instalováno jednoduché magnetické relé, které slouží jako referenční bod. Pokaždé, když spínač sepne a průměr dv se zvětšuje, dojde k nastavení čítače vzdálenosti na přednastavenou hodnotu. Horizontální průměr bude experimentálně měřen bezkontaktní metodou s použitím jednoho zdroje světla. Nad řezaným dřevem bude umístěn halogenový světelný zdroj a pod dřevem bude měřící lišta. Na té bude řada fotodiod, které budou sloužit k měření světelné intenzity v jednotlivých bodech. Druhá část se nalézá na pojízdném vozíku. Zajišťuje obsluhu měření délky stromu, shromažďování dat, uživatelské rozhraní a komunikaci s kancelářským PC. Délka stromu se měří s využitím inkrementálního čidla. To je přiděláno na kolečko, které se odvaluje po kolejnici, po níž vozík jezdí. Uživatelské rozhraní je realizováno znakovým LCD displejem a běžnou počítačovou klávesnicí, která bude v budoucnu nahrazena průmyslovou klávesnicí. Jako výpočetní prvky byly zvoleny jednočipy Atmel. Vyznačují se nízkou cenou, slušnými výkony a lze je programovat bez dalšího příslušenství pouze prostřednictvím paralelního portu běžného PC. Pro zařízení na katru byl vybrán typ ATmega8 pro zařízení na vozíku byl zvolen typ ATmega32.\section{Odkazy}\label{index_Odkazy}
+{\tt http://winavr.sourceforge.net}
+
+{\tt http://www.mysql.com} 

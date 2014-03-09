@@ -1,0 +1,44 @@
+\section{Dokumentace souboru convert.c}
+\label{convert_8c}\index{convert.c@{convert.c}}
+
+
+Zde jsou prováděny konverze číselných typů na string.  
+{\ttfamily \#include $<$inttypes.h$>$}\par
+{\ttfamily \#include $<$avr/io.h$>$}\par
+{\ttfamily \#include $<$avr/pgmspace.h$>$}\par
+{\ttfamily \#include \char`\"{}convert.h\char`\"{}}\par
+{\ttfamily \#include \char`\"{}lcd.h\char`\"{}}\par
+{\ttfamily \#include \char`\"{}main.h\char`\"{}}\par
+{\ttfamily \#include \char`\"{}error.h\char`\"{}}\par
+\subsection*{Funkce}
+\begin{DoxyCompactItemize}
+\item 
+char $\ast$ {\bf mezery} (char $\ast$s, char len)
+\item 
+int {\bf strlen} (char $\ast$s)
+\begin{DoxyCompactList}\small\item\em Funkce vrací délku řetězce. \item\end{DoxyCompactList}\item 
+char $\ast$ {\bf int2str} (char $\ast$s, uint16\_\-t cislo)
+\item 
+char $\ast$ {\bf int2strn} (char $\ast$s, int len, uint16\_\-t cislo)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailní popis}
+Zde jsou prováděny konverze číselných typů na string. 
+
+\subsection{Dokumentace funkcí}
+\index{convert.c@{convert.c}!int2str@{int2str}}
+\index{int2str@{int2str}!convert.c@{convert.c}}
+\subsubsection[{int2str}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ int2str (char $\ast$ {\em s}, \/  uint16\_\-t {\em cislo})}\label{convert_8c_a74ec62624e7d8e4b00205adf77aabb64}
+Funkce převádí číslo na řetězec. Vstupem je řetězec. Změří se jeho délka a na takovou délku se převede číslo. Pokud je řetězec příliš krátký, dojde k vypsání chybové zprávy. Zarovnává se vpravo. Pokud je první znak vstupního řetězce roven '0', vypisují se i počáteční nuly např 0056 \index{convert.c@{convert.c}!int2strn@{int2strn}}
+\index{int2strn@{int2strn}!convert.c@{convert.c}}
+\subsubsection[{int2strn}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ int2strn (char $\ast$ {\em s}, \/  int {\em len}, \/  uint16\_\-t {\em cislo})}\label{convert_8c_a17bf3fd114d2e811eb0193d03398cf7a}
+Funkce převádí číslo na řetězec \index{convert.c@{convert.c}!mezery@{mezery}}
+\index{mezery@{mezery}!convert.c@{convert.c}}
+\subsubsection[{mezery}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ mezery (char $\ast$ {\em s}, \/  char {\em len})}\label{convert_8c_a39b535915350e4ef7042813898302441}
+Funkce vyplní daný řetězec mezerami. Počet mezer je určen argumentem len. Za mezery je umístěn znak ''. \index{convert.c@{convert.c}!strlen@{strlen}}
+\index{strlen@{strlen}!convert.c@{convert.c}}
+\subsubsection[{strlen}]{\setlength{\rightskip}{0pt plus 5cm}int strlen (char $\ast$ {\em s})}\label{convert_8c_aae9bab51ad4377373a2d4e9f7bbf0f2e}
+
+
+Funkce vrací délku řetězce. 

@@ -1,0 +1,63 @@
+\section{Dokumentace souboru error.h}
+\label{error_8h}\index{error.h@{error.h}}
+\subsection*{Definice maker}
+\begin{DoxyCompactItemize}
+\item 
+\#define {\bf assert}(e)
+\end{DoxyCompactItemize}
+\subsection*{Funkce}
+\begin{DoxyCompactItemize}
+\item 
+void {\bf new\_\-str\_\-error} (uint8\_\-t err\_\-num, char $\ast$s)
+\item 
+void {\bf new\_\-error} (uint8\_\-t err\_\-num)
+\item 
+void {\bf error\_\-scr\_\-draw} (void)
+\item 
+void {\bf error\_\-scr\_\-control} (void)
+\item 
+void {\bf err\_\-assert} (char $\ast$soubor, int radek)
+\item 
+void {\bf err\_\-scr\_\-open} (void)
+\item 
+void {\bf err\_\-control} (void)
+\end{DoxyCompactItemize}
+
+
+\subsection{Dokumentace k definicím maker}
+\index{error.h@{error.h}!assert@{assert}}
+\index{assert@{assert}!error.h@{error.h}}
+\subsubsection[{assert}]{\setlength{\rightskip}{0pt plus 5cm}\#define assert(e)}\label{error_8h_ad6d5aaa966ca7424f7cb9bd01f2c838b}
+{\bfseries Hodnota:}
+\begin{DoxyCode}
+((e) ? (void)0 :\
+           err_assert(__FILE__, __LINE__))
+\end{DoxyCode}
+
+
+\subsection{Dokumentace funkcí}
+\index{error.h@{error.h}!err\_\-assert@{err\_\-assert}}
+\index{err\_\-assert@{err\_\-assert}!error.h@{error.h}}
+\subsubsection[{err\_\-assert}]{\setlength{\rightskip}{0pt plus 5cm}void err\_\-assert (char $\ast$ {\em soubor}, \/  int {\em radek})}\label{error_8h_ae6dd1f6c6a4f232ddee182df66ee0b28}
+Funkce je volána v případě že makro \doxyref{assert()}{s.}{error_8h_ad6d5aaa966ca7424f7cb9bd01f2c838b} nalezlo nějakou chybu. Funkce vyvtoří řeťězec, v němˇž je popsáno jméno funkce, jméno souboru a řádek, z něhož je makro spouštěno. \index{error.h@{error.h}!err\_\-control@{err\_\-control}}
+\index{err\_\-control@{err\_\-control}!error.h@{error.h}}
+\subsubsection[{err\_\-control}]{\setlength{\rightskip}{0pt plus 5cm}void err\_\-control (void)}\label{error_8h_ad55f51b13448734dee621455a92e74f1}
+Funkce, která zajišťuje asynchroní vypisování errorů. Dříve totiž mohlo dojít k přerušení běhu programu uprostřed vykonávání některé funkce a to vedlo k potížím s korektním navracením systémových prostředků. \index{error.h@{error.h}!err\_\-scr\_\-open@{err\_\-scr\_\-open}}
+\index{err\_\-scr\_\-open@{err\_\-scr\_\-open}!error.h@{error.h}}
+\subsubsection[{err\_\-scr\_\-open}]{\setlength{\rightskip}{0pt plus 5cm}void err\_\-scr\_\-open (void)}\label{error_8h_a2dad9aca4b62c3ded6ee140807e1a9a5}
+\index{error.h@{error.h}!error\_\-scr\_\-control@{error\_\-scr\_\-control}}
+\index{error\_\-scr\_\-control@{error\_\-scr\_\-control}!error.h@{error.h}}
+\subsubsection[{error\_\-scr\_\-control}]{\setlength{\rightskip}{0pt plus 5cm}void error\_\-scr\_\-control (void)}\label{error_8h_a316a9c1c700f5cde9d2fc570632a9f37}
+\index{error.h@{error.h}!error\_\-scr\_\-draw@{error\_\-scr\_\-draw}}
+\index{error\_\-scr\_\-draw@{error\_\-scr\_\-draw}!error.h@{error.h}}
+\subsubsection[{error\_\-scr\_\-draw}]{\setlength{\rightskip}{0pt plus 5cm}void error\_\-scr\_\-draw (void)}\label{error_8h_a7fc70ff887a46ce08c06b9b9762ef200}
+\index{error.h@{error.h}!new\_\-error@{new\_\-error}}
+\index{new\_\-error@{new\_\-error}!error.h@{error.h}}
+\subsubsection[{new\_\-error}]{\setlength{\rightskip}{0pt plus 5cm}void new\_\-error (uint8\_\-t {\em err\_\-num})}\label{error_8h_acb5cd57cbb1a2f9e632a003540b2df1d}
+Funkce vytváří novou chybu. Dojde k přepnutí na \char`\"{}error screen\char`\"{} a k výpisu textu popisujícího tuto chybu. 
+\begin{DoxyParams}{Parametry}
+\item[{\em err\_\-num}]Identifikuje číslem chybovou hlášku. \end{DoxyParams}
+\index{error.h@{error.h}!new\_\-str\_\-error@{new\_\-str\_\-error}}
+\index{new\_\-str\_\-error@{new\_\-str\_\-error}!error.h@{error.h}}
+\subsubsection[{new\_\-str\_\-error}]{\setlength{\rightskip}{0pt plus 5cm}void new\_\-str\_\-error (uint8\_\-t {\em err\_\-num}, \/  char $\ast$ {\em s})}\label{error_8h_af408b3e4a42f097577e775b58e78e06d}
+Funkce vytvoří nový error. Jeho text je zadán v parametru s. 

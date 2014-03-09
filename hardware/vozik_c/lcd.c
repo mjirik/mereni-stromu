@@ -1,10 +1,10 @@
-/* $Id: lcd.c 78 2007-08-14 08:49:52Z Mira $
+/* $Id: lcd.c 148 2009-10-25 13:54:05Z mjirik $
  */
 
 /**
  * @file lcd.c
  * @brief
- * Modul obstar·v· neniûöÌ ˙roveÚ pro vypisov·nÌ dat na LCD.
+ * Modul obstar√°v√° neni≈æ≈°√≠ √∫rove≈à pro vypisov√°n√≠ dat na LCD.
  */
 
 #include <stdio.h>
@@ -14,9 +14,37 @@
 #include "convert.h"
 #include "error.h"
 #include <avr/pgmspace.h>
+#include "watchdog.h"
+
+// global
+void lcd_init(void);
+void lcd_control(void);
+void printxy(char (*screen)[LCD_X_MAX], int x, int y,char * s);
+void printc(char c);
+void print(char * s);
+void clear_screen(char (*screen)[LCD_X_MAX]);
+char lcd_new_frame(void);
+void printcxyd(int x, int y, char c);
+/// Vytiskne n znak≈Ø do defaultscreenu na sou≈ôadnici x,y.
+void printnxyd(int y, int x, char * s, int n);
+void printxyd(int y, int x, char * s);
+void clear_dscreen(void);
+void printxyd_P(int y,int x,void * s);
+void printnt_P(char * s);
+void lcd_w_inst(char c);
+void printnt(char *s);
+
+char (*p_akt_screen)[LCD_X_MAX];
+// Je to sice trochu divn√Ω, ale funguje to.
+// P≈ôedstavuje to ukazatel na pole 20x4 nebo sp√≠≈° 20xN
+// Je to proto, ≈æe ten ukazatel ukazuje na pole ukazatel≈Ø na dvacetice znak≈Ø char. viz Herout str 218.
+
+char default_screen[LCD_Y_MAX][LCD_X_MAX];
+
+//global
 
 
-#define F_CPU 8000000UL ///< Frekvence oscil·toru  8MHz
+#define F_CPU 8000000UL ///< Frekvence oscil√°toru  8MHz
 //#define LCD_X_MAX 40
 //#define LCD_Y_MAX 4
 
@@ -33,7 +61,7 @@
 
 //PORTB
 //0 rs
-//1 r/w  // pokud jsou pouûity dva e, tak tohle je e2
+//1 r/w  // pokud jsou pou≈æity dva e, tak tohle je e2
 //2 e
 //
 //PORTA
@@ -44,8 +72,8 @@ int lcd_ctrl_x = 0;
 int lcd_ctrl_y = LCD_Y_MAX ;
 
 /// @returns
-/// Funkce vr·tÌ 1 pokud se p¯i dalöÌm zavol·nÌ lcd_control zaËne vykreslovat nov˝ frame
-/// jinak vr·tÌ nula
+/// Funkce vr√°t√≠ 1 pokud se p≈ôi dal≈°√≠m zavol√°n√≠ lcd_control zaƒçne vykreslovat nov√Ω frame
+/// jinak vr√°t√≠ nula
 char lcd_new_frame(void){
   if (lcd_ctrl_y == LCD_Y_MAX)
     return 1;
@@ -54,21 +82,21 @@ char lcd_new_frame(void){
 }
 
 
-/// Jen takov· zdrûovacÌ funkce pro odlazov·nÌ
+/// Jen takov√° zdr≈æovac√≠ funkce pro odlazov√°n√≠
 void d10(void){
-  int i;
+  int i;//250
   for (i=0; i< 250; i++){
     _delay_us(1);
   }
 }
 
-/// Vymaûe default screen.
+/// Vyma≈æe default screen.
 void clear_dscreen(void){
   clear_screen(default_screen);
 }
 
 
-// Vymaûe obsah lcd_data
+// Vyma≈æe obsah lcd_data
 void clear_screen(char (*screen)[LCD_X_MAX]){
   int i,j;
 
@@ -80,7 +108,7 @@ void clear_screen(char (*screen)[LCD_X_MAX]){
 }
 
 /**
- * Funkce vytiskne znak na mÌsto kurzoru. Funkce nenÌ prov·dÏna ve "vl·knÏ".
+ * Funkce vytiskne znak na m√≠sto kurzoru. Funkce nen√≠ prov√°dƒõna ve "vl√°knƒõ".
  */
 void printc(char c){
   d10();
@@ -93,8 +121,8 @@ void printc(char c){
 }
 
 /**
- * Funkce vypÌöe na souËasnou pozici kurzoru text z programovÈ pamÏti.
- * Funkce nenÌ naps·na do "vl·kna".
+ * Funkce vyp√≠≈°e na souƒçasnou pozici kurzoru text z programov√© pamƒõti.
+ * Funkce nen√≠ naps√°na do "vl√°kna".
  */
 void printnt_P(char * s){
   int i=0;
@@ -105,26 +133,43 @@ void printnt_P(char * s){
   }
 }
 
+void printnt(char *s){
+  int i=0;
+  char c;
+  while ((c = s[i]) != '\0'){
+    printc(c);
+    i++;
+  }
+}
 ///vytiskne text do default_screenu.
 void print(char * s){
   printxy(default_screen,0,0,s);
 }
 
-/// Vytiskne znak do defaultscreenu na sou¯adnici x,y.
+/// Vytiskne znak do defaultscreenu na sou≈ôadnici x,y.
 void printcxyd(int y, int x, char c){
   if ((x < LCD_X_MAX)&&(y < LCD_Y_MAX)){
     default_screen[y][x] = c;
   }
 }
 
-
+/// Vytiskne n znak≈Ø do defaultscreenu na sou≈ôadnici x,y.
+void printnxyd(int y, int x, char * s, int n){
+  // m√≠nus jedna je tam proto, ≈æe 30+10 = 40, ale posledni index je 39
+  if ((x < LCD_X_MAX)&&(y < LCD_Y_MAX)&&((x+n-1) < LCD_X_MAX)){
+    int i;
+    for(i = 0; i < n; i++){
+      default_screen[y][x+i] = s[i];
+    }
+  }
+}
 
 /// Tiskne do default_screenu
 void printxyd(int y, int x, char * s){
   printxy(default_screen, y, x, s);
 }
 
-/// Funkce vloûÌ na danou pozici ¯etÏzec @a s
+/// Funkce vlo≈æ√≠ na danou pozici ≈ôetƒõzec @a s
 void printxy(char (*screen)[LCD_X_MAX],int y,int x,char * s){
   int n = 0;
   int n_x = 0;
@@ -134,7 +179,7 @@ void printxy(char (*screen)[LCD_X_MAX],int y,int x,char * s){
   }
 
   if ((x < LCD_X_MAX)&&(y < LCD_Y_MAX)){
-    //KopÌruj do pole lcd
+    //Kop√≠ruj do pole lcd
     c = s[0];
     while ((c != '\0') && ( (x + n_x) < LCD_X_MAX)){
       screen[y][x+n_x]=c;
@@ -164,14 +209,14 @@ void printxy(char (*screen)[LCD_X_MAX],int y,int x,char * s){
   }
 }
 
-/// Funkce vloûÌ na danou pozici ¯etÏzec @a s
+/// Funkce vlo≈æ√≠ na danou pozici ≈ôetƒõzec @a s
 void printxyd_P(int y,int x,void * s){
   int n = 0;
   int n_x = 0;
   char c;
 
   if ((x < LCD_X_MAX)&&(y < LCD_Y_MAX)){
-    //KopÌruj do pole lcd
+    //Kop√≠ruj do pole lcd
     c = pgm_read_byte_near(s);
     while ((c != '\0') && ( (x + n_x) < LCD_X_MAX)){
       //screen[y][x+n_x]=c;
@@ -202,7 +247,7 @@ void printxyd_P(int y,int x,void * s){
 }
 
 
-/// Zapiö instrukci.
+/// Zapi≈° instrukci.
 void lcd_w_inst(char c){
 #ifdef DVA_E
   PORTA = c;
@@ -227,7 +272,7 @@ void lcd_init(void){
   p_akt_screen = default_screen;
 
   int i;
-  //cekej 15ms od n·bÏhu Vcc nad 4,5V
+  //cekej 15ms od n√°bƒõhu Vcc nad 4,5V
   DDRB = (DDRB & 0xf8)|(7 & 0x07);
   DDRA = 255;
 
@@ -240,11 +285,11 @@ void lcd_init(void){
   _delay_ms(10);
   
   lcd_w_inst(0x38);
-  lcd_w_inst(0x0c); //0x0e; //-kurzor zapnut˝  //0x0c //vypne kurzor
+  lcd_w_inst(0x0c); //0x0e; //-kurzor zapnut√Ω  //0x0c //vypne kurzor
   lcd_w_inst(0x06);
-  lcd_w_inst(0x01); //vymaûe display a posune kurzor na zaË·tek.
+  lcd_w_inst(0x01); //vyma≈æe display a posune kurzor na zaƒç√°tek.
 
-  PORTB = ((PORTB & 0xf8) | (5 & 0x07)); //p¯iprravÌ na odesÌl·nÌ dat
+  PORTB = ((PORTB & 0xf8) | (5 & 0x07)); //p≈ôiprrav√≠ na odes√≠l√°n√≠ dat
   
   /*
   printc('A');
@@ -283,14 +328,15 @@ void lcd_init(void){
 }
 
 /**
- * Funkce ¯ÌdÌ Ëinnost displeje. 
- * JejÌm ˙kolem je neust·le dokola vypisovat obsah lcd_data na displej.
- * Vûdy kdyû je zavol·na, zjistÌ si co m· vypsat d·l a udÏl· to.
+ * Funkce ≈ô√≠d√≠ ƒçinnost displeje. 
+ * Jej√≠m √∫kolem je neust√°le dokola vypisovat obsah lcd_data na displej.
+ * V≈ædy kdy≈æ je zavol√°na, zjist√≠ si co m√° vypsat d√°l a udƒõl√° to.
  */
 void lcd_control(void){
-  // Jde to po ¯·dku a vypisuje to znak po znaku, na konci ¯·dku 
-  // to skoËÌ na dalöÌ. na poslednÌm ¯·dku to p¯id· k poËÌtadlu
-  // jeötÏ jedniËku a pak zafunguje prvnÌ if. Ten nastavÌ displej na zaË·tek.
+  //wtch_dbg_info();
+  // Jde to po ≈ô√°dku a vypisuje to znak po znaku, na konci ≈ô√°dku 
+  // to skoƒç√≠ na dal≈°√≠. na posledn√≠m ≈ô√°dku to p≈ôid√° k poƒç√≠tadlu
+  // je≈°tƒõ jedniƒçku a pak zafunguje prvn√≠ if. Ten nastav√≠ displej na zaƒç√°tek.
   if (lcd_ctrl_y == (LCD_Y_MAX -1 + 1 )){
   
     switch (lcd_ctrl_count){
@@ -303,7 +349,7 @@ void lcd_control(void){
       case 1:  //zapisem
         PORTB = ((PORTB & 0xf8) | (0 & 0x07));
         break;
-      case 2:  //zase nahodime ecko a p¯ipravÌme na z·pis dat
+      case 2:  //zase nahodime ecko a p≈ôiprav√≠me na z√°pis dat
         PORTB = ((PORTB & 0xf8) | (5 & 0x07));
         break;
 #else
@@ -315,7 +361,7 @@ void lcd_control(void){
       case 1:  //zapisem
         PORTB = ((PORTB & 0xf8) | (0 & 0x07));
         break;
-      case 2:  //zase nahodime ecko a p¯ipravÌme na z·pis dat
+      case 2:  //zase nahodime ecko a p≈ôiprav√≠me na z√°pis dat
         PORTB = ((PORTB & 0xf8) | (7 & 0x07));
         break;
 #endif
@@ -334,7 +380,7 @@ void lcd_control(void){
 #ifndef DVA_E
         {
         uint8_t lcd_ctrl_y_prohod = lcd_ctrl_y;
-        //n·sledujÌcÌ ¯·dky prohazujou dryh˝ a t¯etÌ ¯·dek.
+        //n√°sleduj√≠c√≠ ≈ô√°dky prohazujou dryh√Ω a t≈ôet√≠ ≈ô√°dek.
         if (lcd_ctrl_y == 2)
           lcd_ctrl_y_prohod = 1;
         else if (lcd_ctrl_y == 1)
@@ -358,7 +404,7 @@ void lcd_control(void){
 
 #endif
         break;
-      case 2:  //zase nahodime ecko a p¯ipravÌme na z·pis dat
+      case 2:  //zase nahodime ecko a p≈ôiprav√≠me na z√°pis dat
 #ifndef DVA_E
         PORTB = ((PORTB & 0xf8) | (5 & 0x07));
 #else
@@ -370,24 +416,24 @@ void lcd_control(void){
     if (lcd_ctrl_count != 1)
       lcd_ctrl_count++;
     else{
-      // Tady se ¯eöÌ spr·vnÈ ËÌt·nÌ. P¯i dosaûenÌ meznÌch hodnot pole dojde k nastavenÌ sou¯adnic na dalöÌ ¯·dek...
-      // sem se to dostane vûdy po dokonËenÌ z·pisu znaku (instrukce).
+      // Tady se ≈ôe≈°√≠ spr√°vn√© ƒç√≠t√°n√≠. P≈ôi dosa≈æen√≠ mezn√≠ch hodnot pole dojde k nastaven√≠ sou≈ôadnic na dal≈°√≠ ≈ô√°dek...
+      // sem se to dostane v≈ædy po dokonƒçen√≠ z√°pisu znaku (instrukce).
       lcd_ctrl_count = 0;
       if (lcd_ctrl_x < (LCD_X_MAX - 1)){
-        //pokud jsme nedos·hli koncce ¯·dku, zvyöujeme jeho sou¯adnici
+        //pokud jsme nedos√°hli koncce ≈ô√°dku, zvy≈°ujeme jeho sou≈ôadnici
         lcd_ctrl_x++;
       }
       else{
-        // kdyû jsme na konci ¯·dku, nastavÌme sou¯adnici na nulu a zv˝öÌme poËÌtadlo ¯·dk˘.
+        // kdy≈æ jsme na konci ≈ô√°dku, nastav√≠me sou≈ôadnici na nulu a zv√Ω≈°√≠me poƒç√≠tadlo ≈ô√°dk≈Ø.
         lcd_ctrl_x = 0;
 
         if(lcd_ctrl_y < (LCD_Y_MAX -1 + 1)){
           lcd_ctrl_y++;
         }
         else{
-          //pokud jsme se dostali na poslednÌ ¯·dek displaye + 1 , je nÏco divnÏ
-          // tenhle p¯Ìpad by totiû mÏla chytit prvnÌ podmÌnka. MÌsto poslenÌho ¯·dku + 1 se zpracov·v· instrukce pro 
-          // nastavenÌ displeje na nulu.
+          //pokud jsme se dostali na posledn√≠ ≈ô√°dek displaye + 1 , je nƒõco divnƒõ
+          // tenhle p≈ô√≠pad by toti≈æ mƒõla chytit prvn√≠ podm√≠nka. M√≠sto poslen√≠ho ≈ô√°dku + 1 se zpracov√°v√° instrukce pro 
+          // nastaven√≠ displeje na nulu.
           lcd_ctrl_y = 0;
         }
       }

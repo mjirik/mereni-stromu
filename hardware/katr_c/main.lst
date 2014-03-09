@@ -1,0 +1,245 @@
+   1               		.file	"main.c"
+   2               		.arch atmega8
+   3               	__SREG__ = 0x3f
+   4               	__SP_H__ = 0x3e
+   5               	__SP_L__ = 0x3d
+   6               	__tmp_reg__ = 0
+   7               	__zero_reg__ = 1
+   8               		.global __do_copy_data
+   9               		.global __do_clear_bss
+  17               	.Ltext0:
+  18               	.global	ioinit
+  20               	ioinit:
+  21               	.LFB9:
+  22               	.LM1:
+  23               	/* prologue: frame size=0 */
+  24               	/* prologue end (size=0) */
+  25               	.LM2:
+  26 0000 89E0      		ldi r24,lo8(9)
+  27 0002 8EBD      		out 78-0x20,r24
+  28               	.LM3:
+  29 0004 80E1      		ldi r24,lo8(16)
+  30 0006 89BF      		out 89-0x20,r24
+  31               	.LM4:
+  32 0008 81E0      		ldi r24,lo8(1)
+  33 000a 8BBD      		out 75-0x20,r24
+  34               	.LM5:
+  35 000c 80E9      		ldi r24,lo8(-112)
+  36 000e 8ABD      		out 74-0x20,r24
+  37               	/* epilogue: frame size=0 */
+  38 0010 0895      		ret
+  39               	/* epilogue end (size=1) */
+  40               	/* function ioinit size 9 (8) */
+  41               	.LFE9:
+  43               	.global	test_shutdown
+  45               	test_shutdown:
+  46               	.LFB8:
+  47               	.LM6:
+  48               	/* prologue: frame size=0 */
+  49               	/* prologue end (size=0) */
+  50               	.LM7:
+  51 0012 80B3      		in r24,48-0x20
+  52 0014 8695      		lsr r24
+  53 0016 8695      		lsr r24
+  54 0018 80FD      		sbrc r24,0
+  55 001a 00C0      		rjmp .L8
+  56               	.LM8:
+  57 001c 00D0      		rcall eeprom_save
+  58               	.LBB12:
+  59               	.LBB13:
+  60               	.LBB14:
+  61               	.LBB15:
+  62               	.LM9:
+  63 001e 80E2      		ldi r24,lo8(20000)
+  64 0020 9EE4      		ldi r25,hi8(20000)
+  65               	.LVL0:
+  66               	/* #APP */
+  67 0022 0197      		1: sbiw r24,1
+  68 0024 01F4      		brne 1b
+  69               	/* #NOAPP */
+  70 0026 E0E2      		ldi r30,lo8(20000)
+  71 0028 FEE4      		ldi r31,hi8(20000)
+  72 002a 00C0      		rjmp .L6
+  73               	.LVL1:
+  74               	.L7:
+  75               	.LBE15:
+  76               	.LBE14:
+  77               	.LBE13:
+  78               	.LBE12:
+  79               	.LBB16:
+  80               	.LBB17:
+  81               	.LBB18:
+  82               	.LBB19:
+  83 002c CF01      		movw r24,r30
+  84               	.LVL2:
+  85               	/* #APP */
+  86 002e 0197      		1: sbiw r24,1
+  87 0030 01F4      		brne 1b
+  88               	.LVL3:
+  89               	/* #NOAPP */
+  90               	.L6:
+  91               	.LBE19:
+  92               	.LBE18:
+  93               	.LBE17:
+  94               	.LBE16:
+  95               	.LM10:
+  96 0032 80B3      		in r24,48-0x20
+  97               	.LVL4:
+  98 0034 8695      		lsr r24
+  99 0036 8695      		lsr r24
+ 100 0038 80FF      		sbrs r24,0
+ 101 003a 00C0      		rjmp .L7
+ 102               	.L8:
+ 103 003c 0895      		ret
+ 104               	/* epilogue: frame size=0 */
+ 105               	/* epilogue: noreturn */
+ 106               	/* epilogue end (size=0) */
+ 107               	/* function test_shutdown size 26 (26) */
+ 108               	.LFE8:
+ 110               	.global	main
+ 112               	main:
+ 113               	.LFB10:
+ 114               	.LM11:
+ 115               	/* prologue: frame size=0 */
+ 116               	/* prologue end (size=0) */
+ 117 003e 20E0      		ldi r18,lo8(0)
+ 118 0040 30E0      		ldi r19,hi8(0)
+ 119               	.LVL5:
+ 120 0042 E0ED      		ldi r30,lo8(2000)
+ 121 0044 F7E0      		ldi r31,hi8(2000)
+ 122               	.L10:
+ 123               	.LBB24:
+ 124               	.LBB25:
+ 125               	.LBB26:
+ 126               	.LBB27:
+ 127               	.LM12:
+ 128 0046 CF01      		movw r24,r30
+ 129               	.LVL6:
+ 130               	/* #APP */
+ 131 0048 0197      		1: sbiw r24,1
+ 132 004a 01F4      		brne 1b
+ 133               	/* #NOAPP */
+ 134               	.LBE27:
+ 135               	.LBE26:
+ 136               	.LBE25:
+ 137               	.LBE24:
+ 138               	.LM13:
+ 139 004c 2F5F      		subi r18,lo8(-(1))
+ 140 004e 3F4F      		sbci r19,hi8(-(1))
+ 141 0050 2436      		cpi r18,100
+ 142 0052 3105      		cpc r19,__zero_reg__
+ 143 0054 01F4      		brne .L10
+ 144               	.LM14:
+ 145 0056 00D0      		rcall ioinit
+ 146               	.LVL7:
+ 147               	.LM15:
+ 148 0058 80E4      		ldi r24,lo8(64)
+ 149 005a 8093 0000 		sts data_msg,r24
+ 150               	.LM16:
+ 151 005e 00D0      		rcall irc_init
+ 152               	.LM17:
+ 153 0060 00D0      		rcall width_watch_init
+ 154               	.LM18:
+ 155 0062 83E3      		ldi r24,lo8(51)
+ 156 0064 90E0      		ldi r25,hi8(51)
+ 157 0066 00D0      		rcall USART_Init
+ 158               	.LM19:
+ 159 0068 00D0      		rcall eeprom_load
+ 160               	.LM20:
+ 161               	/* #APP */
+ 162 006a 7894      		sei
+ 163               	.LM21:
+ 164               	/* #NOAPP */
+ 165 006c 81E0      		ldi r24,lo8(1)
+ 166 006e 00D0      		rcall irc_send_msg
+ 167               	.L12:
+ 168               	.LM22:
+ 169 0070 00D0      		rcall width_watch
+ 170               	.LM23:
+ 171 0072 00D0      		rcall test_shutdown
+ 172 0074 00C0      		rjmp .L12
+ 173               	/* epilogue: frame size=0 */
+ 174               	/* epilogue: noreturn */
+ 175               	/* epilogue end (size=0) */
+ 176               	/* function main size 31 (31) */
+ 177               	.LFE10:
+ 179               	.global	__vector_6
+ 181               	__vector_6:
+ 182               	.LFB7:
+ 183               	.LM24:
+ 184               	/* prologue: frame size=0 */
+ 185 0076 1F92      		push __zero_reg__
+ 186 0078 0F92      		push __tmp_reg__
+ 187 007a 0FB6      		in __tmp_reg__,__SREG__
+ 188 007c 0F92      		push __tmp_reg__
+ 189 007e 1124      		clr __zero_reg__
+ 190 0080 2F93      		push r18
+ 191 0082 3F93      		push r19
+ 192 0084 4F93      		push r20
+ 193 0086 5F93      		push r21
+ 194 0088 6F93      		push r22
+ 195 008a 7F93      		push r23
+ 196 008c 8F93      		push r24
+ 197 008e 9F93      		push r25
+ 198 0090 AF93      		push r26
+ 199 0092 BF93      		push r27
+ 200 0094 EF93      		push r30
+ 201 0096 FF93      		push r31
+ 202               	/* prologue end (size=17) */
+ 203               	.LM25:
+ 204 0098 00D0      		rcall irc_watch
+ 205               	/* epilogue: frame size=0 */
+ 206 009a FF91      		pop r31
+ 207 009c EF91      		pop r30
+ 208 009e BF91      		pop r27
+ 209 00a0 AF91      		pop r26
+ 210 00a2 9F91      		pop r25
+ 211 00a4 8F91      		pop r24
+ 212 00a6 7F91      		pop r23
+ 213 00a8 6F91      		pop r22
+ 214 00aa 5F91      		pop r21
+ 215 00ac 4F91      		pop r20
+ 216 00ae 3F91      		pop r19
+ 217 00b0 2F91      		pop r18
+ 218 00b2 0F90      		pop __tmp_reg__
+ 219 00b4 0FBE      		out __SREG__,__tmp_reg__
+ 220 00b6 0F90      		pop __tmp_reg__
+ 221 00b8 1F90      		pop __zero_reg__
+ 222 00ba 1895      		reti
+ 223               	/* epilogue end (size=17) */
+ 224               	/* function __vector_6 size 35 (1) */
+ 225               	.LFE7:
+ 227               		.comm width_prepocet,1,1
+ 228               		.comm irc_counter,4,1
+ 229               		.comm irc_set_on_value,4,1
+ 230               		.comm irc_k,2,1
+ 231               		.comm data_msg,11,1
+ 280               	.Letext0:
+DEFINED SYMBOLS
+                            *ABS*:00000000 main.c
+C:\DOCUME~1\Mira\LOCALS~1\Temp/ccNyhO8s.s:3      *ABS*:0000003f __SREG__
+C:\DOCUME~1\Mira\LOCALS~1\Temp/ccNyhO8s.s:4      *ABS*:0000003e __SP_H__
+C:\DOCUME~1\Mira\LOCALS~1\Temp/ccNyhO8s.s:5      *ABS*:0000003d __SP_L__
+C:\DOCUME~1\Mira\LOCALS~1\Temp/ccNyhO8s.s:6      *ABS*:00000000 __tmp_reg__
+C:\DOCUME~1\Mira\LOCALS~1\Temp/ccNyhO8s.s:7      *ABS*:00000001 __zero_reg__
+C:\DOCUME~1\Mira\LOCALS~1\Temp/ccNyhO8s.s:20     .text:00000000 ioinit
+C:\DOCUME~1\Mira\LOCALS~1\Temp/ccNyhO8s.s:45     .text:00000012 test_shutdown
+C:\DOCUME~1\Mira\LOCALS~1\Temp/ccNyhO8s.s:112    .text:0000003e main
+                            *COM*:0000000b data_msg
+C:\DOCUME~1\Mira\LOCALS~1\Temp/ccNyhO8s.s:181    .text:00000076 __vector_6
+                            *COM*:00000001 width_prepocet
+                            *COM*:00000004 irc_counter
+                            *COM*:00000004 irc_set_on_value
+                            *COM*:00000002 irc_k
+
+UNDEFINED SYMBOLS
+__do_copy_data
+__do_clear_bss
+eeprom_save
+irc_init
+width_watch_init
+USART_Init
+eeprom_load
+irc_send_msg
+width_watch
+irc_watch

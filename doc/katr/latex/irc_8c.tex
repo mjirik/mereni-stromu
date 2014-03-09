@@ -1,0 +1,152 @@
+\section{Dokumentace souboru irc.c}
+\label{irc_8c}\index{irc.c@{irc.c}}
+Modul \doxyref{irc.c}{s.}{irc_8c} resi obsluhu inkrementalnaho cidla. Verejna funkce je jen jedna\begin{itemize}
+\item \doxyref{irc\_\-watch()}{s.}{irc_8c_bcea345e2f5f79d052b85a22d51ad123}. Ta sleduje vsupy irc a obsluhuje citac irc. Vystupem je seriovy kanal. Po nem se odesila hodnota irc prenasobena konstantou. \end{itemize}
+
+
+{\tt \#include $<$avr/io.h$>$}\par
+{\tt \#include $<$avr/interrupt.h$>$}\par
+{\tt \#include $<$stdio.h$>$}\par
+{\tt \#include $<$stdint.h$>$}\par
+{\tt \#include \char`\"{}main.h\char`\"{}}\par
+{\tt \#include \char`\"{}usart.h\char`\"{}}\par
+{\tt \#include \char`\"{}eeprom.h\char`\"{}}\par
+{\tt \#include \char`\"{}width.h\char`\"{}}\par
+{\tt \#include \char`\"{}irc.h\char`\"{}}\par
+\subsection*{Definice maker}
+\begin{CompactItemize}
+\item 
+\#define {\bf SizeOfMsg}~10
+\end{CompactItemize}
+\subsection*{Funkce}
+\begin{CompactItemize}
+\item 
+uint16\_\-t {\bf irc\_\-get\_\-k} (void)
+\item 
+uint16\_\-t {\bf irc\_\-get\_\-d} (void)
+\item 
+void {\bf irc\_\-init} (void)
+\item 
+void {\bf set\_\-irc\_\-k} (uint16\_\-t i)
+\item 
+void {\bf set\_\-irc\_\-set\_\-on\_\-value} (int32\_\-t q)
+\item 
+void {\bf irc\_\-watch} (void)
+\item 
+void {\bf irc\_\-send\_\-msg} (char sure)
+\end{CompactItemize}
+\subsection*{Proměnné}
+\begin{CompactItemize}
+\item 
+unsigned char {\bf prev\_\-state} = 0
+\item 
+int32\_\-t {\bf irc\_\-counter} = 0
+\item 
+int32\_\-t {\bf irc\_\-set\_\-on\_\-value} = 100
+\item 
+unsigned char {\bf last\_\-oper\_\-with\_\-irc\_\-counter} = 0
+\item 
+char {\bf data\_\-msg} [SizeOfMsg]
+\item 
+char {\bf irc\_\-dif\_\-msg} [SizeOfMsg]
+\item 
+uint16\_\-t {\bf irc\_\-k}
+\end{CompactItemize}
+
+
+\subsection{Detailní popis}
+Modul \doxyref{irc.c}{s.}{irc_8c} resi obsluhu inkrementalnaho cidla. Verejna funkce je jen jedna\begin{itemize}
+\item \doxyref{irc\_\-watch()}{s.}{irc_8c_bcea345e2f5f79d052b85a22d51ad123}. Ta sleduje vsupy irc a obsluhuje citac irc. Vystupem je seriovy kanal. Po nem se odesila hodnota irc prenasobena konstantou. \end{itemize}
+
+
+
+
+\subsection{Dokumentace k definicím maker}
+\index{irc.c@{irc.c}!SizeOfMsg@{SizeOfMsg}}
+\index{SizeOfMsg@{SizeOfMsg}!irc.c@{irc.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}\#define SizeOfMsg~10}\label{irc_8c_8639f3cdce498b36b4f11b82726f3857}
+
+
+
+
+\subsection{Dokumentace funkcí}
+\index{irc.c@{irc.c}!irc_get_d@{irc\_\-get\_\-d}}
+\index{irc_get_d@{irc\_\-get\_\-d}!irc.c@{irc.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}uint16\_\-t irc\_\-get\_\-d (void)}\label{irc_8c_cb7fb2dd68a049663856f3c58c5df035}
+
+
+\index{irc.c@{irc.c}!irc_get_k@{irc\_\-get\_\-k}}
+\index{irc_get_k@{irc\_\-get\_\-k}!irc.c@{irc.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}uint16\_\-t irc\_\-get\_\-k (void)}\label{irc_8c_92a83fe95657fd7f8829bfb26ab5dce4}
+
+
+\index{irc.c@{irc.c}!irc_init@{irc\_\-init}}
+\index{irc_init@{irc\_\-init}!irc.c@{irc.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void irc\_\-init (void)}\label{irc_8c_22c4d40478e2da08e616d92de5442378}
+
+
+\index{irc.c@{irc.c}!irc_send_msg@{irc\_\-send\_\-msg}}
+\index{irc_send_msg@{irc\_\-send\_\-msg}!irc.c@{irc.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void irc\_\-send\_\-msg (char {\em sure})}\label{irc_8c_2b23a703e44cfe694de1e8ad0e054638}
+
+
+Tato funkce je volána při každé změně čítače irc. Zde je realizován před odesláním je zde zrealizován přepočet mezi nasčítanými kroky z irc a skutečou hodnotou. Pokud již byla odeslána zpráva se stejnými daty (a paramer sure je $<$= nule) nic se neodesílá. \begin{Desc}
+\item[Parametry:]
+\begin{description}
+\item[{\em sure}]Je-li hodnota větší než nula, je zpráva odeslána bez ohledu na to, zda již nebyla odeslána stejná zpráva se stejnými daty. \end{description}
+\end{Desc}
+\index{irc.c@{irc.c}!irc_watch@{irc\_\-watch}}
+\index{irc_watch@{irc\_\-watch}!irc.c@{irc.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void irc\_\-watch (void)}\label{irc_8c_bcea345e2f5f79d052b85a22d51ad123}
+
+
+V teto funkci je reseno sledovani vstupu irc a jeho nastaveni. Vzdy kdyz je funkce zavolana, je zkontrolovano, zda nedoslo okd minuleho zavolani ke zmene na vstupech irc. Pokud ano, jsou provedeny prislusne korky - zvyseni nebo snizeni citace irc a pripadne odeslani namerene hodnoty. Namerena hodnota je dana jako hodnota irc cidla krat konstanta (obvykle mensi nez jedna). \index{irc.c@{irc.c}!set_irc_k@{set\_\-irc\_\-k}}
+\index{set_irc_k@{set\_\-irc\_\-k}!irc.c@{irc.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void set\_\-irc\_\-k (uint16\_\-t {\em i})}\label{irc_8c_36d5c4582e72f86bb243816590152bf1}
+
+
+Funkce nastaví irc\_\-k tak, aby při otočení o jednu otáčku byla naměřená vzdálenost právě 'i'. Jinými slovy: vstupem funkce je vzdálenost v mm, kterou popojede válec při otočení IRC o jednu otáčku. \index{irc.c@{irc.c}!set_irc_set_on_value@{set\_\-irc\_\-set\_\-on\_\-value}}
+\index{set_irc_set_on_value@{set\_\-irc\_\-set\_\-on\_\-value}!irc.c@{irc.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void set\_\-irc\_\-set\_\-on\_\-value (int32\_\-t {\em q})}\label{irc_8c_e8649f1f08cf3f0a6cc0d3e55eac5e21}
+
+
+Nastavení hodnoty offsetu irc, při projetí kolem referenčního bodu.
+
+param q Vstupem je vzdálenost nastavovacíhoo bodu od počátku v centimetrech vynásobená deseti, tj 65 cm je 650. 
+
+\subsection{Dokumentace proměnných}
+\index{irc.c@{irc.c}!data_msg@{data\_\-msg}}
+\index{data_msg@{data\_\-msg}!irc.c@{irc.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}char {\bf data\_\-msg}[SizeOfMsg]}\label{irc_8c_644ab1e6fbad5b17be3f8141d1662682}
+
+
+\index{irc.c@{irc.c}!irc_counter@{irc\_\-counter}}
+\index{irc_counter@{irc\_\-counter}!irc.c@{irc.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int32\_\-t {\bf irc\_\-counter} = 0}\label{irc_8c_2420ea5087a6c97e0f0e60946bb6bed2}
+
+
+\index{irc.c@{irc.c}!irc_dif_msg@{irc\_\-dif\_\-msg}}
+\index{irc_dif_msg@{irc\_\-dif\_\-msg}!irc.c@{irc.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}char {\bf irc\_\-dif\_\-msg}[SizeOfMsg]}\label{irc_8c_d48a3158a9a9f6edd906b8866c818ea6}
+
+
+\index{irc.c@{irc.c}!irc_k@{irc\_\-k}}
+\index{irc_k@{irc\_\-k}!irc.c@{irc.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}uint16\_\-t {\bf irc\_\-k}}\label{irc_8c_2823da0ac1f311c8b12078b236bbeb67}
+
+
+\index{irc.c@{irc.c}!irc_set_on_value@{irc\_\-set\_\-on\_\-value}}
+\index{irc_set_on_value@{irc\_\-set\_\-on\_\-value}!irc.c@{irc.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int32\_\-t {\bf irc\_\-set\_\-on\_\-value} = 100}\label{irc_8c_ce11bc81992ca3824a4fb55ff1d5b47b}
+
+
+\index{irc.c@{irc.c}!last_oper_with_irc_counter@{last\_\-oper\_\-with\_\-irc\_\-counter}}
+\index{last_oper_with_irc_counter@{last\_\-oper\_\-with\_\-irc\_\-counter}!irc.c@{irc.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}unsigned char {\bf last\_\-oper\_\-with\_\-irc\_\-counter} = 0}\label{irc_8c_40b68af2e4f96a1cfd2785b6d3b8aa9c}
+
+
+\index{irc.c@{irc.c}!prev_state@{prev\_\-state}}
+\index{prev_state@{prev\_\-state}!irc.c@{irc.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}unsigned char {\bf prev\_\-state} = 0}\label{irc_8c_d24a7209740a83b880691380fbe8e0e9}
+
+

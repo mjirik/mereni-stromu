@@ -1,6 +1,6 @@
 # Hey Emacs, this is a -*- makefile -*-
 #----------------------------------------------------------------------------
-# WinAVR Makefile Template written by Eric B. Weddington, Jörg Wunsch, et al.
+# WinAVR Makefile Template written by Eric B. Weddington, Jï¿½rg Wunsch, et al.
 #
 # Released to the Public Domain
 #
@@ -72,19 +72,21 @@ FORMAT = ihex
 # Target file name (without extension).
 TARGET = main
 
-
 # Object files directory
 #     To put object files in current directory, use a dot (.), do NOT make
 #     this an empty or blank macro!
-OBJDIR = .
-
+#OBJDIR = .
+OBJDIR = ./build
 
 # List C source files here. (C dependencies are automatically generated.)
-SRC = $(TARGET).c measure.c usart.c usart_recv.c irc.c eeprom.c lcd.c convert.c \
-	data.c gui.c error.c keyboard.c gui_toolbox.c msr_scr.c hlp_scr.c \
-	dat_scr.c dlst_scr.c data_serial.c buttons.c ser_scr.c watchdog.c stp_scr.c \
-	keyfcn.c
+SRC = $(TARGET).c usart.c usart_recv.c irc.c irc2.c eeprom.c lcd.c convert.c \
+	 error.c keyboard.c  \
+	  buttons.c  watchdog.c sysinfo.c \
+	 inout.c default_scr.c memory.c
+	 
+# gui.c dat_scr.c dlst_scr.c msr_scr.c hlp_scr.c ser_scr.c stp_scr.c measure.c keyfcn.c data_serial.c gui_toolbox.c data.c
 # List C++ source files here. (C dependencies are automatically generated.)
+
 CPPSRC = 
 
 
@@ -101,6 +103,7 @@ ASRC =
 # Optimization level, can be [0, 1, 2, 3, s]. 
 #     0 = turn off optimization. s = optimize for size.
 #     (Note: 3 is not always the best optimization level. See avr-libc FAQ.)
+#OPT = s
 OPT = s
 
 
@@ -232,6 +235,7 @@ SCANF_LIB =
 
 
 MATH_LIB = -lm
+#MATH_LIB = -LC:\WinAVR-20090313\avr\lib\ -llibm.a -llibprintf_flt.a
 
 
 # List any extra directories to look for libraries here.
@@ -245,11 +249,11 @@ EXTRALIBDIRS =
 #---------------- External Memory Options ----------------
 
 # 64 KB of external RAM, starting after internal RAM (ATmega128!),
-# used for variables (.data/.bss) and heap (malloc()).
+# used for variables (.data/.bss) and heap (mmalloc()).
 #EXTMEMOPTS = -Wl,-Tdata=0x801100,--defsym=__heap_end=0x80ffff
 
 # 64 KB of external RAM, starting after internal RAM (ATmega128!),
-# only used for heap (malloc()).
+# only used for heap (mmalloc()).
 #EXTMEMOPTS = -Wl,--section-start,.data=0x801100,--defsym=__heap_end=0x80ffff
 
 EXTMEMOPTS =
@@ -279,7 +283,7 @@ LDFLAGS += $(PRINTF_LIB) $(SCANF_LIB) $(MATH_LIB)
 AVRDUDE_PROGRAMMER = stk500v1
 
 # com1 = serial port. Use lpt1 to connect to parallel port.
-AVRDUDE_PORT = com1    # programmer connected to serial device
+AVRDUDE_PORT = COM2    # programmer connected to serial device
 
 AVRDUDE_WRITE_FLASH = -U flash:w:$(TARGET).hex
 #AVRDUDE_WRITE_EEPROM = -U eeprom:w:$(TARGET).eep
@@ -345,7 +349,7 @@ MV = mv
 MOVED = 
 
 # DELETE
-DEL = rm
+DEL = del
 
 # what is deleted *.o *.lst .dep/*.*
 DELETED = 
@@ -441,9 +445,9 @@ begin:
 	@echo $(MSG_BEGIN)
 
 end:
-	@$(DEL) $(DELETED)
-	@$(DIRDEL) $(DIRDELETED)
-	@$(MV) $(MOVED) bin
+#	@$(DEL) $(DELETED)
+#	@$(DIRDEL) $(DIRDELETED)
+#	@$(MV) $(MOVED) bin
 	@echo $(MSG_END)
 	@echo
 

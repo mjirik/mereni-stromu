@@ -1,0 +1,67 @@
+\section{Dokumentace souboru zakazky.php}
+\label{zakazky_8php}\index{zakazky.php@{zakazky.php}}
+\subsection*{Proměnné}
+\begin{CompactItemize}
+\item 
+{\bf \$all} = \& new {\bf Template}('./tmpl/all.tmpl.php')
+\item 
+{\bf \$body} = \& new {\bf Template}('./tmpl/zakazky.tmpl.php')
+\item 
+{\bf \$szn} = \& new {\bf Template}('./tmpl/seznamy.tmpl.php')
+\item 
+{\bf \$\_\-SESSION} [\char`\"{}page\char`\"{}] = \char`\"{}zakazky.php\char`\"{}
+\item 
+{\bf \$\_\-SESSION} [\char`\"{}ok\_\-text\char`\"{}] = \char`\"{}Opravdu chcete řádek smazat?\char`\"{}
+\item 
+{\bf \$link} = connect\_\-db()
+\item 
+{\bf \$seznamuVArchivu} = pocet\_\-seznamu\_\-v\_\-archivu(\$\_\-GET[\char`\"{}id\char`\"{}],\$link)
+\item 
+{\bf \$zakaznikuVArchivu} = pocet\_\-zakazniku\_\-v\_\-archivu(\$link)
+\end{CompactItemize}
+
+
+\subsection{Detailní popis}
+Skript zajišťuje výpis zakázek. 
+
+\subsection{Dokumentace proměnných}
+\index{zakazky.php@{zakazky.php}!$_SESSION@{\$\_\-SESSION}}
+\index{$_SESSION@{\$\_\-SESSION}!zakazky.php@{zakazky.php}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}\$\_\-SESSION[\char`\"{}ok\_\-text\char`\"{}] = \char`\"{}Opravdu chcete řádek smazat?\char`\"{}}\label{zakazky_8php_1169dce3a3019f09a3d51a5747879534}
+
+
+\index{zakazky.php@{zakazky.php}!$_SESSION@{\$\_\-SESSION}}
+\index{$_SESSION@{\$\_\-SESSION}!zakazky.php@{zakazky.php}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}\$\_\-SESSION[\char`\"{}page\char`\"{}] = \char`\"{}zakazky.php\char`\"{}}\label{zakazky_8php_49aef95dde3b88cdc978b12cbbb95b26}
+
+
+\index{zakazky.php@{zakazky.php}!$all@{\$all}}
+\index{$all@{\$all}!zakazky.php@{zakazky.php}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}\$all = \& new {\bf Template}('./tmpl/all.tmpl.php')}\label{zakazky_8php_3c74ea9d2348c9aba28d36e692bef2d2}
+
+
+\index{zakazky.php@{zakazky.php}!$body@{\$body}}
+\index{$body@{\$body}!zakazky.php@{zakazky.php}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}\$body = \& new {\bf Template}('./tmpl/zakazky.tmpl.php')}\label{zakazky_8php_26b9f9373f7bb79dfcf8a86dff086b45}
+
+
+\index{zakazky.php@{zakazky.php}!$link@{\$link}}
+\index{$link@{\$link}!zakazky.php@{zakazky.php}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}\$link = connect\_\-db()}\label{zakazky_8php_5d346e31b75d916e3bac9cb193bfc97f}
+
+
+\index{zakazky.php@{zakazky.php}!$seznamuVArchivu@{\$seznamuVArchivu}}
+\index{$seznamuVArchivu@{\$seznamuVArchivu}!zakazky.php@{zakazky.php}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}\$seznamuVArchivu = pocet\_\-seznamu\_\-v\_\-archivu(\$\_\-GET[\char`\"{}id\char`\"{}],\$link)}\label{zakazky_8php_eac34dd03a06eb0f69c11bfdab0463f6}
+
+
+\index{zakazky.php@{zakazky.php}!$szn@{\$szn}}
+\index{$szn@{\$szn}!zakazky.php@{zakazky.php}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}\$szn = \& new {\bf Template}('./tmpl/seznamy.tmpl.php')}\label{zakazky_8php_7557c2588a7a8dca804d8f9a3e717927}
+
+
+\index{zakazky.php@{zakazky.php}!$zakaznikuVArchivu@{\$zakaznikuVArchivu}}
+\index{$zakaznikuVArchivu@{\$zakaznikuVArchivu}!zakazky.php@{zakazky.php}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}\$zakaznikuVArchivu = pocet\_\-zakazniku\_\-v\_\-archivu(\$link)}\label{zakazky_8php_180ca2e2404da6fcb0813c875fff3d46}
+
+

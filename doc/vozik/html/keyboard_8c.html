@@ -1,0 +1,369 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<title>Zařízení na vozíku pro projekt měření objemu stromů: Dokumentace souboru keyboard.c</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<!-- Generováno programem Doxygen 1.6.1 -->
+<div class="navigation" id="top">
+  <div class="tabs">
+    <ul>
+      <li><a href="index.html"><span>Hlavní&nbsp;stránka</span></a></li>
+      <li><a href="pages.html"><span>Ostatní&nbsp;stránky</span></a></li>
+      <li><a href="annotated.html"><span>Třídy</span></a></li>
+      <li class="current"><a href="files.html"><span>Soubory</span></a></li>
+    </ul>
+  </div>
+  <div class="tabs">
+    <ul>
+      <li><a href="files.html"><span>Seznam&nbsp;souborů</span></a></li>
+      <li><a href="globals.html"><span>Globální&nbsp;symboly</span></a></li>
+    </ul>
+  </div>
+</div>
+<div class="contents">
+<h1>Dokumentace souboru keyboard.c</h1>
+<p>Modul obsluhuje klávesnici. Časování je připojeno k přerušení INT1, data jsou přivedena na libovolný pin. Hodnoty kláves jsou čteny dvěma funkcemi. <a class="el" href="keyboard_8c.html#af0d08de095c0c6a062d084562f436b9e" title="Funkce vrátí poslední přijatý znak .">get_char()</a> a <a class="el" href="keyboard_8c.html#a6a0ab525eb476112b5b6259dd180cfa9" title="Funkce vrátí poslední přijatý stisk speciální klávesy.">get_spec()</a>. Modul je vybaven výstupním bufferem, takže v případě stisku několika kláves bezprostředně po sobě, nedojde ke ztrátě v důsledku pomalého zpracovávání dalším programem.  
+<a href="#_details">...</a></p>
+<code>#include &lt;inttypes.h&gt;</code><br/>
+<code>#include &lt;stdio.h&gt;</code><br/>
+<code>#include &lt;avr/io.h&gt;</code><br/>
+<code>#include &lt;avr/interrupt.h&gt;</code><br/>
+<code>#include &quot;<a class="el" href="keyboard_8h.html">keyboard.h</a>&quot;</code><br/>
+<code>#include &quot;<a class="el" href="lcd_8h.html">lcd.h</a>&quot;</code><br/>
+<code>#include &quot;<a class="el" href="convert_8h.html">convert.h</a>&quot;</code><br/>
+<code>#include &lt;avr/pgmspace.h&gt;</code><br/>
+<code>#include &quot;<a class="el" href="usart_8h.html">usart.h</a>&quot;</code><br/>
+<code>#include &quot;<a class="el" href="main_8h.html">main.h</a>&quot;</code><br/>
+<code>#include &quot;<a class="el" href="msgn_8h.html">msgn.h</a>&quot;</code><br/>
+<code>#include &quot;<a class="el" href="memory_8h.html">memory.h</a>&quot;</code><br/>
+<table border="0" cellpadding="0" cellspacing="0">
+<tr><td colspan="2"><h2>Datové struktry</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkey.html">key</a></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Struktura pro popis stisknuté klávesy.  <a href="structkey.html#_details">...</a><br/></td></tr>
+<tr><td colspan="2"><h2>Definice maker</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="keyboard_8c.html#af82dee349f6ba70158ae157021bdc5b6">KEYB_RECV_WATCH_N</a>&nbsp;&nbsp;&nbsp;1000</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="keyboard_8c.html#af9b6f546f2720d1aabcaf9f1a8ad9b75">KEYB_BUFF_SIZE</a>&nbsp;&nbsp;&nbsp;3</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Velikost výstupného bufferu klávesnice.  <a href="#af9b6f546f2720d1aabcaf9f1a8ad9b75"></a><br/></td></tr>
+<tr><td colspan="2"><h2>Definice typů</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="structkey.html">key</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="keyboard_8c.html#a38d80b67cca10d0f2c0a1706d7b63660">KEY</a></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Struktura pro popis stisknuté klávesy.  <a href="#a38d80b67cca10d0f2c0a1706d7b63660"></a><br/></td></tr>
+<tr><td colspan="2"><h2>Funkce</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="keyboard_8c.html#a886e9a16dadc5bd9d5331a1ac3c028ae">zpracuj_kod</a> (char)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static <a class="el" href="structkey.html">KEY</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="keyboard_8c.html#a634e36eab86a3bc50aee821b3770742e">get_key_from_buff</a> (void)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="keyboard_8c.html#a4b4fdc8611d94ae6541af55ff1c7140f">keyb_in_buff</a> (char flag, char kod)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="keyboard_8c.html#a1ac4291762bc07b651eae702323894fb">SIGNAL</a> (SIG_INTERRUPT1)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">char&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="keyboard_8c.html#af0d08de095c0c6a062d084562f436b9e">get_char</a> (void)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Funkce vrátí poslední přijatý znak .  <a href="#af0d08de095c0c6a062d084562f436b9e"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">char&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="keyboard_8c.html#a6a0ab525eb476112b5b6259dd180cfa9">get_spec</a> (void)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Funkce vrátí poslední přijatý stisk speciální klávesy.  <a href="#a6a0ab525eb476112b5b6259dd180cfa9"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="keyboard_8c.html#a5aae8263abc1dec4671638e7ed4af681">keyboard_init</a> (void)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="keyboard_8c.html#a01edeb550d4a5e49474b974d03adf41e">keyboard_recv_watchdog</a> (void)</td></tr>
+<tr><td colspan="2"><h2>Proměnné</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static int8_t&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="keyboard_8c.html#a94962cd5e2de8fc881ffdac88fe81449">data_counter</a> = 0</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Počítadl bitů, které již přišly od klávesnice.  <a href="#a94962cd5e2de8fc881ffdac88fe81449"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static char&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="keyboard_8c.html#a89959d68e404325764357ceceab9b4e6">recivedc</a> = 0</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Střadač bitů.  <a href="#a89959d68e404325764357ceceab9b4e6"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static char&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="keyboard_8c.html#ac879afe8e9548108268fe0d1360e58a6">minuly_kod</a> = 0</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static uint16_t&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="keyboard_8c.html#a0231eef69075ddf53fe8c05bce81235a">keyb_recv_watchdog</a> = 0</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static <a class="el" href="structkey.html">KEY</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="keyboard_8c.html#ac524b19ad362e0fe206ce5b3dae2e2fa">keyb_buff</a> [KEYB_BUFF_SIZE]</td></tr>
+</table>
+<hr/><a name="_details"></a><h2>Detailní popis</h2>
+<p>Modul obsluhuje klávesnici. Časování je připojeno k přerušení INT1, data jsou přivedena na libovolný pin. Hodnoty kláves jsou čteny dvěma funkcemi. <a class="el" href="keyboard_8c.html#af0d08de095c0c6a062d084562f436b9e" title="Funkce vrátí poslední přijatý znak .">get_char()</a> a <a class="el" href="keyboard_8c.html#a6a0ab525eb476112b5b6259dd180cfa9" title="Funkce vrátí poslední přijatý stisk speciální klávesy.">get_spec()</a>. Modul je vybaven výstupním bufferem, takže v případě stisku několika kláves bezprostředně po sobě, nedojde ke ztrátě v důsledku pomalého zpracovávání dalším programem. </p>
+<hr/><h2>Dokumentace k definicím maker</h2>
+<a class="anchor" id="af9b6f546f2720d1aabcaf9f1a8ad9b75"></a><!-- doxytag: member="keyboard.c::KEYB_BUFF_SIZE" ref="af9b6f546f2720d1aabcaf9f1a8ad9b75" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define KEYB_BUFF_SIZE&nbsp;&nbsp;&nbsp;3</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Velikost výstupného bufferu klávesnice. </p>
+
+</div>
+</div>
+<a class="anchor" id="af82dee349f6ba70158ae157021bdc5b6"></a><!-- doxytag: member="keyboard.c::KEYB_RECV_WATCH_N" ref="af82dee349f6ba70158ae157021bdc5b6" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define KEYB_RECV_WATCH_N&nbsp;&nbsp;&nbsp;1000</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Konstanta uvádí, po kolika zavoláních při nedoručeném bitu je resetován příjem. Tímto je ošetřen problém, který vznikal při připojení klaávesnice k běžícímu zařízení. Dorazila pak vždy jen část bitů a při stisku další klávesy byly chybjející data doplněna začátkam následujících. Zavedení resetu problém řeší. </p>
+
+</div>
+</div>
+<hr/><h2>Dokumentace definic typů</h2>
+<a class="anchor" id="a38d80b67cca10d0f2c0a1706d7b63660"></a><!-- doxytag: member="keyboard.c::KEY" ref="a38d80b67cca10d0f2c0a1706d7b63660" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef struct <a class="el" href="structkey.html">key</a>  <a class="el" href="structkey.html">KEY</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Struktura pro popis stisknuté klávesy. </p>
+
+</div>
+</div>
+<hr/><h2>Dokumentace funkcí</h2>
+<a class="anchor" id="af0d08de095c0c6a062d084562f436b9e"></a><!-- doxytag: member="keyboard.c::get_char" ref="af0d08de095c0c6a062d084562f436b9e" args="(void)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char get_char </td>
+          <td>(</td>
+          <td class="paramtype">void&nbsp;</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Funkce vrátí poslední přijatý znak . </p>
+
+</div>
+</div>
+<a class="anchor" id="a634e36eab86a3bc50aee821b3770742e"></a><!-- doxytag: member="keyboard.c::get_key_from_buff" ref="a634e36eab86a3bc50aee821b3770742e" args="(void)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="structkey.html">KEY</a> get_key_from_buff </td>
+          <td>(</td>
+          <td class="paramtype">void&nbsp;</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [static]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Funkce pro výběr klávesy z bufferu. Při výběru je nutné posunout všechny prvky o jeden vpřed. </p>
+
+</div>
+</div>
+<a class="anchor" id="a6a0ab525eb476112b5b6259dd180cfa9"></a><!-- doxytag: member="keyboard.c::get_spec" ref="a6a0ab525eb476112b5b6259dd180cfa9" args="(void)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char get_spec </td>
+          <td>(</td>
+          <td class="paramtype">void&nbsp;</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Funkce vrátí poslední přijatý stisk speciální klávesy. </p>
+
+</div>
+</div>
+<a class="anchor" id="a4b4fdc8611d94ae6541af55ff1c7140f"></a><!-- doxytag: member="keyboard.c::keyb_in_buff" ref="a4b4fdc8611d94ae6541af55ff1c7140f" args="(char flag, char kod)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void keyb_in_buff </td>
+          <td>(</td>
+          <td class="paramtype">char&nbsp;</td>
+          <td class="paramname"> <em>flag</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char&nbsp;</td>
+          <td class="paramname"> <em>kod</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Funkce vloží do bufferu další klávesu. Funkce je definována v <a class="el" href="keyboard_8h.html">keyboard.h</a> . Tím je umožněno Načítání kláves i z jiného zdroje než z klávesnice. </p>
+<dl><dt><b>Parametry:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>flag</em>&nbsp;</td><td>Příznak typu klávesy.</p>
+<ul>
+<li>0 : nic</li>
+<li>1 : přijat char</li>
+<li>2 : efko, šipka</li>
+</ul>
+</td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>kod</em>&nbsp;</td><td>Vlastní kód klávesy. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a5aae8263abc1dec4671638e7ed4af681"></a><!-- doxytag: member="keyboard.c::keyboard_init" ref="a5aae8263abc1dec4671638e7ed4af681" args="(void)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void keyboard_init </td>
+          <td>(</td>
+          <td class="paramtype">void&nbsp;</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a01edeb550d4a5e49474b974d03adf41e"></a><!-- doxytag: member="keyboard.c::keyboard_recv_watchdog" ref="a01edeb550d4a5e49474b974d03adf41e" args="(void)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void keyboard_recv_watchdog </td>
+          <td>(</td>
+          <td class="paramtype">void&nbsp;</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>V případě že během posledních pěti volání této funkce nedošlo k příjmu řádného bitu od klávesnice, (tedy pokud už dlouho nic nepřišlo) přeruší příjem posledního signálu a nastaví data_counter na nulu používá se k řešení problému s s nesprávným přijetím zprávy a následným posunutím přijmu funkce přijme třeba jen polovinu bitů, ale neví že už je konec vysílání a když dorazí první polovina dalšího kódu, zapíše je jako druhou část předchozího. </p>
+
+</div>
+</div>
+<a class="anchor" id="a1ac4291762bc07b651eae702323894fb"></a><!-- doxytag: member="keyboard.c::SIGNAL" ref="a1ac4291762bc07b651eae702323894fb" args="(SIG_INTERRUPT1)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">SIGNAL </td>
+          <td>(</td>
+          <td class="paramtype">SIG_INTERRUPT1&nbsp;</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a886e9a16dadc5bd9d5331a1ac3c028ae"></a><!-- doxytag: member="keyboard.c::zpracuj_kod" ref="a886e9a16dadc5bd9d5331a1ac3c028ae" args="(char)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void zpracuj_kod </td>
+          <td>(</td>
+          <td class="paramtype">char&nbsp;</td>
+          <td class="paramname"> <em>c</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Funkce na základě kódu přijatého z klávesnice vytváří kód pro funkce se kterými pracuje zbytek programu. V případě, že je stisknuta klávesa tisknutelného znaku, je čtecím funkcím poskytnuta jeho jeho ASCII hodnota. V případě stiskutí klávesy jiného typu je nastaven recive_flag a funkce pro čtení běžných znaků ( <a class="el" href="keyboard_8c.html#af0d08de095c0c6a062d084562f436b9e" title="Funkce vrátí poslední přijatý znak .">get_char()</a> ) nic nevrátí. Pro načtení kódu speciální klávesy je nutno použít funkci <a class="el" href="keyboard_8c.html#a6a0ab525eb476112b5b6259dd180cfa9" title="Funkce vrátí poslední přijatý stisk speciální klávesy.">get_spec()</a>. </p>
+
+</div>
+</div>
+<hr/><h2>Dokumentace proměnných</h2>
+<a class="anchor" id="a94962cd5e2de8fc881ffdac88fe81449"></a><!-- doxytag: member="keyboard.c::data_counter" ref="a94962cd5e2de8fc881ffdac88fe81449" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int8_t <a class="el" href="keyboard_8c.html#a94962cd5e2de8fc881ffdac88fe81449">data_counter</a> = 0<code> [static]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Počítadl bitů, které již přišly od klávesnice. </p>
+
+</div>
+</div>
+<a class="anchor" id="ac524b19ad362e0fe206ce5b3dae2e2fa"></a><!-- doxytag: member="keyboard.c::keyb_buff" ref="ac524b19ad362e0fe206ce5b3dae2e2fa" args="[KEYB_BUFF_SIZE]" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structkey.html">KEY</a> <a class="el" href="keyboard_8c.html#ac524b19ad362e0fe206ce5b3dae2e2fa">keyb_buff</a>[KEYB_BUFF_SIZE]<code> [static]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Buffer pro výstupní kódy. Pracuje se s ním prostřednictvím funkcí <a class="el" href="keyboard_8c.html#a4b4fdc8611d94ae6541af55ff1c7140f">keyb_in_buff()</a> a <a class="el" href="keyboard_8c.html#a634e36eab86a3bc50aee821b3770742e">get_key_from_buff()</a>. Buffer je pole v němž jsou prvky typu <a class="el" href="structkey.html" title="Struktura pro popis stisknuté klávesy.">key</a> Buffer je implementován jako nekruhový. Je to z důodu ušetření několika málo bytů. Zvýření výpočetní náročnosti je nevýznamné, nebť velikost bufferu je celkem malá ( KEYB_BUFF_SIZE ). Posouvání každé položky o jedno místo při každém příchodu nové klávesy a každém čtení nezpomaluje běh programu. </p>
+
+</div>
+</div>
+<a class="anchor" id="a0231eef69075ddf53fe8c05bce81235a"></a><!-- doxytag: member="keyboard.c::keyb_recv_watchdog" ref="a0231eef69075ddf53fe8c05bce81235a" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint16_t <a class="el" href="keyboard_8c.html#a0231eef69075ddf53fe8c05bce81235a">keyb_recv_watchdog</a> = 0<code> [static]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="ac879afe8e9548108268fe0d1360e58a6"></a><!-- doxytag: member="keyboard.c::minuly_kod" ref="ac879afe8e9548108268fe0d1360e58a6" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char <a class="el" href="keyboard_8c.html#ac879afe8e9548108268fe0d1360e58a6">minuly_kod</a> = 0<code> [static]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a89959d68e404325764357ceceab9b4e6"></a><!-- doxytag: member="keyboard.c::recivedc" ref="a89959d68e404325764357ceceab9b4e6" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char <a class="el" href="keyboard_8c.html#a89959d68e404325764357ceceab9b4e6">recivedc</a> = 0<code> [static]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Střadač bitů. </p>
+
+</div>
+</div>
+</div>
+<p align=left>Miroslav Jiřík</p>

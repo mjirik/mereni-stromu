@@ -1,0 +1,47 @@
+﻿<?php
+//zajistí nestartování session při vkládání do jiné stránky
+      
+if (!session_is_registered("id")){
+session_start(); 
+}
+if (!isset($_SESSION["id"])):
+  include ("login.php");
+  
+else:
+?>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title> index </title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+  <div id="head">
+      <h1>Dřevo</h1>
+  </div>
+
+
+  <div id="body"> 
+    <div id="bodyLeft">
+<div id="bodyLeftIn">
+<?php
+//     <ul>
+//       <li>zobraz</li>
+//       <li>pridej</li>
+//       <li>uprav</li> 
+//     </ul>
+    ?>
+      <?php 
+      include ("menu.php"); 
+      if ($_SESSION["id"] == 0){
+        include ("menu_root.php");
+      }
+      ?>
+</div>
+    </div>
+    <div id="bodyMain">
+      <?php echo $body; ?>
+    </div>
+  </div> 
+</body>
+<?php endif; ?>

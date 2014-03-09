@@ -1,0 +1,62 @@
+\section{Dokumentace souboru watchdog.c}
+\label{watchdog_8c}\index{watchdog.c@{watchdog.c}}
+
+
+Modul zajišťuje správnou funkci watchdogu. Pro správnou funkci zařízení není monžné využívat samotný watchdog naimplementovaný výrobcem. S resetem by totiž došlo ke ztrátě dat. Proto byl vytvořen programový watchdog. Ten je resetován nastavením čítače wtch\_\-counter na nulu. Sám o sobě resetovat jednočip neumí, na to však lze však využít služby watchdogu od Atmelu.  
+{\ttfamily \#include $<$util/delay.h$>$}\par
+{\ttfamily \#include $<$avr/pgmspace.h$>$}\par
+{\ttfamily \#include $<$avr/wdt.h$>$}\par
+{\ttfamily \#include \char`\"{}watchdog.h\char`\"{}}\par
+{\ttfamily \#include \char`\"{}lcd.h\char`\"{}}\par
+{\ttfamily \#include \char`\"{}eeprom.h\char`\"{}}\par
+\subsection*{Definice maker}
+\begin{DoxyCompactItemize}
+\item 
+\#define {\bf MY\_\-WATCHDOG}~10000
+\begin{DoxyCompactList}\small\item\em Kolikrát. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Funkce}
+\begin{DoxyCompactItemize}
+\item 
+void {\bf wtch\_\-init} (void)
+\item 
+void {\bf wtch\_\-main} (void)
+\end{DoxyCompactItemize}
+\subsection*{Proměnné}
+\begin{DoxyCompactItemize}
+\item 
+static char err97[$\,$] {\bf PROGMEM} = \char`\"{}Error 97: Vazna chyba behu programu. Ukladani dat.\char`\"{}
+\item 
+uint16\_\-t {\bf wtch\_\-counter} = 0
+\begin{DoxyCompactList}\small\item\em Čítač mého watchdogu. pokud bude větší než 200, dojde k výpisu chybové hlášky. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailní popis}
+Modul zajišťuje správnou funkci watchdogu. Pro správnou funkci zařízení není monžné využívat samotný watchdog naimplementovaný výrobcem. S resetem by totiž došlo ke ztrátě dat. Proto byl vytvořen programový watchdog. Ten je resetován nastavením čítače wtch\_\-counter na nulu. Sám o sobě resetovat jednočip neumí, na to však lze však využít služby watchdogu od Atmelu. 
+
+\subsection{Dokumentace k definicím maker}
+\index{watchdog.c@{watchdog.c}!MY\_\-WATCHDOG@{MY\_\-WATCHDOG}}
+\index{MY\_\-WATCHDOG@{MY\_\-WATCHDOG}!watchdog.c@{watchdog.c}}
+\subsubsection[{MY\_\-WATCHDOG}]{\setlength{\rightskip}{0pt plus 5cm}\#define MY\_\-WATCHDOG~10000}\label{watchdog_8c_a1ec06ff01e8ca7e4f7c2a673ba1ac499}
+
+
+Kolikrát. 
+
+\subsection{Dokumentace funkcí}
+\index{watchdog.c@{watchdog.c}!wtch\_\-init@{wtch\_\-init}}
+\index{wtch\_\-init@{wtch\_\-init}!watchdog.c@{watchdog.c}}
+\subsubsection[{wtch\_\-init}]{\setlength{\rightskip}{0pt plus 5cm}void wtch\_\-init (void)}\label{watchdog_8c_acbdab9cad3f2f8b16ff00ad69af20145}
+\index{watchdog.c@{watchdog.c}!wtch\_\-main@{wtch\_\-main}}
+\index{wtch\_\-main@{wtch\_\-main}!watchdog.c@{watchdog.c}}
+\subsubsection[{wtch\_\-main}]{\setlength{\rightskip}{0pt plus 5cm}void wtch\_\-main (void)}\label{watchdog_8c_ab51323d0a8ec8c832d7be1ab44ffbc3b}
+Funkce sleduje činnost jednočipu. Pokud dojde k \char`\"{}zaseknutí\char`\"{} v nějaké vnitřní smyčce, je vypsán chybový výpis, data jsou uložena do eeprom a program je uveden do nekonečné smyčky, ve které čeká na reset prostřednictvím softwarového watchdogu. Watchdog lze deaktivovat nastavením čítače na zápornou hodnotu. 
+
+\subsection{Dokumentace proměnných}
+\index{watchdog.c@{watchdog.c}!PROGMEM@{PROGMEM}}
+\index{PROGMEM@{PROGMEM}!watchdog.c@{watchdog.c}}
+\subsubsection[{PROGMEM}]{\setlength{\rightskip}{0pt plus 5cm}char err97b [$\,$] {\bf PROGMEM} = \char`\"{}Error 97: Vazna chyba behu programu. Ukladani dat.\char`\"{}\hspace{0.3cm}{\ttfamily  [static]}}\label{watchdog_8c_a82348d6937f5354d885236312473f51f}
+\index{watchdog.c@{watchdog.c}!wtch\_\-counter@{wtch\_\-counter}}
+\index{wtch\_\-counter@{wtch\_\-counter}!watchdog.c@{watchdog.c}}
+\subsubsection[{wtch\_\-counter}]{\setlength{\rightskip}{0pt plus 5cm}uint16\_\-t {\bf wtch\_\-counter} = 0}\label{watchdog_8c_a65366c710bff228f8a652480055368bc}
+
+
+Čítač mého watchdogu. pokud bude větší než 200, dojde k výpisu chybové hlášky. 

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configurationDescriptor version="62">
+  <logicalFolder name="root" displayName="root" projectFiles="true">
+    <logicalFolder name="HeaderFiles"
+                   displayName="Header Files"
+                   projectFiles="true">
+      <itemPath>buttons.h</itemPath>
+      <itemPath>convert.h</itemPath>
+      <itemPath>default_scr.h</itemPath>
+      <itemPath>eeprom.h</itemPath>
+      <itemPath>D:/Dokumenty/My Dropbox/projects/mereni_stromu/hardware/vozik_c/common/errn.h</itemPath>
+      <itemPath>error.h</itemPath>
+      <itemPath>inout.h</itemPath>
+      <itemPath>irc.h</itemPath>
+      <itemPath>irc2.h</itemPath>
+      <itemPath>keyboard.h</itemPath>
+      <itemPath>lcd.h</itemPath>
+      <itemPath>main.h</itemPath>
+      <itemPath>memory.h</itemPath>
+      <itemPath>D:/Dokumenty/My Dropbox/projects/mereni_stromu/hardware/vozik_c/common/msgn.h</itemPath>
+      <itemPath>sysinfo.h</itemPath>
+      <itemPath>D:/Dokumenty/My Dropbox/projects/mereni_stromu/hardware/vozik_c/common/sysinfo_flag.h</itemPath>
+      <itemPath>usart.h</itemPath>
+      <itemPath>usart_recv.h</itemPath>
+      <itemPath>watchdog.h</itemPath>
+    </logicalFolder>
+    <logicalFolder name="SourceFiles"
+                   displayName="Source Files"
+                   projectFiles="true">
+      <itemPath>buttons.c</itemPath>
+      <itemPath>convert.c</itemPath>
+      <itemPath>default_scr.c</itemPath>
+      <itemPath>eeprom.c</itemPath>
+      <itemPath>error.c</itemPath>
+      <itemPath>inout.c</itemPath>
+      <itemPath>irc.c</itemPath>
+      <itemPath>irc2.c</itemPath>
+      <itemPath>keyboard.c</itemPath>
+      <itemPath>lcd.c</itemPath>
+      <itemPath>main.c</itemPath>
+      <itemPath>memory.c</itemPath>
+      <itemPath>sysinfo.c</itemPath>
+      <itemPath>usart.c</itemPath>
+      <itemPath>usart_recv.c</itemPath>
+      <itemPath>watchdog.c</itemPath>
+    </logicalFolder>
+    <logicalFolder name="ExternalFiles"
+                   displayName="Important Files"
+                   projectFiles="false">
+      <itemPath>Makefile-vozik_c.mk</itemPath>
+      <itemPath>makefile</itemPath>
+    </logicalFolder>
+  </logicalFolder>
+  <sourceRootList>
+    <Elem>.</Elem>
+  </sourceRootList>
+  <projectmakefile>Makefile-vozik_c.mk</projectmakefile>
+  <confs>
+    <conf name="Default" type="0">
+      <toolsSet>
+        <developmentServer>localhost</developmentServer>
+        <compilerSet>MinGW|MinGW</compilerSet>
+        <platform>3</platform>
+      </toolsSet>
+      <makefileType>
+        <makeTool>
+          <buildCommandWorkingDir>.</buildCommandWorkingDir>
+          <buildCommand>$(MAKE) -f Makefile</buildCommand>
+          <cleanCommand>$(MAKE) -f Makefile clean</cleanCommand>
+          <executablePath></executablePath>
+          <cTool>
+            <incDir>
+              <pElem>.</pElem>
+            </incDir>
+            <preprocessorList>
+              <Elem>F_CPU=8000000UL</Elem>
+            </preprocessorList>
+          </cTool>
+        </makeTool>
+      </makefileType>
+    </conf>
+  </confs>
+</configurationDescriptor>

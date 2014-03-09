@@ -1,0 +1,433 @@
+   1               		.file	"sysinfo.c"
+   2               	__SREG__ = 0x3f
+   3               	__SP_H__ = 0x3e
+   4               	__SP_L__ = 0x3d
+   5               	__CCP__  = 0x34
+   6               	__tmp_reg__ = 0
+   7               	__zero_reg__ = 1
+  15               	.Ltext0:
+  16               	.global	si_set_flag
+  18               	si_set_flag:
+  19               	.LFB3:
+  20               	.LM1:
+  21               	.LVL0:
+  22               	/* prologue: function */
+  23               	/* frame size = 0 */
+  24               	.LM2:
+  25 0000 8093 0000 		sts sysinfo_flag,r24
+  26               	/* epilogue start */
+  27               	.LM3:
+  28 0004 0895      		ret
+  29               	.LFE3:
+  31               		.data
+  32               	.LC0:
+  33 0000 4D25 3364 		.string	"M%3d"
+  33      00
+  34               		.text
+  35               	.global	si_print_mem
+  37               	si_print_mem:
+  38               	.LFB6:
+  39               	.LM4:
+  40 0006 0F93      		push r16
+  41 0008 1F93      		push r17
+  42               	/* prologue: function */
+  43               	/* frame size = 0 */
+  44               	.LM5:
+  45 000a 8091 0000 		lds r24,sysinfo_flag
+  46 000e 80FF      		sbrs r24,0
+  47 0010 00C0      		rjmp .L5
+  48               	.LBB2:
+  49               	.LM6:
+  50 0012 0E94 0000 		call used_mem
+  51               	.LM7:
+  52 0016 00D0      		rcall .
+  53 0018 00D0      		rcall .
+  54 001a 00D0      		rcall .
+  55 001c EDB7      		in r30,__SP_L__
+  56 001e FEB7      		in r31,__SP_H__
+  57 0020 3196      		adiw r30,1
+  58 0022 00E0      		ldi r16,lo8(str_buf)
+  59 0024 10E0      		ldi r17,hi8(str_buf)
+  60 0026 ADB7      		in r26,__SP_L__
+  61 0028 BEB7      		in r27,__SP_H__
+  62 002a 1296      		adiw r26,1+1
+  63 002c 1C93      		st X,r17
+  64 002e 0E93      		st -X,r16
+  65 0030 1197      		sbiw r26,1
+  66 0032 20E0      		ldi r18,lo8(.LC0)
+  67 0034 30E0      		ldi r19,hi8(.LC0)
+  68 0036 3383      		std Z+3,r19
+  69 0038 2283      		std Z+2,r18
+  70 003a 9583      		std Z+5,r25
+  71 003c 8483      		std Z+4,r24
+  72 003e 0E94 0000 		call sprintf
+  73               	.LM8:
+  74 0042 8DB7      		in r24,__SP_L__
+  75 0044 9EB7      		in r25,__SP_H__
+  76 0046 0696      		adiw r24,6
+  77 0048 0FB6      		in __tmp_reg__,__SREG__
+  78 004a F894      		cli
+  79 004c 9EBF      		out __SP_H__,r25
+  80 004e 0FBE      		out __SREG__,__tmp_reg__
+  81 0050 8DBF      		out __SP_L__,r24
+  82 0052 80E0      		ldi r24,lo8(0)
+  83 0054 90E0      		ldi r25,hi8(0)
+  84 0056 64E2      		ldi r22,lo8(36)
+  85 0058 70E0      		ldi r23,hi8(36)
+  86 005a A801      		movw r20,r16
+  87 005c 0E94 0000 		call printxyd
+  88               	.L5:
+  89               	/* epilogue start */
+  90               	.LBE2:
+  91               	.LM9:
+  92 0060 1F91      		pop r17
+  93 0062 0F91      		pop r16
+  94 0064 0895      		ret
+  95               	.LFE6:
+  97               		.data
+  98               	.LC1:
+  99 0005 7379 7369 		.string	"sysinfo.c"
+  99      6E66 6F2E 
+  99      6300 
+ 100               		.text
+ 101               	.global	sysinfo
+ 103               	sysinfo:
+ 104               	.LFB7:
+ 105               	.LM10:
+ 106               	/* prologue: function */
+ 107               	/* frame size = 0 */
+ 108               	.LM11:
+ 109 0066 80E0      		ldi r24,lo8(.LC1)
+ 110 0068 90E0      		ldi r25,hi8(.LC1)
+ 111 006a 9093 0000 		sts (wtch_sfile)+1,r25
+ 112 006e 8093 0000 		sts wtch_sfile,r24
+ 113 0072 80E6      		ldi r24,lo8(96)
+ 114 0074 90E0      		ldi r25,hi8(96)
+ 115 0076 9093 0000 		sts (wtch_sline)+1,r25
+ 116 007a 8093 0000 		sts wtch_sline,r24
+ 117               	.LM12:
+ 118 007e 8091 0000 		lds r24,counter.1666
+ 119 0082 8333      		cpi r24,lo8(51)
+ 120 0084 00F0      		brlo .L7
+ 121               	.LM13:
+ 122 0086 0E94 0000 		call si_print_mem
+ 123               	.LM14:
+ 124 008a 1092 0000 		sts counter.1666,__zero_reg__
+ 125               	.L7:
+ 126               	.LM15:
+ 127 008e 8091 0000 		lds r24,counter.1666
+ 128 0092 8F5F      		subi r24,lo8(-(1))
+ 129 0094 8093 0000 		sts counter.1666,r24
+ 130               	/* epilogue start */
+ 131               	.LM16:
+ 132 0098 0895      		ret
+ 133               	.LFE7:
+ 135               		.data
+ 136               	.LC2:
+ 137 000f 4525 3364 		.string	"E%3d"
+ 137      00
+ 138               		.text
+ 139               	.global	si_print_error
+ 141               	si_print_error:
+ 142               	.LFB5:
+ 143               	.LM17:
+ 144 009a 0F93      		push r16
+ 145 009c 1F93      		push r17
+ 146               	/* prologue: function */
+ 147               	/* frame size = 0 */
+ 148 009e 282F      		mov r18,r24
+ 149               	.LM18:
+ 150 00a0 8091 0000 		lds r24,sysinfo_flag
+ 151 00a4 8695      		lsr r24
+ 152 00a6 8695      		lsr r24
+ 153 00a8 8695      		lsr r24
+ 154 00aa 80FF      		sbrs r24,0
+ 155 00ac 00C0      		rjmp .L11
+ 156               	.LM19:
+ 157 00ae 00D0      		rcall .
+ 158 00b0 00D0      		rcall .
+ 159 00b2 00D0      		rcall .
+ 160 00b4 EDB7      		in r30,__SP_L__
+ 161 00b6 FEB7      		in r31,__SP_H__
+ 162 00b8 3196      		adiw r30,1
+ 163 00ba 00E0      		ldi r16,lo8(str_buf)
+ 164 00bc 10E0      		ldi r17,hi8(str_buf)
+ 165 00be ADB7      		in r26,__SP_L__
+ 166 00c0 BEB7      		in r27,__SP_H__
+ 167 00c2 1296      		adiw r26,1+1
+ 168 00c4 1C93      		st X,r17
+ 169 00c6 0E93      		st -X,r16
+ 170 00c8 1197      		sbiw r26,1
+ 171 00ca 80E0      		ldi r24,lo8(.LC2)
+ 172 00cc 90E0      		ldi r25,hi8(.LC2)
+ 173 00ce 9383      		std Z+3,r25
+ 174 00d0 8283      		std Z+2,r24
+ 175 00d2 2483      		std Z+4,r18
+ 176 00d4 1582      		std Z+5,__zero_reg__
+ 177 00d6 0E94 0000 		call sprintf
+ 178               	.LM20:
+ 179 00da 8DB7      		in r24,__SP_L__
+ 180 00dc 9EB7      		in r25,__SP_H__
+ 181 00de 0696      		adiw r24,6
+ 182 00e0 0FB6      		in __tmp_reg__,__SREG__
+ 183 00e2 F894      		cli
+ 184 00e4 9EBF      		out __SP_H__,r25
+ 185 00e6 0FBE      		out __SREG__,__tmp_reg__
+ 186 00e8 8DBF      		out __SP_L__,r24
+ 187 00ea 80E0      		ldi r24,lo8(0)
+ 188 00ec 90E0      		ldi r25,hi8(0)
+ 189 00ee 60E2      		ldi r22,lo8(32)
+ 190 00f0 70E0      		ldi r23,hi8(32)
+ 191 00f2 A801      		movw r20,r16
+ 192 00f4 0E94 0000 		call printxyd
+ 193               	.L11:
+ 194               	/* epilogue start */
+ 195               	.LM21:
+ 196 00f8 1F91      		pop r17
+ 197 00fa 0F91      		pop r16
+ 198 00fc 0895      		ret
+ 199               	.LFE5:
+ 201               		.data
+ 202               	.LC3:
+ 203 0014 2532 782C 		.string	"%2x,%2x,%2x,%2x,%2x,%2x,%2x,%2x,%2x,%2x"
+ 203      2532 782C 
+ 203      2532 782C 
+ 203      2532 782C 
+ 203      2532 782C 
+ 204               	.LC4:
+ 205 003c 2532 782C 		.string	"%2x,%2x,%2x,%2x,%2x,%2x,%2x,%2x"
+ 205      2532 782C 
+ 205      2532 782C 
+ 205      2532 782C 
+ 205      2532 782C 
+ 206               		.text
+ 207               	.global	si_print_recv_buffer
+ 209               	si_print_recv_buffer:
+ 210               	.LFB4:
+ 211               	.LM22:
+ 212 00fe EF92      		push r14
+ 213 0100 FF92      		push r15
+ 214 0102 0F93      		push r16
+ 215 0104 1F93      		push r17
+ 216               	/* prologue: function */
+ 217               	/* frame size = 0 */
+ 218               	.LM23:
+ 219 0106 8091 0000 		lds r24,sysinfo_flag
+ 220 010a 8695      		lsr r24
+ 221 010c 80FF      		sbrs r24,0
+ 222 010e 00C0      		rjmp .L14
+ 223               	.LBB3:
+ 224               	.LM24:
+ 225 0110 0E94 0000 		call get_recv_buffer
+ 226 0114 8C01      		movw r16,r24
+ 227               	.LVL1:
+ 228               	.LM25:
+ 229 0116 8DB7      		in r24,__SP_L__
+ 230 0118 9EB7      		in r25,__SP_H__
+ 231 011a 4897      		sbiw r24,24
+ 232 011c 0FB6      		in __tmp_reg__,__SREG__
+ 233 011e F894      		cli
+ 234 0120 9EBF      		out __SP_H__,r25
+ 235 0122 0FBE      		out __SREG__,__tmp_reg__
+ 236 0124 8DBF      		out __SP_L__,r24
+ 237 0126 EDB7      		in r30,__SP_L__
+ 238 0128 FEB7      		in r31,__SP_H__
+ 239 012a 3196      		adiw r30,1
+ 240 012c 80E0      		ldi r24,lo8(str_buf)
+ 241 012e E82E      		mov r14,r24
+ 242 0130 80E0      		ldi r24,hi8(str_buf)
+ 243 0132 F82E      		mov r15,r24
+ 244 0134 ADB7      		in r26,__SP_L__
+ 245 0136 BEB7      		in r27,__SP_H__
+ 246 0138 1296      		adiw r26,1+1
+ 247 013a FC92      		st X,r15
+ 248 013c EE92      		st -X,r14
+ 249 013e 1197      		sbiw r26,1
+ 250 0140 80E0      		ldi r24,lo8(.LC3)
+ 251 0142 90E0      		ldi r25,hi8(.LC3)
+ 252 0144 9383      		std Z+3,r25
+ 253 0146 8283      		std Z+2,r24
+ 254 0148 D801      		movw r26,r16
+ 255 014a 8C91      		ld r24,X
+ 256 014c 8483      		std Z+4,r24
+ 257 014e 1582      		std Z+5,__zero_reg__
+ 258 0150 1196      		adiw r26,1
+ 259 0152 8C91      		ld r24,X
+ 260 0154 1197      		sbiw r26,1
+ 261 0156 8683      		std Z+6,r24
+ 262 0158 1782      		std Z+7,__zero_reg__
+ 263 015a 1296      		adiw r26,2
+ 264 015c 8C91      		ld r24,X
+ 265 015e 1297      		sbiw r26,2
+ 266 0160 8087      		std Z+8,r24
+ 267 0162 1186      		std Z+9,__zero_reg__
+ 268 0164 1396      		adiw r26,3
+ 269 0166 8C91      		ld r24,X
+ 270 0168 1397      		sbiw r26,3
+ 271 016a 8287      		std Z+10,r24
+ 272 016c 1386      		std Z+11,__zero_reg__
+ 273 016e 1496      		adiw r26,4
+ 274 0170 8C91      		ld r24,X
+ 275 0172 1497      		sbiw r26,4
+ 276 0174 8487      		std Z+12,r24
+ 277 0176 1586      		std Z+13,__zero_reg__
+ 278 0178 1596      		adiw r26,5
+ 279 017a 8C91      		ld r24,X
+ 280 017c 1597      		sbiw r26,5
+ 281 017e 8687      		std Z+14,r24
+ 282 0180 1786      		std Z+15,__zero_reg__
+ 283 0182 1696      		adiw r26,6
+ 284 0184 8C91      		ld r24,X
+ 285 0186 1697      		sbiw r26,6
+ 286 0188 808B      		std Z+16,r24
+ 287 018a 118A      		std Z+17,__zero_reg__
+ 288 018c 1796      		adiw r26,7
+ 289 018e 8C91      		ld r24,X
+ 290 0190 1797      		sbiw r26,7
+ 291 0192 828B      		std Z+18,r24
+ 292 0194 138A      		std Z+19,__zero_reg__
+ 293 0196 1896      		adiw r26,8
+ 294 0198 8C91      		ld r24,X
+ 295 019a 1897      		sbiw r26,8
+ 296 019c 848B      		std Z+20,r24
+ 297 019e 158A      		std Z+21,__zero_reg__
+ 298 01a0 1996      		adiw r26,9
+ 299 01a2 8C91      		ld r24,X
+ 300 01a4 868B      		std Z+22,r24
+ 301 01a6 178A      		std Z+23,__zero_reg__
+ 302 01a8 0E94 0000 		call sprintf
+ 303               	.LM26:
+ 304 01ac 8DB7      		in r24,__SP_L__
+ 305 01ae 9EB7      		in r25,__SP_H__
+ 306 01b0 4896      		adiw r24,24
+ 307 01b2 0FB6      		in __tmp_reg__,__SREG__
+ 308 01b4 F894      		cli
+ 309 01b6 9EBF      		out __SP_H__,r25
+ 310 01b8 0FBE      		out __SREG__,__tmp_reg__
+ 311 01ba 8DBF      		out __SP_L__,r24
+ 312 01bc 82E0      		ldi r24,lo8(2)
+ 313 01be 90E0      		ldi r25,hi8(2)
+ 314 01c0 60E0      		ldi r22,lo8(0)
+ 315 01c2 70E0      		ldi r23,hi8(0)
+ 316 01c4 A701      		movw r20,r14
+ 317 01c6 0E94 0000 		call printxyd
+ 318               	.LM27:
+ 319 01ca ADB7      		in r26,__SP_L__
+ 320 01cc BEB7      		in r27,__SP_H__
+ 321 01ce 5497      		sbiw r26,20
+ 322 01d0 0FB6      		in __tmp_reg__,__SREG__
+ 323 01d2 F894      		cli
+ 324 01d4 BEBF      		out __SP_H__,r27
+ 325 01d6 0FBE      		out __SREG__,__tmp_reg__
+ 326 01d8 ADBF      		out __SP_L__,r26
+ 327 01da EDB7      		in r30,__SP_L__
+ 328 01dc FEB7      		in r31,__SP_H__
+ 329 01de 3196      		adiw r30,1
+ 330 01e0 1296      		adiw r26,1+1
+ 331 01e2 FC92      		st X,r15
+ 332 01e4 EE92      		st -X,r14
+ 333 01e6 1197      		sbiw r26,1
+ 334 01e8 80E0      		ldi r24,lo8(.LC4)
+ 335 01ea 90E0      		ldi r25,hi8(.LC4)
+ 336 01ec 9383      		std Z+3,r25
+ 337 01ee 8283      		std Z+2,r24
+ 338 01f0 D801      		movw r26,r16
+ 339 01f2 1A96      		adiw r26,10
+ 340 01f4 8C91      		ld r24,X
+ 341 01f6 1A97      		sbiw r26,10
+ 342 01f8 8483      		std Z+4,r24
+ 343 01fa 1582      		std Z+5,__zero_reg__
+ 344 01fc 1B96      		adiw r26,11
+ 345 01fe 8C91      		ld r24,X
+ 346 0200 1B97      		sbiw r26,11
+ 347 0202 8683      		std Z+6,r24
+ 348 0204 1782      		std Z+7,__zero_reg__
+ 349 0206 1C96      		adiw r26,12
+ 350 0208 8C91      		ld r24,X
+ 351 020a 1C97      		sbiw r26,12
+ 352 020c 8087      		std Z+8,r24
+ 353 020e 1186      		std Z+9,__zero_reg__
+ 354 0210 1D96      		adiw r26,13
+ 355 0212 8C91      		ld r24,X
+ 356 0214 1D97      		sbiw r26,13
+ 357 0216 8287      		std Z+10,r24
+ 358 0218 1386      		std Z+11,__zero_reg__
+ 359 021a 1E96      		adiw r26,14
+ 360 021c 8C91      		ld r24,X
+ 361 021e 1E97      		sbiw r26,14
+ 362 0220 8487      		std Z+12,r24
+ 363 0222 1586      		std Z+13,__zero_reg__
+ 364 0224 1F96      		adiw r26,15
+ 365 0226 8C91      		ld r24,X
+ 366 0228 1F97      		sbiw r26,15
+ 367 022a 8687      		std Z+14,r24
+ 368 022c 1786      		std Z+15,__zero_reg__
+ 369 022e 5096      		adiw r26,16
+ 370 0230 8C91      		ld r24,X
+ 371 0232 5097      		sbiw r26,16
+ 372 0234 808B      		std Z+16,r24
+ 373 0236 118A      		std Z+17,__zero_reg__
+ 374 0238 5196      		adiw r26,17
+ 375 023a 8C91      		ld r24,X
+ 376 023c 828B      		std Z+18,r24
+ 377 023e 138A      		std Z+19,__zero_reg__
+ 378 0240 0E94 0000 		call sprintf
+ 379               	.LM28:
+ 380 0244 8DB7      		in r24,__SP_L__
+ 381 0246 9EB7      		in r25,__SP_H__
+ 382 0248 4496      		adiw r24,20
+ 383 024a 0FB6      		in __tmp_reg__,__SREG__
+ 384 024c F894      		cli
+ 385 024e 9EBF      		out __SP_H__,r25
+ 386 0250 0FBE      		out __SREG__,__tmp_reg__
+ 387 0252 8DBF      		out __SP_L__,r24
+ 388 0254 83E0      		ldi r24,lo8(3)
+ 389 0256 90E0      		ldi r25,hi8(3)
+ 390 0258 60E0      		ldi r22,lo8(0)
+ 391 025a 70E0      		ldi r23,hi8(0)
+ 392 025c A701      		movw r20,r14
+ 393 025e 0E94 0000 		call printxyd
+ 394               	.L14:
+ 395               	/* epilogue start */
+ 396               	.LBE3:
+ 397               	.LM29:
+ 398 0262 1F91      		pop r17
+ 399 0264 0F91      		pop r16
+ 400               	.LVL2:
+ 401 0266 FF90      		pop r15
+ 402 0268 EF90      		pop r14
+ 403 026a 0895      		ret
+ 404               	.LFE4:
+ 406               	.global	sysinfo_flag
+ 407               	.global	sysinfo_flag
+ 408               		.section .bss
+ 411               	sysinfo_flag:
+ 412 0000 00        		.skip 1,0
+ 413               		.lcomm counter.1666,1
+ 470               	.Letext0:
+DEFINED SYMBOLS
+                            *ABS*:00000000 sysinfo.c
+C:/Users/mjirik/AppData/Local/Temp/ccTjRVgp.s:2      *ABS*:0000003f __SREG__
+C:/Users/mjirik/AppData/Local/Temp/ccTjRVgp.s:3      *ABS*:0000003e __SP_H__
+C:/Users/mjirik/AppData/Local/Temp/ccTjRVgp.s:4      *ABS*:0000003d __SP_L__
+C:/Users/mjirik/AppData/Local/Temp/ccTjRVgp.s:5      *ABS*:00000034 __CCP__
+C:/Users/mjirik/AppData/Local/Temp/ccTjRVgp.s:6      *ABS*:00000000 __tmp_reg__
+C:/Users/mjirik/AppData/Local/Temp/ccTjRVgp.s:7      *ABS*:00000001 __zero_reg__
+C:/Users/mjirik/AppData/Local/Temp/ccTjRVgp.s:18     .text:00000000 si_set_flag
+C:/Users/mjirik/AppData/Local/Temp/ccTjRVgp.s:411    .bss:00000000 sysinfo_flag
+C:/Users/mjirik/AppData/Local/Temp/ccTjRVgp.s:37     .text:00000006 si_print_mem
+C:/Users/mjirik/AppData/Local/Temp/ccTjRVgp.s:103    .text:00000066 sysinfo
+                             .bss:00000001 counter.1666
+C:/Users/mjirik/AppData/Local/Temp/ccTjRVgp.s:141    .text:0000009a si_print_error
+C:/Users/mjirik/AppData/Local/Temp/ccTjRVgp.s:209    .text:000000fe si_print_recv_buffer
+
+UNDEFINED SYMBOLS
+used_mem
+str_buf
+sprintf
+printxyd
+wtch_sfile
+wtch_sline
+get_recv_buffer
+__do_copy_data
+__do_clear_bss

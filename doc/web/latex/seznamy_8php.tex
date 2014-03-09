@@ -1,0 +1,45 @@
+\section{Dokumentace souboru seznamy.php}
+\label{seznamy_8php}\index{seznamy.php@{seznamy.php}}
+Soubor zajišťuje vypisování zakázek zákazníků. 
+
+\subsection*{Proměnné}
+\begin{CompactItemize}
+\item 
+{\bf \$link} = connect\_\-db()
+\item 
+{\bf \$body} = \& new {\bf Template}('./tmpl/seznamy.tmpl.php')
+\item 
+{\bf \$all} = \& new {\bf Template}('./tmpl/all.tmpl.php')
+\item 
+{\bf \$vysledek} = seznamy\_\-zakaznika(\$\_\-GET[\char`\"{}id\char`\"{}],\$link)
+\end{CompactItemize}
+
+
+\subsection{Detailní popis}
+Soubor zajišťuje vypisování zakázek zákazníků. 
+
+\begin{Desc}
+\item[{\bf Plánované úpravy}]prověřit nezbytnost \end{Desc}
+
+
+\subsection{Dokumentace proměnných}
+\index{seznamy.php@{seznamy.php}!$all@{\$all}}
+\index{$all@{\$all}!seznamy.php@{seznamy.php}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}\$all = \& new {\bf Template}('./tmpl/all.tmpl.php')}\label{seznamy_8php_3c74ea9d2348c9aba28d36e692bef2d2}
+
+
+\index{seznamy.php@{seznamy.php}!$body@{\$body}}
+\index{$body@{\$body}!seznamy.php@{seznamy.php}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}\$body = \& new {\bf Template}('./tmpl/seznamy.tmpl.php')}\label{seznamy_8php_26b9f9373f7bb79dfcf8a86dff086b45}
+
+
+\index{seznamy.php@{seznamy.php}!$link@{\$link}}
+\index{$link@{\$link}!seznamy.php@{seznamy.php}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}\$link = connect\_\-db()}\label{seznamy_8php_5d346e31b75d916e3bac9cb193bfc97f}
+
+
+\index{seznamy.php@{seznamy.php}!$vysledek@{\$vysledek}}
+\index{$vysledek@{\$vysledek}!seznamy.php@{seznamy.php}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}\$vysledek = seznamy\_\-zakaznika(\$\_\-GET[\char`\"{}id\char`\"{}],\$link)}\label{seznamy_8php_69af6cd0d91dc9a06af879b8e5f0eb9d}
+
+

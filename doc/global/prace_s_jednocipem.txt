@@ -1,9 +1,30 @@
 /**
 @page glob_prace_s_jednocipem Práce s jednoèipem
 
-@section glob_nahravani_programu Nahrávání programu
-Program je do jednoèipu nahráván prostøednictvím ISP programátoru STK500.Konektor pro pøipojení tohoto programátoru je na obrázku.
+@section pripojeni_k_pocitaci Pøipojení k poèítaèi
+Program je do jednoèipu nahráván prostøednictvím ISP programátoru STK500. Konektor pro pøipojení tohoto programátoru je na obrázku.
+Programátor je k poèítaèi pøipojen sériovou linkou. Není-li k dispozici port RS232, lze vyuít pøevodník (napøíklad USB TO SERIAL PORT CABLE). K jeho pouití je však zapotøebí nainstalovat správné ovladaèe (PL-2303 Driver Installer.exe).
 
 @image html isp_pin.png "ISP konektor pro programování jednoèipu"
+
+
+@section glob_kompilace Kompilace programu
+Kompilace se provádí pøíkazem 
+
+make 
+
+@section glob_nahravani_programu Nahrávání programu
+Nahrání programu zajišuje makefile s cílem program. Je nutno mít v makefile správnì nastavenı port (napø com1).
+
+make program
+
+@subsection glob_stazeni_programu Staení programu z jednoèipu
+avrdude -p m32 -c stk500v1 -U flash:r:"D:\main.hex":i
+
+@subsection glob_nahravani_problemy
+V pøípadì e nelze progam nahrát a programátor vrací signaturu jednoèipu 0xFFFF, je pravdìpodobnì
+porucha na vedení mezi jednoèipem a programátorem. Nejèastìji je utrenı drát na konektoru. Nìkdy je porucha 
+v pøevodníku USB-RS232, pak staèí kabel vypojit a zapojit.
+
 
 */

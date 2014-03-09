@@ -1,0 +1,29 @@
+#! /bin/sh
+# skript slouzi pro startovani systemu pro naslouchani seriovemu portu a zapisovani
+# dat do MySQL
+echo "hhh" >> /root/tmp/file.txt
+
+/usr/local/bin/pila_connector&;
+
+case "$1" in
+  start|restart|force-reload
+    #prkazy pro spusteni sluzby
+       cp /usr/local/bin/pila_connector /root/tmp/pila_connector ;
+  stty -F /dev/ttyS0 clocal cread -crtscts cs8 cstopb hup -parenb parodd \
+  -brkint -icrnl ignbrk -igncr ignpar imaxbel -inlcr inpck -istrip \
+	-iuclc -ixany ixoff -ixon bs0 cr0 ff0 nl0 -ocrnl -ofdel -ofill -olcuc \
+	-onlcr -onlret onocr -opost tab0 vt0 -crterase crtkill -ctlecho -echo \
+	-echok -echonl -echoprt -icanon -iexten -isig -noflsh -tostop -xcase \
+	time 5 min 1;
+
+    stty -F /dev/ttyS0 9600;
+
+
+#    /usr/local/bin/pila_connector&;
+    ;;
+  stop)
+    #pøíkazy pro ukonèení služby
+    ;;
+esac
+
+exit 0

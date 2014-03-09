@@ -1,0 +1,103 @@
+   1               		.file	"memory.c"
+   2               	__SREG__ = 0x3f
+   3               	__SP_H__ = 0x3e
+   4               	__SP_L__ = 0x3d
+   5               	__CCP__  = 0x34
+   6               	__tmp_reg__ = 0
+   7               	__zero_reg__ = 1
+  15               	.Ltext0:
+  16               	.global	used_mem
+  18               	used_mem:
+  19               	.LFB4:
+  20               	.LM1:
+  21               	/* prologue: function */
+  22               	/* frame size = 0 */
+  23               	.LM2:
+  24 0000 8091 0000 		lds r24,used_mem_blocks
+  25 0004 9091 0000 		lds r25,used_mem_blocks+1
+  26               	/* epilogue start */
+  27 0008 0895      		ret
+  28               	.LFE4:
+  30               	.global	mfree
+  32               	mfree:
+  33               	.LFB3:
+  34               	.LM3:
+  35               	.LVL0:
+  36               	/* prologue: function */
+  37               	/* frame size = 0 */
+  38               	.LM4:
+  39 000a 0E94 0000 		call free
+  40               	.LVL1:
+  41               	.LM5:
+  42 000e 8091 0000 		lds r24,used_mem_blocks
+  43 0012 9091 0000 		lds r25,(used_mem_blocks)+1
+  44 0016 0197      		sbiw r24,1
+  45 0018 9093 0000 		sts (used_mem_blocks)+1,r25
+  46 001c 8093 0000 		sts used_mem_blocks,r24
+  47               	/* epilogue start */
+  48               	.LM6:
+  49 0020 0895      		ret
+  50               	.LFE3:
+  52               	.global	mmalloc
+  54               	mmalloc:
+  55               	.LFB2:
+  56               	.LM7:
+  57               	.LVL2:
+  58 0022 CF93      		push r28
+  59 0024 DF93      		push r29
+  60               	/* prologue: function */
+  61               	/* frame size = 0 */
+  62               	.LM8:
+  63 0026 0E94 0000 		call malloc
+  64               	.LVL3:
+  65 002a EC01      		movw r28,r24
+  66               	.LM9:
+  67 002c 0097      		sbiw r24,0
+  68               	.LVL4:
+  69 002e 01F4      		brne .L6
+  70               	.LM10:
+  71 0030 88E5      		ldi r24,lo8(88)
+  72               	.LVL5:
+  73 0032 0E94 0000 		call new_error
+  74 0036 00C0      		rjmp .L7
+  75               	.LVL6:
+  76               	.L6:
+  77               	.LM11:
+  78 0038 8091 0000 		lds r24,used_mem_blocks
+  79 003c 9091 0000 		lds r25,(used_mem_blocks)+1
+  80               	.LVL7:
+  81 0040 0196      		adiw r24,1
+  82 0042 9093 0000 		sts (used_mem_blocks)+1,r25
+  83 0046 8093 0000 		sts used_mem_blocks,r24
+  84               	.L7:
+  85               	.LM12:
+  86 004a CE01      		movw r24,r28
+  87               	/* epilogue start */
+  88 004c DF91      		pop r29
+  89 004e CF91      		pop r28
+  90 0050 0895      		ret
+  91               	.LFE2:
+  93               	.global	used_mem_blocks
+  94               	.global	used_mem_blocks
+  95               		.section .bss
+  98               	used_mem_blocks:
+  99 0000 0000      		.skip 2,0
+ 140               	.Letext0:
+DEFINED SYMBOLS
+                            *ABS*:00000000 memory.c
+C:/Users/mjirik/AppData/Local/Temp/ccCKWIrN.s:2      *ABS*:0000003f __SREG__
+C:/Users/mjirik/AppData/Local/Temp/ccCKWIrN.s:3      *ABS*:0000003e __SP_H__
+C:/Users/mjirik/AppData/Local/Temp/ccCKWIrN.s:4      *ABS*:0000003d __SP_L__
+C:/Users/mjirik/AppData/Local/Temp/ccCKWIrN.s:5      *ABS*:00000034 __CCP__
+C:/Users/mjirik/AppData/Local/Temp/ccCKWIrN.s:6      *ABS*:00000000 __tmp_reg__
+C:/Users/mjirik/AppData/Local/Temp/ccCKWIrN.s:7      *ABS*:00000001 __zero_reg__
+C:/Users/mjirik/AppData/Local/Temp/ccCKWIrN.s:18     .text:00000000 used_mem
+C:/Users/mjirik/AppData/Local/Temp/ccCKWIrN.s:98     .bss:00000000 used_mem_blocks
+C:/Users/mjirik/AppData/Local/Temp/ccCKWIrN.s:32     .text:0000000a mfree
+C:/Users/mjirik/AppData/Local/Temp/ccCKWIrN.s:54     .text:00000022 mmalloc
+
+UNDEFINED SYMBOLS
+free
+malloc
+new_error
+__do_clear_bss

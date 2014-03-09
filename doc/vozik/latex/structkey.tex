@@ -1,0 +1,36 @@
+\section{Dokumentace struktury key}
+\label{structkey}\index{key@{key}}
+
+
+Struktura pro popis stisknuté klávesy.  
+\subsection*{Datové položky}
+\begin{DoxyCompactItemize}
+\item 
+char {\bf flag}
+\item 
+char {\bf kod}
+\begin{DoxyCompactList}\small\item\em Vlastní kód klávesy. V případě že je flag == 0, je to ASCII. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailní popis}
+Struktura pro popis stisknuté klávesy. 
+
+\subsection{Dokumentace k položkám}
+\index{key@{key}!flag@{flag}}
+\index{flag@{flag}!key@{key}}
+\subsubsection[{flag}]{\setlength{\rightskip}{0pt plus 5cm}char {\bf key::flag}}\label{structkey_ae913bbd98681f233b7fb276d3b30500d}
+Vlajka ukazující typ klávesy, která byla stisknuta.
+\begin{DoxyItemize}
+\item 0 : nic
+\item 1 : přijat char
+\item 2 : efko, šipka 
+\end{DoxyItemize}\index{key@{key}!kod@{kod}}
+\index{kod@{kod}!key@{key}}
+\subsubsection[{kod}]{\setlength{\rightskip}{0pt plus 5cm}char {\bf key::kod}}\label{structkey_a5e1fd3055f0a412982436335356bb377}
+
+
+Vlastní kód klávesy. V případě že je flag == 0, je to ASCII. 
+
+Dokumentace pro tuto strukturu (struct) byla generována z následujícího souboru:\begin{DoxyCompactItemize}
+\item 
+{\bf keyboard.c}\end{DoxyCompactItemize}

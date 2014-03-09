@@ -1,0 +1,66 @@
+\section{Dokumentace souboru irc.h}
+\label{irc_8h}\index{irc.h@{irc.h}}
+\subsection*{Funkce}
+\begin{DoxyCompactItemize}
+\item 
+void {\bf irc1\_\-watch} (void)
+\item 
+void {\bf set\_\-irc1\_\-k\_\-mm} (uint16\_\-t)
+\item 
+uint16\_\-t {\bf irc1\_\-get\_\-l} (void)
+\item 
+void {\bf set\_\-irc1\_\-set\_\-on\_\-value\_\-mm} (int32\_\-t q)
+\item 
+uint16\_\-t {\bf irc1\_\-get\_\-k} (void)
+\item 
+void {\bf irc1\_\-init} (void)
+\item 
+int32\_\-t {\bf get\_\-irc1\_\-set\_\-on\_\-value} (void)
+\begin{DoxyCompactList}\small\item\em Výstup je v setinách milimetru. Je třeba jej vydělit 1000 aby byl v cm. \item\end{DoxyCompactList}\item 
+void {\bf set\_\-irc1\_\-counter} (int32\_\-t a)
+\item 
+int32\_\-t {\bf get\_\-irc1\_\-counter} (void)
+\item 
+void {\bf set\_\-irc1\_\-k} (uint16\_\-t a)
+\item 
+void {\bf set\_\-irc1\_\-set\_\-on\_\-value} (int32\_\-t a)
+\end{DoxyCompactItemize}
+
+
+\subsection{Dokumentace funkcí}
+\index{irc.h@{irc.h}!get\_\-irc1\_\-counter@{get\_\-irc1\_\-counter}}
+\index{get\_\-irc1\_\-counter@{get\_\-irc1\_\-counter}!irc.h@{irc.h}}
+\subsubsection[{get\_\-irc1\_\-counter}]{\setlength{\rightskip}{0pt plus 5cm}int32\_\-t get\_\-irc1\_\-counter (void)}\label{irc_8h_a36575a375721a5efe36822edac5e7aec}
+\index{irc.h@{irc.h}!get\_\-irc1\_\-set\_\-on\_\-value@{get\_\-irc1\_\-set\_\-on\_\-value}}
+\index{get\_\-irc1\_\-set\_\-on\_\-value@{get\_\-irc1\_\-set\_\-on\_\-value}!irc.h@{irc.h}}
+\subsubsection[{get\_\-irc1\_\-set\_\-on\_\-value}]{\setlength{\rightskip}{0pt plus 5cm}int32\_\-t get\_\-irc1\_\-set\_\-on\_\-value (void)}\label{irc_8h_a96221cc1f6e45c778e3909ff5d860b2d}
+
+
+Výstup je v setinách milimetru. Je třeba jej vydělit 1000 aby byl v cm. \index{irc.h@{irc.h}!irc1\_\-get\_\-k@{irc1\_\-get\_\-k}}
+\index{irc1\_\-get\_\-k@{irc1\_\-get\_\-k}!irc.h@{irc.h}}
+\subsubsection[{irc1\_\-get\_\-k}]{\setlength{\rightskip}{0pt plus 5cm}uint16\_\-t irc1\_\-get\_\-k (void)}\label{irc_8h_a72331a5215368486b6e9eb068e0ea1b1}
+\index{irc.h@{irc.h}!irc1\_\-get\_\-l@{irc1\_\-get\_\-l}}
+\index{irc1\_\-get\_\-l@{irc1\_\-get\_\-l}!irc.h@{irc.h}}
+\subsubsection[{irc1\_\-get\_\-l}]{\setlength{\rightskip}{0pt plus 5cm}uint16\_\-t irc1\_\-get\_\-l (void)}\label{irc_8h_acaa3b31cea039569b81247a457c0263e}
+\index{irc.h@{irc.h}!irc1\_\-init@{irc1\_\-init}}
+\index{irc1\_\-init@{irc1\_\-init}!irc.h@{irc.h}}
+\subsubsection[{irc1\_\-init}]{\setlength{\rightskip}{0pt plus 5cm}void irc1\_\-init (void)}\label{irc_8h_aa50caede5ea4ec03d972071a3ba60955}
+Inicializace IRC. \index{irc.h@{irc.h}!irc1\_\-watch@{irc1\_\-watch}}
+\index{irc1\_\-watch@{irc1\_\-watch}!irc.h@{irc.h}}
+\subsubsection[{irc1\_\-watch}]{\setlength{\rightskip}{0pt plus 5cm}void irc1\_\-watch (void)}\label{irc_8h_a1bce3e604934651f923c84b7fda5c6f6}
+V teto funkci je reseno sledovani vstupu irc a jeho nastaveni. Vzdy kdyz je funkce zavolana, je zkontrolovano, zda nedoslo okd minuleho zavolani ke zmene na vstupech irc. Pokud ano, jsou provedeny prislusne korky -\/ zvyseni nebo snizeni citace irc a pripadne odeslani namerene hodnoty. Namerena hodnota je dana jako hodnota irc cidla krat konstanta (obvykle mensi nez jedna). \index{irc.h@{irc.h}!set\_\-irc1\_\-counter@{set\_\-irc1\_\-counter}}
+\index{set\_\-irc1\_\-counter@{set\_\-irc1\_\-counter}!irc.h@{irc.h}}
+\subsubsection[{set\_\-irc1\_\-counter}]{\setlength{\rightskip}{0pt plus 5cm}void set\_\-irc1\_\-counter (int32\_\-t {\em a})}\label{irc_8h_aa80a7e95233446dac8df1c9d8f4c263a}
+\index{irc.h@{irc.h}!set\_\-irc1\_\-k@{set\_\-irc1\_\-k}}
+\index{set\_\-irc1\_\-k@{set\_\-irc1\_\-k}!irc.h@{irc.h}}
+\subsubsection[{set\_\-irc1\_\-k}]{\setlength{\rightskip}{0pt plus 5cm}void set\_\-irc1\_\-k (uint16\_\-t {\em a})}\label{irc_8h_a478355ecd82c2b5e54b93297b402f95f}
+\index{irc.h@{irc.h}!set\_\-irc1\_\-k\_\-mm@{set\_\-irc1\_\-k\_\-mm}}
+\index{set\_\-irc1\_\-k\_\-mm@{set\_\-irc1\_\-k\_\-mm}!irc.h@{irc.h}}
+\subsubsection[{set\_\-irc1\_\-k\_\-mm}]{\setlength{\rightskip}{0pt plus 5cm}void set\_\-irc1\_\-k\_\-mm (uint16\_\-t {\em i})}\label{irc_8h_a34cbf3086c85ee2ee639c6e85feeb848}
+Funkce vypočte a nastaví přenásobovací konstantu irc Vstupem je číslo, které odpodvídá kolik milimetrů je na jednu otáčku. \index{irc.h@{irc.h}!set\_\-irc1\_\-set\_\-on\_\-value@{set\_\-irc1\_\-set\_\-on\_\-value}}
+\index{set\_\-irc1\_\-set\_\-on\_\-value@{set\_\-irc1\_\-set\_\-on\_\-value}!irc.h@{irc.h}}
+\subsubsection[{set\_\-irc1\_\-set\_\-on\_\-value}]{\setlength{\rightskip}{0pt plus 5cm}void set\_\-irc1\_\-set\_\-on\_\-value (int32\_\-t {\em a})}\label{irc_8h_a3515c748a2972e9aa03800b29050ee88}
+\index{irc.h@{irc.h}!set\_\-irc1\_\-set\_\-on\_\-value\_\-mm@{set\_\-irc1\_\-set\_\-on\_\-value\_\-mm}}
+\index{set\_\-irc1\_\-set\_\-on\_\-value\_\-mm@{set\_\-irc1\_\-set\_\-on\_\-value\_\-mm}!irc.h@{irc.h}}
+\subsubsection[{set\_\-irc1\_\-set\_\-on\_\-value\_\-mm}]{\setlength{\rightskip}{0pt plus 5cm}void set\_\-irc1\_\-set\_\-on\_\-value\_\-mm (int32\_\-t {\em q})}\label{irc_8h_afc8d405aa96a15f9304139867b024361}
+Nastavení hodnoty. Vstupem je vzdálenost nastavovacíhoo bodu od počátku v centimetrech vynásobená deseti. tj 65 cm je 650 

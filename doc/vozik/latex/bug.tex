@@ -1,0 +1,7 @@
+\label{bug__bug000001}
+ 
+\begin{DoxyDescription}
+\item[Global \doxyref{new\_\-ack\_\-msg}{s.}{usart_8h_aece32bc3ab3397ea8202203edf547eb2} ]Podezření na chyby v uvolňování paměti. Při opakovaném odeslání asi dochází k uvolnění paměti po řetězci msg, při dalším odesílání se však odesílají data opět z ukazatele msg, která jsou však již uvolněná.
+
+
+\end{DoxyDescription}

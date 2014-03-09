@@ -1,0 +1,511 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<title>Zařízení na vozíku pro projekt měření objemu stromů: Dokumentace souboru lcd.c</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<!-- Generováno programem Doxygen 1.6.1 -->
+<div class="navigation" id="top">
+  <div class="tabs">
+    <ul>
+      <li><a href="index.html"><span>Hlavní&nbsp;stránka</span></a></li>
+      <li><a href="pages.html"><span>Ostatní&nbsp;stránky</span></a></li>
+      <li><a href="annotated.html"><span>Třídy</span></a></li>
+      <li class="current"><a href="files.html"><span>Soubory</span></a></li>
+    </ul>
+  </div>
+  <div class="tabs">
+    <ul>
+      <li><a href="files.html"><span>Seznam&nbsp;souborů</span></a></li>
+      <li><a href="globals.html"><span>Globální&nbsp;symboly</span></a></li>
+    </ul>
+  </div>
+</div>
+<div class="contents">
+<h1>Dokumentace souboru lcd.c</h1>
+<p>Modul obstarává nenižší úroveň pro vypisování dat na LCD.  
+<a href="#_details">...</a></p>
+<code>#include &lt;stdio.h&gt;</code><br/>
+<code>#include &lt;avr/io.h&gt;</code><br/>
+<code>#include &lt;util/delay.h&gt;</code><br/>
+<code>#include &quot;<a class="el" href="lcd_8h.html">lcd.h</a>&quot;</code><br/>
+<code>#include &quot;<a class="el" href="convert_8h.html">convert.h</a>&quot;</code><br/>
+<code>#include &quot;<a class="el" href="error_8h.html">error.h</a>&quot;</code><br/>
+<code>#include &lt;avr/pgmspace.h&gt;</code><br/>
+<table border="0" cellpadding="0" cellspacing="0">
+<tr><td colspan="2"><h2>Definice maker</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="lcd_8c.html#a43bafb28b29491ec7f871319b5a3b2f8">F_CPU</a>&nbsp;&nbsp;&nbsp;8000000UL</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Frekvence oscilátoru 8MHz.  <a href="#a43bafb28b29491ec7f871319b5a3b2f8"></a><br/></td></tr>
+<tr><td colspan="2"><h2>Funkce</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">char&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="lcd_8c.html#a2fdcaa04d2a5ef5f829a2c0503b95009">lcd_new_frame</a> (void)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="lcd_8c.html#ae9bb5305a03d43b839016fcc98dfee4f">d10</a> (void)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Jen taková zdržovací funkce pro odlazování.  <a href="#ae9bb5305a03d43b839016fcc98dfee4f"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="lcd_8c.html#af632fc4d520fbb4468baea39b68bc17e">clear_dscreen</a> (void)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Vymaže default screen.  <a href="#af632fc4d520fbb4468baea39b68bc17e"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="lcd_8c.html#a0d72a8b3fb4557babb0f1c61018f2327">clear_screen</a> (char(*screen)[LCD_X_MAX])</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="lcd_8c.html#a7ead26e52916805b53cb705997cb90bb">printc</a> (char c)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="lcd_8c.html#aa4fa8c7956bc27eae6a818d41199691f">printnt_P</a> (char *s)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="lcd_8c.html#a51283220f829206d8ef3284047a58fbd">print</a> (char *s)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">vytiskne text do default_screenu.  <a href="#a51283220f829206d8ef3284047a58fbd"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="lcd_8c.html#ab0348002a81c8fe945f405d57b317db1">printcxyd</a> (int y, int x, char c)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Vytiskne znak do defaultscreenu na souřadnici x,y.  <a href="#ab0348002a81c8fe945f405d57b317db1"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="lcd_8c.html#a9b70b5f13bd19a1a5ff3de4221c1dc72">printnxyd</a> (int y, int x, char *s, int n)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Vytiskne n znaků do defaultscreenu na souřadnici x,y.  <a href="#a9b70b5f13bd19a1a5ff3de4221c1dc72"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="lcd_8c.html#af14cee58cda35b9331b261be186b3dd9">printxyd</a> (int y, int x, char *s)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Tiskne do default_screenu.  <a href="#af14cee58cda35b9331b261be186b3dd9"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="lcd_8c.html#a4aaab14a959b518f3d8191174a94b485">printxy</a> (char(*screen)[LCD_X_MAX], int y, int x, char *s)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Funkce vloží na danou pozici řetězec <em>s</em>.  <a href="#a4aaab14a959b518f3d8191174a94b485"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="lcd_8c.html#ac49e278f3e1c0c3472a70b8c6efc5051">printxyd_P</a> (int y, int x, void *s)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Funkce vloží na danou pozici řetězec <em>s</em>.  <a href="#ac49e278f3e1c0c3472a70b8c6efc5051"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="lcd_8c.html#a98e19b75c7263dd914e04a630f43cde1">lcd_w_inst</a> (char c)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Zapiš instrukci.  <a href="#a98e19b75c7263dd914e04a630f43cde1"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="lcd_8c.html#a6842775ba83d166f02b8fef8bb63b1e6">lcd_init</a> (void)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="lcd_8c.html#aac5a8ac84d029ba77193f158761d10da">lcd_control</a> (void)</td></tr>
+<tr><td colspan="2"><h2>Proměnné</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="lcd_8c.html#a1fabb9483b10918d452fee90b071d54c">lcd_ctrl_count</a> = 0</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="lcd_8c.html#a1cc294e76003b0f360663bab284352bb">lcd_ctrl_x</a> = 0</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="lcd_8c.html#ab5728eedb69611680d9b2e95c449bea2">lcd_ctrl_y</a> = LCD_Y_MAX</td></tr>
+</table>
+<hr/><a name="_details"></a><h2>Detailní popis</h2>
+<p>Modul obstarává nenižší úroveň pro vypisování dat na LCD. </p>
+<hr/><h2>Dokumentace k definicím maker</h2>
+<a class="anchor" id="a43bafb28b29491ec7f871319b5a3b2f8"></a><!-- doxytag: member="lcd.c::F_CPU" ref="a43bafb28b29491ec7f871319b5a3b2f8" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define F_CPU&nbsp;&nbsp;&nbsp;8000000UL</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Frekvence oscilátoru 8MHz. </p>
+
+</div>
+</div>
+<hr/><h2>Dokumentace funkcí</h2>
+<a class="anchor" id="af632fc4d520fbb4468baea39b68bc17e"></a><!-- doxytag: member="lcd.c::clear_dscreen" ref="af632fc4d520fbb4468baea39b68bc17e" args="(void)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void clear_dscreen </td>
+          <td>(</td>
+          <td class="paramtype">void&nbsp;</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Vymaže default screen. </p>
+
+</div>
+</div>
+<a class="anchor" id="a0d72a8b3fb4557babb0f1c61018f2327"></a><!-- doxytag: member="lcd.c::clear_screen" ref="a0d72a8b3fb4557babb0f1c61018f2327" args="(char(*screen)[LCD_X_MAX])" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void clear_screen </td>
+          <td>(</td>
+          <td class="paramtype">char(*)&nbsp;</td>
+          <td class="paramname"> <em>screen</em>[LCD_X_MAX]</td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="ae9bb5305a03d43b839016fcc98dfee4f"></a><!-- doxytag: member="lcd.c::d10" ref="ae9bb5305a03d43b839016fcc98dfee4f" args="(void)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void d10 </td>
+          <td>(</td>
+          <td class="paramtype">void&nbsp;</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Jen taková zdržovací funkce pro odlazování. </p>
+
+</div>
+</div>
+<a class="anchor" id="aac5a8ac84d029ba77193f158761d10da"></a><!-- doxytag: member="lcd.c::lcd_control" ref="aac5a8ac84d029ba77193f158761d10da" args="(void)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void lcd_control </td>
+          <td>(</td>
+          <td class="paramtype">void&nbsp;</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Funkce řídí činnost displeje. Jejím úkolem je neustále dokola vypisovat obsah lcd_data na displej. Vždy když je zavolána, zjistí si co má vypsat dál a udělá to. </p>
+
+</div>
+</div>
+<a class="anchor" id="a6842775ba83d166f02b8fef8bb63b1e6"></a><!-- doxytag: member="lcd.c::lcd_init" ref="a6842775ba83d166f02b8fef8bb63b1e6" args="(void)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void lcd_init </td>
+          <td>(</td>
+          <td class="paramtype">void&nbsp;</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a2fdcaa04d2a5ef5f829a2c0503b95009"></a><!-- doxytag: member="lcd.c::lcd_new_frame" ref="a2fdcaa04d2a5ef5f829a2c0503b95009" args="(void)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char lcd_new_frame </td>
+          <td>(</td>
+          <td class="paramtype">void&nbsp;</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<dl class="return"><dt><b>Návratová hodnota:</b></dt><dd>Funkce vrátí 1 pokud se při dalším zavolání lcd_control začne vykreslovat nový frame jinak vrátí nula </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a98e19b75c7263dd914e04a630f43cde1"></a><!-- doxytag: member="lcd.c::lcd_w_inst" ref="a98e19b75c7263dd914e04a630f43cde1" args="(char c)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void lcd_w_inst </td>
+          <td>(</td>
+          <td class="paramtype">char&nbsp;</td>
+          <td class="paramname"> <em>c</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Zapiš instrukci. </p>
+
+</div>
+</div>
+<a class="anchor" id="a51283220f829206d8ef3284047a58fbd"></a><!-- doxytag: member="lcd.c::print" ref="a51283220f829206d8ef3284047a58fbd" args="(char *s)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void print </td>
+          <td>(</td>
+          <td class="paramtype">char *&nbsp;</td>
+          <td class="paramname"> <em>s</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>vytiskne text do default_screenu. </p>
+
+</div>
+</div>
+<a class="anchor" id="a7ead26e52916805b53cb705997cb90bb"></a><!-- doxytag: member="lcd.c::printc" ref="a7ead26e52916805b53cb705997cb90bb" args="(char c)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void printc </td>
+          <td>(</td>
+          <td class="paramtype">char&nbsp;</td>
+          <td class="paramname"> <em>c</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Funkce vytiskne znak na místo kurzoru. Funkce není prováděna ve "vlákně". </p>
+
+</div>
+</div>
+<a class="anchor" id="ab0348002a81c8fe945f405d57b317db1"></a><!-- doxytag: member="lcd.c::printcxyd" ref="ab0348002a81c8fe945f405d57b317db1" args="(int y, int x, char c)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void printcxyd </td>
+          <td>(</td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>y</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char&nbsp;</td>
+          <td class="paramname"> <em>c</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Vytiskne znak do defaultscreenu na souřadnici x,y. </p>
+
+</div>
+</div>
+<a class="anchor" id="aa4fa8c7956bc27eae6a818d41199691f"></a><!-- doxytag: member="lcd.c::printnt_P" ref="aa4fa8c7956bc27eae6a818d41199691f" args="(char *s)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void printnt_P </td>
+          <td>(</td>
+          <td class="paramtype">char *&nbsp;</td>
+          <td class="paramname"> <em>s</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Funkce vypíše na současnou pozici kurzoru text z programové paměti. Funkce není napsána do "vlákna". </p>
+
+</div>
+</div>
+<a class="anchor" id="a9b70b5f13bd19a1a5ff3de4221c1dc72"></a><!-- doxytag: member="lcd.c::printnxyd" ref="a9b70b5f13bd19a1a5ff3de4221c1dc72" args="(int y, int x, char *s, int n)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void printnxyd </td>
+          <td>(</td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>y</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *&nbsp;</td>
+          <td class="paramname"> <em>s</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>n</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Vytiskne n znaků do defaultscreenu na souřadnici x,y. </p>
+
+</div>
+</div>
+<a class="anchor" id="a4aaab14a959b518f3d8191174a94b485"></a><!-- doxytag: member="lcd.c::printxy" ref="a4aaab14a959b518f3d8191174a94b485" args="(char(*screen)[LCD_X_MAX], int y, int x, char *s)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void printxy </td>
+          <td>(</td>
+          <td class="paramtype">char(*)&nbsp;</td>
+          <td class="paramname"> <em>screen</em>[LCD_X_MAX], </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>y</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *&nbsp;</td>
+          <td class="paramname"> <em>s</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Funkce vloží na danou pozici řetězec <em>s</em>. </p>
+
+</div>
+</div>
+<a class="anchor" id="af14cee58cda35b9331b261be186b3dd9"></a><!-- doxytag: member="lcd.c::printxyd" ref="af14cee58cda35b9331b261be186b3dd9" args="(int y, int x, char *s)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void printxyd </td>
+          <td>(</td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>y</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *&nbsp;</td>
+          <td class="paramname"> <em>s</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Tiskne do default_screenu. </p>
+
+</div>
+</div>
+<a class="anchor" id="ac49e278f3e1c0c3472a70b8c6efc5051"></a><!-- doxytag: member="lcd.c::printxyd_P" ref="ac49e278f3e1c0c3472a70b8c6efc5051" args="(int y, int x, void *s)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void printxyd_P </td>
+          <td>(</td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>y</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&nbsp;</td>
+          <td class="paramname"> <em>s</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Funkce vloží na danou pozici řetězec <em>s</em>. </p>
+
+</div>
+</div>
+<hr/><h2>Dokumentace proměnných</h2>
+<a class="anchor" id="a1fabb9483b10918d452fee90b071d54c"></a><!-- doxytag: member="lcd.c::lcd_ctrl_count" ref="a1fabb9483b10918d452fee90b071d54c" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int <a class="el" href="lcd_8c.html#a1fabb9483b10918d452fee90b071d54c">lcd_ctrl_count</a> = 0</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a1cc294e76003b0f360663bab284352bb"></a><!-- doxytag: member="lcd.c::lcd_ctrl_x" ref="a1cc294e76003b0f360663bab284352bb" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int <a class="el" href="lcd_8c.html#a1cc294e76003b0f360663bab284352bb">lcd_ctrl_x</a> = 0</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="ab5728eedb69611680d9b2e95c449bea2"></a><!-- doxytag: member="lcd.c::lcd_ctrl_y" ref="ab5728eedb69611680d9b2e95c449bea2" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int <a class="el" href="lcd_8c.html#ab5728eedb69611680d9b2e95c449bea2">lcd_ctrl_y</a> = LCD_Y_MAX</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
+</div>
+<p align=left>Miroslav Jiřík</p>

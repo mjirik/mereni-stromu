@@ -1,0 +1,9 @@
+<?php
+// $Id: menu.php 1 2006-02-26 07:56:27Z Mira $
+?>
+<a class="menu" href = volni_zakaznici_mereni.php> Nepřiřazená měření </a>
+<a class="menu" href = zakaznici_mereni.php> Měření </a>
+<a class="menu" href = zakazky.php> Zakázky </a>
+<a class="menu" href = ceny.php title="Zobrazí obecný ceník"> Ceník </a>
+<br>
+<a class ="red" href = session_close.php> Odhlásit </a>

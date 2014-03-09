@@ -1,16 +1,17 @@
-// $Id: watchdog.c 93 2007-08-19 01:40:58Z Mira $
+// $Id: watchdog.c 148 2009-10-25 13:54:05Z mjirik $
 /**
  * @file watchdog.c
  * @brief
- * Modul zajišuje správnou funkci watchdogu.
- * Pro správnou funkci zaøízení není monné vyuívat samotnı watchdog
- * naimplementovanı vırobcem. S resetem by toti došlo ke ztrátì
- * dat. Proto byl vytvoøen programovı watchdog.
- * Ten je resetován nastavením èítaèe wtch_counter na nulu.
- * Sám o sobì resetovat jednoèip neumí, na to však lze však vyuít
- * sluby watchdogu od Atmelu. 
+ * Modul zajiÅ¡Å¥uje sprÃ¡vnou funkci watchdogu.
+ * Pro sprÃ¡vnou funkci zaÅ™Ã­zenÃ­ nenÃ­ monÅ¾nÃ© vyuÅ¾Ã­vat samotnÃ½ watchdog
+ * naimplementovanÃ½ vÃ½robcem. S resetem by totiÅ¾ doÅ¡lo ke ztrÃ¡tÄ›
+ * dat. Proto byl vytvoÅ™en programovÃ½ watchdog.
+ * Ten je resetovÃ¡n nastavenÃ­m ÄÃ­taÄe wtch_counter na nulu.
+ * SÃ¡m o sobÄ› resetovat jednoÄip neumÃ­, na to vÅ¡ak lze vÅ¡ak vyuÅ¾Ã­t
+ * sluÅ¾by watchdogu od Atmelu. 
  */
 
+#include <stdio.h>
 #include <util/delay.h>
 #include <avr/pgmspace.h>
 #include <avr/wdt.h>
@@ -18,13 +19,22 @@
 #include "lcd.h"
 #include "eeprom.h"
 
-#define MY_WATCHDOG 10000 ///< Kolikrát 
+
+//global
+ char * wtch_sfile = __FILE__;
+ int wtch_sline = __LINE__;
+ //char * wtch_sfunction;
+//global
+
+
+
+#define MY_WATCHDOG 5000 ///< KolikrÃ¡t
 
 static char err97[] PROGMEM = "Error 97: Vazna chyba behu programu.    Ukladani dat.";
 static char err97b[] PROGMEM = "Error 97: Data ulozena. Reset.";
 
-/// Èítaè mého watchdogu. pokud bude vìtší ne 200, dojde k vıpisu chybové hlášky.
-uint16_t wtch_counter = 0;
+/// ÄŒÃ­taÄ mÃ©ho watchdogu. pokud bude vÄ›tÅ¡Ã­ neÅ¾ 200, dojde k vÃ½pisu chybovÃ© hlÃ¡Å¡ky.
+int16_t wtch_counter = 0;
 
 
 void wtch_init(void){
@@ -34,21 +44,22 @@ void wtch_init(void){
 
 
 /**
- * Funkce sleduje èinnost jednoèipu. Pokud dojde k "zaseknutí" v
- * nìjaké vnitøní smyèce, je vypsán chybovı vıpis, data jsou uloena
- * do eeprom a program je uveden do nekoneèné smyèky, ve které èeká na
- * reset prostøednictvím softwarového watchdogu.
- * Watchdog lze deaktivovat nastavením èítaèe na zápornou hodnotu.
+ * Funkce sleduje Äinnost jednoÄipu. Pokud dojde k "zaseknutÃ­" v
+ * nÄ›jakÃ© vnitÅ™nÃ­ smyÄce, je vypsÃ¡n chybovÃ½ vÃ½pis, data jsou uloÅ¾ena
+ * do eeprom a program je uveden do nekoneÄnÃ© smyÄky, ve kterÃ© ÄekÃ¡ na
+ * reset prostÅ™ednictvÃ­m softwarovÃ©ho watchdogu.
+ * Watchdog lze deaktivovat nastavenÃ­m ÄÃ­taÄe na zÃ¡pornou hodnotu.
  */
 void wtch_main(void){
-  if (wtch_counter < 0){ // Sluba je vypnuta
+  if (wtch_counter < 0){ // SluÅ¾ba je vypnuta
 
   }
-  else if (wtch_counter < MY_WATCHDOG){// všechno v poøádku
+  else if (wtch_counter < MY_WATCHDOG){// vÅ¡echno v poÅ™Ã¡dku
     wtch_counter++;
   }
-  else { // Nastal problém
+  else { // Nastal problÃ©m
     int i;
+    char str[10];
     lcd_w_inst(0x01);
     printnt_P((void *)err97);
 
@@ -56,15 +67,22 @@ void wtch_main(void){
 
     lcd_w_inst(0x01);
     printnt_P((void *)err97b);
+    printnt(" ");
+    printnt(wtch_sfile);
+    printnt(" ");
+    sprintf(str,"%i",wtch_sline);
+    printnt(str);
+    //printnt(" ");
+    //printnt(wtch_sfunction);
     wtch_reset2();
 
-    for(i=0 ; i < 2000;i++){
+    for(i=0 ; i < 3000;i++){
       _delay_ms(1);
       wtch_reset2();
     }
-    //èekání na reset watchdogu
+    //ÄekÃ¡nÃ­ na reset watchdogu
     for(;;){
-      //tohle je resetování softwarového watchodogu.
+      //tohle je resetovÃ¡nÃ­ softwarovÃ©ho watchodogu.
       wtch_reset();
     };
   }

@@ -1,0 +1,167 @@
+\section{Dokumentace souboru width.c}
+\label{width_8c}\index{width.c@{width.c}}
+{\tt \#include $<$avr/io.h$>$}\par
+{\tt \#include $<$avr/interrupt.h$>$}\par
+{\tt \#include $<$avr/signal.h$>$}\par
+{\tt \#include $<$stdio.h$>$}\par
+{\tt \#include \char`\"{}usart.h\char`\"{}}\par
+{\tt \#include \char`\"{}main.h\char`\"{}}\par
+{\tt \#include \char`\"{}irc.h\char`\"{}}\par
+\subsection*{Definice maker}
+\begin{CompactItemize}
+\item 
+\#define {\bf LenOfWidIntegrArr}~80
+\item 
+\#define {\bf widthIterLimit}~100
+\item 
+\#define {\bf widthIterComparator}~50
+\item 
+\#define {\bf SizeOfMsg}~5
+\item 
+\#define {\bf widthSlow}~5
+\item 
+\#define {\bf vzdalSvetlaOdSnimacu}~2000
+\item 
+\#define {\bf vzdalSnimacuOdStromu}~50
+\end{CompactItemize}
+\subsection*{Funkce}
+\begin{CompactItemize}
+\item 
+void {\bf width\_\-watch} (void)
+\item 
+void {\bf width\_\-watch\_\-init} (void)
+\item 
+void {\bf width\_\-computation} (void)
+\item 
+void {\bf width\_\-send\_\-msg} (void)
+\item 
+uint16\_\-t {\bf get\_\-d\_\-h} (void)
+\end{CompactItemize}
+\subsection*{Proměnné}
+\begin{CompactItemize}
+\item 
+int {\bf width\_\-integrate\_\-array} [LenOfWidIntegrArr]
+\item 
+char {\bf width\_\-multiplex\_\-adress} = 0
+\item 
+int {\bf width\_\-counter} = 0
+\item 
+int {\bf width\_\-valid} = 0
+\item 
+char {\bf width\_\-value} = 0
+\item 
+char {\bf data\_\-msg} [SizeOfMsg]
+\item 
+int {\bf width\_\-slow\_\-counter} = widthSlow
+\item 
+char {\bf width\_\-prepocet} = 1
+\end{CompactItemize}
+
+
+\subsection{Dokumentace k definicím maker}
+\index{width.c@{width.c}!LenOfWidIntegrArr@{LenOfWidIntegrArr}}
+\index{LenOfWidIntegrArr@{LenOfWidIntegrArr}!width.c@{width.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}\#define LenOfWidIntegrArr~80}\label{width_8c_4c8223e37dcdb26f92b32dea5bcdd62e}
+
+
+\index{width.c@{width.c}!SizeOfMsg@{SizeOfMsg}}
+\index{SizeOfMsg@{SizeOfMsg}!width.c@{width.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}\#define SizeOfMsg~5}\label{width_8c_8639f3cdce498b36b4f11b82726f3857}
+
+
+\index{width.c@{width.c}!vzdalSnimacuOdStromu@{vzdalSnimacuOdStromu}}
+\index{vzdalSnimacuOdStromu@{vzdalSnimacuOdStromu}!width.c@{width.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}\#define vzdalSnimacuOdStromu~50}\label{width_8c_3296643e72916022ad8fff528f9e3841}
+
+
+\index{width.c@{width.c}!vzdalSvetlaOdSnimacu@{vzdalSvetlaOdSnimacu}}
+\index{vzdalSvetlaOdSnimacu@{vzdalSvetlaOdSnimacu}!width.c@{width.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}\#define vzdalSvetlaOdSnimacu~2000}\label{width_8c_00a06f68a27f566c37e5835b443b39f8}
+
+
+\index{width.c@{width.c}!widthIterComparator@{widthIterComparator}}
+\index{widthIterComparator@{widthIterComparator}!width.c@{width.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}\#define widthIterComparator~50}\label{width_8c_80c64b38ef18a72c2a34309cdd8a454d}
+
+
+\index{width.c@{width.c}!widthIterLimit@{widthIterLimit}}
+\index{widthIterLimit@{widthIterLimit}!width.c@{width.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}\#define widthIterLimit~100}\label{width_8c_e0aefe8511ffe587f5579c715f827e2c}
+
+
+\index{width.c@{width.c}!widthSlow@{widthSlow}}
+\index{widthSlow@{widthSlow}!width.c@{width.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}\#define widthSlow~5}\label{width_8c_8aa6e267df3a121a5d5187aa8b1e267a}
+
+
+
+
+\subsection{Dokumentace funkcí}
+\index{width.c@{width.c}!get_d_h@{get\_\-d\_\-h}}
+\index{get_d_h@{get\_\-d\_\-h}!width.c@{width.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}uint16\_\-t get\_\-d\_\-h (void)}\label{width_8c_dc5e5de00526ee21858f22fd7d721b29}
+
+
+\index{width.c@{width.c}!width_computation@{width\_\-computation}}
+\index{width_computation@{width\_\-computation}!width.c@{width.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void width\_\-computation (void)}\label{width_8c_f7ca1de6284dbaba080478ffc9f35ed1}
+
+
+\index{width.c@{width.c}!width_send_msg@{width\_\-send\_\-msg}}
+\index{width_send_msg@{width\_\-send\_\-msg}!width.c@{width.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void width\_\-send\_\-msg (void)}\label{width_8c_b8ba8ae00e137cd48d48089b44422a84}
+
+
+\index{width.c@{width.c}!width_watch@{width\_\-watch}}
+\index{width_watch@{width\_\-watch}!width.c@{width.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void width\_\-watch (void)}\label{width_8c_a184476239f007137274f67a527e76a5}
+
+
+\index{width.c@{width.c}!width_watch_init@{width\_\-watch\_\-init}}
+\index{width_watch_init@{width\_\-watch\_\-init}!width.c@{width.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void width\_\-watch\_\-init (void)}\label{width_8c_ca643d23675a5e4cb4db5d59a144544f}
+
+
+
+
+\subsection{Dokumentace proměnných}
+\index{width.c@{width.c}!data_msg@{data\_\-msg}}
+\index{data_msg@{data\_\-msg}!width.c@{width.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}char {\bf data\_\-msg}[SizeOfMsg]}\label{width_8c_644ab1e6fbad5b17be3f8141d1662682}
+
+
+\index{width.c@{width.c}!width_counter@{width\_\-counter}}
+\index{width_counter@{width\_\-counter}!width.c@{width.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int {\bf width\_\-counter} = 0}\label{width_8c_635eaca0e8a4201d47298f09ce0f4dea}
+
+
+\index{width.c@{width.c}!width_integrate_array@{width\_\-integrate\_\-array}}
+\index{width_integrate_array@{width\_\-integrate\_\-array}!width.c@{width.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int {\bf width\_\-integrate\_\-array}[LenOfWidIntegrArr]}\label{width_8c_fb651afd0a08e3bb953b24f0e8a01aed}
+
+
+\index{width.c@{width.c}!width_multiplex_adress@{width\_\-multiplex\_\-adress}}
+\index{width_multiplex_adress@{width\_\-multiplex\_\-adress}!width.c@{width.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}char {\bf width\_\-multiplex\_\-adress} = 0}\label{width_8c_5733cce2e2a05d2e8300f0171a07982a}
+
+
+\index{width.c@{width.c}!width_prepocet@{width\_\-prepocet}}
+\index{width_prepocet@{width\_\-prepocet}!width.c@{width.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}char {\bf width\_\-prepocet} = 1}\label{width_8c_3724065d4ab6824238a5b10d8fef705d}
+
+
+\index{width.c@{width.c}!width_slow_counter@{width\_\-slow\_\-counter}}
+\index{width_slow_counter@{width\_\-slow\_\-counter}!width.c@{width.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int {\bf width\_\-slow\_\-counter} = widthSlow}\label{width_8c_5c957366a7ea4d5eadc8f9dfd0b3ce7b}
+
+
+\index{width.c@{width.c}!width_valid@{width\_\-valid}}
+\index{width_valid@{width\_\-valid}!width.c@{width.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int {\bf width\_\-valid} = 0}\label{width_8c_fccd34e96fdbdbd5ac9091ccdec97940}
+
+
+\index{width.c@{width.c}!width_value@{width\_\-value}}
+\index{width_value@{width\_\-value}!width.c@{width.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}char {\bf width\_\-value} = 0}\label{width_8c_f1fcc994df39613f5b36c3e3034f2a12}
+
+

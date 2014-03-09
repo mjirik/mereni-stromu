@@ -1,0 +1,51 @@
+\documentclass[a4paper]{book}
+\usepackage{a4wide}
+\usepackage{makeidx}
+\usepackage{graphicx}
+\usepackage{multicol}
+\usepackage{float}
+\usepackage{listings}
+\usepackage{color}
+\usepackage{textcomp}
+\usepackage{alltt}
+\usepackage{times}
+\usepackage[utf8]{inputenc}
+\usepackage[T2A]{fontenc}
+\usepackage[czech]{babel}
+
+\usepackage{doxygen}
+\lstset{language=C++,inputencoding=utf8,basicstyle=\footnotesize,breaklines=true,breakatwhitespace=true,tabsize=2,numbers=left }
+\makeindex
+\setcounter{tocdepth}{3}
+\renewcommand{\footrulewidth}{0.4pt}
+\begin{document}
+\begin{titlepage}
+\vspace*{7cm}
+\begin{center}
+{\Large Měření objemu stromu \\[1ex]\large 1.0 }\\
+\vspace*{1cm}
+{\large Generováno programem Doxygen 1.6.1}\\
+\vspace*{0.5cm}
+{\small Sun Sep 27 14:19:57 2009}\\
+\end{center}
+\end{titlepage}
+\clearemptydoublepage
+\pagenumbering{roman}
+\tableofcontents
+\clearemptydoublepage
+\pagenumbering{arabic}
+\chapter{Dokumentace k meření objemu řeziva}
+\label{index}\input{index}
+\chapter{Komunikační protokol}
+\label{comunication_protocol}
+\include{comunication_protocol}
+\chapter{Práce s jednočipem}
+\label{glob_prace_s_jednocipem}
+\include{glob_prace_s_jednocipem}
+\chapter{Soubory}
+\label{struktura}
+\include{struktura}
+\chapter{Rejstřík datových struktur}
+\input{hierarchy}
+\printindex
+\end{document}

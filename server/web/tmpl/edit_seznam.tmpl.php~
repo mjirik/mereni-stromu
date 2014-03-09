@@ -1,0 +1,165 @@
+<?php
+// $Id: edit_seznam.tmpl.php 10 2007-03-07 13:57:21Z Mira $
+
+//echo urlencode("ahoj\"jak\"!");
+echo "<form method=\"post\" action=\"edit_seznam.php?id=".$id;
+if ($_GET["zobraz_novy"] == 1){
+  echo "&zobraz_novy=1";
+}
+echo "\">";
+echo "<div style=\"float:left;\">";
+echo "<p class=\"err\">";
+if ($chybovaHlaskaCena != false){
+  foreach($chybovaHlaskaCena as $hlaska){
+    echo $hlaska."<br>";
+  }
+}
+echo "</p>";
+echo "<h2>".$ceny["Jmeno"]."</h2><br>\n";
+echo "<table cellspacing=0 cellpadding=2>";
+echo "<tr><td>";
+echo odkaz("Tisk","seznam.php?id=$id","Zobrazí tiskový náhled","tlacitko")."<br>\n";
+echo "</td></tr><tr><td>\n";
+if ($_GET["zobraz_novy"]==1){
+  echo odkaz("Skrýt nový řádek","edit_seznam.php?id=$id&zobraz_novy=0",
+  "Skryje formulář pro přidávání nového řádku","tlacitko");
+}
+else{
+  echo odkaz("Vložit nový řádek","edit_seznam.php?id=$id&zobraz_novy=1",
+  "Zobrazí formulář pro přidávání nového řádku","tlacitko");
+}
+echo "</td></tr><tr><td>\n";
+echo odkaz("Seznamy zakázek","zakazky.php?id=".$ceny["IDZakaznik"],
+"Vrátí se na seznamy zakázek tohto zákazníka","tlacitko");
+echo "</td></tr>\n";
+echo "</table>";
+// echo "<input type=\"button\" id=\"print\" value=\"Vytisknout\" onclick=\"printPage()\" /><br>";
+// echo "<input type=\"button\" value=\"On\" onclick=\"on()\" /><br>";
+// echo "<input type=\"button\" value=\"Off\" onclick=\"off()\" /><br>";
+// echo "<a id=\"printa\">hhhhhhhh</a>";
+echo "<h3>Ceny [kč/m³]</h3>";
+echo "<table>";
+formln($zdruhy[0]["Nazev"]."",
+"<input name=\"Cena_1\" size = 4 value=\"".$ceny["Cena_1"]."\"");
+formln($zdruhy[1]["Nazev"]."",
+"<input name=\"Cena_2\" size = 4 value=\"".$ceny["Cena_2"]."\"");
+formln($zdruhy[2]["Nazev"]."",
+"<input name=\"Cena_3\" size = 4 value=\"".$ceny["Cena_3"]."\"");
+formln($zdruhy[3]["Nazev"]."",
+"<input name=\"Cena_4\" size = 4 value=\"".$ceny["Cena_4"]."\"");
+formln($zdruhy[4]["Nazev"]."",
+"<input name=\"Cena_5\" size = 4 value=\"".$ceny["Cena_5"]."\"");
+formln("Manipuace",
+"<input name=\"Cena_man\" size = 4 value=\"".$ceny["Cena_man"]."\"");
+formln("Pásovka",
+"<input name=\"Cena_dalsi_1\" size = 4 value=\"".$ceny["Cena_dalsi_1"]."\"");
+formln("Nepásovka",
+"<input name=\"Cena_dalsi_2\" size = 4 value=\"".$ceny["Cena_dalsi_2"]."\"");
+formln("2 x katrem",
+"<input name=\"Cena_dvakrat\" size = 4 value=\"".$ceny["Cena_dvakrat"]."\"");
+echo "</table>";
+echo "</div>";
+echo "<div style=\"float:left; padding-left: 15px;\">";
+
+echo "<p class=\"err\">";
+if ($chybovaHlaska != false){
+  foreach($chybovaHlaska as $hlaska){
+    echo $hlaska."<br>";
+  }
+}
+echo "</p>";
+if ($_GET["zobraz_novy"]==1){
+  echo "<div>";//style=\"float:right;\">";
+  // template pro nový řádek
+  echo $novy;
+  echo "</div>";
+}
+if (!empty($zaznamy)){  
+  echo "<table cellspacing=0 cellpadding=1>";
+  echo "<tr>
+  <th>Délka<br>[m]</th>
+  <th>Průměr<br>[cm]</th>
+  <th>Druh dřeva</th>
+  <th>2x</th>
+  <th>Manip</th>
+  <th>Další zpracování</th>
+  </tr>";
+  foreach ($zaznamy as $zaznam){
+    //echo "<tr>";
+    if ($zaznam["Chyba"] == true){
+      echo "<tr class=\"chyba\">";
+      //echo "<td><font color = \"red\">chyba</td>";
+    }
+    else {
+      echo "<tr>";
+    }
+    echo "<td align=center>"."<input name=\"delka".$zaznam["IDMereni"]."\" size = 2 value=\"".$zaznam["Delka"]."\">"."</td>";
+    echo "<td align=center>"."<input name=\"prumer".$zaznam["IDMereni"]."\" size = 2 value=\"".$zaznam["Prumer"]."\">"."</td>";
+    echo "<td><select name=\"druh".$zaznam["IDMereni"]."\">";
+    foreach ($zdruhy as $druh){
+      echo "<option value =\"".$druh["IDDruh_dreva"]."\"";
+      if ($druh["IDDruh_dreva"] == $zaznam["IDDruh_dreva"]){
+        echo " selected";
+      }
+      echo ">".$druh["Nazev"]."</option>";
+    }
+    echo "</select></td>";
+    echo "<td align=center><input type = \"checkbox\" name = \"dvakrat".$zaznam["IDMereni"]."\" value=1";
+    if ($zaznam["IDDvakrat"]==1){
+      echo " checked";
+    }
+    echo "></td>";
+    
+    echo "<td align=center><input type = \"checkbox\" name = \"manipulace".$zaznam["IDMereni"]."\" value=1";
+    if ($zaznam["IDManipulace"]==1){
+      echo " checked";
+    }
+    echo "></td>";
+    
+    // dalsi zpracovani
+    
+    echo "<td><select name=\"zpracovani".$zaznam["IDMereni"]."\">";
+    echo "<option value =\"null\"";
+    if (null == $zaznam["IDDalsi_zpracovani"]){
+      echo " selected";
+    }
+    echo ">"."</option>";
+    foreach ($dalsi_zpracovani as $zpracovani){
+      echo "<option value =\"".$zpracovani["IDDalsi_zpracovani"]."\"";
+      if ($zpracovani["IDDalsi_zpracovani"] == $zaznam["IDDalsi_zpracovani"]){
+        echo " selected";
+      }
+      echo ">".$zpracovani["Nazev"]."</option>";
+    }
+    echo "</select></td>";
+    
+    
+    echo "<td>";
+    //echo odkaz("Smazat","edit_seznam.php?id=$id&amp;delIDMereni=".$zaznam["IDMereni"]);
+//     $ok = urlencode("edit_seznam.php?id=$id&amp;delIDMereni=".$zaznam["IDMereni"]."");
+//     $storno = urlencode("edit_seznam.php?id=$id");
+//     
+//     echo odkaz("Smazat","ok.php?ok_hrefOk=$ok&amp;ok_hrefStorno=$storno");
+    $ok = "edit_seznam.php?id=$id&amp;delIDMereni=".$zaznam["IDMereni"];
+    $storno = "edit_seznam.php?id=$id";
+    echo ref_ok("Smazat",$ok,$storno,"Opravdu chcete řádek smazat?","Smaže řádek");
+    echo "</td><td>";
+    echo odkaz("Přesunout","zarad.php?sIDMereni=".$zaznam["IDMereni"]);
+    echo "</td>";
+    echo "</tr>\n";
+    
+  }
+  
+  
+  echo "</table>";
+  if ($_GET["zobraz_novy"] != 1){
+  echo "<input type=\"Submit\" name=\"odesli\" size = 10 value = \"Uložit\">";
+  }
+}
+echo "</div>";
+echo "</form>";
+//echo "<div class=\"skryty_print\">";
+//echo "print";
+//echo $tisk;
+//echo "</div>";
+?>

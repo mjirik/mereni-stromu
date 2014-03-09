@@ -1,0 +1,126 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<title>Zařízení na vozíku pro projekt měření objemu stromů: Dokumentace souboru convert.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<!-- Generováno programem Doxygen 1.6.1 -->
+<div class="navigation" id="top">
+  <div class="tabs">
+    <ul>
+      <li><a href="index.html"><span>Hlavní&nbsp;stránka</span></a></li>
+      <li><a href="pages.html"><span>Ostatní&nbsp;stránky</span></a></li>
+      <li><a href="annotated.html"><span>Třídy</span></a></li>
+      <li class="current"><a href="files.html"><span>Soubory</span></a></li>
+    </ul>
+  </div>
+  <div class="tabs">
+    <ul>
+      <li><a href="files.html"><span>Seznam&nbsp;souborů</span></a></li>
+      <li><a href="globals.html"><span>Globální&nbsp;symboly</span></a></li>
+    </ul>
+  </div>
+</div>
+<div class="contents">
+<h1>Dokumentace souboru convert.h</h1><table border="0" cellpadding="0" cellspacing="0">
+<tr><td colspan="2"><h2>Funkce</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">char *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="convert_8h.html#a74868bf442139439da976b90c8277113">int2str</a> (char *s, uint16_t i)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">char *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="convert_8h.html#a0fdc20d175646f12ed735b0749ce9b01">int2strn</a> (char *s, int n, uint16_t i)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">char *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="convert_8h.html#a39b535915350e4ef7042813898302441">mezery</a> (char *s, char len)</td></tr>
+</table>
+<hr/><h2>Dokumentace funkcí</h2>
+<a class="anchor" id="a74868bf442139439da976b90c8277113"></a><!-- doxytag: member="convert.h::int2str" ref="a74868bf442139439da976b90c8277113" args="(char *s, uint16_t i)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char* int2str </td>
+          <td>(</td>
+          <td class="paramtype">char *&nbsp;</td>
+          <td class="paramname"> <em>s</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint16_t&nbsp;</td>
+          <td class="paramname"> <em>cislo</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Funkce převádí číslo na řetězec. Vstupem je řetězec. Změří se jeho délka a na takovou délku se převede číslo. Pokud je řetězec příliš krátký, dojde k vypsání chybové zprávy. Zarovnává se vpravo. Pokud je první znak vstupního řetězce roven '0', vypisují se i počáteční nuly např 0056 </p>
+
+</div>
+</div>
+<a class="anchor" id="a0fdc20d175646f12ed735b0749ce9b01"></a><!-- doxytag: member="convert.h::int2strn" ref="a0fdc20d175646f12ed735b0749ce9b01" args="(char *s, int n, uint16_t i)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char* int2strn </td>
+          <td>(</td>
+          <td class="paramtype">char *&nbsp;</td>
+          <td class="paramname"> <em>s</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>len</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint16_t&nbsp;</td>
+          <td class="paramname"> <em>cislo</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Funkce převádí číslo na řetězec </p>
+
+</div>
+</div>
+<a class="anchor" id="a39b535915350e4ef7042813898302441"></a><!-- doxytag: member="convert.h::mezery" ref="a39b535915350e4ef7042813898302441" args="(char *s, char len)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char* mezery </td>
+          <td>(</td>
+          <td class="paramtype">char *&nbsp;</td>
+          <td class="paramname"> <em>s</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char&nbsp;</td>
+          <td class="paramname"> <em>len</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Funkce vyplní daný řetězec mezerami. Počet mezer je určen argumentem len. Za mezery je umístěn znak ''. </p>
+
+</div>
+</div>
+</div>
+<p align=left>Miroslav Jiřík</p>

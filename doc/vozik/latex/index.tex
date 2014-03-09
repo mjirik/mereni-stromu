@@ -1,0 +1,18 @@
+Tento dokument tvoří dokumentaci k programu pro jednočip ATmega32, který zajišťuje chod zařízení na vozíku. Dokument obsahuje manuál pro obsluhu \doxyref{Manuál obsluhy}{s.}{Manual} . {\tt katr}\section{Hardware}\label{index_vozik_hardware}
+Zařízení je postaveno na jednočipu ATmega32. Deska na níž je čip osazen obsahuje dále obvody pro rozhraní RS232 a RS422. Napájení zajišťuje stabilizátor napětí. Výstup ze něj je jednočipem sledován a v případě výpadku je zahájeno ukládání do EEPROM. V takových okamžicích je zařízení napájeno z kondenzátoru.
+
+Jedničip je dále napojen na konektor k LCD displeji. Displej je napájen ze společného stabilizátoru. Napájení je chráněno 2W odporem. Ten spotřebovává značnou část energie, kterou zařízení odebírá.
+
+K desce jsou připojeny dvě inkrementální čidla a dva spínače (magnetické relé) jako referenční bod.\subsection{Možnosti rozšíření, rezervy}\label{index_vozik_rezervy}
+V případě potřeby je možné využít následující rezervy:
+\begin{DoxyItemize}
+\item pin u výstupu sériového portu označený jako \char`\"{}dir\char`\"{}
+\item jeden z programovacích pinů (pozor -\/ nesmí být zkratovatelný v okamžiku programování)
+\item LCD lze programovat s využitím menšího počtu bitů, lze zde tedy šetřit
+\end{DoxyItemize}
+
+./../katr\_\-c/doc/html/index.html
+
+{\tt file:///./../katr\_\-c/doc/html/index.html}
+
+\doxyref{./../katr\_\-c/doc/html/index.html}{s.}{} 

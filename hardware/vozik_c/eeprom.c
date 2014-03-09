@@ -1,11 +1,11 @@
-/* $Id: eeprom.c 120 2007-09-21 05:43:42Z Mira $
+/* $Id: eeprom.c 137 2009-09-27 08:12:50Z mjirik $
  *
  */
 
 /**
  * @file eeprom.c
  * @brief
- * Modul spravuje pamÏù EEPROM. Jsou zde funkce pro ukl·d·nÌ a naËÌt·nÌ.
+ * Modul spravuje pamƒõ≈• EEPROM. Jsou zde funkce pro ukl√°d√°n√≠ a naƒç√≠t√°n√≠.
  * 
  */
 
@@ -22,10 +22,10 @@
 
 #include "eeprom.h"
 #include "irc.h"
-#include "data.h"
-#include "msr_scr.h"
+//#include "data.h"
+//#include "msr_scr.h"
 #include "watchdog.h"
-#include "measure.h"
+//#include "measure.h"
 //#include "lst_scr.h"
 
 #define DEFAULT_irc_k 336
@@ -36,41 +36,42 @@
 
 //kods
 void eeprom_load(void){
-  char flag; // ukazuje, zda doölo k uloûenÌ dat
-  void * p_eeprom;
-  irc_counter = (int32_t)eeprom_r32((void *)ee_irc_counter);
-  irc_k = (uint16_t)eeprom_r16((void *)ee_irc_k);
-  irc_set_on_value = (int32_t)eeprom_r32((void *)ee_irc_set_on_value);
-  width_src = (unsigned char) eeprom_r8((void *)ee_width_src);
-  width_src = width_src < 3?width_src:1;
+  char flag; // ukazuje, zda do≈°lo k ulo≈æen√≠ dat
+//  void * p_eeprom;
+  set_irc1_counter ( (int32_t)eeprom_r32((void *)ee_irc_counter) );
+  set_irc1_k ( (uint16_t)eeprom_r16((void *)ee_irc_k) );
+  set_irc1_set_on_value ( (int32_t)eeprom_r32((void *)ee_irc_set_on_value) );
+  //width_src = (unsigned char) eeprom_r8((void *)ee_width_src);
+  //width_src = width_src < 3?width_src:1;
   
   flag = eeprom_r8((void *)ee_flag);
   if (flag == 63){
-    width_src = eeprom_r8((void *)ee_width_src);
+    //width_src = eeprom_r8((void *)ee_width_src);
     //lst_read_eeprom((void *)ee_lst);
-    p_eeprom = dat_zak_read_eeprom((void *)ee_lst);
-    p_eeprom = dat_read_eeprom((void *)ee_data);
+    //p_eeprom = dat_zak_read_eeprom((void *)ee_lst);
+    //p_eeprom = dat_read_eeprom((void *)ee_data);
 
   }
   else{
-    set_irc_k(DEFAULT_irc_k);
-    set_irc_set_on_value(DEFAULT_irc_set_on_value);
-    dat_free_m_jmena();
+    set_irc1_k_mm(DEFAULT_irc_k);
+    set_irc1_set_on_value_mm(DEFAULT_irc_set_on_value);
+    //dat_free_m_jmena();
   }
 }
 
 void eeprom_save(void){
-  void * p_eeprom;
+//  void * p_eeprom;
   
   wtch_reset2();
   wtch_disable2();
-  eeprom_w32((void *)ee_irc_counter, irc_counter);
-  eeprom_w8((void *)ee_width_src,width_src);
+  eeprom_w32((void *)ee_irc_counter, get_irc1_counter());
+  //eeprom_w8((void *)ee_width_src,width_src);
   eeprom_w8((void *)ee_flag,63);
-  uloz_posledni_data();
+  //uloz_posledni_data();
   //lst_write_eeprom((void *) ee_lst);
-  p_eeprom = dat_zak_write_eeprom((void *)ee_lst);
-  p_eeprom = dat_write_eeprom((void *)ee_data);
+
+  //p_eeprom = dat_zak_write_eeprom((void *)ee_lst);
+  //p_eeprom = dat_write_eeprom((void *)ee_data);
 
   wtch_enable2();
   wtch_reset2();

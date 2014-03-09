@@ -1,0 +1,149 @@
+\section{Dokumentace souboru main.c}
+\label{main_8c}\index{main.c@{main.c}}
+
+
+Tento modul je hlavní hlavní částí programu pro zařízení na vozíku v rámci projektu měření objemu řeziva pro pilu v Němčicích. Zařízení na vozíku má za úkol zpracovávat informace, které dostává po sériové lince ze zařízení na katru, komunikovat s navazujícím databázovým systémem, obsluhovat měření vzdálenosti vozíku od katru pomoocí IRC a zajišťovat komunikaci s uživatelem prostřednictvím znakového displeje (4x20 znaků) a standartní počítačové klávesnice.  
+{\ttfamily \#include $<$stdio.h$>$}\par
+{\ttfamily \#include $<$avr/io.h$>$}\par
+{\ttfamily \#include $<$avr/interrupt.h$>$}\par
+{\ttfamily \#include $<$stdlib.h$>$}\par
+{\ttfamily \#include $<$util/delay.h$>$}\par
+{\ttfamily \#include $<$avr/pgmspace.h$>$}\par
+{\ttfamily \#include $<$avr/wdt.h$>$}\par
+{\ttfamily \#include \char`\"{}main.h\char`\"{}}\par
+{\ttfamily \#include \char`\"{}usart.h\char`\"{}}\par
+{\ttfamily \#include \char`\"{}irc.h\char`\"{}}\par
+{\ttfamily \#include \char`\"{}irc2.h\char`\"{}}\par
+{\ttfamily \#include \char`\"{}eeprom.h\char`\"{}}\par
+{\ttfamily \#include \char`\"{}lcd.h\char`\"{}}\par
+{\ttfamily \#include \char`\"{}convert.h\char`\"{}}\par
+{\ttfamily \#include \char`\"{}error.h\char`\"{}}\par
+{\ttfamily \#include \char`\"{}keyboard.h\char`\"{}}\par
+{\ttfamily \#include \char`\"{}buttons.h\char`\"{}}\par
+{\ttfamily \#include \char`\"{}watchdog.h\char`\"{}}\par
+{\ttfamily \#include \char`\"{}msgn.h\char`\"{}}\par
+{\ttfamily \#include \char`\"{}inout.h\char`\"{}}\par
+{\ttfamily \#include \char`\"{}default\_\-scr.h\char`\"{}}\par
+{\ttfamily \#include \char`\"{}memory.h\char`\"{}}\par
+\subsection*{Definice maker}
+\begin{DoxyCompactItemize}
+\item 
+\#define {\bf F\_\-CPU}~8000000UL
+\begin{DoxyCompactList}\small\item\em Frekvence oscilátoru 8MHz. \item\end{DoxyCompactList}\item 
+\#define {\bf T\_\-LCD\_\-MAX}~5
+\begin{DoxyCompactList}\small\item\em Kolikrát pomaleji bude běžet překreslování lcd oproti kontrole irc. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Funkce}
+\begin{DoxyCompactItemize}
+\item 
+void {\bf get\_\-data\_\-from\_\-katr} (void)
+\item 
+void {\bf send\_\-irc\_\-values\_\-to\_\-PC} (void)
+\item 
+void {\bf write\_\-used\_\-mem} (void)
+\item 
+void {\bf test\_\-shutdown} (void)
+\item 
+{\bf SIGNAL} (SIG\_\-OUTPUT\_\-COMPARE1A)
+\begin{DoxyCompactList}\small\item\em Obsluha inkrementálního čidla je volána v přerušení čítače. \item\end{DoxyCompactList}\item 
+void {\bf ioinit} (void)
+\begin{DoxyCompactList}\small\item\em Inicializace čítače pro volání inkrementálního čidla. \item\end{DoxyCompactList}\item 
+int {\bf main} (void)
+\item 
+char $\ast$ {\bf getstr\_\-P} (PGM\_\-P s\_\-p)
+\item 
+void {\bf prazdna} (char $\ast$s)
+\item 
+void {\bf get\_\-data\_\-from\_\-server} (void)
+\end{DoxyCompactItemize}
+\begin{Indent}{\bf Chybové výpisy}\par
+{\em \label{_amgrpab59e12c0733f27380b5e1770fe17f53}
+ Jsou uloženy v programové paměti. Je to kvůli úspoře paměti SRAM. }\begin{DoxyCompactItemize}
+\item 
+void {\bf err102} (void) = \char`\"{}Error 102: $\backslash$nChyba pri komunikaci se serverem.\char`\"{}
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Proměnné}
+\begin{DoxyCompactItemize}
+\item 
+uint16\_\-t {\bf t\_\-lcd} = 0
+\item 
+static char err98[$\,$] {\bf PROGMEM} = \char`\"{}Error 98: Doslo ke krátkému výpadku napájení. Data ulozena. Reset.\char`\"{}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailní popis}
+Tento modul je hlavní hlavní částí programu pro zařízení na vozíku v rámci projektu měření objemu řeziva pro pilu v Němčicích. Zařízení na vozíku má za úkol zpracovávat informace, které dostává po sériové lince ze zařízení na katru, komunikovat s navazujícím databázovým systémem, obsluhovat měření vzdálenosti vozíku od katru pomoocí IRC a zajišťovat komunikaci s uživatelem prostřednictvím znakového displeje (4x20 znaků) a standartní počítačové klávesnice. V tomto modulu je hlavní funkce main. Jednotlivé části programu jsou volány z ní. Nejprve probíhají nutné inicializace ostatních modulů. Pak program vejde do nekonečné smyčky, která opakovaně volá funkce pro obsluhu jednotlivých částí. Obsluhu inkrementálního čidla je nutné provádět co možná nejčastěji. Důležité je hlavně nepřekročení určitého času mezi voláním obslužné funkce. Ta je proto volána prostřednictvím přerušení čítače. Volání displeje zase naopak vyžaduje mezi voláním určitý čas. Proto je řešeno v závislosti na počtu přerušení generovaných čítačem(který je používán i pro IRC).
+
+Pro případ výpadku napájení je v obvodu zařazen záložní kondenzátor. Ten zajistí napájení obvodu po nějaký čas během výpadku. V tomto čase dochází k ukládání životně důležitých dat do EEPROM. To je řešeno ve funkci \doxyref{test\_\-shutdown()}{s.}{main_8c_a69f95b1ec6b9c81ade176f604a9b2034}. Pokud dojde k obnovení napájení před vyčerpáním záložních zdrojů, fuunkce vyčká, aby napětí na kondenzátoru vystoupilo nad 4.5 V (kvůli LCD), znovu inicializuje LCD a obnoví provoz zařízení. 
+
+\subsection{Dokumentace k definicím maker}
+\index{main.c@{main.c}!F\_\-CPU@{F\_\-CPU}}
+\index{F\_\-CPU@{F\_\-CPU}!main.c@{main.c}}
+\subsubsection[{F\_\-CPU}]{\setlength{\rightskip}{0pt plus 5cm}\#define F\_\-CPU~8000000UL}\label{main_8c_a43bafb28b29491ec7f871319b5a3b2f8}
+
+
+Frekvence oscilátoru 8MHz. \index{main.c@{main.c}!T\_\-LCD\_\-MAX@{T\_\-LCD\_\-MAX}}
+\index{T\_\-LCD\_\-MAX@{T\_\-LCD\_\-MAX}!main.c@{main.c}}
+\subsubsection[{T\_\-LCD\_\-MAX}]{\setlength{\rightskip}{0pt plus 5cm}\#define T\_\-LCD\_\-MAX~5}\label{main_8c_a19cebd54c6081dbcf41461843a890cf2}
+
+
+Kolikrát pomaleji bude běžet překreslování lcd oproti kontrole irc. 
+
+\subsection{Dokumentace funkcí}
+\index{main.c@{main.c}!err102@{err102}}
+\index{err102@{err102}!main.c@{main.c}}
+\subsubsection[{err102}]{\setlength{\rightskip}{0pt plus 5cm}static char err102 (void) = \char`\"{}Error 102: $\backslash$nChyba pri komunikaci se serverem.\char`\"{}}\label{main_8c_ad923ea58f0b1a424eed0136b63b555ee}
+\index{main.c@{main.c}!get\_\-data\_\-from\_\-katr@{get\_\-data\_\-from\_\-katr}}
+\index{get\_\-data\_\-from\_\-katr@{get\_\-data\_\-from\_\-katr}!main.c@{main.c}}
+\subsubsection[{get\_\-data\_\-from\_\-katr}]{\setlength{\rightskip}{0pt plus 5cm}void get\_\-data\_\-from\_\-katr (void)}\label{main_8c_a28f3bbd07c7cbecfc65e4ac3ecee521b}
+Tato funkce je volána při startu jednočipu. Jejím úkolem je získat data z katru. \index{main.c@{main.c}!get\_\-data\_\-from\_\-server@{get\_\-data\_\-from\_\-server}}
+\index{get\_\-data\_\-from\_\-server@{get\_\-data\_\-from\_\-server}!main.c@{main.c}}
+\subsubsection[{get\_\-data\_\-from\_\-server}]{\setlength{\rightskip}{0pt plus 5cm}void get\_\-data\_\-from\_\-server (void)}\label{main_8c_a05ef6c172afbefcf3a1516b7b264512e}
+Funkce je volána v případě, že je nastaveno získávání dat o šířce ze serveru. Zajišťuje výzvu k odesílání pro server a čekání na odpověď. \begin{Desc}
+\item[{\bf Plánované úpravy}]Přepsat. Chce to zajistit umlčení katru. \end{Desc}
+\index{main.c@{main.c}!getstr\_\-P@{getstr\_\-P}}
+\index{getstr\_\-P@{getstr\_\-P}!main.c@{main.c}}
+\subsubsection[{getstr\_\-P}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ getstr\_\-P (PGM\_\-P {\em s\_\-p})}\label{main_8c_a94c5fb482b0b9ce39cae1619bf51b0ae}
+Funkce slouží pro načtení řetězce z programové paměti. Funkce naalokuje paměť pro uložení řetězce do SRAM, řetězec tam zkopíruje a vrátí ukazatel na toto místo. 
+\begin{DoxyParams}{Parametry}
+\item[{\em s\_\-p}]Ukazatel do programové paměti. \end{DoxyParams}
+\begin{DoxyReturn}{Návratová hodnota}
+Ukazatel v paměti SRAM, kam je zkopírován řetězec z {\itshape s\_\-p\/} 
+\end{DoxyReturn}
+\index{main.c@{main.c}!ioinit@{ioinit}}
+\index{ioinit@{ioinit}!main.c@{main.c}}
+\subsubsection[{ioinit}]{\setlength{\rightskip}{0pt plus 5cm}void ioinit (void)}\label{main_8c_af63a4042de4220d64088f03ef65f9dbf}
+
+
+Inicializace čítače pro volání inkrementálního čidla. \index{main.c@{main.c}!main@{main}}
+\index{main@{main}!main.c@{main.c}}
+\subsubsection[{main}]{\setlength{\rightskip}{0pt plus 5cm}int main (void)}\label{main_8c_a840291bc02cba5474a4cb46a9b9566fe}
+Toto je hlavní funkce programu. Na počátku jsou provedeny inicializace, pak běží program v nekonečné smyčce. V Té jsou postupně volány funkce, které obsluhují LCD, klávesnici, zajiš\_\-tují měření atd.
+
+Část funkcí (např obsluha LCD, nebo kontrola IRC) je časově kritická. Jejich volání je proto prováděno v závislosti na časocači. \index{main.c@{main.c}!prazdna@{prazdna}}
+\index{prazdna@{prazdna}!main.c@{main.c}}
+\subsubsection[{prazdna}]{\setlength{\rightskip}{0pt plus 5cm}void prazdna (char $\ast$ {\em s})}\label{main_8c_af5109660bca826e0961aef144489df25}
+\index{main.c@{main.c}!send\_\-irc\_\-values\_\-to\_\-PC@{send\_\-irc\_\-values\_\-to\_\-PC}}
+\index{send\_\-irc\_\-values\_\-to\_\-PC@{send\_\-irc\_\-values\_\-to\_\-PC}!main.c@{main.c}}
+\subsubsection[{send\_\-irc\_\-values\_\-to\_\-PC}]{\setlength{\rightskip}{0pt plus 5cm}void send\_\-irc\_\-values\_\-to\_\-PC (void)}\label{main_8c_a6de58cf94dae7ef363eccf43754a3561}
+\index{main.c@{main.c}!SIGNAL@{SIGNAL}}
+\index{SIGNAL@{SIGNAL}!main.c@{main.c}}
+\subsubsection[{SIGNAL}]{\setlength{\rightskip}{0pt plus 5cm}SIGNAL (SIG\_\-OUTPUT\_\-COMPARE1A)}\label{main_8c_acc0188f99a5e4cb2df4cf3d81fc373ef}
+
+
+Obsluha inkrementálního čidla je volána v přerušení čítače. \index{main.c@{main.c}!test\_\-shutdown@{test\_\-shutdown}}
+\index{test\_\-shutdown@{test\_\-shutdown}!main.c@{main.c}}
+\subsubsection[{test\_\-shutdown}]{\setlength{\rightskip}{0pt plus 5cm}void test\_\-shutdown (void)}\label{main_8c_a69f95b1ec6b9c81ade176f604a9b2034}
+Funkce při svém zavolání ověří, zda je na příslučném pinu napětí (napájení). Pokud ne, zahájí se ukládání dat do eeprom. \index{main.c@{main.c}!write\_\-used\_\-mem@{write\_\-used\_\-mem}}
+\index{write\_\-used\_\-mem@{write\_\-used\_\-mem}!main.c@{main.c}}
+\subsubsection[{write\_\-used\_\-mem}]{\setlength{\rightskip}{0pt plus 5cm}void write\_\-used\_\-mem (void)}\label{main_8c_ad95535453dafe59b5938deeec23ababc}
+
+
+\subsection{Dokumentace proměnných}
+\index{main.c@{main.c}!PROGMEM@{PROGMEM}}
+\index{PROGMEM@{PROGMEM}!main.c@{main.c}}
+\subsubsection[{PROGMEM}]{\setlength{\rightskip}{0pt plus 5cm}char err98 [$\,$] {\bf PROGMEM} = \char`\"{}Error 98: Doslo ke krátkému výpadku napájení. Data ulozena. Reset.\char`\"{}\hspace{0.3cm}{\ttfamily  [static]}}\label{main_8c_aba575ae902f939508a51e3391492f700}
+\index{main.c@{main.c}!t\_\-lcd@{t\_\-lcd}}
+\index{t\_\-lcd@{t\_\-lcd}!main.c@{main.c}}
+\subsubsection[{t\_\-lcd}]{\setlength{\rightskip}{0pt plus 5cm}uint16\_\-t {\bf t\_\-lcd} = 0}\label{main_8c_a4d08c8e52670a496e032b874c807de57}
+LCD není časově tak kritické jako konrola irc, ale je třeba zaručit minimální dobu mezi obsluhou lcd. Poběží tedy v závislosti na počtu cyklů kontoly irc, ale spouštět se nebude každý n-\/tý cyklus, ale vždy v normální časové smyčce, až na něj dojde řada. 

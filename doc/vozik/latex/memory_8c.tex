@@ -1,0 +1,46 @@
+\section{Dokumentace souboru memory.c}
+\label{memory_8c}\index{memory.c@{memory.c}}
+
+
+Modul pro práci s pamětí. Funkce pro alokaci jsou vybaveny počítadlem, takže je možné zhruba zjistit kolikrát bylo žádáno o paměť a kolikrát byla vrácena.  
+{\ttfamily \#include $<$avr/io.h$>$}\par
+{\ttfamily \#include $<$stdlib.h$>$}\par
+{\ttfamily \#include \char`\"{}error.h\char`\"{}}\par
+\subsection*{Funkce}
+\begin{DoxyCompactItemize}
+\item 
+void $\ast$ {\bf mmalloc} (unsigned int size)
+\item 
+void {\bf mfree} (void $\ast$pointer)
+\item 
+uint16\_\-t {\bf used\_\-mem} (void)
+\end{DoxyCompactItemize}
+\subsection*{Proměnné}
+\begin{DoxyCompactItemize}
+\item 
+uint16\_\-t {\bf used\_\-mem\_\-blocks} = 0
+\begin{DoxyCompactList}\small\item\em Počet použitých paměťových bloků. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailní popis}
+Modul pro práci s pamětí. Funkce pro alokaci jsou vybaveny počítadlem, takže je možné zhruba zjistit kolikrát bylo žádáno o paměť a kolikrát byla vrácena. 
+
+\subsection{Dokumentace funkcí}
+\index{memory.c@{memory.c}!mfree@{mfree}}
+\index{mfree@{mfree}!memory.c@{memory.c}}
+\subsubsection[{mfree}]{\setlength{\rightskip}{0pt plus 5cm}void mfree (void $\ast$ {\em pointer})}\label{memory_8c_a9ba414662a250ef92d4296a19dafad43}
+\index{memory.c@{memory.c}!mmalloc@{mmalloc}}
+\index{mmalloc@{mmalloc}!memory.c@{memory.c}}
+\subsubsection[{mmalloc}]{\setlength{\rightskip}{0pt plus 5cm}void$\ast$ mmalloc (unsigned int {\em size})}\label{memory_8c_ac1847e839d655a069b4c77d164f395c5}
+Má alokační funkce. Testuje, zda nebyla naplněna paměť. Pokud ano, vypíše chybovou hlášku. \index{memory.c@{memory.c}!used\_\-mem@{used\_\-mem}}
+\index{used\_\-mem@{used\_\-mem}!memory.c@{memory.c}}
+\subsubsection[{used\_\-mem}]{\setlength{\rightskip}{0pt plus 5cm}uint16\_\-t used\_\-mem (void)}\label{memory_8c_a8dae36488b9df941d0d6734093c03c1f}
+
+
+\subsection{Dokumentace proměnných}
+\index{memory.c@{memory.c}!used\_\-mem\_\-blocks@{used\_\-mem\_\-blocks}}
+\index{used\_\-mem\_\-blocks@{used\_\-mem\_\-blocks}!memory.c@{memory.c}}
+\subsubsection[{used\_\-mem\_\-blocks}]{\setlength{\rightskip}{0pt plus 5cm}uint16\_\-t {\bf used\_\-mem\_\-blocks} = 0}\label{memory_8c_ad1acea3e104f63e81b2e128dc46222d9}
+
+
+Počet použitých paměťových bloků. 

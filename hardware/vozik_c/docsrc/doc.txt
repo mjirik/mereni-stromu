@@ -1,10 +1,27 @@
-/**
-@mainpage Za��en� na voz�ku
-Tento dokument tvo�� dokumentaci k programu pro jedno�ip ATmega32, kter�
-zaji��uje chod za��zen� na voz�ku. Dokument obsahuje manu�l pro obsluhu \ref Manual . 
-<a href="./../katr_c/doc/html/index.html">seznam.cz</a>
+﻿/**
+@mainpage Zařízení na vozíku
+Tento dokument tvoří dokumentaci k programu pro jednočip ATmega32, který
+zajišťuje chod zařízení na vozíku. Dokument obsahuje manuál pro obsluhu \ref Manual . 
+<a href="./../katr_c/doc/html/index.html">katr</a>
 
-http://www.filmweb.cz
+@section vozik_hardware Hardware
+Zařízení je postaveno na jednočipu ATmega32. Deska na níž je čip osazen obsahuje dále 
+obvody pro rozhraní RS232 a RS422. Napájení zajišťuje stabilizátor napětí. Výstup ze 
+něj je jednočipem sledován a v případě výpadku je zahájeno ukládání do EEPROM. V takových 
+okamžicích je zařízení napájeno z kondenzátoru. 
+
+Jedničip je dále napojen na konektor k LCD displeji. Displej je napájen ze společného 
+stabilizátoru. Napájení je chráněno 2W odporem. Ten spotřebovává značnou část energie, kterou
+zařízení odebírá. 
+
+K desce jsou připojeny dvě inkrementální čidla a dva spínače (magnetické relé) jako 
+referenční bod. 
+
+@subsection vozik_rezervy Možnosti rozšíření, rezervy
+V případě potřeby je možné využít následující rezervy:
+ - pin u výstupu sériového portu označený jako "dir"
+ - jeden z programovacích pinů (pozor - nesmí být zkratovatelný v okamžiku programování)
+ - LCD lze programovat s využitím menšího počtu bitů, lze zde tedy šetřit
 
 ./../katr_c/doc/html/index.html
 

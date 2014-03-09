@@ -1,0 +1,483 @@
+\section{Dokumentace souboru funkce.inc.php}
+\label{funkce_8inc_8php}\index{funkce.inc.php@{funkce.inc.php}}
+\subsection*{Funkce}
+\begin{CompactItemize}
+\item 
+{\bf echo\_\-echo} (\$echo)
+\begin{CompactList}\small\item\em Funkce umisùuje popisek a zbytek formul√°≈ôe do tabulky. \item\end{CompactList}\item 
+{\bf bit2bool} (\$str)
+\item 
+{\bf ref\_\-ok} (\$name, \$ok, \$storno, \$text=null, \$title=null, \$class=null)
+\item 
+{\bf debug\_\-info} ()
+\item 
+{\bf mysql\_\-last\_\-id} (\$link)
+\item 
+{\bf mysql\_\-query\_\-e} (\$dotaz, \$link)
+\item 
+{\bf begin\_\-form} (\$action)
+\item 
+{\bf end\_\-form} ()
+\item 
+{\bf formln} (\$popis, \$telo, \$title=null)
+\item 
+{\bf input\_\-form} (\$label, \$name, \$value, \$size=null)
+\item 
+{\bf psswd\_\-form} (\$label, \$name, \$value, \$size=null)
+\item 
+{\bf submit\_\-form} (\$value, \$name=\char`\"{}submit\char`\"{}, \$size=null)
+\item 
+{\bf submit} (\$value, \$name=\char`\"{}submit\char`\"{}, \$size=null)
+\item 
+{\bf odkaz} (\$popisek, \$adresa, \$title=null, \$class=\char`\"{}\char`\"{})
+\item 
+{\bf jeEmail} (\$cislo)
+\item 
+{\bf jeCislo} (\$cislo)
+\item 
+{\bf connect\_\-db} ()
+\item 
+{\bf check\_\-zakaznik} (\$zakaznik)
+\item 
+{\bf insertZakaznik} (\$zakaznik, \$link)
+\item 
+{\bf vsechnaMereni} (\$link)
+\item 
+{\bf volnaMereni} (\$link)
+\item 
+{\bf jmeno\_\-zakaznik\_\-mereni} (\$id, \$link)
+\item 
+{\bf seznamy\_\-zakaznika} (\$zakid, \$link, \$archiv=false)
+\begin{CompactList}\small\item\em Funkce vracÌ pole, kterÈ obsahuje seznamy z·kaznÌka. \item\end{CompactList}\item 
+{\bf pocet\_\-seznamu\_\-v\_\-archivu} (\$zakid, \$link)
+\begin{CompactList}\small\item\em \begin{Desc}
+\item[N√°vratov√° hodnota:]VracÌ poËet zak·zek v archivu. \end{Desc}
+\item\end{CompactList}\item 
+{\bf pocet\_\-zakazniku\_\-v\_\-archivu} (\$link)
+\item 
+{\bf otevrene\_\-seznamy} (\$idzak, \$link)
+\item 
+{\bf zarad\_\-mereni\_\-do\_\-seznamu} (\$id\_\-seznam, \$id\_\-zak\_\-mer, \$link)
+\item 
+{\bf setCeny} (\$ceny, \$link)
+\item 
+{\bf getCeny} (\$link)
+\item 
+{\bf kopirujCeny} (\$IDSeznam, \$link)
+\item 
+{\bf novySeznam} (\$IDZakaznik, \$link)
+\item 
+{\bf iduzivatele} (\$prezdivka, \$pswd, \$link)
+\item 
+{\bf isroot} (\$id)
+\item 
+{\bf objem} (\$delka\_\-m, \$prumer\_\-cm, \$p0=0, \$p1=0, \$p2=0)
+\item 
+{\bf cena\_\-strom\_\-m3} (\$mereni, \$ceny)
+\item 
+{\bf cena\_\-strom} (\$mereni, \$ceny)
+\item 
+{\bf zakaznici} (\$link, \$archiv=false)
+\item 
+{\bf deleteZakaznik} (\$IDZakaznik, \$link)
+\item 
+{\bf new\_\-mereni\_\-do\_\-seznamu} (\$idSeznam, \$mereni, \$link)
+\item 
+{\bf new\_\-mereni} (\$idzak, \$delka, \$prumer, \$druh, \$manipulace, \$dalsi, \$link)
+\item 
+{\bf load\_\-mereni\_\-from\_\-files} (\$szakaznici, \$smereni, \$link)
+\item 
+{\bf load\_\-from\_\-file} (\$file)
+\item 
+{\bf seznam\_\-mereni} (\$idseznam, \$link, \$serad=false)
+\item 
+{\bf parametry\_\-seznamu} (\$idseznam, \$link)
+\begin{CompactList}\small\item\em funkce vracÌ hodnoty cen seznamu \item\end{CompactList}\item 
+{\bf add\_\-user} (\$nick, \$psswd, \$link)
+\item 
+{\bf delete\_\-user} (\$id, \$link)
+\item 
+{\bf edit\_\-user} (\$id, \$nick, \$psswd, \$link)
+\item 
+{\bf user\_\-name} (\$id, \$link)
+\item 
+{\bf users} (\$link)
+\item 
+{\bf update\_\-ceny} (\$id, \$ceny, \$link)
+\item 
+{\bf get\_\-mereni} (\$idmer, \$link)
+\item 
+{\bf update\_\-mereni} (\$zaznamy, \$link)
+\item 
+{\bf druhy\_\-dreva} (\$link)
+\item 
+{\bf dalsi\_\-zpracovani} (\$link)
+\item 
+{\bf zakaznik} (\$id, \$link)
+\item 
+{\bf modulo} (\$a, \$b)
+\item 
+{\bf zakaznikInArchiv} (\$id, \$link)
+\item 
+{\bf zakaznikOutArchiv} (\$id, \$link)
+\item 
+{\bf seznamInArchiv} (\$id, \$link)
+\item 
+{\bf seznamOutArchiv} (\$id, \$link)
+\item 
+{\bf deleteSeznam} (\$id, \$link)
+\item 
+{\bf deleteMereni} (\$id, \$link)
+\item 
+{\bf seznamChZakaznik} (\$seznam, \$zakaznik, \$link)
+\item 
+{\bf mereniChSeznam} (\$mereni, \$seznam, \$link)
+\item 
+{\bf sql\_\-datum} (\$sql\_\-date, \$day=true)
+\item 
+{\bf getmicrotime} ()
+\end{CompactItemize}
+
+
+\subsection{Dokumentace funkc√≠}
+\index{funkce.inc.php@{funkce.inc.php}!add_user@{add\_\-user}}
+\index{add_user@{add\_\-user}!funkce.inc.php@{funkce.inc.php}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}add\_\-user (\$ {\em nick}, \$ {\em psswd}, \$ {\em link})}\label{funkce_8inc_8php_69f5489ba52fb5b2b458362d1c1a2861}
+
+
+\index{funkce.inc.php@{funkce.inc.php}!begin_form@{begin\_\-form}}
+\index{begin_form@{begin\_\-form}!funkce.inc.php@{funkce.inc.php}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}begin\_\-form (\$ {\em action})}\label{funkce_8inc_8php_d26569917dffb4093ecb9446afbd78a0}
+
+
+\index{funkce.inc.php@{funkce.inc.php}!bit2bool@{bit2bool}}
+\index{bit2bool@{bit2bool}!funkce.inc.php@{funkce.inc.php}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}bit2bool (\$ {\em str})}\label{funkce_8inc_8php_3f4147ff026f301f6f7d2aed960d6d41}
+
+
+\index{funkce.inc.php@{funkce.inc.php}!cena_strom@{cena\_\-strom}}
+\index{cena_strom@{cena\_\-strom}!funkce.inc.php@{funkce.inc.php}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}cena\_\-strom (\$ {\em mereni}, \$ {\em ceny})}\label{funkce_8inc_8php_4fe2845980b985255390ae95a409595e}
+
+
+\index{funkce.inc.php@{funkce.inc.php}!cena_strom_m3@{cena\_\-strom\_\-m3}}
+\index{cena_strom_m3@{cena\_\-strom\_\-m3}!funkce.inc.php@{funkce.inc.php}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}cena\_\-strom\_\-m3 (\$ {\em mereni}, \$ {\em ceny})}\label{funkce_8inc_8php_34a1e3c641c42a0949efc9ff0d926cbc}
+
+
+Funkce vypoËÌt· cenu za kubick˝ metr danÈho stromu. \index{funkce.inc.php@{funkce.inc.php}!check_zakaznik@{check\_\-zakaznik}}
+\index{check_zakaznik@{check\_\-zakaznik}!funkce.inc.php@{funkce.inc.php}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}check\_\-zakaznik (\$ {\em zakaznik})}\label{funkce_8inc_8php_f0e17bd36ebfa49864f5a707c3ac9867}
+
+
+\index{funkce.inc.php@{funkce.inc.php}!connect_db@{connect\_\-db}}
+\index{connect_db@{connect\_\-db}!funkce.inc.php@{funkce.inc.php}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}connect\_\-db ()}\label{funkce_8inc_8php_1727d25713d41061a7db700300002c79}
+
+
+\index{funkce.inc.php@{funkce.inc.php}!dalsi_zpracovani@{dalsi\_\-zpracovani}}
+\index{dalsi_zpracovani@{dalsi\_\-zpracovani}!funkce.inc.php@{funkce.inc.php}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}dalsi\_\-zpracovani (\$ {\em link})}\label{funkce_8inc_8php_991c025f2ae018739bc641d9895d049d}
+
+
+\index{funkce.inc.php@{funkce.inc.php}!debug_info@{debug\_\-info}}
+\index{debug_info@{debug\_\-info}!funkce.inc.php@{funkce.inc.php}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}debug\_\-info ()}\label{funkce_8inc_8php_47edefa65752cc05fa590f6243daa91c}
+
+
+\index{funkce.inc.php@{funkce.inc.php}!delete_user@{delete\_\-user}}
+\index{delete_user@{delete\_\-user}!funkce.inc.php@{funkce.inc.php}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}delete\_\-user (\$ {\em id}, \$ {\em link})}\label{funkce_8inc_8php_551db4bd9652652d6b5a1bf007f62f75}
+
+
+\index{funkce.inc.php@{funkce.inc.php}!deleteMereni@{deleteMereni}}
+\index{deleteMereni@{deleteMereni}!funkce.inc.php@{funkce.inc.php}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}deleteMereni (\$ {\em id}, \$ {\em link})}\label{funkce_8inc_8php_b0566e607a3fa6d4e050390471c90f41}
+
+
+\index{funkce.inc.php@{funkce.inc.php}!deleteSeznam@{deleteSeznam}}
+\index{deleteSeznam@{deleteSeznam}!funkce.inc.php@{funkce.inc.php}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}deleteSeznam (\$ {\em id}, \$ {\em link})}\label{funkce_8inc_8php_a36d5f774af8a60402ab707e6a4bd899}
+
+
+\index{funkce.inc.php@{funkce.inc.php}!deleteZakaznik@{deleteZakaznik}}
+\index{deleteZakaznik@{deleteZakaznik}!funkce.inc.php@{funkce.inc.php}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}deleteZakaznik (\$ {\em IDZakaznik}, \$ {\em link})}\label{funkce_8inc_8php_9fae3d75bcc31b586c4aae678f84b108}
+
+
+\index{funkce.inc.php@{funkce.inc.php}!druhy_dreva@{druhy\_\-dreva}}
+\index{druhy_dreva@{druhy\_\-dreva}!funkce.inc.php@{funkce.inc.php}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}druhy\_\-dreva (\$ {\em link})}\label{funkce_8inc_8php_b4ae9489bf6932d8660bb51a1d623ec9}
+
+
+\index{funkce.inc.php@{funkce.inc.php}!echo_echo@{echo\_\-echo}}
+\index{echo_echo@{echo\_\-echo}!funkce.inc.php@{funkce.inc.php}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}echo\_\-echo (\$ {\em echo})}\label{funkce_8inc_8php_f87ea274ab43b48c848c97459c5f076b}
+
+
+Funkce umisùuje popisek a zbytek formul√°≈ôe do tabulky. 
+
+\index{funkce.inc.php@{funkce.inc.php}!edit_user@{edit\_\-user}}
+\index{edit_user@{edit\_\-user}!funkce.inc.php@{funkce.inc.php}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}edit\_\-user (\$ {\em id}, \$ {\em nick}, \$ {\em psswd}, \$ {\em link})}\label{funkce_8inc_8php_3d89c7184c333a8a17a4dbac018b5b90}
+
+
+\index{funkce.inc.php@{funkce.inc.php}!end_form@{end\_\-form}}
+\index{end_form@{end\_\-form}!funkce.inc.php@{funkce.inc.php}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}end\_\-form ()}\label{funkce_8inc_8php_6876e586edad840232bbc08ed0695b9f}
+
+
+\index{funkce.inc.php@{funkce.inc.php}!formln@{formln}}
+\index{formln@{formln}!funkce.inc.php@{funkce.inc.php}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}formln (\$ {\em popis}, \$ {\em telo}, \$ {\em title} = {\tt null})}\label{funkce_8inc_8php_133bf3724a4db4b58325266a4b9aa4fe}
+
+
+\index{funkce.inc.php@{funkce.inc.php}!get_mereni@{get\_\-mereni}}
+\index{get_mereni@{get\_\-mereni}!funkce.inc.php@{funkce.inc.php}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}get\_\-mereni (\$ {\em idmer}, \$ {\em link})}\label{funkce_8inc_8php_67efc0a62a8032d66a62098db5fe64e6}
+
+
+\index{funkce.inc.php@{funkce.inc.php}!getCeny@{getCeny}}
+\index{getCeny@{getCeny}!funkce.inc.php@{funkce.inc.php}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}getCeny (\$ {\em link})}\label{funkce_8inc_8php_11788b4c197010979bf2290fd689ce18}
+
+
+\index{funkce.inc.php@{funkce.inc.php}!getmicrotime@{getmicrotime}}
+\index{getmicrotime@{getmicrotime}!funkce.inc.php@{funkce.inc.php}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}getmicrotime ()}\label{funkce_8inc_8php_cdd881f58961544f44bfe96ad57f1299}
+
+
+\index{funkce.inc.php@{funkce.inc.php}!iduzivatele@{iduzivatele}}
+\index{iduzivatele@{iduzivatele}!funkce.inc.php@{funkce.inc.php}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}iduzivatele (\$ {\em prezdivka}, \$ {\em pswd}, \$ {\em link})}\label{funkce_8inc_8php_a87c793d4a7502cc21adb7c293871f38}
+
+
+\index{funkce.inc.php@{funkce.inc.php}!input_form@{input\_\-form}}
+\index{input_form@{input\_\-form}!funkce.inc.php@{funkce.inc.php}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}input\_\-form (\$ {\em label}, \$ {\em name}, \$ {\em value}, \$ {\em size} = {\tt null})}\label{funkce_8inc_8php_6cd374b111d31f7489a540510222c662}
+
+
+\index{funkce.inc.php@{funkce.inc.php}!insertZakaznik@{insertZakaznik}}
+\index{insertZakaznik@{insertZakaznik}!funkce.inc.php@{funkce.inc.php}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}insertZakaznik (\$ {\em zakaznik}, \$ {\em link})}\label{funkce_8inc_8php_60eb27676a53deebb52794098d0e05f1}
+
+
+\index{funkce.inc.php@{funkce.inc.php}!isroot@{isroot}}
+\index{isroot@{isroot}!funkce.inc.php@{funkce.inc.php}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}isroot (\$ {\em id})}\label{funkce_8inc_8php_f4cf9dadff32c238d350c7f9ee5bc7f8}
+
+
+\index{funkce.inc.php@{funkce.inc.php}!jeCislo@{jeCislo}}
+\index{jeCislo@{jeCislo}!funkce.inc.php@{funkce.inc.php}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}jeCislo (\$ {\em cislo})}\label{funkce_8inc_8php_f0229139a35751d44f825d86412cf131}
+
+
+\index{funkce.inc.php@{funkce.inc.php}!jeEmail@{jeEmail}}
+\index{jeEmail@{jeEmail}!funkce.inc.php@{funkce.inc.php}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}jeEmail (\$ {\em cislo})}\label{funkce_8inc_8php_77dc04edb3848c598e82cb770d3983c4}
+
+
+\index{funkce.inc.php@{funkce.inc.php}!jmeno_zakaznik_mereni@{jmeno\_\-zakaznik\_\-mereni}}
+\index{jmeno_zakaznik_mereni@{jmeno\_\-zakaznik\_\-mereni}!funkce.inc.php@{funkce.inc.php}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}jmeno\_\-zakaznik\_\-mereni (\$ {\em id}, \$ {\em link})}\label{funkce_8inc_8php_afa33afc4dedee920e56eada43a1a3b8}
+
+
+\index{funkce.inc.php@{funkce.inc.php}!kopirujCeny@{kopirujCeny}}
+\index{kopirujCeny@{kopirujCeny}!funkce.inc.php@{funkce.inc.php}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}kopirujCeny (\$ {\em IDSeznam}, \$ {\em link})}\label{funkce_8inc_8php_b259352a0339552813a0c6f77c2164a1}
+
+
+\index{funkce.inc.php@{funkce.inc.php}!load_from_file@{load\_\-from\_\-file}}
+\index{load_from_file@{load\_\-from\_\-file}!funkce.inc.php@{funkce.inc.php}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}load\_\-from\_\-file (\$ {\em file})}\label{funkce_8inc_8php_4a2ba5676f4910f9c48c8382c2efec54}
+
+
+\index{funkce.inc.php@{funkce.inc.php}!load_mereni_from_files@{load\_\-mereni\_\-from\_\-files}}
+\index{load_mereni_from_files@{load\_\-mereni\_\-from\_\-files}!funkce.inc.php@{funkce.inc.php}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}load\_\-mereni\_\-from\_\-files (\$ {\em szakaznici}, \$ {\em smereni}, \$ {\em link})}\label{funkce_8inc_8php_9409ad9d9484a9677426c63a473fc560}
+
+
+Funkce naËte mÏ¯enÌ ze soubor˘. \index{funkce.inc.php@{funkce.inc.php}!mereniChSeznam@{mereniChSeznam}}
+\index{mereniChSeznam@{mereniChSeznam}!funkce.inc.php@{funkce.inc.php}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}mereniChSeznam (\$ {\em mereni}, \$ {\em seznam}, \$ {\em link})}\label{funkce_8inc_8php_eb2f3b0c3c992037b865d730bf4f98f9}
+
+
+\index{funkce.inc.php@{funkce.inc.php}!modulo@{modulo}}
+\index{modulo@{modulo}!funkce.inc.php@{funkce.inc.php}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}modulo (\$ {\em a}, \$ {\em b})}\label{funkce_8inc_8php_00e4bfcda16c6bce89606e70d4e3c771}
+
+
+\index{funkce.inc.php@{funkce.inc.php}!mysql_last_id@{mysql\_\-last\_\-id}}
+\index{mysql_last_id@{mysql\_\-last\_\-id}!funkce.inc.php@{funkce.inc.php}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}mysql\_\-last\_\-id (\$ {\em link})}\label{funkce_8inc_8php_fe092bfa8c4a7ed90fa49aa03ce982eb}
+
+
+\index{funkce.inc.php@{funkce.inc.php}!mysql_query_e@{mysql\_\-query\_\-e}}
+\index{mysql_query_e@{mysql\_\-query\_\-e}!funkce.inc.php@{funkce.inc.php}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}mysql\_\-query\_\-e (\$ {\em dotaz}, \$ {\em link})}\label{funkce_8inc_8php_6c7a02de526cd769865dbdf27609f78d}
+
+
+\index{funkce.inc.php@{funkce.inc.php}!new_mereni@{new\_\-mereni}}
+\index{new_mereni@{new\_\-mereni}!funkce.inc.php@{funkce.inc.php}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}new\_\-mereni (\$ {\em idzak}, \$ {\em delka}, \$ {\em prumer}, \$ {\em druh}, \$ {\em manipulace}, \$ {\em dalsi}, \$ {\em link})}\label{funkce_8inc_8php_226d558025460b260d7243c26c55e535}
+
+
+\index{funkce.inc.php@{funkce.inc.php}!new_mereni_do_seznamu@{new\_\-mereni\_\-do\_\-seznamu}}
+\index{new_mereni_do_seznamu@{new\_\-mereni\_\-do\_\-seznamu}!funkce.inc.php@{funkce.inc.php}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}new\_\-mereni\_\-do\_\-seznamu (\$ {\em idSeznam}, \$ {\em mereni}, \$ {\em link})}\label{funkce_8inc_8php_a612abd289522bb376b70f10c54a2486}
+
+
+\index{funkce.inc.php@{funkce.inc.php}!novySeznam@{novySeznam}}
+\index{novySeznam@{novySeznam}!funkce.inc.php@{funkce.inc.php}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}novySeznam (\$ {\em IDZakaznik}, \$ {\em link})}\label{funkce_8inc_8php_dbd478e9be103dd5f6a271cf71f118a4}
+
+
+\index{funkce.inc.php@{funkce.inc.php}!objem@{objem}}
+\index{objem@{objem}!funkce.inc.php@{funkce.inc.php}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}objem (\$ {\em delka\_\-m}, \$ {\em prumer\_\-cm}, \$ {\em p0} = {\tt 0}, \$ {\em p1} = {\tt 0}, \$ {\em p2} = {\tt 0})}\label{funkce_8inc_8php_a3b8fc2e3d0703b2acea97976ddf0402}
+
+
+\index{funkce.inc.php@{funkce.inc.php}!odkaz@{odkaz}}
+\index{odkaz@{odkaz}!funkce.inc.php@{funkce.inc.php}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}odkaz (\$ {\em popisek}, \$ {\em adresa}, \$ {\em title} = {\tt null}, \$ {\em class} = {\tt \char`\"{}\char`\"{}})}\label{funkce_8inc_8php_81ade2250a8b88e4da8821cb7a8e0499}
+
+
+\index{funkce.inc.php@{funkce.inc.php}!otevrene_seznamy@{otevrene\_\-seznamy}}
+\index{otevrene_seznamy@{otevrene\_\-seznamy}!funkce.inc.php@{funkce.inc.php}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}otevrene\_\-seznamy (\$ {\em idzak}, \$ {\em link})}\label{funkce_8inc_8php_4ec72f173fffba491551b35ec65e8f1f}
+
+
+\index{funkce.inc.php@{funkce.inc.php}!parametry_seznamu@{parametry\_\-seznamu}}
+\index{parametry_seznamu@{parametry\_\-seznamu}!funkce.inc.php@{funkce.inc.php}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}parametry\_\-seznamu (\$ {\em idseznam}, \$ {\em link})}\label{funkce_8inc_8php_ea7a4129244406f567c507e9760564ef}
+
+
+funkce vracÌ hodnoty cen seznamu 
+
+\index{funkce.inc.php@{funkce.inc.php}!pocet_seznamu_v_archivu@{pocet\_\-seznamu\_\-v\_\-archivu}}
+\index{pocet_seznamu_v_archivu@{pocet\_\-seznamu\_\-v\_\-archivu}!funkce.inc.php@{funkce.inc.php}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}pocet\_\-seznamu\_\-v\_\-archivu (\$ {\em zakid}, \$ {\em link})}\label{funkce_8inc_8php_af73e1ee4b56b6403ffdf86f9b7ab5e1}
+
+
+\begin{Desc}
+\item[N√°vratov√° hodnota:]VracÌ poËet zak·zek v archivu. \end{Desc}
+
+
+\index{funkce.inc.php@{funkce.inc.php}!pocet_zakazniku_v_archivu@{pocet\_\-zakazniku\_\-v\_\-archivu}}
+\index{pocet_zakazniku_v_archivu@{pocet\_\-zakazniku\_\-v\_\-archivu}!funkce.inc.php@{funkce.inc.php}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}pocet\_\-zakazniku\_\-v\_\-archivu (\$ {\em link})}\label{funkce_8inc_8php_56c2f58484d5123e3656f6b0c977d83f}
+
+
+\index{funkce.inc.php@{funkce.inc.php}!psswd_form@{psswd\_\-form}}
+\index{psswd_form@{psswd\_\-form}!funkce.inc.php@{funkce.inc.php}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}psswd\_\-form (\$ {\em label}, \$ {\em name}, \$ {\em value}, \$ {\em size} = {\tt null})}\label{funkce_8inc_8php_46fa84546636a1c980319d98e499f710}
+
+
+\index{funkce.inc.php@{funkce.inc.php}!ref_ok@{ref\_\-ok}}
+\index{ref_ok@{ref\_\-ok}!funkce.inc.php@{funkce.inc.php}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}ref\_\-ok (\$ {\em name}, \$ {\em ok}, \$ {\em storno}, \$ {\em text} = {\tt null}, \$ {\em title} = {\tt null}, \$ {\em class} = {\tt null})}\label{funkce_8inc_8php_5372c980123b24a55bd1f870ce785d03}
+
+
+\index{funkce.inc.php@{funkce.inc.php}!setCeny@{setCeny}}
+\index{setCeny@{setCeny}!funkce.inc.php@{funkce.inc.php}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}setCeny (\$ {\em ceny}, \$ {\em link})}\label{funkce_8inc_8php_11f1a5c91d5a5cfc22692240fe2b32c3}
+
+
+Funkce nastavÌ ceny v obecenÈm cenÌku Ceny smrku a borovice jsou nastveny z \char`\"{}Cena\_\-1\char`\"{}, kter· p¯edstavuje mÏkkÈ a ceny dubu a buku jsou z \char`\"{}Cena\_\-4\char`\"{}, kter· p¯edstavuje tvrdÈ d¯ÌvÌ. \index{funkce.inc.php@{funkce.inc.php}!seznam_mereni@{seznam\_\-mereni}}
+\index{seznam_mereni@{seznam\_\-mereni}!funkce.inc.php@{funkce.inc.php}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}seznam\_\-mereni (\$ {\em idseznam}, \$ {\em link}, \$ {\em serad} = {\tt false})}\label{funkce_8inc_8php_61c43017297d7b8a74b3d60a5d257a04}
+
+
+\index{funkce.inc.php@{funkce.inc.php}!seznamChZakaznik@{seznamChZakaznik}}
+\index{seznamChZakaznik@{seznamChZakaznik}!funkce.inc.php@{funkce.inc.php}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}seznamChZakaznik (\$ {\em seznam}, \$ {\em zakaznik}, \$ {\em link})}\label{funkce_8inc_8php_33c3c19976d310aa3ad2dbaca70a7c5c}
+
+
+\index{funkce.inc.php@{funkce.inc.php}!seznamInArchiv@{seznamInArchiv}}
+\index{seznamInArchiv@{seznamInArchiv}!funkce.inc.php@{funkce.inc.php}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}seznamInArchiv (\$ {\em id}, \$ {\em link})}\label{funkce_8inc_8php_93608f441ad1b351ae2971a39fe48f8a}
+
+
+\index{funkce.inc.php@{funkce.inc.php}!seznamOutArchiv@{seznamOutArchiv}}
+\index{seznamOutArchiv@{seznamOutArchiv}!funkce.inc.php@{funkce.inc.php}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}seznamOutArchiv (\$ {\em id}, \$ {\em link})}\label{funkce_8inc_8php_8b4e27542a1a74d08fdaf558bcc751bf}
+
+
+\index{funkce.inc.php@{funkce.inc.php}!seznamy_zakaznika@{seznamy\_\-zakaznika}}
+\index{seznamy_zakaznika@{seznamy\_\-zakaznika}!funkce.inc.php@{funkce.inc.php}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}seznamy\_\-zakaznika (\$ {\em zakid}, \$ {\em link}, \$ {\em archiv} = {\tt false})}\label{funkce_8inc_8php_1a883586395cc365242afc1710d8f9a5}
+
+
+Funkce vracÌ pole, kterÈ obsahuje seznamy z·kaznÌka. 
+
+\index{funkce.inc.php@{funkce.inc.php}!sql_datum@{sql\_\-datum}}
+\index{sql_datum@{sql\_\-datum}!funkce.inc.php@{funkce.inc.php}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}sql\_\-datum (\$ {\em sql\_\-date}, \$ {\em day} = {\tt true})}\label{funkce_8inc_8php_810cfda5670361c1e7d15d555240936b}
+
+
+\index{funkce.inc.php@{funkce.inc.php}!submit@{submit}}
+\index{submit@{submit}!funkce.inc.php@{funkce.inc.php}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}submit (\$ {\em value}, \$ {\em name} = {\tt \char`\"{}submit\char`\"{}}, \$ {\em size} = {\tt null})}\label{funkce_8inc_8php_7e83e37c0b1bd0238774b081b4b0d8f4}
+
+
+\index{funkce.inc.php@{funkce.inc.php}!submit_form@{submit\_\-form}}
+\index{submit_form@{submit\_\-form}!funkce.inc.php@{funkce.inc.php}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}submit\_\-form (\$ {\em value}, \$ {\em name} = {\tt \char`\"{}submit\char`\"{}}, \$ {\em size} = {\tt null})}\label{funkce_8inc_8php_d5dfc816331807481703e2ffc02e24a3}
+
+
+\index{funkce.inc.php@{funkce.inc.php}!update_ceny@{update\_\-ceny}}
+\index{update_ceny@{update\_\-ceny}!funkce.inc.php@{funkce.inc.php}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}update\_\-ceny (\$ {\em id}, \$ {\em ceny}, \$ {\em link})}\label{funkce_8inc_8php_9c80c7150e4f71a0a7f1f5bb0042cbe4}
+
+
+Funkce obnovÌ ceny v urËitÈm seznamu. Ceny jsou jen dvÏ za tvrdÈ a mÏkkÈ d¯ÌvÌ. V p¯edchozÌ implementaci vöak byly ceny za kaûd˝ druh d¯eva zvl·öù. Funkce byla jen poupravena a v datab·zi jsou st·le informace o cen·ch u kaûdÈho druhu zvl·öù. Jen se berou z jednoho okÈnka formul·¯e. \index{funkce.inc.php@{funkce.inc.php}!update_mereni@{update\_\-mereni}}
+\index{update_mereni@{update\_\-mereni}!funkce.inc.php@{funkce.inc.php}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}update\_\-mereni (\$ {\em zaznamy}, \$ {\em link})}\label{funkce_8inc_8php_1f3cfd97fc4dca952f5025034e03b943}
+
+
+\index{funkce.inc.php@{funkce.inc.php}!user_name@{user\_\-name}}
+\index{user_name@{user\_\-name}!funkce.inc.php@{funkce.inc.php}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}user\_\-name (\$ {\em id}, \$ {\em link})}\label{funkce_8inc_8php_00c3efa382639daea34a57a2f1af87b2}
+
+
+\index{funkce.inc.php@{funkce.inc.php}!users@{users}}
+\index{users@{users}!funkce.inc.php@{funkce.inc.php}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}users (\$ {\em link})}\label{funkce_8inc_8php_d5ed0360143822d5138417bca765ebf4}
+
+
+\index{funkce.inc.php@{funkce.inc.php}!volnaMereni@{volnaMereni}}
+\index{volnaMereni@{volnaMereni}!funkce.inc.php@{funkce.inc.php}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}volnaMereni (\$ {\em link})}\label{funkce_8inc_8php_9958389b0720f5440aa8be18baee21b5}
+
+
+\index{funkce.inc.php@{funkce.inc.php}!vsechnaMereni@{vsechnaMereni}}
+\index{vsechnaMereni@{vsechnaMereni}!funkce.inc.php@{funkce.inc.php}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}vsechnaMereni (\$ {\em link})}\label{funkce_8inc_8php_147955a47a84bbfa136613e335b687d7}
+
+
+\index{funkce.inc.php@{funkce.inc.php}!zakaznici@{zakaznici}}
+\index{zakaznici@{zakaznici}!funkce.inc.php@{funkce.inc.php}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}zakaznici (\$ {\em link}, \$ {\em archiv} = {\tt false})}\label{funkce_8inc_8php_5e5c687275b851ced35c7a7851b893cf}
+
+
+\index{funkce.inc.php@{funkce.inc.php}!zakaznik@{zakaznik}}
+\index{zakaznik@{zakaznik}!funkce.inc.php@{funkce.inc.php}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}zakaznik (\$ {\em id}, \$ {\em link})}\label{funkce_8inc_8php_f1005dcaac786ff570b4ed0ff4e0afe2}
+
+
+\index{funkce.inc.php@{funkce.inc.php}!zakaznikInArchiv@{zakaznikInArchiv}}
+\index{zakaznikInArchiv@{zakaznikInArchiv}!funkce.inc.php@{funkce.inc.php}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}zakaznikInArchiv (\$ {\em id}, \$ {\em link})}\label{funkce_8inc_8php_873b3af515ffcfd8bda0f65b0e2f0db5}
+
+
+\index{funkce.inc.php@{funkce.inc.php}!zakaznikOutArchiv@{zakaznikOutArchiv}}
+\index{zakaznikOutArchiv@{zakaznikOutArchiv}!funkce.inc.php@{funkce.inc.php}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}zakaznikOutArchiv (\$ {\em id}, \$ {\em link})}\label{funkce_8inc_8php_168c18d8e1d871e499e93964b1555c6f}
+
+
+\index{funkce.inc.php@{funkce.inc.php}!zarad_mereni_do_seznamu@{zarad\_\-mereni\_\-do\_\-seznamu}}
+\index{zarad_mereni_do_seznamu@{zarad\_\-mereni\_\-do\_\-seznamu}!funkce.inc.php@{funkce.inc.php}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}zarad\_\-mereni\_\-do\_\-seznamu (\$ {\em id\_\-seznam}, \$ {\em id\_\-zak\_\-mer}, \$ {\em link})}\label{funkce_8inc_8php_2dc19c267b5fb7db4e4e624b707de1c3}
+
+
+Funkce za¯adÌ mÏ¯enÌ do seznamu. 

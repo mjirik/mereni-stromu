@@ -1,20 +1,20 @@
 /*
- * $Id: error.c 117 2007-09-18 21:53:25Z Mira $
+ * $Id: error.c 148 2009-10-25 13:54:05Z mjirik $
  *
- * Modul poskytuje funkci, která vypíše na obrazovku errorù pøíslušnou chybu.
+ * Modul poskytuje funkci, kterÃ¡ vypÃ­Å¡e na obrazovku errorÅ¯ pÅ™Ã­sluÅ¡nou chybu.
  * 
  */
 /**
  * @file error.c
  * @brief
- * Modul spravuje vıpisy chybovıch hlášek. Chybové hlášky jsou uloeny
- * v programové pamìti. V pøípadì potøeby jsou naèteny do SRAM a vypsány
+ * Modul spravuje vÃ½pisy chybovÃ½ch hlÃ¡Å¡ek. ChybovÃ© hlÃ¡Å¡ky jsou uloÅ¾eny
+ * v programovÃ© pamÄ›ti. V pÅ™Ã­padÄ› potÅ™eby jsou naÄteny do SRAM a vypsÃ¡ny
  * na LCD.
  *
- * Od indexu 150 jsou errory s dynamickım øetìzcem.
+ * Od indexu 150 jsou errory s dynamickÃ½m Å™etÄ›zcem.
  * 
- * Kromì chyb jsou prostøednictvím prostøedkù tohoto modulu pøedávány obsluze i
- * ryze "nechybové" zprávy. Jsou uloeny od indexu 200.
+ * KromÄ› chyb jsou prostÅ™ednictvÃ­m prostÅ™edkÅ¯ tohoto modulu pÅ™edÃ¡vÃ¡ny obsluze i
+ * ryze "nechybovÃ©" zprÃ¡vy. Jsou uloÅ¾eny od indexu 200.
  */
 
 #include <inttypes.h>
@@ -25,19 +25,24 @@
 #include <string.h>
 #include "error.h"
 #include "lcd.h"
-#include "gui.h"
+//#include "gui.h"
 #include "main.h"
 #include "keyboard.h"
-#include "keyfcn.h"
-#include "msr_scr.h"
-#include "measure.h"
-#include "data_serial.h"
+//#include "keyfcn.h"
+//#include "msr_scr.h"
+//#include "measure.h"
+//#include "data_serial.h"
+#include "memory.h"
+#include "usart.h"
+#include "common/msgn.h"
+#include "common/errn.h"
+#include "sysinfo.h"
 
 #define ERR_TIME 300
 
-/// @name Chybové vıpisy
-/// Jsou uloeny v programové pamìti. Je to kvùli úspoøe
-/// pamìti SRAM.
+/// @name ChybovÃ© vÃ½pisy
+/// Jsou uloÅ¾eny v programovÃ© pamÄ›ti. Je to kvÅ¯li ÃºspoÅ™e
+/// pamÄ›ti SRAM.
 /// @{
 static char err1[] PROGMEM = "Error 1: Doslo k chybe v kontrolnim\nsouctu pri prijmu zpravy na katru. \nNemusi to znamenat zadne potize.";
 static char err4[] PROGMEM = "Error 4: Chyba IRC\nRychle otoceni IRC na katru";
@@ -62,49 +67,64 @@ static char err93[] PROGMEM = "Error 93: \nV dusledku odjezdu voziku od katru, \
 static char err94[] PROGMEM = "Error 94: \nJe nutne nejdrive zadat jmeno zakaznika.";
 static char err95[] PROGMEM = "Error 95: Zakaznika nelze odstranit. \nBylo pro nej jiz namereno nekolik kmenu.\nPred odstranenim je nutne tato mereni\nsmazat.";
 static char err96[] PROGMEM = "Error 96: \nDoslo k preplneni odesilaciho bufferu \nserioveho kanalu na katru. Nemusi to \nznamenat zadne potize.";
-//error 97 - kritická chyba - reset - implementováno ve watchdog.c
-/// error 98 - vıpadek napájení - reset - implementováno v main.c
+//error 97 - kritickÃ¡ chyba - reset - implementovÃ¡no ve watchdog.c
+/// error 98 - vÃ½padek napÃ¡jenÃ­ - reset - implementovÃ¡no v main.c
 static char err99[] PROGMEM = "Error 99: \nPokus o mereni prilis kratkeho kmenu.\nNejkratsi meritelny kmen je 2m.";
 static char err100[] PROGMEM = "Error 100: \nNespravne zadane cislo.";
 static char err101[] PROGMEM = "Error 101: Pamet zaznamu zaplnena.\nNelze ukladat dalsi zaznamy. Odeslete\ndata na server.";
 static char err102[] PROGMEM = "Error 102: \nChyba pri komunikaci se serverem.";
+// 103 pÅ™etÃ­Å¾enÃ­ reciveru
 
-//error 150 - dynamické errory
+//error 150 - dynamickÃ© errory
 static char err200[] PROGMEM = "\n             Data odeslana.";
 static char err201[] PROGMEM = "\nPamet zaznamu temer zaplnena.\nZbyva misto na mene nez 10 zaznamu.";
 /// @}
 
-int8_t prev_scr = 0;
-uint8_t last_err = 255;
-char * err_str = NULL;
-char new_err = 0; ///<- promìnná indikuje, zda má bıt pøi pøíštím volání err_control() vyhlášen chybovı stav.
+//static int8_t prev_scr = 0;
+static uint8_t last_err = 255;
+static char * err_str = NULL;
+static char new_err = 0; ///<- promÄ›nnÃ¡ indikuje, zda mÃ¡ bÃ½t pÅ™i pÅ™Ã­Å¡tÃ­m volÃ¡nÃ­ err_control() vyhlÃ¡Å¡en chybovÃ½ stav.
 
 
 char * error_text(uint8_t err_num);
 void print_err(void);
 
 /**
- * Funkce, která zajišuje asynchroní vypisování errorù. Døíve toti mohlo dojít k
- * pøerušení bìhu programu uprostøed vykonávání nìkteré funkce a to vedlo k potíím s
- * korektním navracením systémovıch prostøedkù.
+ * Funkce, kterÃ¡ zajiÅ¡Å¥uje asynchronÃ­ vypisovÃ¡nÃ­ errorÅ¯. DÅ™Ã­ve totiÅ¾ mohlo dojÃ­t k
+ * pÅ™eruÅ¡enÃ­ bÄ›hu programu uprostÅ™ed vykonÃ¡vÃ¡nÃ­ nÄ›kterÃ© funkce a to vedlo k potÃ­Å¾Ã­m s
+ * korektnÃ­m navracenÃ­m systÃ©movÃ½ch prostÅ™edkÅ¯.
  */
 void err_control(void){
+  /*
   if (new_err == 1){
     scr_ch(ERR_SCR);
     new_err = 0;
-  }
+  }*/
 }
 
 void err_scr_open(void){
-   prev_scr = akt_scr;
+//   prev_scr = akt_scr;
 }
 
-/// Funkce vytváøí novou chybu. Dojde k pøepnutí na
-/// "error screen" a k vıpisu textu popisujícího tuto chybu.
-/// @param err_num Identifikuje èíslem chybovou hlášku.
+/// Funkce vytvÃ¡Å™Ã­ novou chybu. Dojde k pÅ™epnutÃ­ na
+/// "error screen" a k vÃ½pisu textu popisujÃ­cÃ­ho tuto chybu.
+/// @param err_num Identifikuje ÄÃ­slem chybovou hlÃ¡Å¡ku.
 void new_error(uint8_t err_num){
+  char * msg;
+
   last_err = err_num;
   new_err = 1;
+  
+  si_print_error(err_num);
+
+
+
+    msg =(void*) mmalloc (DATASIZE);
+    msg[0] = MSGN_ERR;
+    msg[1] = err_num;
+    new_msg(msg);
+
+
   //prev_scr = akt_scr;
   //scr_ch(ERR_SCR);
  
@@ -112,13 +132,13 @@ void new_error(uint8_t err_num){
 
 
 /**
- * Funkce vytvoøí novı error. Jeho text je zadán v parametru s.
+ * Funkce vytvoÅ™Ã­ novÃ½ error. Jeho text je zadÃ¡n v parametru s.
  */
 void new_str_error(uint8_t err_num, char * s){
   assert(err_num >= 150);
   last_err = err_num;
   err_str = s;
-  scr_ch(ERR_SCR);
+  //scr_ch(ERR_SCR);
 
 }
 
@@ -144,7 +164,7 @@ void print_err(void){
     case 11:
       printxyd_P(0,0,(void *)err11);
       break;
-    case 80: // lcd.c chyba LCD - pøekroèení rozsahu displeje po odøádkování
+    case 80: // lcd.c chyba LCD - pÅ™ekroÄenÃ­ rozsahu displeje po odÅ™Ã¡dkovÃ¡nÃ­
       printxyd_P(0,0,(void *)err80);
       break;
     case 81: // lcd.c
@@ -220,15 +240,15 @@ void print_err(void){
 
 
 void error_scr_draw(void){
-  if (prev_scr == ERR_SCR){
+  /*if (prev_scr == ERR_SCR){
     prev_scr = MSR_SCR;
-  }
+  }*/
 
   clear_dscreen();
   //akt_scr = ERR_SCR;
   if ((last_err >= 150)&&(last_err < 200)){
     printxyd(0,0,err_str);
-    free((void*)err_str);
+    mfree((void*)err_str);
     err_str = NULL;
   }
   else{
@@ -237,7 +257,7 @@ void error_scr_draw(void){
 }
 
 void error_scr_control(void){
-  char c;
+//  char c;
   //static uint32_t pocitadlo_1 = 0;
 
   /*
@@ -247,7 +267,7 @@ void error_scr_control(void){
     scr_ch(prev_scr);
   }
   */
-
+/*
   if ((c = get_spec()) != 0){
     switch (c){
     case 4: //Enter
@@ -255,24 +275,25 @@ void error_scr_control(void){
       scr_ch(prev_scr);
       //measure_scr_draw();
       break;
-    case 21: // F11 - Strorno mìøení
+    case 21: // F11 - Strorno mÄ›Å™enÃ­
       kf_zrusit();
       break;
     case 22: //F12
-      // Odeslání dat.
+      // OdeslÃ¡nÃ­ dat.
       send_data();
       break;
     default:
       break;
     }
   }
+  */
 }
 
 
 /**
- * Funkce je volána v pøípadì e makro assert() nalezlo nìjakou chybu.
- * Funkce vyvtoøí øeìzec, v nìm¡ je popsáno jméno funkce, jméno
- * souboru a øádek, z nìho je makro spouštìno.
+ * Funkce je volÃ¡na v pÅ™Ã­padÄ› Å¾e makro assert() nalezlo nÄ›jakou chybu.
+ * Funkce vyvtoÅ™Ã­ Å™eÅ¥Ä›zec, v nÄ›mË‡Å¾ je popsÃ¡no jmÃ©no funkce, jmÃ©no
+ * souboru a Å™Ã¡dek, z nÄ›hoÅ¾ je makro spouÅ¡tÄ›no.
  */
 void err_assert(char * soubor, int radek){
   char * str = (char *)mmalloc(strlen(soubor) + 20 + 4 + 3);

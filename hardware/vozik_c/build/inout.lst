@@ -1,0 +1,120 @@
+   1               		.file	"inout.c"
+   2               	__SREG__ = 0x3f
+   3               	__SP_H__ = 0x3e
+   4               	__SP_L__ = 0x3d
+   5               	__CCP__  = 0x34
+   6               	__tmp_reg__ = 0
+   7               	__zero_reg__ = 1
+  15               	.Ltext0:
+  16               	.global	inout_init
+  18               	inout_init:
+  19               	.LFB2:
+  20               	.LM1:
+  21               	/* prologue: function */
+  22               	/* frame size = 0 */
+  23               	/* epilogue start */
+  24               	.LM2:
+  25 0000 0895      		ret
+  26               	.LFE2:
+  28               	.global	io_msr_led_on
+  30               	io_msr_led_on:
+  31               	.LFB3:
+  32               	.LM3:
+  33               	/* prologue: function */
+  34               	/* frame size = 0 */
+  35               	.LM4:
+  36 0002 C79A      		sbi 56-32,7
+  37               	/* epilogue start */
+  38               	.LM5:
+  39 0004 0895      		ret
+  40               	.LFE3:
+  42               	.global	io_msr_led_off
+  44               	io_msr_led_off:
+  45               	.LFB4:
+  46               	.LM6:
+  47               	/* prologue: function */
+  48               	/* frame size = 0 */
+  49               	.LM7:
+  50 0006 C798      		cbi 56-32,7
+  51               	/* epilogue start */
+  52               	.LM8:
+  53 0008 0895      		ret
+  54               	.LFE4:
+  56               	.global	io_irc2_options
+  58               	io_irc2_options:
+  59               	.LFB6:
+  60               	.LM9:
+  61               	.LVL0:
+  62 000a EF92      		push r14
+  63 000c FF92      		push r15
+  64 000e 0F93      		push r16
+  65 0010 1F93      		push r17
+  66               	/* prologue: function */
+  67               	/* frame size = 0 */
+  68 0012 7A01      		movw r14,r20
+  69 0014 8B01      		movw r16,r22
+  70               	.LM10:
+  71 0016 0E94 0000 		call set_irc2_k_mm
+  72               	.LVL1:
+  73               	.LM11:
+  74 001a C801      		movw r24,r16
+  75 001c B701      		movw r22,r14
+  76 001e 0E94 0000 		call set_irc2_set_on_value_mm
+  77               	/* epilogue start */
+  78               	.LM12:
+  79 0022 1F91      		pop r17
+  80 0024 0F91      		pop r16
+  81 0026 FF90      		pop r15
+  82 0028 EF90      		pop r14
+  83               	.LVL2:
+  84 002a 0895      		ret
+  85               	.LFE6:
+  87               	.global	io_irc1_options
+  89               	io_irc1_options:
+  90               	.LFB5:
+  91               	.LM13:
+  92               	.LVL3:
+  93 002c EF92      		push r14
+  94 002e FF92      		push r15
+  95 0030 0F93      		push r16
+  96 0032 1F93      		push r17
+  97               	/* prologue: function */
+  98               	/* frame size = 0 */
+  99 0034 7A01      		movw r14,r20
+ 100 0036 8B01      		movw r16,r22
+ 101               	.LM14:
+ 102 0038 0E94 0000 		call set_irc1_k_mm
+ 103               	.LVL4:
+ 104               	.LM15:
+ 105 003c C801      		movw r24,r16
+ 106 003e B701      		movw r22,r14
+ 107 0040 0E94 0000 		call set_irc1_set_on_value_mm
+ 108               	/* epilogue start */
+ 109               	.LM16:
+ 110 0044 1F91      		pop r17
+ 111 0046 0F91      		pop r16
+ 112 0048 FF90      		pop r15
+ 113 004a EF90      		pop r14
+ 114               	.LVL5:
+ 115 004c 0895      		ret
+ 116               	.LFE5:
+ 174               	.Letext0:
+DEFINED SYMBOLS
+                            *ABS*:00000000 inout.c
+C:/Users/mjirik/AppData/Local/Temp/ccG2s9m1.s:2      *ABS*:0000003f __SREG__
+C:/Users/mjirik/AppData/Local/Temp/ccG2s9m1.s:3      *ABS*:0000003e __SP_H__
+C:/Users/mjirik/AppData/Local/Temp/ccG2s9m1.s:4      *ABS*:0000003d __SP_L__
+C:/Users/mjirik/AppData/Local/Temp/ccG2s9m1.s:5      *ABS*:00000034 __CCP__
+C:/Users/mjirik/AppData/Local/Temp/ccG2s9m1.s:6      *ABS*:00000000 __tmp_reg__
+C:/Users/mjirik/AppData/Local/Temp/ccG2s9m1.s:7      *ABS*:00000001 __zero_reg__
+C:/Users/mjirik/AppData/Local/Temp/ccG2s9m1.s:18     .text:00000000 inout_init
+C:/Users/mjirik/AppData/Local/Temp/ccG2s9m1.s:30     .text:00000002 io_msr_led_on
+C:/Users/mjirik/AppData/Local/Temp/ccG2s9m1.s:44     .text:00000006 io_msr_led_off
+C:/Users/mjirik/AppData/Local/Temp/ccG2s9m1.s:58     .text:0000000a io_irc2_options
+C:/Users/mjirik/AppData/Local/Temp/ccG2s9m1.s:89     .text:0000002c io_irc1_options
+
+UNDEFINED SYMBOLS
+set_irc2_k_mm
+set_irc2_set_on_value_mm
+set_irc1_k_mm
+set_irc1_set_on_value_mm

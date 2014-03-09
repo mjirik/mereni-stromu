@@ -1,0 +1,407 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<title>Zařízení na vozíku pro projekt měření objemu stromů: Dokumentace souboru usart.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<!-- Generováno programem Doxygen 1.6.1 -->
+<div class="navigation" id="top">
+  <div class="tabs">
+    <ul>
+      <li><a href="index.html"><span>Hlavní&nbsp;stránka</span></a></li>
+      <li><a href="pages.html"><span>Ostatní&nbsp;stránky</span></a></li>
+      <li><a href="annotated.html"><span>Třídy</span></a></li>
+      <li class="current"><a href="files.html"><span>Soubory</span></a></li>
+    </ul>
+  </div>
+  <div class="tabs">
+    <ul>
+      <li><a href="files.html"><span>Seznam&nbsp;souborů</span></a></li>
+      <li><a href="globals.html"><span>Globální&nbsp;symboly</span></a></li>
+    </ul>
+  </div>
+</div>
+<div class="contents">
+<h1>Dokumentace souboru usart.h</h1><table border="0" cellpadding="0" cellspacing="0">
+<tr><td colspan="2"><h2>Definice maker</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="usart_8h.html#acb383144a04ad304680b840cd65af5a5">DATASIZE</a>&nbsp;&nbsp;&nbsp;10</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="usart_8h.html#a3225b26e3c8329d83e786c441799c2d2">LenOfMsg</a>&nbsp;&nbsp;&nbsp;DATASIZE + 1</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="usart_8h.html#a917d375e0dd558c0164221a1a0a75a97">LenOfRecvBuff</a>&nbsp;&nbsp;&nbsp;2 + DATASIZE + 1 + (DATASIZE / 2)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="usart_8h.html#ad24ac1262ed4066d12091ee2d4b640ca">LenOfTransBuff</a>&nbsp;&nbsp;&nbsp;2 + DATASIZE + 1 + (DATASIZE / 2)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="usart_8h.html#ae86b88ffc9a31c1fea5b564c0aadbadb">LCD_NBYTES</a>&nbsp;&nbsp;&nbsp;10</td></tr>
+<tr><td colspan="2"><h2>Funkce</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="usart_8h.html#ac6ebeb4ed2c70b120906228519a9c246">USART_Init</a> (unsigned int baud)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="usart_8h.html#af7f7e8050594c5346c22172e19d3c193">new_msg</a> (char *)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="usart_8h.html#aece32bc3ab3397ea8202203edf547eb2">new_ack_msg</a> (char *msg, unsigned char repeats, void(*p_fcn)(char *s), void(*p_fcn_nresponse)(void))</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="usart_8h.html#a2c55776d951e70bb73e5b15621e30361">msg_ack_fcn</a> (char *msg)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="usart_8h.html#aeeeece096429d4491b2992685be8f0c6">serial_msg_ack_timer</a> (void)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="usart_8h.html#a2da7b3916466fa7fbf44b68406ee9b76">new_msg_P</a> (PGM_P s_p)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">char&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="usart_8h.html#a5ac8e318d028590a813919560a120742">usart_get_recv_buff</a> (int i)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Funkce vrací příslušný znak z přijímacího bufferu sériového kanálu.  <a href="#a5ac8e318d028590a813919560a120742"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="usart_8h.html#aae4c07a844ed5fbcb7284bc9cd8b2831">send_uint16</a> (char msgn, uint16_t number1, uint16_t number2)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="usart_8h.html#a0405ce6027c0b29fe71ec8a995df096f">msg_time_0</a> (void)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Funkce nuluje počítadlo.  <a href="#a0405ce6027c0b29fe71ec8a995df096f"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="usart_8h.html#a170941d619f0e1bbf13ec95111cecb19">msg_time_pp</a> (void)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">funkce inkrementuje počítadlo od poslední doručené zprávy  <a href="#a170941d619f0e1bbf13ec95111cecb19"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">uint32_t&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="usart_8h.html#ac615ce8c07d61bbd036d865021d0535b">get_msg_time</a> (void)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">funkce vrací hodnotu počítadla  <a href="#ac615ce8c07d61bbd036d865021d0535b"></a><br/></td></tr>
+<tr><td colspan="2"><h2>Proměnné</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">uint32_t&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="usart_8h.html#a35cefd336a24746f2d8203c9fabf54c6">msg_time</a></td></tr>
+</table>
+<hr/><h2>Dokumentace k definicím maker</h2>
+<a class="anchor" id="acb383144a04ad304680b840cd65af5a5"></a><!-- doxytag: member="usart.h::DATASIZE" ref="acb383144a04ad304680b840cd65af5a5" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DATASIZE&nbsp;&nbsp;&nbsp;10</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Velikost dat - sta�� zm�nit zde </p>
+
+</div>
+</div>
+<a class="anchor" id="ae86b88ffc9a31c1fea5b564c0aadbadb"></a><!-- doxytag: member="usart.h::LCD_NBYTES" ref="ae86b88ffc9a31c1fea5b564c0aadbadb" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define LCD_NBYTES&nbsp;&nbsp;&nbsp;10</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>počet bytů LCD odesílaných po sériové lince. Musí být menší nebo roven DATASIZE </p>
+
+</div>
+</div>
+<a class="anchor" id="a3225b26e3c8329d83e786c441799c2d2"></a><!-- doxytag: member="usart.h::LenOfMsg" ref="a3225b26e3c8329d83e786c441799c2d2" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define LenOfMsg&nbsp;&nbsp;&nbsp;DATASIZE + 1</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Délka zprávy </p>
+
+</div>
+</div>
+<a class="anchor" id="a917d375e0dd558c0164221a1a0a75a97"></a><!-- doxytag: member="usart.h::LenOfRecvBuff" ref="a917d375e0dd558c0164221a1a0a75a97" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define LenOfRecvBuff&nbsp;&nbsp;&nbsp;2 + DATASIZE + 1 + (DATASIZE / 2)</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Délka přijímacího bufferu </p>
+
+</div>
+</div>
+<a class="anchor" id="ad24ac1262ed4066d12091ee2d4b640ca"></a><!-- doxytag: member="usart.h::LenOfTransBuff" ref="ad24ac1262ed4066d12091ee2d4b640ca" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define LenOfTransBuff&nbsp;&nbsp;&nbsp;2 + DATASIZE + 1 + (DATASIZE / 2)</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Délka bufferu pro odeslání </p>
+
+</div>
+</div>
+<hr/><h2>Dokumentace funkcí</h2>
+<a class="anchor" id="ac615ce8c07d61bbd036d865021d0535b"></a><!-- doxytag: member="usart.h::get_msg_time" ref="ac615ce8c07d61bbd036d865021d0535b" args="(void)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t get_msg_time </td>
+          <td>(</td>
+          <td class="paramtype">void&nbsp;</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>funkce vrací hodnotu počítadla </p>
+
+</div>
+</div>
+<a class="anchor" id="a2c55776d951e70bb73e5b15621e30361"></a><!-- doxytag: member="usart.h::msg_ack_fcn" ref="a2c55776d951e70bb73e5b15621e30361" args="(char *msg)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void msg_ack_fcn </td>
+          <td>(</td>
+          <td class="paramtype">char *&nbsp;</td>
+          <td class="paramname"> <em>msg</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Funkce je volána při příjmu potvrzovací zprávy. Zavolá funkci, která má být volána po potvrzení. </p>
+
+</div>
+</div>
+<a class="anchor" id="a0405ce6027c0b29fe71ec8a995df096f"></a><!-- doxytag: member="usart.h::msg_time_0" ref="a0405ce6027c0b29fe71ec8a995df096f" args="(void)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void msg_time_0 </td>
+          <td>(</td>
+          <td class="paramtype">void&nbsp;</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Funkce nuluje počítadlo. </p>
+
+</div>
+</div>
+<a class="anchor" id="a170941d619f0e1bbf13ec95111cecb19"></a><!-- doxytag: member="usart.h::msg_time_pp" ref="a170941d619f0e1bbf13ec95111cecb19" args="(void)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void msg_time_pp </td>
+          <td>(</td>
+          <td class="paramtype">void&nbsp;</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>funkce inkrementuje počítadlo od poslední doručené zprávy </p>
+
+</div>
+</div>
+<a class="anchor" id="aece32bc3ab3397ea8202203edf547eb2"></a><!-- doxytag: member="usart.h::new_ack_msg" ref="aece32bc3ab3397ea8202203edf547eb2" args="(char *msg, unsigned char repeats, void(*p_fcn)(char *s), void(*p_fcn_nresponse)(void))" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void new_ack_msg </td>
+          <td>(</td>
+          <td class="paramtype">char *&nbsp;</td>
+          <td class="paramname"> <em>msg</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned char&nbsp;</td>
+          <td class="paramname"> <em>repeats</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void(*)(char *s)&nbsp;</td>
+          <td class="paramname"> <em>p_fcn</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void(*)(void)&nbsp;</td>
+          <td class="paramname"> <em>p_fcn_nresponse</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Funkce odešlě zprávu, na kterou je očekávána odpověď. V okamžiku, kdy odpověď přijde, bude zavolána funkce v argumentu (fcn).</p>
+<dl><dt><b>Parametry:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>msg</em>&nbsp;</td><td>Parametr je ukazatelem na žeťezec, který bude tvořit zprávu. Na tuto zprávu bude očekávána odpověď.</td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>repeats</em>&nbsp;</td><td>Parametr určuje počet pokusů o odeslání zprávy.</td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>p_fcn</em>&nbsp;</td><td>Ukazatel na funkci, která je spouštěna při odpovědi na na zprávu. Nesmí být NULL, pak by nefungoval časovač, který toto testuje.</td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>p_fcn_nresponse</em>&nbsp;</td><td>Ukazatel na funkci, která bude volána v případě neúpěšného čekání na odpověď.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="bug"><dt><b><a class="el" href="bug.html#_bug000001">Chyba:</a></b></dt><dd>Podezření na chyby v uvolňování paměti. Při opakovaném odeslání asi dochází k uvolnění paměti po řetězci msg, při dalším odesílání se však odesílají data opět z ukazatele msg, která jsou však již uvolněná.</dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="af7f7e8050594c5346c22172e19d3c193"></a><!-- doxytag: member="usart.h::new_msg" ref="af7f7e8050594c5346c22172e19d3c193" args="(char *)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void new_msg </td>
+          <td>(</td>
+          <td class="paramtype">char *&nbsp;</td>
+          <td class="paramname"> <em>msg</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Vstupem do teto funkce je ukazatel na zpravu pokud se ukazatel uz v seznamu nenachazi, tak je zarazen na konec seznamu. Prostor musí být správně naalokovaný. Po odeslání zprávy je paměť uvolněna. </p>
+
+</div>
+</div>
+<a class="anchor" id="a2da7b3916466fa7fbf44b68406ee9b76"></a><!-- doxytag: member="usart.h::new_msg_P" ref="a2da7b3916466fa7fbf44b68406ee9b76" args="(PGM_P s_p)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void new_msg_P </td>
+          <td>(</td>
+          <td class="paramtype">PGM_P&nbsp;</td>
+          <td class="paramname"> <em>s_p</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Funkce slouží k odesílání zpráv, které jsou uloženy v paměti programu. Funkce naalokuje paměť pro uložení řetězce do SRAM, řetězec tam zkopíruje a zprávu odešle </p>
+<dl><dt><b>Parametry:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>s_p</em>&nbsp;</td><td>Ukazatel do programové paměti. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Návratová hodnota:</b></dt><dd>Ukazatel v paměti SRAM, kam je zkopírován řetězec z <em>s_p</em> </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="aae4c07a844ed5fbcb7284bc9cd8b2831"></a><!-- doxytag: member="usart.h::send_uint16" ref="aae4c07a844ed5fbcb7284bc9cd8b2831" args="(char msgn, uint16_t number1, uint16_t number2)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void send_uint16 </td>
+          <td>(</td>
+          <td class="paramtype">char&nbsp;</td>
+          <td class="paramname"> <em>msgn</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint16_t&nbsp;</td>
+          <td class="paramname"> <em>number1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint16_t&nbsp;</td>
+          <td class="paramname"> <em>number2</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Funkce odešle jedno až dvě čísla uint16 po sériové lince </p>
+
+</div>
+</div>
+<a class="anchor" id="aeeeece096429d4491b2992685be8f0c6"></a><!-- doxytag: member="usart.h::serial_msg_ack_timer" ref="aeeeece096429d4491b2992685be8f0c6" args="(void)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void serial_msg_ack_timer </td>
+          <td>(</td>
+          <td class="paramtype">void&nbsp;</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Zde je išetřeno čekání na potvrzovanou zprávu. Funkce zobsluhuje čítač doby čekání na odezvu zprávy a čítač počtu pokusů o odeslání. Na odpověď na každou potvrzovanou zprávu se čeká MAX_MSG_ACK_DELAY cyklů. Po uplynutí této doby je zpráva zopakována. Po MAX_MSG_ACK_REPEATS - tém opakování je vytvořen error. </p>
+
+</div>
+</div>
+<a class="anchor" id="a5ac8e318d028590a813919560a120742"></a><!-- doxytag: member="usart.h::usart_get_recv_buff" ref="a5ac8e318d028590a813919560a120742" args="(int i)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char usart_get_recv_buff </td>
+          <td>(</td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>i</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Funkce vrací příslušný znak z přijímacího bufferu sériového kanálu. </p>
+
+</div>
+</div>
+<a class="anchor" id="ac6ebeb4ed2c70b120906228519a9c246"></a><!-- doxytag: member="usart.h::USART_Init" ref="ac6ebeb4ed2c70b120906228519a9c246" args="(unsigned int baud)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void USART_Init </td>
+          <td>(</td>
+          <td class="paramtype">unsigned int&nbsp;</td>
+          <td class="paramname"> <em>baud</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Inicializace usartu </p>
+
+</div>
+</div>
+<hr/><h2>Dokumentace proměnných</h2>
+<a class="anchor" id="a35cefd336a24746f2d8203c9fabf54c6"></a><!-- doxytag: member="usart.h::msg_time" ref="a35cefd336a24746f2d8203c9fabf54c6" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t <a class="el" href="usart_8h.html#a35cefd336a24746f2d8203c9fabf54c6">msg_time</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
+</div>
+<p align=left>Miroslav Jiřík</p>

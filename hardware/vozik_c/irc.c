@@ -1,4 +1,4 @@
-/* $Id: irc.c 71 2007-08-11 22:08:59Z Mira $
+/* $Id: irc.c 149 2009-10-25 17:36:42Z mjirik $
  * 
  * File name: irc.c
  * Date:      2006/01/21 17:27
@@ -8,9 +8,9 @@
 /**
  * @file irc.c
  * @brief
- * Modul irc.c øeøí obsluhu inkrementálího èidla. Veøejná funkce 
- * irc_watch() sleduje vsupy irc a obsluhuje èítaè irc. Vıstupem je
- * seriovı kanál. Po nìm se odesílá hodnota irc pøenásobená konstantou.
+ * Modul irc.c Å™eÅ™Ã­ obsluhu inkrementÃ¡lÃ­ho Äidla. VeÅ™ejnÃ¡ funkce 
+ * irc_watch() sleduje vsupy irc a obsluhuje ÄÃ­taÄ irc. VÃ½stupem je
+ * seriovÃ½ kanÃ¡l. Po nÄ›m se odesÃ­lÃ¡ hodnota irc pÅ™enÃ¡sobenÃ¡ konstantou.
  */
 #include <avr/io.h>
 #include <avr/interrupt.h>
@@ -23,78 +23,164 @@
 #include "irc.h"
 #include "eeprom.h"
 #include "error.h"
+#include "sysinfo.h"
+#include "common\msgn.h"
+#include "memory.h"
+// debug
+#include "lcd.h"
+#include "watchdog.h"
+
+
+//global
+void irc1_watch(void);
+void set_irc1_k_mm(uint16_t);
+uint16_t irc1_get_l(void);
+void set_irc1_set_on_value_mm(int32_t q);
+uint16_t irc1_get_k(void);
+void irc1_init(void);
+
+int32_t get_irc1_set_on_value(void);
+
+void set_irc1_counter (int32_t a);
+int32_t get_irc1_counter(void);
+void set_irc1_k(uint16_t a);
+void set_irc1_set_on_value(int32_t a );
+//global
 
 //#define IrcSetOnValue 10
-#define SizeOfMsg 5
+//#define SizeOfMsg 5
 
+/// Definice pinÅ¯ pro vstup A, B a setpoint
+///{
+
+#define A_PORT PORTD
+#define A_PIN PIND
+#define A_BIT 5
+
+#define B_PORT PORTD
+#define B_PIN PIND
+#define B_BIT 6
+
+#define SP_PORT PORTD
+#define SP_PIN PIND
+#define SP_BIT 7
+
+///}
 
 //deklarace promennych
-unsigned char prev_state; ///< Hodnota kanálù A a B pøi minulém volání funkce irc_watch().
-/// poèítadlo krokù
-int32_t irc_counter = 0;
-/// Hodnota pro nastavení pøi pøejezdu pøes nastavovací snímaè
-int32_t irc_set_on_value = 100;
+static unsigned char prev_state; ///< Hodnota kanÃ¡lÅ¯ A a B pÅ™i minulÃ©m volÃ¡nÃ­ funkce irc_watch().
+/// poÄÃ­tadlo krokÅ¯
+static int32_t irc_counter = 0;
+/// Hodnota pro nastavenÃ­ pÅ™i pÅ™ejezdu pÅ™es nastavovacÃ­ snÃ­maÄ
+static int32_t irc_set_on_value = 100;
 
-/// Poslední operace provedena s irc poèítadlem
-/// 0 - bylo naposled odeèítáno, 1 - pøièítáno
-/// vlastnì to vyjadøuje smìr pohybu
-unsigned char last_oper_with_irc_counter = 0; 
+/// PoslednÃ­ operace provedena s irc poÄÃ­tadlem
+/// 0 - bylo naposled odeÄÃ­tÃ¡no, 1 - pÅ™iÄÃ­tÃ¡no
+/// vlastnÄ› to vyjadÅ™uje smÄ›r pohybu
+static unsigned char last_oper_with_irc_counter = 0;
 
-// Toto je pole pro odesílanou zprávu. Pouívá se pøi odesílání pøes sériovı
-// kanál. Je definované zvenku.
+// Toto je pole pro odesÃ­lanou zprÃ¡vu. PouÅ¾Ã­vÃ¡ se pÅ™i odesÃ­lÃ¡nÃ­ pÅ™es sÃ©riovÃ½
+// kanÃ¡l. Je definovanÃ© zvenku.
 // extern char data_msg[SizeOfMsg];
 
-// Zde je zpráva o rozdílu mezi hodnotou a nastavením.
+// Zde je zprÃ¡va o rozdÃ­lu mezi hodnotou a nastavenÃ­m.
 //char irc_dif_msg[SizeOfMsg];
 
-/// irc_k konstanta, kterou se násobí irc_counter pøed odesláním. Tim se pøevádí
-/// hodnota na pouitelné jednotky.
-uint16_t irc_k = 100;
+/// irc_k konstanta, kterou se nÃ¡sobÃ­ irc_counter pÅ™ed odeslÃ¡nÃ­m. Tim se pÅ™evÃ¡dÃ­
+/// hodnota na pouÅ¾itelnÃ© jednotky.
+static uint16_t irc_k = 100;
 
-uint16_t irc_get_k(void);
+/// Po resetu je promÄ›nnÃ¡ jedna, pÅ™i prvnÃ­m nasetovÃ¡nÃ­ na kontrolnÃ­m bodÄ› se 
+/// nastavÃ­ na nulu. PouÅ¾Ã­vÃ¡ se pro kontrolu nastavenÃ­.
+static uint8_t irc1_wait4set = 1;
 
-/// Vıstup je v setinách milimetru. Je tøeba jej vydìlit 1000 aby byl v cm.
-uint16_t irc_get_l(void);
+
+//uint16_t irc_get_k(void);
+
+/// VÃ½stup je v setinÃ¡ch milimetru. Je tÅ™eba jej vydÄ›lit 1000 aby byl v cm.
+//uint16_t irc_get_l(void);
 
 
 // deklarace funkci
-void irc_watch(void);
-void irc_send_msg(void);
-void set_irc_k(uint16_t i);
-void set_irc_set_on_value(int32_t q);
+//void irc_watch(void);
+//void irc_send_msg(void);
+//void set_irc_k_mm(uint16_t i);
+//void set_irc_set_on_value_mm(int32_t q);
 
+int32_t get_irc1_set_on_value(){
+  return irc_set_on_value;
+}
 
-/// Funkce vypoète a nastaví pøenásobovací konstantu irc
-/// Vstupem je èíslo, které odpodvídá kolik milimetrù je na jednu otáèku.
-void set_irc_k (uint16_t i) {
+//void set_irc_set_on_value(int32_t a){
+//  irc_set_on_value = a;
+//}
 
-  //10000/480 = 125/6, 120 pulzù * 4 hrany  = 480
+void set_irc1_counter (int32_t a){
+  irc_counter = a;
+}
+
+int32_t get_irc1_counter(void){
+  return irc_counter;
+}
+
+void set_irc1_k(uint16_t a){
+  irc_k = a;
+}
+
+/// Funkce vypoÄte a nastavÃ­ pÅ™enÃ¡sobovacÃ­ konstantu irc
+/// Vstupem je ÄÃ­slo, kterÃ© odpodvÃ­dÃ¡ kolik milimetrÅ¯ je na jednu otÃ¡Äku.
+void set_irc1_k_mm (uint16_t i) {
+
+  //10000/480 = 125/6, 120 pulzÅ¯ * 4 hrany  = 480
   // irc_k = (i * 125) / (60); // 125/60 = 25/12 
   irc_k = (i * 25) / (12);
   eeprom_w16((void *)ee_irc_k,irc_k);
 }
 
-uint16_t irc_get_k(void){
+uint16_t irc1_get_k(void){
   return irc_k;
 }
 
-/// Nastavení hodnoty.
-/// Vstupem je vzdálenost nastavovacíhoo bodu od poèátku v centimetrech vynásobená deseti.
+/// NastavenÃ­ hodnoty.
+/// Vstupem je vzdÃ¡lenost nastavovacÃ­hoo bodu od poÄÃ¡tku v centimetrech vynÃ¡sobenÃ¡ deseti.
 /// tj 65 cm je 650
-void set_irc_set_on_value(int32_t q){
-  // je tu jen 1000 místo 10000. Je to protoe ta vstupní hodnota je pøenásobená deseti, tak je
-  // tøeba jí vydìlit
+void set_irc1_set_on_value_mm(int32_t q){
+  // je tu jen 1000 mÃ­sto 10000. Je to protoÅ¾e ta vstupnÃ­ hodnota je pÅ™enÃ¡sobenÃ¡ deseti, tak je
+  // tÅ™eba jÃ­ vydÄ›lit
   irc_set_on_value = (int32_t)(q * (1000.0 /(irc_k)));
   eeprom_w32((void *)ee_irc_k,irc_set_on_value);
+}
+
+void set_irc1_set_on_value(int32_t a ){
+  irc_set_on_value = a;
 }
 
 /**
  * Inicializace IRC.
  */
-void irc_init(void){
-  PORTD = PORTD | (1 << 5) | (1 << 6) | (1 << 7);
-  // aby nedocházelo k vyhlášení erroru pøi prvním zavolání funkce irc_watch
-  prev_state = ((PIND) >> 5) & 0x07; 
+void irc1_init(void){
+  //unsigned char tmp;
+
+  // nastavenÃ­ vÃ½stupu na jedniÄky
+
+  // pÅ™edchozÃ­ implementace - funkÄnÃ­
+  //PORTD = PORTD | (1 << 5) | (1 << 6) | (1 << 7);
+
+  A_PORT = A_PORT | (1 << A_BIT);
+  B_PORT = B_PORT | (1 << B_BIT);
+  SP_PORT = SP_PORT | (1 << SP_BIT);
+
+
+  // aby nedochÃ¡zelo k vyhlÃ¡Å¡enÃ­ erroru pÅ™i prvnÃ­m zavolÃ¡nÃ­ funkce irc_watch
+  // pÅ™edchozÃ­ implementace - funkÄnÃ­
+  //prev_state = ((PIND) >> 5) & 0x07;
+
+  
+  prev_state = 0x00;
+  prev_state = prev_state | (((A_PIN >> A_BIT) & 0x01) << 0);
+  prev_state = prev_state | (((B_PIN >> B_BIT) & 0x01) << 1);
+  prev_state = prev_state | (((SP_PIN >> SP_BIT) & 0x01) << 2);
+   
 }
 
 /// V teto funkci je reseno sledovani vstupu irc a jeho nastaveni. Vzdy kdyz je
@@ -103,14 +189,31 @@ void irc_init(void){
 /// nebo snizeni citace irc a pripadne odeslani namerene hodnoty. Namerena
 /// hodnota je dana jako hodnota irc cidla krat
 /// konstanta (obvykle mensi nez jedna). 
-void irc_watch(void){
+void irc1_watch(void){
   unsigned char stav;
   unsigned char zmena_stavu;
   unsigned char ruzne;
 
+  //wtch_dbg_info();
+  //char stavt;
+
   // vstupy jsou invertovany
   //stav = ((~PINC) >> 3) & 0x07;
-  stav = ((PIND) >> 5) & 0x07;
+  
+  //pÅ™edchozÃ­ implementace - funkÄnÃ­
+  //stavt = ((PIND) >> 5) & 0x07;
+  //printcxyd(0,0,'0'+ stav);
+
+
+  // tohle funguje vÅ¾dy, ale pro nÄ›kterÃ© konkrÃ©tnÃ­ pÅ™Ã­pady by byla moÅ¾nÃ¡ rychlejÅ¡Ã­ implementace
+  stav = 0x00;
+  stav = stav | (((A_PIN >> A_BIT) & 0x01) << 0);
+  stav = stav | (((B_PIN >> B_BIT) & 0x01) << 1);
+  stav = stav | (((SP_PIN >> SP_BIT) & 0x01) << 2);
+
+  si_print_dbgirc1(stav);
+  //printcxyd(0,1,'0'+ stavt);
+
   zmena_stavu = stav ^ prev_state;
   ruzne = (((stav >> 0) ^ (stav >> 1)) & 0x01);
 
@@ -148,6 +251,7 @@ void irc_watch(void){
     case 3 :
       // oba
       // error
+      //printcxyd(2,15,'e');
       new_error(6);
       break;
     default : 
@@ -175,11 +279,21 @@ void irc_watch(void){
 //    irc_dif_msg[3] = 0;
 //    irc_dif_msg[4] = 0;
 
+    // odeslÃ¡nÃ­ informace o prvnÃ­m nasetovÃ¡nÃ­
+    if (irc1_wait4set > 0){
+      char * msg ;
+      irc1_wait4set = 0;
+      msg =(void*) mmalloc (DATASIZE);
+
+      msg[0] = MSGN_IRC1_SETCOMPLETED;
+      new_msg(msg);
+    }
+
     irc_counter = irc_set_on_value;
 
 
     //irc_send_msg();
-    // tady by šlo tršku nahnat
+    // tady by Å¡lo trÅ¡ku nahnat
     if ((dif * 0.0001 * irc_k) > 10){
       new_error(83);
     }
@@ -195,7 +309,7 @@ void irc_watch(void){
 
 
 
-uint16_t irc_get_l(void){
+uint16_t irc1_get_l(void){
   uint16_t out;
   int32_t count;
   

@@ -110,7 +110,7 @@ void insertZakaznik(int id, char * jmeno){
   sprintf(s,"call sp_insertLoadZakaznik(%i, \"%s\");",id,jmeno);
 
   sql_query(s);
-  free (s);
+  mfree (s);
 }
 
 /* Funkce zapisuje do databaze mereni.
@@ -147,9 +147,9 @@ void insertMereni(int idzak, float delka, float prumer, int druh_dreva, int mani
 #endif
   sql_query(s);
 
-  free (s);
-  free (s_manipulace);
-  free (s_dvakrat);
+  mfree (s);
+  mfree (s_manipulace);
+  mfree (s_dvakrat);
 }
 
 void insertTimemark(void){

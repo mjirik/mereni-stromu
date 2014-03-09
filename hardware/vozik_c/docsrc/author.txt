@@ -1,3 +1,3 @@
-/**
- * @author Miroslav Jiøík
+ï»¿/**
+ * @author Miroslav JiÅ™Ã­k
  */

@@ -1,4 +1,4 @@
-/* $Id: convert.c 117 2007-09-18 21:53:25Z Mira $
+/* $Id: convert.c 125 2009-09-13 09:16:22Z mjirik $
  * File name: convert.c
  * Date:      2006/07/21 17:05
  * Author:    Mira
@@ -6,7 +6,7 @@
 /**
  * \file convert.c
  * \brief
- * Zde jsou provádìny konverze èíselnıch typù na string.
+ * Zde jsou provÃ¡dÄ›ny konverze ÄÃ­selnÃ½ch typÅ¯ na string.
  */
 
 #include <inttypes.h>
@@ -20,7 +20,7 @@
 //static char err[] = "Err - chyba prevodu";
 
 /**
- * Funkce vyplní danı øetìzec mezerami. Poèet mezer je urèen argumentem len. Za mezery je umístìn
+ * Funkce vyplnÃ­ danÃ½ Å™etÄ›zec mezerami. PoÄet mezer je urÄen argumentem len. Za mezery je umÃ­stÄ›n
  * znak '\0'.
  */
 char * mezery(char *s,char len){
@@ -33,7 +33,7 @@ char * mezery(char *s,char len){
 }
 
 
-/// Funkce vrací délku øetìzce.
+/// Funkce vracÃ­ dÃ©lku Å™etÄ›zce.
 int strlen(char * s){
   int i = 0;
   while (s[i] != '\0'){
@@ -45,10 +45,10 @@ int strlen(char * s){
 
 
 /**
- * Funkce pøevádí èíslo na øetìzec. Vstupem je øetìzec. Zmìøí se jeho délka a na takovou délku se pøevede 
- * èíslo. Pokud je øetìzec pøíliš krátkı, dojde k vypsání chybové zprávy. Zarovnává se vpravo.
- * Pokud je první znak vstupního øetìzce roven '0', vypisují se i poèáteèní nuly
- * napø 0056
+ * Funkce pÅ™evÃ¡dÃ­ ÄÃ­slo na Å™etÄ›zec. Vstupem je Å™etÄ›zec. ZmÄ›Å™Ã­ se jeho dÃ©lka a na takovou dÃ©lku se pÅ™evede 
+ * ÄÃ­slo. Pokud je Å™etÄ›zec pÅ™Ã­liÅ¡ krÃ¡tkÃ½, dojde k vypsÃ¡nÃ­ chybovÃ© zprÃ¡vy. ZarovnÃ¡vÃ¡ se vpravo.
+ * Pokud je prvnÃ­ znak vstupnÃ­ho Å™etÄ›zce roven '0', vypisujÃ­ se i poÄÃ¡teÄnÃ­ nuly
+ * napÅ™ 0056
  */
 char * int2str(char *s, uint16_t cislo){
   
@@ -56,7 +56,7 @@ char * int2str(char *s, uint16_t cislo){
 }
 
 /**
- * Funkce pøevádí èíslo na øetìzec
+ * Funkce pÅ™evÃ¡dÃ­ ÄÃ­slo na Å™etÄ›zec
  */
 char * int2strn(char * s, int len, uint16_t cislo){
 //  char s[6]= "     \0";
@@ -85,7 +85,7 @@ char * int2strn(char * s, int len, uint16_t cislo){
   
   //zaklad = zaklady[i];
 
-  if ((cislo/zaklady[i]) >= 10){ //tohle testuje jestli neni èíslo na víc míst ne je monı zobrazit
+  if ((cislo/zaklady[i]) >= 10){ //tohle testuje jestli neni ÄÃ­slo na vÃ­c mÃ­st neÅ¾ je moÅ¾nÃ½ zobrazit
     //new_error(85);
   }
   else{

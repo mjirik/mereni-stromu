@@ -1,0 +1,217 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<title>Zařízení na vozíku pro projekt měření objemu stromů: Dokumentace souboru error.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<!-- Generováno programem Doxygen 1.6.1 -->
+<div class="navigation" id="top">
+  <div class="tabs">
+    <ul>
+      <li><a href="index.html"><span>Hlavní&nbsp;stránka</span></a></li>
+      <li><a href="pages.html"><span>Ostatní&nbsp;stránky</span></a></li>
+      <li><a href="annotated.html"><span>Třídy</span></a></li>
+      <li class="current"><a href="files.html"><span>Soubory</span></a></li>
+    </ul>
+  </div>
+  <div class="tabs">
+    <ul>
+      <li><a href="files.html"><span>Seznam&nbsp;souborů</span></a></li>
+      <li><a href="globals.html"><span>Globální&nbsp;symboly</span></a></li>
+    </ul>
+  </div>
+</div>
+<div class="contents">
+<h1>Dokumentace souboru error.h</h1><table border="0" cellpadding="0" cellspacing="0">
+<tr><td colspan="2"><h2>Definice maker</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="error_8h.html#ad6d5aaa966ca7424f7cb9bd01f2c838b">assert</a>(e)</td></tr>
+<tr><td colspan="2"><h2>Funkce</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="error_8h.html#af408b3e4a42f097577e775b58e78e06d">new_str_error</a> (uint8_t err_num, char *s)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="error_8h.html#acb5cd57cbb1a2f9e632a003540b2df1d">new_error</a> (uint8_t err_num)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="error_8h.html#a7fc70ff887a46ce08c06b9b9762ef200">error_scr_draw</a> (void)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="error_8h.html#a316a9c1c700f5cde9d2fc570632a9f37">error_scr_control</a> (void)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="error_8h.html#ae6dd1f6c6a4f232ddee182df66ee0b28">err_assert</a> (char *soubor, int radek)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="error_8h.html#a2dad9aca4b62c3ded6ee140807e1a9a5">err_scr_open</a> (void)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="error_8h.html#ad55f51b13448734dee621455a92e74f1">err_control</a> (void)</td></tr>
+</table>
+<hr/><h2>Dokumentace k definicím maker</h2>
+<a class="anchor" id="ad6d5aaa966ca7424f7cb9bd01f2c838b"></a><!-- doxytag: member="error.h::assert" ref="ad6d5aaa966ca7424f7cb9bd01f2c838b" args="(e)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define assert</td>
+          <td>(</td>
+          <td class="paramtype">e&nbsp;</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<b>Hodnota:</b><div class="fragment"><pre class="fragment">((e) ? (<span class="keywordtype">void</span>)0 :\
+           <a class="code" href="error_8c.html#ae6dd1f6c6a4f232ddee182df66ee0b28">err_assert</a>(__FILE__, __LINE__))
+</pre></div>
+</div>
+</div>
+<hr/><h2>Dokumentace funkcí</h2>
+<a class="anchor" id="ae6dd1f6c6a4f232ddee182df66ee0b28"></a><!-- doxytag: member="error.h::err_assert" ref="ae6dd1f6c6a4f232ddee182df66ee0b28" args="(char *soubor, int radek)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void err_assert </td>
+          <td>(</td>
+          <td class="paramtype">char *&nbsp;</td>
+          <td class="paramname"> <em>soubor</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>radek</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Funkce je volána v případě že makro <a class="el" href="error_8h.html#ad6d5aaa966ca7424f7cb9bd01f2c838b">assert()</a> nalezlo nějakou chybu. Funkce vyvtoří řeťězec, v němˇž je popsáno jméno funkce, jméno souboru a řádek, z něhož je makro spouštěno. </p>
+
+</div>
+</div>
+<a class="anchor" id="ad55f51b13448734dee621455a92e74f1"></a><!-- doxytag: member="error.h::err_control" ref="ad55f51b13448734dee621455a92e74f1" args="(void)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void err_control </td>
+          <td>(</td>
+          <td class="paramtype">void&nbsp;</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Funkce, která zajišťuje asynchroní vypisování errorů. Dříve totiž mohlo dojít k přerušení běhu programu uprostřed vykonávání některé funkce a to vedlo k potížím s korektním navracením systémových prostředků. </p>
+
+</div>
+</div>
+<a class="anchor" id="a2dad9aca4b62c3ded6ee140807e1a9a5"></a><!-- doxytag: member="error.h::err_scr_open" ref="a2dad9aca4b62c3ded6ee140807e1a9a5" args="(void)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void err_scr_open </td>
+          <td>(</td>
+          <td class="paramtype">void&nbsp;</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a316a9c1c700f5cde9d2fc570632a9f37"></a><!-- doxytag: member="error.h::error_scr_control" ref="a316a9c1c700f5cde9d2fc570632a9f37" args="(void)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void error_scr_control </td>
+          <td>(</td>
+          <td class="paramtype">void&nbsp;</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a7fc70ff887a46ce08c06b9b9762ef200"></a><!-- doxytag: member="error.h::error_scr_draw" ref="a7fc70ff887a46ce08c06b9b9762ef200" args="(void)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void error_scr_draw </td>
+          <td>(</td>
+          <td class="paramtype">void&nbsp;</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="acb5cd57cbb1a2f9e632a003540b2df1d"></a><!-- doxytag: member="error.h::new_error" ref="acb5cd57cbb1a2f9e632a003540b2df1d" args="(uint8_t err_num)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void new_error </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t&nbsp;</td>
+          <td class="paramname"> <em>err_num</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Funkce vytváří novou chybu. Dojde k přepnutí na "error screen" a k výpisu textu popisujícího tuto chybu. </p>
+<dl><dt><b>Parametry:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>err_num</em>&nbsp;</td><td>Identifikuje číslem chybovou hlášku. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="af408b3e4a42f097577e775b58e78e06d"></a><!-- doxytag: member="error.h::new_str_error" ref="af408b3e4a42f097577e775b58e78e06d" args="(uint8_t err_num, char *s)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void new_str_error </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t&nbsp;</td>
+          <td class="paramname"> <em>err_num</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *&nbsp;</td>
+          <td class="paramname"> <em>s</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Funkce vytvoří nový error. Jeho text je zadán v parametru s. </p>
+
+</div>
+</div>
+</div>
+<p align=left>Miroslav Jiřík</p>

@@ -1,0 +1,9 @@
+<a class ="red" href = load_file.php> Načti ze souboru </a><br>
+<a class ="red" href = users.php> Uživatelé </a><br>
+<?
+// $Id: menu_root.php 1 2006-02-26 07:56:27Z Mira $
+# File name: menu.php
+# Date:      2006/11/10 13:47
+# Author:    Mira
+
+?>

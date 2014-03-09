@@ -1,0 +1,9 @@
+default: pdf
+
+all: pdf dvi
+
+dvi:
+	cslatex doc.tex
+
+pdf:
+	pdfcslatex doc.tex

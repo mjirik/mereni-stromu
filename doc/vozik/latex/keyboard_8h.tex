@@ -1,0 +1,46 @@
+\section{Dokumentace souboru keyboard.h}
+\label{keyboard_8h}\index{keyboard.h@{keyboard.h}}
+\subsection*{Funkce}
+\begin{DoxyCompactItemize}
+\item 
+void {\bf keyboard\_\-init} (void)
+\item 
+char {\bf get\_\-char} (void)
+\begin{DoxyCompactList}\small\item\em Funkce vrátí poslední přijatý znak . \item\end{DoxyCompactList}\item 
+char {\bf get\_\-spec} (void)
+\begin{DoxyCompactList}\small\item\em Funkce vrátí poslední přijatý stisk speciální klávesy. \item\end{DoxyCompactList}\item 
+void {\bf keyboard\_\-recv\_\-watchdog} (void)
+\item 
+void {\bf keyb\_\-in\_\-buff} (char flag, char kod)
+\end{DoxyCompactItemize}
+
+
+\subsection{Dokumentace funkcí}
+\index{keyboard.h@{keyboard.h}!get\_\-char@{get\_\-char}}
+\index{get\_\-char@{get\_\-char}!keyboard.h@{keyboard.h}}
+\subsubsection[{get\_\-char}]{\setlength{\rightskip}{0pt plus 5cm}char get\_\-char (void)}\label{keyboard_8h_af0d08de095c0c6a062d084562f436b9e}
+
+
+Funkce vrátí poslední přijatý znak . \index{keyboard.h@{keyboard.h}!get\_\-spec@{get\_\-spec}}
+\index{get\_\-spec@{get\_\-spec}!keyboard.h@{keyboard.h}}
+\subsubsection[{get\_\-spec}]{\setlength{\rightskip}{0pt plus 5cm}char get\_\-spec (void)}\label{keyboard_8h_a6a0ab525eb476112b5b6259dd180cfa9}
+
+
+Funkce vrátí poslední přijatý stisk speciální klávesy. \index{keyboard.h@{keyboard.h}!keyb\_\-in\_\-buff@{keyb\_\-in\_\-buff}}
+\index{keyb\_\-in\_\-buff@{keyb\_\-in\_\-buff}!keyboard.h@{keyboard.h}}
+\subsubsection[{keyb\_\-in\_\-buff}]{\setlength{\rightskip}{0pt plus 5cm}void keyb\_\-in\_\-buff (char {\em flag}, \/  char {\em kod})}\label{keyboard_8h_a4b4fdc8611d94ae6541af55ff1c7140f}
+Funkce vloží do bufferu další klávesu. Funkce je definována v \doxyref{keyboard.h}{s.}{keyboard_8h} . Tím je umožněno Načítání kláves i z jiného zdroje než z klávesnice. 
+\begin{DoxyParams}{Parametry}
+\item[{\em flag}]Příznak typu klávesy.
+\begin{DoxyItemize}
+\item 0 : nic
+\item 1 : přijat char
+\item 2 : efko, šipka
+\end{DoxyItemize}\item[{\em kod}]Vlastní kód klávesy. \end{DoxyParams}
+\index{keyboard.h@{keyboard.h}!keyboard\_\-init@{keyboard\_\-init}}
+\index{keyboard\_\-init@{keyboard\_\-init}!keyboard.h@{keyboard.h}}
+\subsubsection[{keyboard\_\-init}]{\setlength{\rightskip}{0pt plus 5cm}void keyboard\_\-init (void)}\label{keyboard_8h_a5aae8263abc1dec4671638e7ed4af681}
+\index{keyboard.h@{keyboard.h}!keyboard\_\-recv\_\-watchdog@{keyboard\_\-recv\_\-watchdog}}
+\index{keyboard\_\-recv\_\-watchdog@{keyboard\_\-recv\_\-watchdog}!keyboard.h@{keyboard.h}}
+\subsubsection[{keyboard\_\-recv\_\-watchdog}]{\setlength{\rightskip}{0pt plus 5cm}void keyboard\_\-recv\_\-watchdog (void)}\label{keyboard_8h_a01edeb550d4a5e49474b974d03adf41e}
+V případě že během posledních pěti volání této funkce nedošlo k příjmu řádného bitu od klávesnice, (tedy pokud už dlouho nic nepřišlo) přeruší příjem posledního signálu a nastaví data\_\-counter na nulu používá se k řešení problému s s nesprávným přijetím zprávy a následným posunutím přijmu funkce přijme třeba jen polovinu bitů, ale neví že už je konec vysílání a když dorazí první polovina dalšího kódu, zapíše je jako druhou část předchozího. 

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configurationDescriptor version="62">
+  <logicalFolder name="root" displayName="root" projectFiles="true">
+    <df name="connector" root=".">
+      <df name="bin">
+      </df>
+      <df name="etc">
+      </df>
+      <df name="src">
+        <in>conf.c</in>
+        <in>data.c</in>
+        <in>hardware_config.c</in>
+        <in>log.c</in>
+        <in>main.c</in>
+        <in>mysql.c</in>
+        <in>serial.c</in>
+      </df>
+      <in>conf.c</in>
+      <in>data.c</in>
+      <in>hardware_config.c</in>
+      <in>log.c</in>
+      <in>main.c</in>
+      <in>mysql_connect.c</in>
+      <in>serial.c</in>
+    </df>
+    <logicalFolder name="ExternalFiles"
+                   displayName="Important Files"
+                   projectFiles="false">
+      <itemPath>connector-Makefile.mk</itemPath>
+      <itemPath>makefile</itemPath>
+    </logicalFolder>
+  </logicalFolder>
+  <sourceRootList>
+    <Elem>.</Elem>
+  </sourceRootList>
+  <projectmakefile>connector-Makefile.mk</projectmakefile>
+  <confs>
+    <conf name="Default" type="0">
+      <toolsSet>
+        <developmentServer>localhost</developmentServer>
+        <compilerSet>MinGW|MinGW</compilerSet>
+        <platform>3</platform>
+      </toolsSet>
+      <makefileType>
+        <makeTool>
+          <buildCommandWorkingDir>.</buildCommandWorkingDir>
+          <buildCommand>${MAKE} -f makefile</buildCommand>
+          <cleanCommand>${MAKE} -f makefile clean</cleanCommand>
+          <executablePath>./pila_connector.exe</executablePath>
+          <cTool>
+            <incDir>
+              <pElem>C:/Program Files/MySQL/MySQL_Connector_C_6.0.2/lib</pElem>
+              <pElem>.</pElem>
+              <pElem>C:/Program Files/MySQL/MySQL_Connector_C_6.0.2/include</pElem>
+            </incDir>
+          </cTool>
+        </makeTool>
+      </makefileType>
+      <folder path="connector/src">
+        <cTool>
+          <incDir>
+            <pElem>src</pElem>
+          </incDir>
+        </cTool>
+      </folder>
+    </conf>
+  </confs>
+</configurationDescriptor>

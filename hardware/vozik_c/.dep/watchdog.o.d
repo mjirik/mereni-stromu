@@ -1,4 +1,4 @@
-watchdog.o: watchdog.c watchdog.h lcd.h eeprom.h
+build/watchdog.o: watchdog.c watchdog.h lcd.h eeprom.h
 
 watchdog.h:
 

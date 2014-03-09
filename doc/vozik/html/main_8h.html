@@ -1,0 +1,163 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<title>Zařízení na vozíku pro projekt měření objemu stromů: Dokumentace souboru main.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<!-- Generováno programem Doxygen 1.6.1 -->
+<div class="navigation" id="top">
+  <div class="tabs">
+    <ul>
+      <li><a href="index.html"><span>Hlavní&nbsp;stránka</span></a></li>
+      <li><a href="pages.html"><span>Ostatní&nbsp;stránky</span></a></li>
+      <li><a href="annotated.html"><span>Třídy</span></a></li>
+      <li class="current"><a href="files.html"><span>Soubory</span></a></li>
+    </ul>
+  </div>
+  <div class="tabs">
+    <ul>
+      <li><a href="files.html"><span>Seznam&nbsp;souborů</span></a></li>
+      <li><a href="globals.html"><span>Globální&nbsp;symboly</span></a></li>
+    </ul>
+  </div>
+</div>
+<div class="contents">
+<h1>Dokumentace souboru main.h</h1><table border="0" cellpadding="0" cellspacing="0">
+<tr><td colspan="2"><h2>Definice maker</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8h.html#a8639f3cdce498b36b4f11b82726f3857">SizeOfMsg</a>&nbsp;&nbsp;&nbsp;11</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8h.html#a29835c64ae960bf66a163842a562abde">_TICTOC</a></td></tr>
+<tr><td colspan="2"><h2>Funkce</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">char *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8h.html#a94c5fb482b0b9ce39cae1619bf51b0ae">getstr_P</a> (PGM_P s_p)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8h.html#acf97371d95f45fa044173f164fec85f1">my_watchdog</a> (void)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8h.html#ace51fd7d8435f88c8b2b3bcf64367673">tic</a> (void)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">uint16_t&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8h.html#a88df1dabdebb9698dcabfeb1359fa23f">toc</a> (void)</td></tr>
+<tr><td colspan="2"><h2>Proměnné</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">char&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8h.html#a7ae8aac9d74f11560f00e9f0a396b264">str_buf</a> [41]</td></tr>
+</table>
+<hr/><h2>Dokumentace k definicím maker</h2>
+<a class="anchor" id="a29835c64ae960bf66a163842a562abde"></a><!-- doxytag: member="main.h::_TICTOC" ref="a29835c64ae960bf66a163842a562abde" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define _TICTOC</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a8639f3cdce498b36b4f11b82726f3857"></a><!-- doxytag: member="main.h::SizeOfMsg" ref="a8639f3cdce498b36b4f11b82726f3857" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define SizeOfMsg&nbsp;&nbsp;&nbsp;11</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
+<hr/><h2>Dokumentace funkcí</h2>
+<a class="anchor" id="a94c5fb482b0b9ce39cae1619bf51b0ae"></a><!-- doxytag: member="main.h::getstr_P" ref="a94c5fb482b0b9ce39cae1619bf51b0ae" args="(PGM_P s_p)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char* getstr_P </td>
+          <td>(</td>
+          <td class="paramtype">PGM_P&nbsp;</td>
+          <td class="paramname"> <em>s_p</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Funkce slouží pro načtení řetězce z programové paměti. Funkce naalokuje paměť pro uložení řetězce do SRAM, řetězec tam zkopíruje a vrátí ukazatel na toto místo. </p>
+<dl><dt><b>Parametry:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>s_p</em>&nbsp;</td><td>Ukazatel do programové paměti. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Návratová hodnota:</b></dt><dd>Ukazatel v paměti SRAM, kam je zkopírován řetězec z <em>s_p</em> </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="acf97371d95f45fa044173f164fec85f1"></a><!-- doxytag: member="main.h::my_watchdog" ref="acf97371d95f45fa044173f164fec85f1" args="(void)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void my_watchdog </td>
+          <td>(</td>
+          <td class="paramtype">void&nbsp;</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="ace51fd7d8435f88c8b2b3bcf64367673"></a><!-- doxytag: member="main.h::tic" ref="ace51fd7d8435f88c8b2b3bcf64367673" args="(void)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void tic </td>
+          <td>(</td>
+          <td class="paramtype">void&nbsp;</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a88df1dabdebb9698dcabfeb1359fa23f"></a><!-- doxytag: member="main.h::toc" ref="a88df1dabdebb9698dcabfeb1359fa23f" args="(void)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint16_t toc </td>
+          <td>(</td>
+          <td class="paramtype">void&nbsp;</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
+<hr/><h2>Dokumentace proměnných</h2>
+<a class="anchor" id="a7ae8aac9d74f11560f00e9f0a396b264"></a><!-- doxytag: member="main.h::str_buf" ref="a7ae8aac9d74f11560f00e9f0a396b264" args="[41]" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char <a class="el" href="main_8h.html#a7ae8aac9d74f11560f00e9f0a396b264">str_buf</a>[41]</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
+</div>
+<p align=left>Miroslav Jiřík</p>

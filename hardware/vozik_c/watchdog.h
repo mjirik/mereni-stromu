@@ -1,16 +1,25 @@
-void wtch_main(void);
-void wtch_init(void);
+#include "lcd.h"
 
-/// Makro pou¯ÌvanÈ k resetov·nÌ watchodogu.
+extern void wtch_main(void);
+extern void wtch_init(void);
+
+extern int16_t wtch_counter;
+extern char * wtch_sfile;
+extern int wtch_sline;
+//extern char * wtch_sfunction;
+
+
+/// Makro pou≈ô√≠van√© k resetov√°n√≠ watchodogu.
 #define wtch_reset() wtch_counter = (wtch_counter < 0)?wtch_counter:0;
 
-/// Makro pouûÌvanÈ k resetu obou watchdog˘.
+/// Makro pou≈æ√≠van√© k resetu obou watchdog≈Ø.
 #define wtch_reset2() wtch_counter = (wtch_counter < 0)? wtch_counter:0; wdt_reset();
 
-/// VypnutÌ watchdogu.
+/// Vypnut√≠ watchdogu.
 #define wtch_disable2() wtch_counter = -1; wdt_disable();
 
 #define wtch_enable2() wtch_counter = 0; wdt_enable(WDTO_2S);
 
-uint16_t wtch_counter;
+#define wtch_dbg_info() wtch_sfile = __FILE__; wtch_sline = __LINE__; //{char str[10]; lcd_w_inst(0x01); printnt(wtch_sfile); sprintf(str," %i",wtch_sline); printnt(str);}
+
 

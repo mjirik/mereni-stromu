@@ -1,0 +1,135 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<title>Zařízení na vozíku pro projekt měření objemu stromů: Dokumentace souboru watchdog.c</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<!-- Generováno programem Doxygen 1.6.1 -->
+<div class="navigation" id="top">
+  <div class="tabs">
+    <ul>
+      <li><a href="index.html"><span>Hlavní&nbsp;stránka</span></a></li>
+      <li><a href="pages.html"><span>Ostatní&nbsp;stránky</span></a></li>
+      <li><a href="annotated.html"><span>Třídy</span></a></li>
+      <li class="current"><a href="files.html"><span>Soubory</span></a></li>
+    </ul>
+  </div>
+  <div class="tabs">
+    <ul>
+      <li><a href="files.html"><span>Seznam&nbsp;souborů</span></a></li>
+      <li><a href="globals.html"><span>Globální&nbsp;symboly</span></a></li>
+    </ul>
+  </div>
+</div>
+<div class="contents">
+<h1>Dokumentace souboru watchdog.c</h1>
+<p>Modul zajišťuje správnou funkci watchdogu. Pro správnou funkci zařízení není monžné využívat samotný watchdog naimplementovaný výrobcem. S resetem by totiž došlo ke ztrátě dat. Proto byl vytvořen programový watchdog. Ten je resetován nastavením čítače wtch_counter na nulu. Sám o sobě resetovat jednočip neumí, na to však lze však využít služby watchdogu od Atmelu.  
+<a href="#_details">...</a></p>
+<code>#include &lt;util/delay.h&gt;</code><br/>
+<code>#include &lt;avr/pgmspace.h&gt;</code><br/>
+<code>#include &lt;avr/wdt.h&gt;</code><br/>
+<code>#include &quot;<a class="el" href="watchdog_8h.html">watchdog.h</a>&quot;</code><br/>
+<code>#include &quot;<a class="el" href="lcd_8h.html">lcd.h</a>&quot;</code><br/>
+<code>#include &quot;<a class="el" href="eeprom_8h.html">eeprom.h</a>&quot;</code><br/>
+<table border="0" cellpadding="0" cellspacing="0">
+<tr><td colspan="2"><h2>Definice maker</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="watchdog_8c.html#a1ec06ff01e8ca7e4f7c2a673ba1ac499">MY_WATCHDOG</a>&nbsp;&nbsp;&nbsp;10000</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Kolikrát.  <a href="#a1ec06ff01e8ca7e4f7c2a673ba1ac499"></a><br/></td></tr>
+<tr><td colspan="2"><h2>Funkce</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="watchdog_8c.html#acbdab9cad3f2f8b16ff00ad69af20145">wtch_init</a> (void)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="watchdog_8c.html#ab51323d0a8ec8c832d7be1ab44ffbc3b">wtch_main</a> (void)</td></tr>
+<tr><td colspan="2"><h2>Proměnné</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static char err97[]&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="watchdog_8c.html#a82348d6937f5354d885236312473f51f">PROGMEM</a> = &quot;Error 97: Vazna chyba behu programu. Ukladani dat.&quot;</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">uint16_t&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="watchdog_8c.html#a65366c710bff228f8a652480055368bc">wtch_counter</a> = 0</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Čítač mého watchdogu. pokud bude větší než 200, dojde k výpisu chybové hlášky.  <a href="#a65366c710bff228f8a652480055368bc"></a><br/></td></tr>
+</table>
+<hr/><a name="_details"></a><h2>Detailní popis</h2>
+<p>Modul zajišťuje správnou funkci watchdogu. Pro správnou funkci zařízení není monžné využívat samotný watchdog naimplementovaný výrobcem. S resetem by totiž došlo ke ztrátě dat. Proto byl vytvořen programový watchdog. Ten je resetován nastavením čítače wtch_counter na nulu. Sám o sobě resetovat jednočip neumí, na to však lze však využít služby watchdogu od Atmelu. </p>
+<hr/><h2>Dokumentace k definicím maker</h2>
+<a class="anchor" id="a1ec06ff01e8ca7e4f7c2a673ba1ac499"></a><!-- doxytag: member="watchdog.c::MY_WATCHDOG" ref="a1ec06ff01e8ca7e4f7c2a673ba1ac499" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MY_WATCHDOG&nbsp;&nbsp;&nbsp;10000</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Kolikrát. </p>
+
+</div>
+</div>
+<hr/><h2>Dokumentace funkcí</h2>
+<a class="anchor" id="acbdab9cad3f2f8b16ff00ad69af20145"></a><!-- doxytag: member="watchdog.c::wtch_init" ref="acbdab9cad3f2f8b16ff00ad69af20145" args="(void)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void wtch_init </td>
+          <td>(</td>
+          <td class="paramtype">void&nbsp;</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="ab51323d0a8ec8c832d7be1ab44ffbc3b"></a><!-- doxytag: member="watchdog.c::wtch_main" ref="ab51323d0a8ec8c832d7be1ab44ffbc3b" args="(void)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void wtch_main </td>
+          <td>(</td>
+          <td class="paramtype">void&nbsp;</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Funkce sleduje činnost jednočipu. Pokud dojde k "zaseknutí" v nějaké vnitřní smyčce, je vypsán chybový výpis, data jsou uložena do eeprom a program je uveden do nekonečné smyčky, ve které čeká na reset prostřednictvím softwarového watchdogu. Watchdog lze deaktivovat nastavením čítače na zápornou hodnotu. </p>
+
+</div>
+</div>
+<hr/><h2>Dokumentace proměnných</h2>
+<a class="anchor" id="a82348d6937f5354d885236312473f51f"></a><!-- doxytag: member="watchdog.c::PROGMEM" ref="a82348d6937f5354d885236312473f51f" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char err97b [] <a class="el" href="watchdog_8c.html#a82348d6937f5354d885236312473f51f">PROGMEM</a> = &quot;Error 97: Vazna chyba behu programu. Ukladani dat.&quot;<code> [static]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a65366c710bff228f8a652480055368bc"></a><!-- doxytag: member="watchdog.c::wtch_counter" ref="a65366c710bff228f8a652480055368bc" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint16_t <a class="el" href="watchdog_8h.html#a65366c710bff228f8a652480055368bc">wtch_counter</a> = 0</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Čítač mého watchdogu. pokud bude větší než 200, dojde k výpisu chybové hlášky. </p>
+
+</div>
+</div>
+</div>
+<p align=left>Miroslav Jiřík</p>

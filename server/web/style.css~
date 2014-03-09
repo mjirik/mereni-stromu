@@ -1,0 +1,258 @@
+/*
+   color1: #7bb31a
+   color2: #eedb00
+   color3: #ff9c00
+   color4: #8b88ff
+   */
+
+* {
+  margin: 0;
+}
+html{ 
+  height: 100%;
+  background-color: #CCFF80;  
+  background-image: url('./pic/strom2.png');
+  background-repeat: no-repeat;  
+  background-position: right bottom;
+
+  font-family: Helvetica, Verdana, Tahoma , sans-serif;
+ }
+
+body {
+  /*background-repeat: no-repeat;
+  background-position: 100% -200%;*/
+}
+
+body.print{
+  background-color: White;
+}
+
+#head {
+  background-color: black; //#B38F00;
+  padding: 5 10 5 10;
+  color: #99FF00;//#FF80DF;//#CCFF80;//#FF80DF;//#FFE6F9;// white;
+}
+
+#bodyLeft {
+  padding: 5px;
+  margin-top:10px;
+
+  width: 140px;
+  float: left;
+  background-color:  #6BB300;
+}
+
+#bodyLeftIn {
+  /*padding: 10px;*/
+  /*margin-top:10px;*/
+}
+
+#login{
+  display: block;
+  text-align: center;
+}
+
+#bodyMain {
+
+  float: left;  
+}
+
+
+h1, h2, h3, h4{ 
+  font-family: Tahoma, Helvetica, sans-serif;
+}
+table{
+  border-collapse: collapse;
+}
+
+td{
+
+}
+
+td a {
+  font:  bold 70%/1 Tahoma ,Helvetica, sans-serif;
+  text-color: #000000;
+}
+
+a.tlacitko, td a { 
+  text-align: center; margin: 1px; padding: 4px 6px 4px 6px ; border: outset 1px; text-decoration: none; display: block; }
+a.tlacitko:link, a.tlacitko:visited, td a:link, td a:visited { 
+  background: #FF80DF;//#CCFF80; 
+  color: #000; 
+}
+a.tlacitko:active, td a:active {border: inset 1px; } 
+a.tlacitko:hover, tr td a:hover {
+background: #FFBFEF;//#E6FFBF;
+}
+
+p.err {
+  color:red;
+}
+
+a.smazat:link, a.smazat:visited {background: #fc0}
+a.smazat:hover { background: #fa0}
+
+a:hover { 
+background-color: rgb(204,204,102);
+} 
+a { 
+text-decoration: none;
+color: rgb(0,51,0);
+}
+tr.archiv td{
+  
+  color: #777;
+
+}
+
+tr a{
+  background-color: red;
+ }
+
+/*obarvuje řádek s inputy a selecty nad kterým je kurzor*/
+tr:hover td input, tr:hover td select{
+  /*background-color: #efd;
+  border: dashed */
+}
+
+tr.chyba td input, tr.chyba td select, tr.chyba td checkbox{
+  background-color: rgb(255,204,204);
+}
+
+/*zvyrazneni dlouheho radku*/
+table.longtab tr:hover{
+  padding: 0px;
+  margin: 0px;
+  background-color: #FFBFEF;//blue;
+}
+table.longtab tr{ 
+ }
+table.longtab tr td { 
+  padding: 0px;
+  margin: 0px;
+/*  border: 1px solid black; */
+}
+
+tr.archiv td a{
+color:black;
+background-color: #9c9
+}
+
+tr.archiv td a:hover{
+background-color: #ada
+}
+
+ul{
+  display: block;
+  list-style-type:none;
+  padding:0;
+  margin:0;
+}
+
+a.menu {
+/*font-weight: 500;//bolder; */
+font-size: 100%;
+display: block;
+padding: 3px 10px 3px 10px;
+margin: 5px;
+text-align:center;
+color:#000;
+font-family:  Verdana, sans-serif;/*Tahoma ,Helvetica, sans-serif;*/
+border: 1px solid black;
+background-color: #FF80DF;//#99FF00;
+
+}
+a.menu:hover { 
+background-color: #FFBFEF;//#CCFF80;
+} 
+
+a.red { 
+font-size: 80%;
+display: block;
+padding: 3px 10px 3px 10px;
+margin: 5px;
+text-align:center;
+font-family: Verdana, sans-serif;
+border: 1px solid black;
+background-color: #E6FFBF;//#FFD9BF;
+color: rgb(0,0,0);
+}
+a.red:hover { 
+background-color: #FFF0E6;
+} 
+
+
+.druheOkno{
+  /*float:left;
+  background-color: #000000;
+  background-color: rgb(102,255,102);
+  padding-left: 10px; */
+}
+
+.vnitrni{
+  float: left;
+  background-color: #F5FFE6;//#FFBFEF;/*#99FF00;*/
+  padding: 5px ;
+  margin: 10px 0px 0px 10px;
+}
+
+.chyba{
+  /*float: left;*/
+  background-color: #FFBFEF;/*#99FF00;*/
+  padding: 5px ;
+  margin: 10px 0px 0px 10px;
+}
+
+
+tr.focus {
+background-color: #99FF00;
+}
+
+
+tr.focus td a {
+  /*background: #fc0*/
+  //background-color: #9f3;
+}
+
+tr.focus:hover td a {
+  /*background: #fe0*/
+}
+@media display{
+  .skryty_print{
+    visibility: hidden;
+    /*visibility: collapse; */
+  }
+}
+
+@media print {
+  .skryty_print{
+    page-break-before: always;
+    display: run-in;
+    visibility: visible;
+  }
+  div {
+    visibility: hidden;
+    background-color: White;
+  }
+    
+  .print_ignore {
+    visibility: hidden;
+  }
+  div.print{
+    visibility: visible;;    
+    background-color: White;
+  } 
+}
+
+.resetovac
+{
+border: 0px none;
+margin: 0px;
+padding: 0px;
+float: none;
+clear: both;
+width: 0px;
+height: 0px;
+line-height: 0px;
+font-size: 0px;
+} 

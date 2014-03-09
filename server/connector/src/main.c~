@@ -1,0 +1,32 @@
+#include <stdio.h>
+/* #include <io.h> */
+#include "conf.h"
+#include "mysql.h"
+#include "serial.h"
+#include "hardware_config.h"
+
+
+
+int main(int argc, char * argv[]){
+  char * port = NULL;
+
+  load_conf();
+  mysql_connect_database(param_gets("db_user"),param_gets("db_psswd"));
+  port = param_gets("port");
+  if (port == NULL){
+    printf("Nebyl zadan port");
+  }
+  open_port(port);
+  if ((argc > 1 ) && (argv[1][1] == 'c')){	/* parametry TODO */
+    hardware_config();
+  }
+
+  while(1){
+    read_port();
+  }
+}
+
+
+ 
+void get(void){
+}

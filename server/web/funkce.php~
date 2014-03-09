@@ -1,0 +1,829 @@
+<?php
+# File name: funkce.php
+# Date:      2006/11/21 07:49
+# Author:    Mira
+include_once('inc/mysqli.inc.php');
+include ("connect_info.php");
+//Funkce umístí popisek a zbytek formuláře do tabulky
+function echo_echo($echo){
+  if (!empty($echo)){
+    foreach($echo as $e){
+      echo $e;
+      echo "<br>\n";
+    }
+  }
+}
+
+function bit2bool($str){
+  if (ord($str) == 1)
+    return true;
+  else
+    return false;
+  
+}
+
+function ref_ok($name,$ok,$storno,$text=null,$title=null,$class=null){
+  $ok = urlencode($ok);
+  $storno = urlencode($storno);
+  $text = urlencode($text);
+  return odkaz($name,"ok.php?ok_hrefOk=$ok&amp;ok_hrefStorno=$storno&amp;ok_text=$text",$title,$class);
+}
+
+function debug_info(){
+  $dbg = debug_backtrace();
+  //var_dump($dbg);
+  $echo = "";
+  foreach($dbg as $radek){
+    $echo = $echo."function "."<b>".$radek["function"]."</b> in file <b>".
+    $radek["file"]."</b> on line <b>".$radek["line"]."</b><br>";  
+  }
+return $echo;
+}
+
+function mysql_last_id($link){
+  $res = MySQL_query_e("select last_insert_id() as ID;",$link);
+  $out = MySQLi_fetch_assoc($res);
+  return $out["ID"];
+}
+
+function mysql_query_e($dotaz,$link){
+  $echo = debug_info();
+
+  $out=MySQLi_query($link,$dotaz) 
+  or die("$echo <br> 
+  Nelze vykonat definicní dotaz: <br> 
+  $dotaz <br> 
+  Error:<br>" . MySQLi_error($link));
+
+  return $out;
+}
+function begin_form($action){
+  echo "<form method=\"post\" action=\"$action\">";
+  echo "<table>";
+
+}
+
+function end_form(){
+  echo "</table>\n";
+  echo "</form>\n";
+}
+function formln($popis,$telo){
+  echo "<tr><td>$popis</td><td align=left>$telo</td></tr>\n";
+}
+
+function input_form($label,$name,$value, $size = null){
+  if ($size != null){
+    formln($label,"<input name=\"$name\" size = $size value=$value>");
+  }
+  else {
+    formln($label,"<input name=\"$name\" value=$value>");
+  }
+}
+function psswd_form($label,$name,$value,$size=null){
+  if ($size != null){
+    formln($label,"<input type=password name=\"$name\" size=$size value=$value>");
+  }
+  else{
+    formln($label,"<input type=password name=\"$name\" value=$value>");
+  }
+}
+
+function submit_form($value,$name="submit",$size=null){
+  if ($size != null){
+    formln("","<input type=\"Submit\" name=$name size=$size value =\"$label\">");
+    
+  }
+  else{
+    formln("","<input type=\"Submit\" name=$name  value =\"$value\">");
+  }
+
+}
+function submit($value,$name="submit",$size=null){
+  if ($size != null){
+    echo "<input type=\"Submit\" name=$name size=$size value =\"$label\">";
+    
+  }
+  else{
+    echo "<input type=\"Submit\" name=$name  value =\"$value\">";
+  }
+}
+
+function odkaz($popisek,$adresa,$title=null,$class=""){
+  if (!is_null($title)){
+    return "<a class = \"$class\" href=$adresa title=\"$title\">$popisek</a>";
+  }
+  else {
+  	return "<a class = \"$class\" href=$adresa>$popisek</a>";
+  }
+}
+
+function jeEmail ($cislo){
+  return ereg("^.+@.+\..+$",$cislo);
+}
+
+function jeCislo ($cislo){
+  return ereg("^[\+\-]?[1234567890]+[\.]?[1234567890]*$",$cislo);
+}
+
+function connect_db(){
+  $link = MySQLi_connect(SQL_HOST, SQL_USERNAME, SQL_PASSWORD,SQL_DBNAME);
+  //MySQL_select_db(SQL_DBNAME);
+  return $link;
+}
+
+//funkce ověřuje zda jsou údaje zákazníka v pořádku
+function check_zakaznik($zakaznik){
+  if ((strlen(trim($zakaznik["jmeno"])) < 3)){
+    $out[] = "Jméno musí být alespoň tři znaky dlouhé!";
+  }
+  if ((strlen($zakaznik["email"])>0)&(!jeEmail($zakaznik["email"]))){
+    $out[] = "Nesprávný tvar emailu!";
+  }
+  return $out;
+}
+
+function insertZakaznik($zakaznik,$link){
+  $check = check_zakaznik($zakaznik);
+  if (sizeof($check)==0){
+    $out=mysql_query_e("call sp_insertZakaznik(\"".
+    $zakaznik["jmeno"]."\",\"".
+    $zakaznik["ico"]."\",\"".
+    $zakaznik["dic"]."\",\"".
+    $zakaznik["adresa"]."\",\"".
+    $zakaznik["telefon"]."\",\"".
+    $zakaznik["email"]."\");",$link);
+    
+    return mysql_last_id($link);
+    
+  }
+  else{
+    return $check;
+  }
+}
+
+function vsechnaMereni($link){
+  $ref = mysql_query_e("
+  select
+  Zakaznik_mereni.Datum as Datum, Zakaznik_mereni.IDZakaznik_mereni as IDZakaznik_mereni,
+  Zakaznik.Jmeno as Jmeno, Zakaznik_mereni.Jmeno as Zkratka,
+  count(Mereni.IDZakaznik_mereni) as Pocet_stromu
+  from 
+  Zakaznik_mereni left join Mereni 
+  on Zakaznik_mereni.IDZakaznik_mereni = Mereni.IDZakaznik_mereni
+  join Seznam on Seznam.IDSeznam = Mereni.IDSeznam
+  join Zakaznik on Zakaznik.IDZakaznik = Seznam.IDZakaznik 
+  where 
+  (Mereni.Deleted <> true) and (Mereni.Status = 'normal') and (Zakaznik_mereni.Status = 'normal' )
+  group by Zakaznik_mereni.IDZakaznik_mereni,Zakaznik.IDZakaznik
+  order by Zakaznik_mereni.Datum, Zakaznik_mereni.Jmeno, Zakaznik.Jmeno
+  ",$link);
+//   
+//   
+  while($zaznam = mysqli_fetch_assoc($ref)){
+    $zaznamy[]=$zaznam;
+  }
+  return $zaznamy;
+}
+
+// vrátí pole volných zákazníků všetně doporučených
+function volnaMereni($link){
+  $zaznamy = null;
+ // $vysledek = mysql_query_e("call sp_VolnaMereni();",$link);
+  $vysledek = mysql_query_e(
+  "select 
+  Zakaznik_mereni.Datum as Datum, Zakaznik_mereni.IDZakaznik_mereni as IDZakaznik_mereni, 
+  Jmeno, count(Mereni.IDZakaznik_mereni) as Pocet_stromu
+  from 
+  Zakaznik_mereni left join Mereni 
+  on Zakaznik_mereni.IDZakaznik_mereni = Mereni.IDZakaznik_mereni 
+  where  
+  (Mereni.IDSeznam is NULL) and (Mereni.Status = 'normal') and (Zakaznik_mereni.Status = 'normal')
+  group by Zakaznik_mereni.IDZakaznik_mereni
+  order by Datum, Jmeno
+  ;",$link);
+
+  //var_dump($vysledek);
+  //echo "<br>";
+  $out = mysqli_store_result($link);
+  //var_dump($out);
+  while($zaznam=MySQLi_Fetch_assoc($vysledek)){
+    $zaznamy[] = $zaznam;
+  }
+  //mysqli_free_result($vysledek);
+   //print_r ($zaznamy);
+  //$zaznamy[0]["Jmeno"]="Honzik";
+  if ($zaznamy != null){
+    foreach($zaznamy as $key => $zaznam){
+      //var_dump($zaznamy);
+      //vybere tři nejpodobnšjší zákazníky
+      $mysql_query = mysql_query_e(
+      "select 
+      Zakaznik.IDZakaznik as \"IDZakaznik\", 
+      Zakaznik.Jmeno as \"Jmeno\",count(*) as Pocet ".
+      "from 
+      Zakaznik_mereni join Mereni 
+      on Zakaznik_mereni.IDZakaznik_mereni = Mereni.IDZakaznik_mereni
+      join Seznam on
+      Seznam.IDSeznam = Mereni.IDSeznam
+      join Zakaznik on
+      Seznam.IDZakaznik = Zakaznik.IDZakaznik ".
+      "where (Zakaznik_mereni.Jmeno = \"".$zaznam["Jmeno"]."\") and 
+      (Zakaznik.Deleted <> true) ".
+      "group by Zakaznik.Jmeno ".
+      "order by Pocet desc limit 3;",$link);
+      while ($nej_zakaznik = MySQLi_Fetch_assoc($mysql_query)){
+        $nej_zakaznici[] = $nej_zakaznik;
+      }
+      $zaznamy[$key]["nej_zakaznici"] =  $nej_zakaznici;
+      $nej_zakaznici = null;
+    }
+  }
+  return $zaznamy;
+}
+
+//
+function jmeno_zakaznik_mereni($id,$link){
+  $vysledek = mysql_query_e("
+  select Jmeno from Zakaznik_mereni 
+  where IDZakaznik_mereni = ".$id.";",$link);
+  $zaznam=MySQLi_Fetch_assoc($vysledek);
+  return $zaznam["Jmeno"];
+  
+}
+
+function seznamy_zakaznika($zakid,$link,$archiv = false){
+  $text = "";
+  if (!$archiv){
+    $text = "and (Archiv <> true)";
+  }
+
+  $OtevreneSeznamy = mysql_query_e(
+  "select IDSeznam,Datum,Archiv from Seznam 
+  where (IDZakaznik = ".$zakid.") and (Deleted <> true) $text
+  order by Archiv, IDSeznam desc;",$link);
+  
+  if (mysqli_num_rows($OtevreneSeznamy) == 0){
+    return null;
+  }
+  while ($zaznamOtevreneSeznamy=mysqli_fetch_assoc($OtevreneSeznamy)){
+    $out[] = $zaznamOtevreneSeznamy;
+  }
+  return $out;
+}
+function otevrene_seznamy($idzak,$link){
+  $OtevreneSeznamy = mysql_query_e(
+  "select IDSeznam from Seznam 
+  where (Deleted <> true)and (Archiv <> true)and(IDZakaznik =".$id_zak.")
+  order by IDSeznam 
+  ;",$link);
+  //or die("Nelze vykonat definicní dotaz: " . mysql_error());
+  
+  if (mysqli_num_rows($OtevreneSeznamy) == 0){
+    return 0;
+  }
+  while ($zaznamOtevreneSeznamy=mysqli_fetch_assoc($OtevreneSeznamy)){
+    $out[] = $zaznamOtevreneSeznamy;
+  }
+  return $out;
+}
+
+// přiřadí všechna měření Zakaznika_mereni do seznamu k Zakaznikovi
+function zarad_mereni_do_seznamu($id_zak, $id_zak_mer,$link){
+  $OtevreneSeznamy = mysql_query_e(
+  "select IDSeznam from Seznam 
+  where (Deleted <> true)and(Archiv <> true)and(IDZakaznik =".$id_zak.") 
+  order by IDSeznam desc
+  limit 1;",$link);
+  $zaznamOtevreneSeznamy=mysqli_fetch_assoc($OtevreneSeznamy);
+  $idseznam = $zaznamOtevreneSeznamy["IDSeznam"]; 
+  if (mysqli_num_rows($OtevreneSeznamy) == 0){
+    $idseznam = novySeznam($id_zak,$link);
+  }
+  mysql_query_e("update Mereni 
+  set IDSeznam = ".$idseznam." 
+  where IDZakaznik_mereni = ".$id_zak_mer.";",$link)   //TODO
+  or die("Nelze vykonat definicní dotaz: " . mysql_error());
+  //echo "huh";
+}
+
+function setCeny($ceny,$link){
+  mysql_query_e("update Druh_dreva set Cena =".$ceny["Cena_1"]."where IDDruh_dreva = 1",$link);
+  mysql_query_e("update Druh_dreva set Cena =".$ceny["Cena_2"]."where IDDruh_dreva = 2",$link);
+  mysql_query_e("update Druh_dreva set Cena =".$ceny["Cena_3"]."where IDDruh_dreva = 3",$link);
+  mysql_query_e("update Druh_dreva set Cena =".$ceny["Cena_4"]."where IDDruh_dreva = 4",$link);
+  mysql_query_e("update Druh_dreva set Cena =".$ceny["Cena_5"]."where IDDruh_dreva = 5",$link);
+  mysql_query_e("update Manipulace set Cena =".$ceny["Cena_man"]."where IDManipulace = 1",$link);
+  mysql_query_e("update Dalsi_zpracovani set Cena =".$ceny["Cena_dalsi_1"].
+  " where IDDalsi_zpracovani = 2",$link);
+  mysql_query_e("update Dalsi_zpracovani set Cena =".$ceny["Cena_dalsi_2"].
+  " where IDDalsi_zpracovani = 3",$link);
+  mysql_query_e("update Dvakrat set Cena =".$ceny["Cena_dvakrat"].
+  " where IDDvakrat = 1;",$link);
+
+}
+
+
+// Funkce vrátí ceny z obecného ceníku.
+function getCeny($link){
+  $vysledek = mysql_query_e("
+  select IDDruh_dreva, Cena
+  from Druh_dreva order by IDDruh_dreva;
+  ",$link);
+  $zaznam = mysqli_fetch_assoc($vysledek);
+  $ceny["Cena_1"] = $zaznam["Cena"];
+  $zaznam = mysqli_fetch_assoc($vysledek);
+  $ceny["Cena_2"] = $zaznam["Cena"]; 
+  $zaznam = mysqli_fetch_assoc($vysledek);
+  $ceny["Cena_3"] = $zaznam["Cena"]; 
+  $zaznam = mysqli_fetch_assoc($vysledek);
+  $ceny["Cena_4"] = $zaznam["Cena"];
+  $zaznam = mysqli_fetch_assoc($vysledek); // ještě není implementovaná
+  $ceny["Cena_5"] = $zaznam["Cena"];
+
+  $vysledek = mysql_query_e("
+  select Cena
+  from Manipulace;
+  ",$link);
+  $zaznam = mysqli_fetch_assoc($vysledek);
+  $ceny["Cena_man"] = $zaznam["Cena"];
+
+  $vysledek = mysql_query_e("
+  select Cena
+  from Dalsi_zpracovani where IDDalsi_zpracovani > 1
+  order by IDDalsi_zpracovani;
+  ",$link);
+  $zaznam = mysqli_fetch_assoc($vysledek);
+  $ceny["Cena_dalsi_1"] = $zaznam["Cena"];
+  $zaznam = mysqli_fetch_assoc($vysledek);
+  $ceny["Cena_dalsi_2"] = $zaznam["Cena"];
+  
+  $vysledek = mysql_query_e("
+  select Cena
+  from Dvakrat;
+  ",$link);
+  $zaznam = mysqli_fetch_assoc($vysledek);
+  $ceny["Cena_dvakrat"] = $zaznam["Cena"];
+   
+  return $ceny;
+}
+
+
+//funkce zkopíruje ceny z aktuálního ceníku do ceníku seznamu.
+function kopirujCeny($IDSeznam,$link){
+  $ceny = getCeny($link);
+
+  update_ceny($IDSeznam,$ceny,$link);
+
+}
+
+
+// funkce vytvoří nový seznam, nakopíruje do něj honoty cen, z obecného ceníku
+// a vrátí jeho id.
+function novySeznam($IDZakaznik,$link){
+  $datum = getdate();
+  $vysledek = mysql_query_e("
+  insert into Seznam(IDZakaznik,Datum) values 
+  (".$IDZakaznik.",\"".$datum["year"]."-".$datum["mon"]."-".$datum["mday"]."\") ;",$link)
+  or die("Nelze vykonat definicní dotaz: " . mysql_error());
+  $idseznam = mysqli_insert_id($link);
+  kopirujCeny($idseznam,$link);
+  return $idseznam;
+}
+
+// Funkkce kontroluje zda existuje v databázi uživatel s tímto nickem a s 
+//tímto heslem. 
+function iduzivatele ($prezdivka, $pswd, $link){
+  $heslo = md5($pswd);
+  //echo $heslo; 
+  $vysledek=mysql_query_e("select IDUzivatel from Uzivatel".
+  " where (Nick=\"".$prezdivka."\") and (Heslo=\"".$heslo."\");",$link);
+  if (mysqli_num_rows($vysledek)==0){
+    return -1;
+  }
+  else {
+    $radek = mysqli_fetch_assoc($vysledek);
+    return $radek["IDUzivatel"];
+  }
+}
+
+function isroot($prezdivka, $heslo){
+  if ((strcmp($prezdivka,SQL_USERNAME)==0)&(strcmp($heslo,SQL_PASSWORD)==0)){
+    return true;
+    
+  }
+  else {
+    return false;
+  }
+}
+
+function objem($delka_m, $prumer_cm,$p0=0,$p1=0,$p2=0){
+//echo "$p0 $p1 $p1 <br>";
+// $a=pow(2,10);
+// echo "$a ; ";
+  $prumer_cm = $prumer_cm - ($p0 + $p1 * pow($prumer_cm,$p2));
+  $out = (pi() * pow($prumer_cm,2) * $delka_m)/(40000);
+  $out = round ($out,3);
+  return $out;
+}
+
+function cena_strom($mereni,$ceny){
+  switch ($mereni["IDDruh_dreva"]){
+    case "1":
+      $CenaZaDruh = $ceny["Cena_1"];
+      break;
+    case "2":
+      $CenaZaDruh = $ceny["Cena_2"];
+      break;
+    case "3":
+      $CenaZaDruh = $ceny["Cena_3"];
+      break;
+    case "4":
+      $CenaZaDruh = $ceny["Cena_4"];
+      break;
+    case "5":
+      $CenaZaDruh = $ceny["Cena_5"];
+      break;
+    default:
+      echo "Nenalezena cena";
+  }
+  
+  switch ($mereni["IDDalsi_zpracovani"]){
+    case "1":
+      $CenaZaDalsi = $ceny["Cena_dalsi_1"];
+      break;
+    case "2":
+      $CenaZaDalsi = $ceny["Cena_dalsi_2"];
+      break;
+    default:
+      $CenaZaDalsi = 0;
+  }
+  //var_dump($mereni["Dalsi_zpracovani"]);
+  $out = $mereni["Objem"]*$CenaZaDruh + 
+  $mereni["Objem"]*($mereni["IDManipulace"] == 1?1:0)*$ceny["Cena_man"] +
+  $mereni["Objem"]*$CenaZaDalsi;
+  
+  return $out;
+}
+
+
+//Vrátí seznam zákazníků
+function zakaznici($link,$archiv = false){
+  $text = "";
+  if ($archiv==false){
+    $text = " and (Archiv <> true)";
+  }
+  $vysledek = mysql_query_e("
+  select 
+  IDZakaznik,Jmeno,Archiv
+  from Zakaznik ".
+  "where (Deleted <> true) $text".
+  "order by Archiv,Jmeno;",$link);
+  if (mysqli_num_rows($vysledek)== 0){
+    return 0;
+    //echo "Nenalezen žádný odpovídající řádek!";
+  }
+  while ($zaznam=MySQLi_Fetch_assoc($vysledek)){
+    $out[] = $zaznam;
+  }
+  return $out;
+}
+
+
+//funkce smaže zákazníka
+// TODO 
+// Je třeba dodělat, aby šel vymazat jen pokud má všechny seznamy v uzavřený a 
+// není na něj žádnej volnej strom. 
+function deleteZakaznik($IDZakaznik,$link){
+  mysql_query_e("call sp_deleteZakaznik($IDZakaznik);",$link);
+//   $vysledek = mysql_query("delete from Zakaznik where IDZakaznik = ".$IDZakaznik.";",$link)
+//   or die("Nelze vykonat definicní dotaz: " . mysql_error());
+}
+
+function new_mereni_do_seznamu($idSeznam,$mereni,$link){
+
+  mysql_query_e("
+    insert into 
+    mereni
+    (IDSeznam,Delka,Prumer,IDDruh_dreva,IDManipulace,IDDalsi_zpracovani)" 
+    ." values(".
+    "$idSeznam,".
+    $mereni["Delka"].",".
+    $mereni["Prumer"].",".
+    $mereni["IDDruh_dreva"].",".
+    $mereni["IDManipulace"].",".
+    $mereni["IDDalsi_zpracovani"].");",$link);
+
+}
+
+
+function new_mereni($idzak,$delka,$prumer,$druh,$manipulace,$dalsi,$link){
+  mysql_query_e("
+    insert into 
+    mereni
+    (IDZakaznik_mereni,Delka,Prumer,IDDruh_dreva,IDManipulace,IDDalsi_zpracovani)" 
+    ." values($idzak,$delka,$prumer,$druh,$manipulace,$dalsi);",$link);
+}
+
+function load_mereni_from_files($szakaznici,$smereni,$link){
+  $zakaznici = load_from_file($szakaznici);
+  $merenis = load_from_file($smereni);
+
+  foreach($zakaznici as $zakaznik){ // v zakaznikovi je na 0 ID, 1 Jmeno, 2 Datum
+    mysql_query_e("call sp_insertLoadZakaznik(".$zakaznik[0].",\"".$zakaznik[1]."\");",$link);
+//    $zak["id_tech"] = $zakaznik[0];
+//    $zak["id_sql"] = mysqli_insert_id($link);
+//    $tab_zak[]=$zak;
+    //echo $zak["id_sql"];
+  }
+
+  foreach($merenis as $mereni){
+    mysql_query_e("call sp_insertLoadMereni(".
+		  $mereni[0].",".
+		  $mereni[1].",".
+		  $mereni[2].",".
+		  $mereni[3].",".
+		  $mereni[4].",".
+		  $mereni[5].",".
+		  "1);",$link);
+  }
+
+  mysql_query_e("call sp_Load();",$link);
+  /*
+  //tabulka, kde je vedle ID z technologie ID z SQL
+  foreach($zakaznici as $zakaznik){ // v zakaznikovi je na 0 ID, 1 Jmeno, 2 Datum
+    mysql_query_e("insert into Zakaznik_mereni(Jmeno,Datum) 
+    values (\"".$zakaznik[1]."\",\"".$zakaznik[2]."\");",$link);
+    $zak["id_tech"] = $zakaznik[0];
+    $zak["id_sql"] = mysqli_insert_id($link);
+    $tab_zak[]=$zak;
+    //echo $zak["id_sql"];
+  }
+  
+  foreach($merenis as $mereni){
+    foreach($tab_zak as $zak){
+      if ($zak["id_tech"] == $mereni[0]){
+        $key = $zak["id_sql"];
+        break;
+      }
+    }
+    new_mereni($key,$mereni[1],$mereni[2],$mereni[3],$mereni[4],$mereni[5],$link);
+  }
+  */
+}
+
+
+// Načte data ze souboru
+function load_from_file($file){
+  $soubor = fopen ($file,"r");
+  while ($data = fgetcsv ($soubor, 1000,";")){
+    $out[] = $data;
+  }
+  fclose ($soubor);
+  return $out;
+}
+
+function seznam_mereni($idseznam,$link,$serad = false){
+  $razeni = $serad?"Mereni.IDDruh_dreva":"Mereni.IDMereni";
+  $vysledek = mysql_query_e(
+//  "call sp_seznamMereni($idseznam);"
+  "select 
+  Mereni.IDMereni as IDMereni,
+  Mereni.Delka as Delka, 
+  Mereni.Prumer as Prumer, 
+  Mereni.IDDruh_dreva as IDDruh_dreva,
+  Druh_dreva.Nazev as Druh_dreva, 
+  Druh_dreva.P0 as P0,
+  Druh_dreva.P1 as P1,
+  Druh_dreva.P2 as P2,
+  Mereni.IDManipulace as IDManipulace, 
+  Mereni.IDDvakrat as IDDvakrat,
+  Mereni.IDDalsi_zpracovani as IDDalsi_zpracovani,
+  Dalsi_zpracovani.Nazev as Dalsi_zpracovani
+  from 
+  Seznam 
+  join Mereni on Seznam.IDSeznam = Mereni.IDSeznam 
+  join Druh_dreva on Mereni.IDDruh_dreva = Druh_dreva.IDDruh_dreva
+  left join Dalsi_zpracovani 
+  on 
+  Dalsi_zpracovani.IDDalsi_zpracovani = Mereni.IDDalsi_zpracovani  
+  where 
+  (Seznam.IDSeznam = $idseznam) and (Mereni.Deleted <> true) and (Mereni.Status = 'normal') 
+  order by $razeni;" 
+  ,$link);
+  if (mysqli_num_rows($vysledek)== 0){
+    return false;
+  }
+  while ($zaznam = mysqli_fetch_assoc($vysledek)){
+    $zaznamy[]=$zaznam;
+  
+  }
+  return $zaznamy;
+}
+
+// funkce vrátí hodnoty cen seznamu
+function parametry_seznamu($idseznam, $link){
+  $vysledek = mysql_query_e("
+  select 
+  Seznam.Datum as Datum, Seznam.IDZakaznik as IDZakaznik,Zakaznik.Jmeno as Jmeno,
+  Cena_1,Cena_2,Cena_3,Cena_4,Cena_5,Cena_man,Cena_dalsi_1,Cena_dalsi_2,Cena_dvakrat
+  from Seznam join Zakaznik on Seznam.IDZakaznik = Zakaznik.IDZakaznik
+  where 
+  IDSeznam = $idseznam;
+  ",$link);
+  //or die("Nelze vykonat definicní dotaz: " . mysql_error());
+  if (mysqli_num_rows($vysledek)== 0){
+    return false;
+  }
+  $zaznam = mysqli_fetch_assoc($vysledek);
+  return $zaznam;
+}
+
+
+function add_user($nick,$psswd, $link){
+  $heslo = md5($psswd);
+  
+  $vysledek = mysql_query_e("insert into Uzivatel(Nick,Heslo) values (\"$nick\",\"$heslo\");",$link);
+  //var_dump($vysledek);
+}
+
+function delete_user($id,$link){
+  $vysledek = mysql_query_e("delete from Uzivatel where IDUzivatel = $id;",$link);
+}
+
+function edit_user($id,$nick,$psswd, $link){
+  $heslo = md5($psswd);
+  
+  $vysledek = mysql_query_e("
+  update Uzivatel
+  set 
+  Nick = \"$nick\",
+  Heslo = \"$heslo\"
+  where 
+  IDUzivatel = $id;
+  ",$link);
+}
+
+
+function user_name($id, $link){
+  $vysledek = mysql_query_e("select Nick from Uzivatel where IDUzivatel = $id;",$link);
+  $zaznam = mysqli_fetch_assoc($vysledek);
+  
+  $out = $zaznam["Nick"];
+  return $out;
+}
+
+function users($link){
+  //$o = mysql_query_e("call sp_selectZakaznik();");
+  $vysledek = mysql_query_e("select IDUzivatel, Nick from Uzivatel;",$link);
+  while ($zaznam = mysqli_fetch_assoc($vysledek)){
+    $out[] = $zaznam;
+  }
+  return $out;
+}
+
+function update_ceny($id,$ceny,$link){
+  mysql_query_e("
+  update Seznam
+  set 
+  Cena_1 = ".$ceny["Cena_1"].",
+  Cena_2 = ".$ceny["Cena_2"].",
+  Cena_3 = ".$ceny["Cena_3"].",
+  Cena_4 = ".$ceny["Cena_4"].",
+  Cena_5 = ".$ceny["Cena_5"].",
+  Cena_man = ".$ceny["Cena_man"].",
+  Cena_dalsi_1 = ".$ceny["Cena_dalsi_1"].",
+  Cena_dalsi_2 = ".$ceny["Cena_dalsi_2"].",
+  Cena_dvakrat = ".$ceny["Cena_dvakrat"]."
+  where IDSeznam = ".$id.";",$link);
+}
+
+function get_mereni($idmer,$link){
+  $res = mysql_query_e("select IDMereni , IDSeznam from Mereni where IDMereni = $idmer;",$link);
+  $zaznam = mysqli_fetch_assoc($res);
+  return $zaznam;
+}
+
+function update_mereni($zaznamy,$link){
+  foreach($zaznamy as $key => $zaznam){
+    if ($zaznam["IDManipulace"] == 1){
+      $man = "1 ";
+    }
+    else 
+      $man = "NULL ";
+    //$man = $zaznam["IDManipulace"]? "1 " : "NULL ";
+    $dvakrat = $zaznam["IDDvakrat"]==1 ? "1 " : "NULL "; 
+    
+    mysql_query_e("update Mereni 
+    set 
+    Delka =".$zaznam["Delka"].",
+    Prumer =".$zaznam["Prumer"].",
+    IDDruh_dreva =".$zaznam["IDDruh_dreva"].",
+    IDManipulace = ".$man.",
+    IDDvakrat = $dvakrat,
+    IDDalsi_zpracovani = ".$zaznam["IDDalsi_zpracovani"]."
+    where IDMereni=".$zaznam["IDMereni"].";"
+    ,$link);
+  }
+}
+
+function druhy_dreva($link){
+  $vysledek = mysql_query_e("
+  select IDDruh_dreva,Nazev,P0,P1,P2,Cena from Druh_dreva
+  order by IDDruh_dreva
+  ",$link);
+  while ($zaznam = mysqli_fetch_assoc($vysledek)){
+    $out[] = $zaznam;
+  }
+  
+  //var_dump($out);
+  return $out;
+}
+function dalsi_zpracovani($link){
+  $druhy = mysql_query_e("
+  select 
+  IDDalsi_zpracovani, Nazev 
+  from 
+  Dalsi_zpracovani 
+  order by 
+  IDDalsi_zpracovani 
+  ;",$link);
+  while ($z=mysqli_fetch_assoc($druhy)){
+    $zdruhy[] = $z;
+  }
+  return $zdruhy;
+}
+
+
+function zakaznik($id,$link){
+  $vysledek = mysql_query_e("select Jmeno,ICO,DIC,Adresa,Telefon,Email from Zakaznik where IDZakaznik = ".$id.";",$link);
+  if (mysqli_num_rows($vysledek)== 0){
+    return null;
+  }
+  else{
+    return mysqli_fetch_assoc($vysledek);
+  }
+}
+
+// modulo (11,10) = 1
+function modulo($a,$b){
+  $a = $a > 0 ? $a:-$a;
+  return $a -(floor($a/$b) * $b);
+}
+
+function zakaznikInArchiv($id,$link){
+  mysql_query_e("call sp_ZakaznikInArchiv($id);",$link);
+}
+
+function zakaznikOutArchiv($id,$link){
+  mysql_query_e("call sp_ZakaznikOutArchiv($id);",$link);
+}
+
+function seznamInArchiv($id,$link){
+  mysql_query_e("call sp_SeznamInArchiv($id);",$link);
+}
+
+function seznamOutArchiv($id,$link){
+  mysql_query_e("call sp_SeznamOutArchiv($id);",$link);
+}
+
+function deleteSeznam($id,$link){
+  mysql_query_e("call sp_deleteSeznam($id);",$link);
+}
+function deleteMereni($id,$link){
+  mysql_query_e("call sp_deleteMereni($id);",$link);
+}
+
+function seznamChZakaznik($seznam,$zakaznik,$link){
+    mysql_query_e(
+    "call sp_SeznamChZakaznik($seznam,$zakaznik);"
+    ,$link);
+
+}
+
+function mereniChSeznam($mereni,$seznam,$link){
+    mysql_query_e(
+    "call sp_MereniChSeznam($mereni,$seznam);"
+    ,$link);
+
+}
+
+
+function sql_datum($sql_date,$day=true){
+  $datum = sscanf($sql_date,"%d-%d-%d");
+  
+  $anglickeporadi = date("w", mktime(0, 0, 0, $datum[1], $datum[2], $datum[0]));
+  $dny = array("Ne","Po","Út","St","Čt","Pá","So");
+  $datum[3] = $dny[$anglickeporadi]; 
+  if ($day){
+    return $datum[3].", ".$datum[2].".".$datum[1].".".$datum[0];
+  }
+  else{
+    return $datum[2].".".$datum[1].".".$datum[0];
+  }
+ 
+}
+function getmicrotime(){
+  list($usec, $sec) = explode(" ",microtime());
+return ((float)$usec + (float)$sec);
+}
+?>

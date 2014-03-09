@@ -1,0 +1,88 @@
+\section{Dokumentace třídy CachedTemplate}
+\label{classCachedTemplate}\index{CachedTemplate@{CachedTemplate}}
+Diagram dědičnosti pro třídu CachedTemplate:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2cm]{classCachedTemplate}
+\end{center}
+\end{figure}
+\subsection*{Veřejné metody}
+\begin{CompactItemize}
+\item 
+{\bf CachedTemplate} (\$cache\_\-id=null, \$expire=900)
+\item 
+{\bf is\_\-cached} ()
+\item 
+{\bf fetch\_\-cache} (\$file)
+\end{CompactItemize}
+\subsection*{Datové položky}
+\begin{CompactItemize}
+\item 
+{\bf \$cache\_\-id}
+\item 
+{\bf \$expire}
+\item 
+{\bf \$cached}
+\end{CompactItemize}
+
+
+\subsection{Detailní popis}
+An extension to \doxyref{Template}{s.}{classTemplate} that provides automatic caching of template contents. 
+
+
+
+\subsection{Dokumentace k metodám}
+\index{CachedTemplate@{CachedTemplate}!CachedTemplate@{CachedTemplate}}
+\index{CachedTemplate@{CachedTemplate}!CachedTemplate@{CachedTemplate}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CachedTemplate::CachedTemplate (\$ {\em cache\_\-id} = {\tt null}, \$ {\em expire} = {\tt 900})}\label{classCachedTemplate_1faa0e63bb5473509022fe8f415fc560}
+
+
+Constructor.
+
+\begin{Desc}
+\item[Parametry:]
+\begin{description}
+\item[{\em \$cache\_\-id}]string unique cache identifier \item[{\em \$expire}]int number of seconds the cache will live \end{description}
+\end{Desc}
+\index{CachedTemplate@{CachedTemplate}!is_cached@{is\_\-cached}}
+\index{is_cached@{is\_\-cached}!CachedTemplate@{CachedTemplate}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CachedTemplate::is\_\-cached ()}\label{classCachedTemplate_34ae05b638aad2a22e677c6845f4ef43}
+
+
+Test to see whether the currently loaded cache\_\-id has a valid corrosponding cache file. 
+
+Cache the results of this \doxyref{is\_\-cached()}{s.}{classCachedTemplate_34ae05b638aad2a22e677c6845f4ef43} call. Why? So we don't have to double the overhead for each template. If we didn't cache, it would be hitting the file system twice as much (file\_\-exists() \& filemtime() [twice each]). \index{CachedTemplate@{CachedTemplate}!fetch_cache@{fetch\_\-cache}}
+\index{fetch_cache@{fetch\_\-cache}!CachedTemplate@{CachedTemplate}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CachedTemplate::fetch\_\-cache (\$ {\em file})}\label{classCachedTemplate_db9de9d3ea96a25c895876df27260722}
+
+
+This function returns a cached copy of a template (if it exists), otherwise, it parses it as normal and caches the content.
+
+\begin{Desc}
+\item[Parametry:]
+\begin{description}
+\item[{\em \$file}]string the template file \end{description}
+\end{Desc}
+
+
+\subsection{Dokumentace k položkám}
+\index{CachedTemplate@{CachedTemplate}!$cache_id@{\$cache\_\-id}}
+\index{$cache_id@{\$cache\_\-id}!CachedTemplate@{CachedTemplate}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CachedTemplate::\$cache\_\-id}\label{classCachedTemplate_1862568621acd4c78e325b045811d091}
+
+
+\index{CachedTemplate@{CachedTemplate}!$expire@{\$expire}}
+\index{$expire@{\$expire}!CachedTemplate@{CachedTemplate}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CachedTemplate::\$expire}\label{classCachedTemplate_e1fa8b2f2da35d463b69047643c4f1f2}
+
+
+\index{CachedTemplate@{CachedTemplate}!$cached@{\$cached}}
+\index{$cached@{\$cached}!CachedTemplate@{CachedTemplate}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CachedTemplate::\$cached}\label{classCachedTemplate_2e6fab9f815c00587bd37d0fde91b7c6}
+
+
+
+
+Dokumentace pro tuto třídu byla generována z následujícího souboru:\begin{CompactItemize}
+\item 
+{\bf template.class.php}\end{CompactItemize}

@@ -1,0 +1,160 @@
+   1               		.file	"usart_recv.c"
+   2               		.arch atmega8
+   3               	__SREG__ = 0x3f
+   4               	__SP_H__ = 0x3e
+   5               	__SP_L__ = 0x3d
+   6               	__tmp_reg__ = 0
+   7               	__zero_reg__ = 1
+   8               		.global __do_copy_data
+   9               		.global __do_clear_bss
+  17               	.Ltext0:
+  18               		.data
+  19               	.LC0:
+  20 0000 146F 6B20 		.string	"\024ok  "
+  20      2000 
+  21               		.text
+  22               	.global	recv_msg
+  24               	recv_msg:
+  25               	.LFB2:
+  26               	.LM1:
+  27               	/* prologue: frame size=0 */
+  28 0000 CF93      		push r28
+  29 0002 DF93      		push r29
+  30               	/* prologue end (size=2) */
+  31               	.LVL0:
+  32 0004 EC01      		movw r28,r24
+  33               	.LM2:
+  34 0006 8881      		ld r24,Y
+  35               	.LVL1:
+  36 0008 8031      		cpi r24,lo8(16)
+  37 000a 01F0      		breq .L5
+  38               	.LM3:
+  39 000c 8131      		cpi r24,lo8(17)
+  40 000e 00F4      		brsh .L9
+  41 0010 8930      		cpi r24,lo8(9)
+  42 0012 01F0      		breq .L3
+  43 0014 8A30      		cpi r24,lo8(10)
+  44 0016 01F0      		breq .+2
+  45 0018 00C0      		rjmp .L12
+  46 001a 00C0      		rjmp .L4
+  47               	.L9:
+  48 001c 8331      		cpi r24,lo8(19)
+  49 001e 01F0      		breq .L7
+  50 0020 8631      		cpi r24,lo8(22)
+  51 0022 01F0      		breq .L8
+  52 0024 8131      		cpi r24,lo8(17)
+  53 0026 01F4      		brne .L12
+  54 0028 00C0      		rjmp .L6
+  55               	.L4:
+  56               	.LM4:
+  57 002a 00D0      		rcall eeprom_save
+  58 002c 00C0      		rjmp .L13
+  59               	.L3:
+  60               	.LM5:
+  61 002e 8981      		ldd r24,Y+1
+  62 0030 8823      		tst r24
+  63 0032 01F0      		breq .L10
+  64               	.LM6:
+  65 0034 00D0      		rcall odesilame
+  66               	.LM7:
+  67 0036 80E0      		ldi r24,lo8(.LC0)
+  68 0038 90E0      		ldi r25,hi8(.LC0)
+  69 003a 00D0      		rcall new_msg
+  70 003c 00C0      		rjmp .L8
+  71               	.L10:
+  72               	.LM8:
+  73 003e 81E0      		ldi r24,lo8(1)
+  74 0040 00D0      		rcall odesilame
+  75               	.LM9:
+  76 0042 80E0      		ldi r24,lo8(.LC0)
+  77 0044 90E0      		ldi r25,hi8(.LC0)
+  78 0046 00D0      		rcall new_msg
+  79               	.LM10:
+  80 0048 8981      		ldd r24,Y+1
+  81 004a 00D0      		rcall odesilame
+  82 004c 00C0      		rjmp .L12
+  83               	.L5:
+  84               	.LM11:
+  85 004e 8981      		ldd r24,Y+1
+  86 0050 9927      		clr r25
+  87 0052 982F      		mov r25,r24
+  88 0054 8827      		clr r24
+  89 0056 2A81      		ldd r18,Y+2
+  90 0058 820F      		add r24,r18
+  91 005a 911D      		adc r25,__zero_reg__
+  92 005c 00D0      		rcall set_irc_k
+  93               	.LM12:
+  94 005e 00D0      		rcall irc_get_k
+  95 0060 BC01      		movw r22,r24
+  96 0062 84E0      		ldi r24,lo8(4)
+  97 0064 90E0      		ldi r25,hi8(4)
+  98 0066 00D0      		rcall eeprom_w16
+  99               	.L13:
+ 100               	.LM13:
+ 101 0068 80E0      		ldi r24,lo8(.LC0)
+ 102 006a 90E0      		ldi r25,hi8(.LC0)
+ 103 006c 00D0      		rcall new_msg
+ 104 006e 00C0      		rjmp .L12
+ 105               	.L6:
+ 106               	.LM14:
+ 107 0070 6981      		ldd r22,Y+1
+ 108 0072 7727      		clr r23
+ 109 0074 762F      		mov r23,r22
+ 110 0076 6627      		clr r22
+ 111 0078 8827      		clr r24
+ 112 007a 77FD      		sbrc r23,7
+ 113 007c 8095      		com r24
+ 114 007e 982F      		mov r25,r24
+ 115 0080 2A81      		ldd r18,Y+2
+ 116 0082 620F      		add r22,r18
+ 117 0084 711D      		adc r23,__zero_reg__
+ 118 0086 811D      		adc r24,__zero_reg__
+ 119 0088 911D      		adc r25,__zero_reg__
+ 120 008a 00D0      		rcall set_irc_set_on_value
+ 121 008c 00C0      		rjmp .L13
+ 122               	.L7:
+ 123               	.LM15:
+ 124 008e 8981      		ldd r24,Y+1
+ 125 0090 8093 0000 		sts width_prepocet,r24
+ 126 0094 00C0      		rjmp .L13
+ 127               	.L8:
+ 128               	.LM16:
+ 129 0096 81E0      		ldi r24,lo8(1)
+ 130 0098 00D0      		rcall irc_send_msg
+ 131               	.L12:
+ 132               	/* epilogue: frame size=0 */
+ 133 009a DF91      		pop r29
+ 134 009c CF91      		pop r28
+ 135 009e 0895      		ret
+ 136               	/* epilogue end (size=3) */
+ 137               	/* function recv_msg size 80 (75) */
+ 138               	.LFE2:
+ 140               		.comm irc_counter,4,1
+ 141               		.comm irc_set_on_value,4,1
+ 142               		.comm irc_k,2,1
+ 143               		.comm width_prepocet,1,1
+ 168               	.Letext0:
+DEFINED SYMBOLS
+                            *ABS*:00000000 usart_recv.c
+C:\DOCUME~1\Mira\LOCALS~1\Temp/ccusKd3h.s:3      *ABS*:0000003f __SREG__
+C:\DOCUME~1\Mira\LOCALS~1\Temp/ccusKd3h.s:4      *ABS*:0000003e __SP_H__
+C:\DOCUME~1\Mira\LOCALS~1\Temp/ccusKd3h.s:5      *ABS*:0000003d __SP_L__
+C:\DOCUME~1\Mira\LOCALS~1\Temp/ccusKd3h.s:6      *ABS*:00000000 __tmp_reg__
+C:\DOCUME~1\Mira\LOCALS~1\Temp/ccusKd3h.s:7      *ABS*:00000001 __zero_reg__
+C:\DOCUME~1\Mira\LOCALS~1\Temp/ccusKd3h.s:24     .text:00000000 recv_msg
+                            *COM*:00000001 width_prepocet
+                            *COM*:00000004 irc_counter
+                            *COM*:00000004 irc_set_on_value
+                            *COM*:00000002 irc_k
+
+UNDEFINED SYMBOLS
+__do_copy_data
+__do_clear_bss
+eeprom_save
+odesilame
+new_msg
+set_irc_k
+irc_get_k
+eeprom_w16
+set_irc_set_on_value
+irc_send_msg

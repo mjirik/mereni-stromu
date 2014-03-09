@@ -1,0 +1,249 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<title>Webová aplikace k projektu měření objemu řeziva: Dokumentace souboru edit_seznam.php</title>
+<link href="doxygen.css" rel="stylesheet" type="text/css">
+<link href="tabs.css" rel="stylesheet" type="text/css">
+</head><body>
+<!-- Generováno programem Doxygen 1.5.2 -->
+<div class="tabs">
+  <ul>
+    <li><a href="index.html"><span>Hlavní&nbsp;stránka</span></a></li>
+    <li><a href="annotated.html"><span>Třídy</span></a></li>
+    <li class="current"><a href="files.html"><span>Soubory</span></a></li>
+    <li><a href="pages.html"><span>Ostatní&nbsp;stránky</span></a></li>
+  </ul>
+</div>
+<div class="tabs">
+  <ul>
+    <li><a href="files.html"><span>Seznam&nbsp;souborů</span></a></li>
+    <li><a href="globals.html"><span>Globální&nbsp;symboly</span></a></li>
+  </ul>
+</div>
+<h1>Dokumentace souboru edit_seznam.php</h1><table border="0" cellpadding="0" cellspacing="0">
+<tr><td></td></tr>
+<tr><td colspan="2"><br><h2>Proměnné</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="edit__seznam_8php.html#5d346e31b75d916e3bac9cb193bfc97f">$link</a> = connect_db()</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="edit__seznam_8php.html#3c74ea9d2348c9aba28d36e692bef2d2">$all</a> = &amp; new <a class="el" href="classTemplate.html">Template</a>('./tmpl/all.tmpl.php')</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="edit__seznam_8php.html#26b9f9373f7bb79dfcf8a86dff086b45">$body</a> = &amp; new <a class="el" href="classTemplate.html">Template</a>('./tmpl/edit_seznam.tmpl.php')</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="edit__seznam_8php.html#f75bdb3629c27f871b739f7947703e43">$tisk</a> = &amp; new <a class="el" href="classTemplate.html">Template</a>('./tmpl/seznam.tmpl.php')</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="edit__seznam_8php.html#0a14f7b921f1c1d02ff8b900d2618236">$novy</a> = &amp; new <a class="el" href="classTemplate.html">Template</a>('./tmpl/nove_mereni.tmpl.php')</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="edit__seznam_8php.html#3c37b063b89ad1a467767a3d915a3c41">$chybovaHlaska</a> = false</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="edit__seznam_8php.html#78baee63a6db53573ed50117fe41fb25">$chybovaHlaskaCena</a> = false</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="edit__seznam_8php.html#22c2c5c2c686d4be1f43b067588d790a">$ceny</a> = parametry_seznamu($_GET[&quot;id&quot;],$link)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="edit__seznam_8php.html#556d395e43784391881a80244efd7788">$nove_mer</a> = null</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="edit__seznam_8php.html#54d6ff0dc1b9495abd4a2a289b2eb2f8">$zaznam</a> [&quot;Cena_m3&quot;] = cena_strom_m3 ($zaznam,$ceny)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="edit__seznam_8php.html#af0cfd8c2680fe31c3d4f0c74a249766">$zaznamy</a> [$key] = $zaznam</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="edit__seznam_8php.html#2f4727ea869082ec91e88aa9c5116231">$zdruhy</a> = druhy_dreva($link)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="edit__seznam_8php.html#4e38bd4e6c20b5e662f40ebdde8dad2b">$dalsi_zpracovani</a> = dalsi_zpracovani($link)</td></tr>
+
+</table>
+<hr><a name="_details"></a><h2>Detailní popis</h2>
+Soubor zajišťuje editaci zakázky. <hr><h2>Dokumentace proměnných</h2>
+<a class="anchor" name="3c74ea9d2348c9aba28d36e692bef2d2"></a><!-- doxytag: member="edit_seznam.php::$all" ref="3c74ea9d2348c9aba28d36e692bef2d2" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">$all = &amp; new <a class="el" href="classTemplate.html">Template</a>('./tmpl/all.tmpl.php')          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+</div>
+</div><p>
+<a class="anchor" name="26b9f9373f7bb79dfcf8a86dff086b45"></a><!-- doxytag: member="edit_seznam.php::$body" ref="26b9f9373f7bb79dfcf8a86dff086b45" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">$body = &amp; new <a class="el" href="classTemplate.html">Template</a>('./tmpl/edit_seznam.tmpl.php')          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+</div>
+</div><p>
+<a class="anchor" name="22c2c5c2c686d4be1f43b067588d790a"></a><!-- doxytag: member="edit_seznam.php::$ceny" ref="22c2c5c2c686d4be1f43b067588d790a" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">$ceny = parametry_seznamu($_GET[&quot;id&quot;],$link)          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+</div>
+</div><p>
+<a class="anchor" name="3c37b063b89ad1a467767a3d915a3c41"></a><!-- doxytag: member="edit_seznam.php::$chybovaHlaska" ref="3c37b063b89ad1a467767a3d915a3c41" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">$chybovaHlaska = false          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+</div>
+</div><p>
+<a class="anchor" name="78baee63a6db53573ed50117fe41fb25"></a><!-- doxytag: member="edit_seznam.php::$chybovaHlaskaCena" ref="78baee63a6db53573ed50117fe41fb25" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">$chybovaHlaskaCena = false          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+</div>
+</div><p>
+<a class="anchor" name="4e38bd4e6c20b5e662f40ebdde8dad2b"></a><!-- doxytag: member="edit_seznam.php::$dalsi_zpracovani" ref="4e38bd4e6c20b5e662f40ebdde8dad2b" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">$dalsi_zpracovani = dalsi_zpracovani($link)          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+</div>
+</div><p>
+<a class="anchor" name="5d346e31b75d916e3bac9cb193bfc97f"></a><!-- doxytag: member="edit_seznam.php::$link" ref="5d346e31b75d916e3bac9cb193bfc97f" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">$link = connect_db()          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+</div>
+</div><p>
+<a class="anchor" name="556d395e43784391881a80244efd7788"></a><!-- doxytag: member="edit_seznam.php::$nove_mer" ref="556d395e43784391881a80244efd7788" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">$nove_mer = null          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+</div>
+</div><p>
+<a class="anchor" name="0a14f7b921f1c1d02ff8b900d2618236"></a><!-- doxytag: member="edit_seznam.php::$novy" ref="0a14f7b921f1c1d02ff8b900d2618236" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">$novy = &amp; new <a class="el" href="classTemplate.html">Template</a>('./tmpl/nove_mereni.tmpl.php')          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+</div>
+</div><p>
+<a class="anchor" name="f75bdb3629c27f871b739f7947703e43"></a><!-- doxytag: member="edit_seznam.php::$tisk" ref="f75bdb3629c27f871b739f7947703e43" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">$tisk = &amp; new <a class="el" href="classTemplate.html">Template</a>('./tmpl/seznam.tmpl.php')          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+</div>
+</div><p>
+<a class="anchor" name="54d6ff0dc1b9495abd4a2a289b2eb2f8"></a><!-- doxytag: member="edit_seznam.php::$zaznam" ref="54d6ff0dc1b9495abd4a2a289b2eb2f8" args="[&quot;Cena_m3&quot;]" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">$zaznam[&quot;Cena_m3&quot;] = cena_strom_m3 ($zaznam,$ceny)          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+</div>
+</div><p>
+<a class="anchor" name="af0cfd8c2680fe31c3d4f0c74a249766"></a><!-- doxytag: member="edit_seznam.php::$zaznamy" ref="af0cfd8c2680fe31c3d4f0c74a249766" args="[$key]" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">$zaznamy[$key] = $zaznam          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+</div>
+</div><p>
+<a class="anchor" name="2f4727ea869082ec91e88aa9c5116231"></a><!-- doxytag: member="edit_seznam.php::$zdruhy" ref="2f4727ea869082ec91e88aa9c5116231" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">$zdruhy = druhy_dreva($link)          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+</div>
+</div><p>
+<p align=left>Miroslav Jiřík</p>

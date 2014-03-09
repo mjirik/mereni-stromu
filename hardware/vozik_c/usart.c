@@ -1,25 +1,29 @@
-/* $Id: usart.c 120 2007-09-21 05:43:42Z Mira $
+/* $Id: usart.c 149 2009-10-25 17:36:42Z mjirik $
  */
 /**
  * @file usart.c
  * @brief
- * Modul zajišuje odesílání zpráv po sériové lince.
- * Funkce new_ack_msg() vytvoøí zprávu, na ní je oèekávána
- * odpovìï. Pøi pøijentí zprávy je zavolána funkce, na ní u
- * ukazuje poínter v parametru funkce. V pøípadì, e je
- * pøekroèena urèitá doba (daná MAX_MSG_ACK_DELAY) je odeslání
- * zprávy zopakováno. Kolikrát toto opakování probìhne ukazuje
- * promìnná MAX_MSG_ACK_REPEATS (celkem je zpráva odeslána
- * MAX_MSG_ACK_REPEATS + 1 krát). Pokud ani na opakované odesílání
- * není obdrena odpovìï, je vyhlášen error.
+ * Modul zajiÅ¡Å¥uje odesÃ­lÃ¡nÃ­ zprÃ¡v po sÃ©riovÃ© lince.
+ * Funkce new_ack_msg() vytvoÅ™Ã­ zprÃ¡vu, na nÃ­Å¾ je oÄekÃ¡vÃ¡na
+ * odpovÄ›Ä. PÅ™i pÅ™ijentÃ­ zprÃ¡vy je zavolÃ¡na funkce, na nÃ­Å¾ u
+ * ukazuje poÃ­nter v parametru funkce. V pÅ™Ã­padÄ›, Å¾e je
+ * pÅ™ekroÄena urÄitÃ¡ doba (danÃ¡ MAX_MSG_ACK_DELAY) je odeslÃ¡nÃ­
+ * zprÃ¡vy zopakovÃ¡no. KolikrÃ¡t toto opakovÃ¡nÃ­ probÄ›hne ukazuje
+ * promÄ›nnÃ¡ MAX_MSG_ACK_REPEATS (celkem je zprÃ¡va odeslÃ¡na
+ * MAX_MSG_ACK_REPEATS + 1 krÃ¡t). Pokud ani na opakovanÃ© odesÃ­lÃ¡nÃ­
+ * nenÃ­ obdrÅ¾ena odpovÄ›Ä, je vyhlÃ¡Å¡en error.
  *
  * Odesilani zprav pracuje tak, ze funkce new_msg() vytvari a udrzuje seznam
- * zprav a funkce send_msg() je uívána pøi odesílání pro vybírání z tohoto seznamu
- * Pouívají se zde poèítadla.
+ * zprav a funkce send_msg() je uÅ¾Ã­vÃ¡na pÅ™i odesÃ­lÃ¡nÃ­ pro vybÃ­rÃ¡nÃ­ z tohoto seznamu
+ * PouÅ¾Ã­vajÃ­ se zde poÄÃ­tadla.
  * msg_buffer_counter ukazuje na zpravu, kterou je treba odeslat. Je-li -1, pak
- * není ádná zpráva k odeslání.
+ * nenÃ­ Å¾Ã¡dnÃ¡ zprÃ¡va k odeslÃ¡nÃ­.
  *
- * 
+ *
+ * DoÅ¡lo k ÃºpravÄ›. Byl naimplementovÃ¡n lower_buffer. PÅ™i pÅ™Ã­jmu je kaÅ¾dÃ½ byte
+ * nejpve pÅ™esunut do tohoto bufferu. DalÅ¡Ã­ zpracovÃ¡nÃ­ se provÃ¡dÃ­ aÅ¾ pozdÄ›ji,
+ * pomocÃ­ dosavadnÃ­ch funkcÃ­.
+ *
  */
 
 /*
@@ -41,6 +45,38 @@
 #include "error.h"
 #include "main.h"
 #include "usart.h"
+#include "common/msgn.h"
+#include "memory.h"
+#include "sysinfo.h"
+#include "watchdog.h" // kvuli wtch_dbg_info
+
+
+// global
+
+void USART_Init(unsigned int baud);
+void new_msg(char *);
+void new_ack_msg(char * msg, unsigned char repeats, void (*p_fcn)(char*s), void (*p_fcn_nresponse)(void));
+void msg_ack_fcn(char * msg);
+void serial_msg_ack_timer(void);
+void new_msg_P(PGM_P s_p);
+char usart_get_recv_buff(int i);
+void serial_read_buffer(void);
+
+
+void send_uint32(char msgn, uint32_t number1, uint32_t number2);
+void recive_uint32(char * msg, uint32_t * number1, uint32_t * number2);
+
+void msg_time_0(void);
+void msg_time_pp(void);
+uint32_t get_msg_time(void);
+char* get_recv_buffer(void);
+
+
+uint32_t msg_time;
+// global
+
+//#include "lcd.h"
+
 // /// @todo odstranit
 // #include "lcd.h"
 
@@ -59,9 +95,23 @@
 // Pozor! kdyz to zmenim, je nutno prepsat funkci to_transmitt_buffer()
 #define LenOfMsgBuffer 5
 #define Delay 500
+#define SIZE_OF_LOWER_BUFFER 250
+
 
 #define MAX_MSG_ACK_DELAY 5000
 //#define MAX_MSG_ACK_REPEATS 2
+
+
+
+/// PromÄ›nnÃ© kruhovÃ©ho zÃ¡sobnÃ­ku.
+///
+/// @{
+char lower_buffer[SIZE_OF_LOWER_BUFFER];
+//char lower_buffer_counter = 0;
+/// Ukazuje na byte za posledÃ­m zapsanÃ½m bytem.
+int lower_buffer_newest = 0;
+int lower_buffer_oldest = 0;
+/// @}
 
 //int pocitadlo = 0; //pocitadlo pro testy. Odstranit!
 int usart_recv_count = -1;
@@ -69,36 +119,42 @@ char usart_recv_buff[LenOfRecvBuff];
 char usart_trans_buff[LenOfTransBuff];
 char prepinani = 0;
 
+/// promÄ›nnÃ¡ detekuje zda zÃ¡roveÅˆ bÄ›Å¾Ã­ ÄtenÃ­ a zÃ¡pis do bufferu
+//static char kolikrat_spusteno = 0;
+
 //* Pokud je usart_trans_buff = -1 znamena to, ze je buffer prazdny
 int usart_trans_count = -1;
 
-//* Pole udruje seznam zpráv k odeslaní.
+//* Pole udrÅ¾uje seznam zprÃ¡v k odeslanÃ­.
 char * msg_buffer[LenOfMsgBuffer];
 int msg_buffer_counter = -1;
 
-/// Buffer pro pøijatou zprávu.
+/// Buffer pro pÅ™ijatou zprÃ¡vu.
 char recived_msg[LenOfMsg];
 
-/// Odmlka po odeslání.
+/// Odmlka po odeslÃ¡nÃ­.
 int after_trans_delay_counter = Delay ;
 
-/// Èasovaè. Pokud pøeteèe, znamená to, e nedorazila vèas odpovìï
-/// na potvrzovanou zprávu.
+/// ÄŒasovaÄ. Pokud pÅ™eteÄe, znamenÃ¡ to, Å¾e nedorazila vÄas odpovÄ›Ä
+/// na potvrzovanou zprÃ¡vu.
 static unsigned int msg_ack_timer = 0;
 
-/// zde je poslední odeslaná zpráva pro úèel opakování v pøípadì nedoruèení
-/// @todo pole by šlo zmenšit na LenOfMsg
+/// zde je poslednÃ­ odeslanÃ¡ zprÃ¡va pro ÃºÄel opakovÃ¡nÃ­ v pÅ™Ã­padÄ› nedoruÄenÃ­
+/// @todo pole by Å¡lo zmenÅ¡it na LenOfMsg
 static char last_msg_ack[LenOfTransBuff];
 
-///poèet opakování odeslání zprávy
+///poÄet opakovÃ¡nÃ­ odeslÃ¡nÃ­ zprÃ¡vy
 static unsigned char msg_ack_repeats = 0;
 
-/** Ukazatel na funkci, která bude volána po pèijetí potvrzení zprávy */
+/** Ukazatel na funkci, kterÃ¡ bude volÃ¡na po pÄijetÃ­ potvrzenÃ­ zprÃ¡vy */
 static void (*p_ack_fcn)(char*s) = NULL;
 
-/// Ukazatel na funkci, kter bude volána v pøípadì, e èekání na
-/// odpovìï je neúspìšné.
+/// Ukazatel na funkci, kter bude volÃ¡na v pÅ™Ã­padÄ›, Å¾e ÄekÃ¡nÃ­ na
+/// odpovÄ›Ä je neÃºspÄ›Å¡nÃ©.
 static void (*p_nack_fcn)(void) = NULL;
+
+/// poÄÃ­tadlo od poslednÃ­ doruÄenÃ© zprÃ¡vy, takovÃ½ je, aby hned od zaÄÃ¡tku fungoval default_scr
+uint32_t msg_time = 30e4;
 
 // Deklarace funkci
 void zarad_tri_zpravy(void);
@@ -108,7 +164,12 @@ void process_recived_msg(void);
 
 static void reset_buffer(void);
 static void into_buffer(unsigned char c);
-static void read_port(void);
+//static void read_port(void);
+
+char* get_recv_buffer(void){
+  return usart_recv_buff;
+}
+
 
 
 /**
@@ -143,13 +204,31 @@ void USART_Init( unsigned int baud ){
   */
 
 //  UDR = 0;
-  DDRD = DDRD | (1 << 4); // pøepínání sériovıch linek
+  DDRD = DDRD | (1 << 4); // pÅ™epÃ­nÃ¡nÃ­ sÃ©riovÃ½ch linek
 
 
 }
 
 
-/// Funkce vynuluje pøijímací buffer
+
+/// funkce inkrementuje poÄÃ­tadlo od poslednÃ­ doruÄenÃ© zprÃ¡vy
+void msg_time_pp(void){
+  if (msg_time < (100e4))
+  msg_time++;
+}
+
+/// Funkce nuluje poÄÃ­tadlo
+void msg_time_0(void){
+  msg_time = 0;
+}
+
+/// funkce vracÃ­ hodnotu poÄÃ­tadla
+uint32_t get_msg_time(void){
+  return (msg_time);
+}
+
+
+/// Funkce vynuluje pÅ™ijÃ­macÃ­ buffer
 void reset_buffer(void){
   int i=0;
   for (i=0; i < LenOfRecvBuff; i++){
@@ -160,126 +239,252 @@ void reset_buffer(void){
 
 /**
  * Funkce vklÃ¡dÃ¡ data do bufferu.
- * Funkce je zaloená na stejné implementaci jako na serveru.
+ * Funkce je zaloÅ¾enÃ¡ na stejnÃ© implementaci jako na serveru.
  */
 void into_buffer(unsigned char c){
-  int i=0;
-  for (i=0;i < LenOfRecvBuff - 1;i++){
+  int i = 0;
+  for (i = 0;i < LenOfRecvBuff - 1;i++){
     usart_recv_buff[i]=usart_recv_buff[i+1];
   }
   usart_recv_buff[i]=c;
 }
 
 
-/// Nová implementace pøijímní zpráv
-/// Není naimplementována chyba z chybnì pøijatéo prvního znaku.
-/// @todo Znovuzapojit resetovaè bufferu.
-void read_port(){
-  static unsigned char byte_counter = 0;
-//  unsigned char c;
-//  unsigned char typ=0;
+/**
+ * Funkce zvÃ½Å¡Ã­ (nebo protoÄÃ­ na zaÄÃ¡tek) "ukazatel" na nejstarÅ¡Ã­ byte
+ * lower_bufferu. Pokud by bylo toto zvÃ½Å¡enÃ­ pÅ™Ã­mo naimplementovÃ¡no ve funkcÃ­ch,
+ * nebylo by moÅ¾nÃ© zjistit, zda k tomuto nedochÃ¡zÃ­ ve vÃ­ce "vlÃ¡knech". NapÅ™Ã­klad
+ * z programu a z pÅ™eruÅ¡enÃ­. ProblÃ©m by to byl zejmÃ©na na konci tÄ›snÄ› pÅ™ed
+ * pÅ™eruÅ¡enÃ­m, kdy by v jednom volÃ¡nÃ­ mohlo dojÃ­t k testovÃ¡nÃ­ konce, pak k
+ * pÅ™eruÅ¡enÃ­, novÃ©mu testovÃ¡nÃ­ a nÃ¡slednÄ› dvojitÃ©mu zvÃ½Å¡enÃ­ ÄÃ­taÄe. Toto je nynÃ­
+ * oÅ¡etÅ™eno.
+ */
+void inc_lower_buffer_oldest(void) {
+  static char instance_counter = 0;
+  instance_counter++;
 
-  into_buffer(UDR);
-  byte_counter++;
+  // pÅ™edpoklÃ¡dÃ¡ se, Å¾e funkce nebude volÃ¡na vÃ­ce neÅ¾ 5x najednou, takÅ¾e nenÃ­
+  // provÃ¡dÄ›no testovÃ¡nÃ­ instance_counter < SIZE_OF_LOWER_BUFFER
 
-  if (test_message(usart_recv_buff) == 1){
-    process_recived_msg();
-    reset_buffer();
-    byte_counter = 0;
-//    zpracuj_zpravu();
-//dorazilo
+
+  // NastavenÃ­ hodnoty ukazatele na 2. nejstarÅ¡Ã­ pÅ™ijatÃ½ byte
+  //if (lower_buffer_oldest < (SIZE_OF_LOWER_BUFFER - 1)) {
+
+  if (lower_buffer_oldest < (SIZE_OF_LOWER_BUFFER - instance_counter)) {
+    // problÃ©m je pokud dojde k pÅ™eruÅ¡enÃ­ prÃ¡vÄ› ZDE
+    lower_buffer_oldest++;
+  } else {
+    // pokud jsme na konci pamÄ›ti bufferu, jdeme na zaÄÃ¡tek
+    //lower_buffer_oldest = 0;
+    lower_buffer_oldest = lower_buffer_oldest - (SIZE_OF_LOWER_BUFFER - 1);
   }
-  if ((usart_recv_buff[0] == 255) && (byte_counter > LenOfRecvBuff)){
-    // chyba prenosu - neshoda v kontrolnim souctu
-    new_error(86);
+
+
+  // toto je jen informaÄnÃ­ error, situace je oÅ¡etÅ™ena v kÃ³du vÃ½Å¡e
+  // k chybÄ› dojde jen pÅ™i naplnÄ›nÃ­ bufferu, bufferu na konci a souÄasnÃ©m volÃ¡nÃ­
+  //funkce z programu i pÅ™eruÅ¡enÃ­
+  if (instance_counter > 1) {
+    new_error(ERRN_RECIVE_END_OF_BUFFER_BUG);
   }
+
+  instance_counter--;
+}
+
+/**
+ * Funkce vloÅ¾Ã­ byte do lower_buffer. Buffer je kruhovÃ½. V pÅ™Ã­padÄ› Å¾e dojde k
+ * jeho naplnÄ›nÃ­, je vyhlÃ¡Å¡en error a je zapomenut nejstarÅ¡Ã­ byte.
+ * 
+ */
+void into_lower_buffer(char recived_byte) {
+
+  lower_buffer[(int)lower_buffer_newest] = recived_byte;
+
+  // NastavenÃ­ hodnoty ukazatele za nejnovÄ›jÅ¡Ã­ pÅ™ijatÃ½ buffer.
+  if (lower_buffer_newest < (SIZE_OF_LOWER_BUFFER-1)) {
+    lower_buffer_newest++;
+  } else {
+    // pokud jsme na konci pamÄ›ti bufferu, jdeme na zaÄÃ¡tek
+    lower_buffer_newest = 0;
+  }
+
+  // DoÅ¡lo-li k dostiÅ¾enÃ­ ukazatele na nejstarÅ¡Ã­ byte, je zÃ¡sobnÃ­k pÅ™eplnÄ›n.
+  if (lower_buffer_newest == lower_buffer_oldest){
+    // zÃ¡sobnÃ­k pÅ™eplnÄ›n -> dojde k zapomenutÃ­ nejstarÅ¡Ã­ho byte
+
+
+    inc_lower_buffer_oldest();
+
+
     
+    new_error(ERRN_RECIVE_BUFFER_FULL);
+  }
 
 }
 
-/// Tahle èást se spouští vdy kdy pøijmeme nìjakı byte po sériovém kanále.
-SIGNAL(SIG_UART_RECV){
-  read_port();
+
+/**
+ * Funkce naÄÃ­tÃ¡ z lower_buffer
+ * @return vracÃ­ nejstarÃ­ byte z bufferu, pokud je buffer prÃ¡zdnÃ½, vracÃ­ -1
+ */
+int getc_lb(void) {
+  int out;
+  
+  // test, zda je prÃ¡zdnÃ½ buffer
+  if (lower_buffer_oldest == lower_buffer_newest) {
+    // prÃ¡znÃ½ buffer
+
+    out = -1;
+  } else {
+    // neprÃ¡zdnÃ½ buffer
+
+    out = (int) lower_buffer[(int) lower_buffer_oldest];
+
+    inc_lower_buffer_oldest();
+
+
+  }
 
   
-  //zarad_tri_zpravy();
+  return out;
+}
+
+/// NovÃ¡ implementace pÅ™ijÃ­mnÃ­ zprÃ¡v
+/// NenÃ­ naimplementovÃ¡na chyba z chybnÄ› pÅ™ijatÃ©o prvnÃ­ho znaku.
+void serial_read_buffer(void) {
+  static unsigned char byte_counter = 0;
+  int c;
+
+  wtch_dbg_info();
+  //  unsigned char c;
+  //  unsigned char typ=0;
+
+  // naÄtenÃ­ z lower_buffer
+  while ((c = getc_lb()) != -1) {
+    into_buffer((char) c);
+
+    // obsah bufferu se tiskne jen pokud je to povoleno
+    si_print_recv_buffer();
+    byte_counter++;
+
+    if ((byte_counter >= LenOfRecvBuff) && (test_message(usart_recv_buff) == 1)) {
+      process_recived_msg();
+      //reset_buffer(); // reset naplnÃ­ nulami a pak je moÅ¾nÃ©, Å¾e dorazÃ­ jen jeden znak 255 a ostatnÃ­ nuly
+      byte_counter = 0;
+      //    zpracuj_zpravu();
+      //dorazilo
+    }
+    if ((usart_recv_buff[0] == 255) && (byte_counter > LenOfRecvBuff)) {
+      //si_print_recv_buffer();
+      // chyba prenosu - neshoda v kontrolnim souctu
+      new_error(86);
+    }
+  }
+  
+
+}
+
+/// Tahle ÄÃ¡st se spouÅ¡tÃ­ vÅ¾dy kdyÅ¾ pÅ™ijmeme nÄ›jakÃ½ byte po sÃ©riovÃ©m kanÃ¡le.
+SIGNAL(SIG_UART_RECV){
+  
+  /*kolikrat_spusteno++;
+
+  if (kolikrat_spusteno > 1){
+    new_error(ERRN_RECIVER_OVERLOADED);
+  }
+  else{*/
+    into_lower_buffer(UDR);
+  
+  /*
+  }
+  kolikrat_spusteno--;
+  */
+  
 }
 
 
 
-/// Tohle se spouští kdy je prázdnı odesílací buffer.
-/// Kdy je zapotøebí vysílat, staèí, kdy nastaví usart_trans_count = 0 .
-/// Odesílá to po bytech vìci z usart_trans_bufferu az do konce
-/// na konci je malé odmlèení, kvùli lepší synchronizaci
-SIGNAL(SIG_UART_DATA){
+/// Tohle se spouÅ¡tÃ­ kdyÅ¾ je prÃ¡zdnÃ½ odesÃ­lacÃ­ buffer.
+/// KdyÅ¾ je zapotÅ™ebÃ­ vysÃ­lat, staÄÃ­, kdyÅ¾ nastavÃ­ usart_trans_count = 0 .
+/// OdesÃ­lÃ¡ to po bytech vÄ›ci z usart_trans_bufferu az do konce
+/// na konci je malÃ© odmlÄenÃ­, kvÅ¯li lepÅ¡Ã­ synchronizaci
+SIGNAL(SIG_UART_DATA) {
+  wtch_dbg_info();
   // Pokud neni co odesilat, tak se mrnkni jestli neco nema send_msg
-  if (usart_trans_count == -1){
+  if (usart_trans_count == -1) {
+
     send_msg();
-    
+
   }
+
   // pokud je neco v bufferu, tak makej
-  if (usart_trans_count != -1){
-    
-    if (usart_trans_count != LenOfTransBuff){ // zde je odesílán byte po bytu
+  if (usart_trans_count != -1) {
+
+    if (usart_trans_count != LenOfTransBuff) { // zde je odesÃ­lÃ¡n byte po bytu
+
       UDR = usart_trans_buff[usart_trans_count];
-    
+
       usart_trans_count++;
     }
-    
+
     // tak takhle to fungovalo
     /*
     if (usart_trans_count == LenOfTransBuff){
       usart_trans_count = -1;
     }
-    */
+     */
     //az sem
- 
 
-    // teï se po kadım odeslání udìlá pauza
-    // dela se to tak, e se vdycky sníí counter a kdy je nula, tak se vše
-    // nastaví a ukonèí
+
+    // teÄ se po kaÅ¾dÃ½m odeslÃ¡nÃ­ udÄ›lÃ¡ pauza
+    // dela se to tak, Å¾e se vÅ¾dycky snÃ­Å¾Ã­ counter a kdyÅ¾ je nula, tak se vÅ¡e
+    // nastavÃ­ a ukonÄÃ­
     //*
-    if (usart_trans_count == LenOfTransBuff){
-      if (after_trans_delay_counter != 0){
-        after_trans_delay_counter--;
-      
+    if (usart_trans_count == LenOfTransBuff) {
 
-      }
-      else{
+      if (after_trans_delay_counter != 0) {
+        after_trans_delay_counter--;
+
+
+      } else {
         after_trans_delay_counter = Delay;
         usart_trans_count = -1;
       }
     }
     //*/
-    
-  }
-  else{
+
+  } else {
+
     UCSRB = UCSRB & (~(1 << UDRIE));
   }
+
 }
 
 
 
 
 /// Tato funkce obaluje zpravu kodem pouzivanym pro prenos po seriovem kanale.
-/// Zde je provedeno uvolnìní pamìti zprávy. Je tak uèinìno po nakopírování
-/// zprávy do odesílacího bufferu.
-void to_transmitt_buffer(char *msg){
+/// Zde je provedeno uvolnÄ›nÃ­ pamÄ›ti zprÃ¡vy. Je tak uÄinÄ›no po nakopÃ­rovÃ¡nÃ­
+/// zprÃ¡vy do odesÃ­lacÃ­ho bufferu.
+
+void to_transmitt_buffer(char *msg) {
   int i = 0;
-  
+
+  wtch_dbg_info();
   usart_trans_buff[0] = 255;
-  
-  for (i = 0; i < LenOfMsg; i++){
+
+  for (i = 0; i < LenOfMsg; i++) {
     usart_trans_buff[i + 1] = msg[i];
   }
-  usart_trans_buff[LenOfMsg + 1] = usart_trans_buff[0] ^ msg[0];  
+  usart_trans_buff[LenOfMsg + 1] = usart_trans_buff[0] ^ msg[0];
 
-  for(i=0; i < DATASIZE; i = i + 2){
-      usart_trans_buff[DATASIZE + 3 + (i/2)] = msg[i+1]^msg[i+2];
+  for (i = 0; i < DATASIZE; i = i + 2) {
+    usart_trans_buff[DATASIZE + 3 + (i / 2)] = msg[i + 1]^msg[i + 2];
   }
 
-  free((void *)msg);
+  mfree((void *) msg);
+
   msg = NULL;
+
 }
 
 /// Funkce tesuje spravnost zpravy
@@ -312,8 +517,9 @@ int test_message(char *msg){
 
 /// Vstupem do teto funkce je ukazatel na zpravu
 /// pokud se ukazatel uz v seznamu nenachazi, tak je zarazen na konec seznamu.
-/// Prostor musí bıt správnì naalokovanı. Po odeslání zprávy je pamì uvolnìna.
+/// Prostor musÃ­ bÃ½t sprÃ¡vnÄ› naalokovanÃ½. Po odeslÃ¡nÃ­ zprÃ¡vy je pamÄ›Å¥ uvolnÄ›na.
 void new_msg (char *msg){
+   wtch_dbg_info();
 //pokud nedochazi k prepinani
   //if (prepinani == 0){
   if (1){
@@ -321,8 +527,15 @@ void new_msg (char *msg){
   // pokud zadna zprava v seznamu neni, tak ji strc na nulty misto
   // a nastartuj citac a zapni preruseni od datovaho bufferu.
     if (msg_buffer_counter == -1){
+      
       msg_buffer_counter = 0;
+
       msg_buffer[msg_buffer_counter] = msg;
+/*      if (msg != NULL){
+        char mystr[40];
+        sprintf(mystr, "msg = %x %x %x %x", (unsigned int)msg[0],(unsigned int)msg[1],(unsigned int)msg[2],(unsigned int)msg[3]);
+        printnt(mystr);
+      }*/
       UCSRB = UCSRB | (1 << UDRIE);
     
     }
@@ -330,13 +543,21 @@ void new_msg (char *msg){
     else{
       int i = 0;
 
-      // testujeme, zda uz zprava neni v seznamu
-      for (i = 0; i < LenOfMsgBuffer; i++){
-        if (msg_buffer[i][0] == msg[0]){
+      // testujeme, zda uz zprava s tÃ­mto kÃ³dem neni v seznamu
+      // pokud je, nadradÃ­me starÅ¡Ã­ tou novÄ›jÅ¡Ã­
+      for (i = 0; i < LenOfMsgBuffer; i++) {
+        if (msg_buffer[i][0] == msg[0]) {
+          mfree((void *) msg_buffer[i]);
+          msg_buffer[i] = msg;
+
+
+          // funkÄnÃ­ bez nahrazenÃ­ starÅ¡Ã­ zprÃ¡vy
+          //mfree((void *) msg);
+          //msg = NULL;
           return;
         }
       }
-     
+      
       // nastavime pocitadlo na prvek za aktualnim prvkem
       if (msg_buffer_counter != (LenOfMsgBuffer - 1))
         i = msg_buffer_counter + 1;
@@ -365,20 +586,22 @@ void new_msg (char *msg){
     
     }
   }
-  
 }
 
 /// Funkce po svem zavolani projde seznam zprav. Jestli je nejaka zprava k
 /// odeslani, zkopiruje ji do odesilaciho bufferu a nastavi usart_trans_count=0;
 /// Tim se zahaji odesilani.
 void send_msg (void){
+  wtch_dbg_info();
   if (msg_buffer_counter != -1){
     char *poiter_to_msg;
 
+    wtch_dbg_info();
     // zkopirujeme obsah do bufferu
     poiter_to_msg = msg_buffer[msg_buffer_counter];
-
+    wtch_dbg_info();
     to_transmitt_buffer(poiter_to_msg);
+    wtch_dbg_info();
 
     /*
     for (i = 0; i < LenOfTransBuff; i++){
@@ -391,6 +614,7 @@ void send_msg (void){
     // zahajime odesilani
     usart_trans_count = 0;
 
+    wtch_dbg_info();
     // Pokusime se nalezt dalsi zpravu
     if (msg_buffer_counter == (LenOfMsgBuffer - 1)){
       msg_buffer_counter = 0;
@@ -401,6 +625,7 @@ void send_msg (void){
 
     // Pokud zprava neexistuje, nastavime pocitadlo na -1;
     if (msg_buffer[msg_buffer_counter] == NULL){
+      wtch_dbg_info();
       msg_buffer_counter = -1; 
       // jestli uz je vsechno odeslany zakazeme preruseni od prazdneho datoveho
       // bufferu. Stejne tam ted nic neprijde.  Az budeme preruseni potrebovat,
@@ -416,7 +641,7 @@ void send_msg (void){
   
 }
 
-/// V tìle této funkce je øešeno zpracování pøijaté zprávy.
+/// V tÄ›le tÃ©to funkce je Å™eÅ¡eno zpracovÃ¡nÃ­ pÅ™ijatÃ© zprÃ¡vy.
 void process_recived_msg(){
   int i = 0;
   
@@ -429,18 +654,18 @@ void process_recived_msg(){
 
 
 /**
- * Funkce slouí k odesílání zpráv, které jsou uloeny v pamìti programu.
- * Funkce naalokuje pamì pro uloení øetìzce do SRAM, øetìzec tam zkopíruje
- * a zprávu odešle
- * @param s_p Ukazatel do programové pamìti.
- * @return Ukazatel v pamìti SRAM, kam je zkopírován øetìzec z \a s_p
+ * Funkce slouÅ¾Ã­ k odesÃ­lÃ¡nÃ­ zprÃ¡v, kterÃ© jsou uloÅ¾eny v pamÄ›ti programu.
+ * Funkce naalokuje pamÄ›Å¥ pro uloÅ¾enÃ­ Å™etÄ›zce do SRAM, Å™etÄ›zec tam zkopÃ­ruje
+ * a zprÃ¡vu odeÅ¡le
+ * @param s_p Ukazatel do programovÃ© pamÄ›ti.
+ * @return Ukazatel v pamÄ›ti SRAM, kam je zkopÃ­rovÃ¡n Å™etÄ›zec z \a s_p
  **/
 void new_msg_P( PGM_P s_p){
   char * p_pom;
 
-  p_pom = (char *) malloc(LenOfMsg);
+  p_pom = (char *) mmalloc(LenOfMsg);
   if(p_pom == NULL){
-    new_error(88); //Došla pamì
+    new_error(88); //DoÅ¡la pamÄ›Å¥
     return ;
   }
   else{
@@ -454,26 +679,26 @@ void new_msg_P( PGM_P s_p){
 
 
 /**
- * Funkce odešlì zprávu, na kterou je oèekávána odpovìï.
- * V okamiku, kdy odpovìï pøijde, bude zavolána funkce
+ * Funkce odeÅ¡lÄ› zprÃ¡vu, na kterou je oÄekÃ¡vÃ¡na odpovÄ›Ä.
+ * V okamÅ¾iku, kdy odpovÄ›Ä pÅ™ijde, bude zavolÃ¡na funkce
  * v argumentu (fcn).
  * 
- * @param msg Parametr je ukazatelem na eezec, kterı bude tvoøit
- * zprávu. Na tuto zprávu bude oèekávána odpovìï.
+ * @param msg Parametr je ukazatelem na Å¾eÅ¥ezec, kterÃ½ bude tvoÅ™it
+ * zprÃ¡vu. Na tuto zprÃ¡vu bude oÄekÃ¡vÃ¡na odpovÄ›Ä.
  *
- * @param repeats Parametr urèuje poèet pokusù o odeslání zprávy.
+ * @param repeats Parametr urÄuje poÄet pokusÅ¯ o odeslÃ¡nÃ­ zprÃ¡vy.
  * 
- * @param p_fcn Ukazatel na funkci, která je spouštìna pøi odpovìdi na
- * na zprávu. Nesmí bıt NULL, pak by nefungoval èasovaè, kterı toto testuje.
+ * @param p_fcn Ukazatel na funkci, kterÃ¡ je spouÅ¡tÄ›na pÅ™i odpovÄ›di na
+ * na zprÃ¡vu. NesmÃ­ bÃ½t NULL, pak by nefungoval ÄasovaÄ, kterÃ½ toto testuje.
  *
- * @param p_fcn_nresponse Ukazatel na funkci, která bude volána v
- * pøípadì neúpìšného èekání na odpovìï.
+ * @param p_fcn_nresponse Ukazatel na funkci, kterÃ¡ bude volÃ¡na v
+ * pÅ™Ã­padÄ› neÃºpÄ›Å¡nÃ©ho ÄekÃ¡nÃ­ na odpovÄ›Ä.
  *
  * @bug
- * Podezøení na chyby v uvolòování pamìti. Pøi opakovaném odeslání asi
- * dochází k uvolnìní pamìti po øetìzci msg, pøi dalším odesílání se
- * však odesílají data opìt z ukazatele msg, která jsou však ji
- * uvolnìná. 
+ * PodezÅ™enÃ­ na chyby v uvolÅˆovÃ¡nÃ­ pamÄ›ti. PÅ™i opakovanÃ©m odeslÃ¡nÃ­ asi
+ * dochÃ¡zÃ­ k uvolnÄ›nÃ­ pamÄ›ti po Å™etÄ›zci msg, pÅ™i dalÅ¡Ã­m odesÃ­lÃ¡nÃ­ se
+ * vÅ¡ak odesÃ­lajÃ­ data opÄ›t z ukazatele msg, kterÃ¡ jsou vÅ¡ak jiÅ¾
+ * uvolnÄ›nÃ¡. 
  * 
  * */
 void new_ack_msg(char * msg, unsigned char repeats, void (*p_fcn)(char*s),void (*p_fcn_nresponse)(void)){
@@ -495,8 +720,8 @@ void new_ack_msg(char * msg, unsigned char repeats, void (*p_fcn)(char*s),void (
 }
 
 /**
- * Funkce je volána pøi pøíjmu potvrzovací zprávy. Zavolá funkci,
- * která má bıt volána po potvrzení.
+ * Funkce je volÃ¡na pÅ™i pÅ™Ã­jmu potvrzovacÃ­ zprÃ¡vy. ZavolÃ¡ funkci,
+ * kterÃ¡ mÃ¡ bÃ½t volÃ¡na po potvrzenÃ­.
 */
 void msg_ack_fcn(char * msg){
   //static int i = 0;
@@ -504,8 +729,8 @@ void msg_ack_fcn(char * msg){
     void (*p_fcn_tmp)(char*s);
     p_fcn_tmp = p_ack_fcn;
     p_ack_fcn = NULL;
-    p_nack_fcn = NULL; // tohle musí bıt pøed voláním té funkce, protoe v ní je
-                //znovu zahájeno vysílání zprávy a tady by se to zase zastavilo.
+    p_nack_fcn = NULL; // tohle musÃ­ bÃ½t pÅ™ed volÃ¡nÃ­m tÃ© funkce, protoÅ¾e v nÃ­ je
+                //znovu zahÃ¡jeno vysÃ­lÃ¡nÃ­ zprÃ¡vy a tady by se to zase zastavilo.
     p_fcn_tmp(msg);
     msg_ack_timer = 0;
     p_fcn_tmp = NULL;
@@ -519,8 +744,8 @@ void msg_ack_fcn(char * msg){
 }
 
 /**
- * Funkce uzavírá komunikaci pøi neúspìšném pokusu o odeslání zprávy s
- * odpovìdí.
+ * Funkce uzavÃ­rÃ¡ komunikaci pÅ™i neÃºspÄ›Å¡nÃ©m pokusu o odeslÃ¡nÃ­ zprÃ¡vy s
+ * odpovÄ›dÃ­.
  */
 void msg_nack_fcn(void){
   if (p_nack_fcn != NULL){
@@ -532,11 +757,11 @@ void msg_nack_fcn(void){
   p_nack_fcn = NULL;
 }
 
-/// Zde je išetøeno èekání na potvrzovanou zprávu.
-/// Funkce zobsluhuje èítaè doby èekání na odezvu zprávy a
-/// èítaè poètu pokusù o odeslání. Na odpovìï na kadou potvrzovanou zprávu se èeká
-/// MAX_MSG_ACK_DELAY cyklù. Po uplynutí této doby je zpráva zopakována. Po
-/// MAX_MSG_ACK_REPEATS - tém opakování je vytvoøen error.
+/// Zde je iÅ¡etÅ™eno ÄekÃ¡nÃ­ na potvrzovanou zprÃ¡vu.
+/// Funkce zobsluhuje ÄÃ­taÄ doby ÄekÃ¡nÃ­ na odezvu zprÃ¡vy a
+/// ÄÃ­taÄ poÄtu pokusÅ¯ o odeslÃ¡nÃ­. Na odpovÄ›Ä na kaÅ¾dou potvrzovanou zprÃ¡vu se ÄekÃ¡
+/// MAX_MSG_ACK_DELAY cyklÅ¯. Po uplynutÃ­ tÃ©to doby je zprÃ¡va zopakovÃ¡na. Po
+/// MAX_MSG_ACK_REPEATS - tÃ©m opakovÃ¡nÃ­ je vytvoÅ™en error.
 void serial_msg_ack_timer(void){
   if (p_ack_fcn != NULL){
     msg_ack_timer++;
@@ -561,9 +786,95 @@ void serial_msg_ack_timer(void){
   }
 }
     
-/// Funkce vrací pøíslušnı znak z pøijímacího bufferu sériového kanálu.
+/// Funkce vracÃ­ pÅ™Ã­sluÅ¡nÃ½ znak z pÅ™ijÃ­macÃ­ho bufferu sÃ©riovÃ©ho kanÃ¡lu.
 char usart_get_recv_buff(int i){
   return usart_recv_buff[i];
 }
   
 /* end of usart.c */
+
+
+/**
+ * Funkce odeÅ¡le jedno aÅ¾ dvÄ› ÄÃ­sla uint16 po sÃ©riovÃ© lince
+ */
+void send_uint32(char msgn, uint32_t number1, uint32_t number2){
+  /*
+   *   unsigned int i = 4;
+  unsigned char * c0;
+  unsigned char * c1;
+  unsigned char * c2;
+  unsigned char * c3;
+
+  c0 = (unsigned char *) &i;
+  c1 = (unsigned char *) &i+1;
+  c2 = (unsigned char *) &i+2;
+  c3 = (unsigned char *) &i+3;
+  printf("cislo %i , cisla %i %i %i %i", i ,(int)*c0,(int)*c1,(int)*c2,(int)*c3 );
+   * */
+
+
+  char * msg;
+
+  uint32_t * uint32;
+
+   wtch_dbg_info();
+//  unsigned char num;
+
+  // alokace mÃ­sta pro novou zprÃ¡vu, nastavenÃ­ vlajky zprÃ¡vy
+  msg =(void*) mmalloc (DATASIZE);
+  msg[0] = msgn;
+
+
+  // zde se vytvoÅ™Ã­ ukazatel na prvnÃ­ datovÃ½ byte zprÃ¡vy, Å™ekne se Å¾e je to
+  // uint32 a pÅ™iÅ™adÃ­ se do nÄ›j hodnota
+  uint32 = ((uint32_t *)&(msg[1]));
+  *uint32 = number1;
+
+  uint32 = ((uint32_t *)&(msg[5]));
+  *uint32 = number2;
+
+
+  //msg[1] = *((unsigned char*) (&number1+0));
+/*
+  //number1 = number1;
+  msg[1] = number1 % 256;
+  number1 = number1 / 256;
+  msg[2] = number1 % 256;
+  number1 = number1 / 256;
+  msg[3] = number1 % 256;
+  number1 = number1 / 256;
+  msg[4] = number1 % 256;
+
+
+  // druhÃ½ ÄÃ­slo
+    //num = number2;
+    msg[5] = number2 % 256;
+    number2 = number2 / 256;
+    msg[6] = number2 % 256;
+    number2 = number2 / 256;
+    msg[7] = number2 % 256;
+    number2 = number2 / 256;
+    msg[8] = number2 % 256;
+*/
+
+  new_msg(msg);
+  
+}
+
+/// Funkce zÃ­skÃ¡ ze zprÃ¡vy dvÄ› ÄÃ­sla uint32_t
+/// @param number1 ukazatel na ÄÃ­slo, kam se mÃ¡ vrÃ¡tit prvnÃ­ ÄÃ­slo
+/// @param number2 ukazatel na ÄÃ­slo, kam se mÃ¡ vrÃ¡tit druhÃ© ÄÃ­slo, pokud
+//     je NULL, neprovÃ¡dÃ­ se nic
+/// @param msg zprÃ¡va z nÃ­Å¾ majÃ­ bÃ½t ÄÃ­sla zÃ­skÃ¡na
+void recive_uint32(char * msg, uint32_t * number1, uint32_t * number2){
+  uint32_t * uint32;
+
+
+  uint32 = (uint32_t *) (msg);
+  *number1 = *uint32;
+
+  uint32 = (uint32_t *) (msg+4);
+  *number2 = *uint32;
+
+}
+

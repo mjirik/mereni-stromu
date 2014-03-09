@@ -1,0 +1,134 @@
+\section{Dokumentace souboru lcd.h}
+\label{lcd_8h}\index{lcd.h@{lcd.h}}
+\subsection*{Definice maker}
+\begin{DoxyCompactItemize}
+\item 
+\#define {\bf LCD\_\-X\_\-MAX}~40
+\item 
+\#define {\bf LCD\_\-Y\_\-MAX}~4
+\item 
+\#define {\bf DVA\_\-E}
+\end{DoxyCompactItemize}
+\subsection*{Funkce}
+\begin{DoxyCompactItemize}
+\item 
+void {\bf lcd\_\-init} (void)
+\item 
+void {\bf lcd\_\-control} (void)
+\item 
+void {\bf printxy} (char($\ast$screen)[LCD\_\-X\_\-MAX], int x, int y, char $\ast$s)
+\begin{DoxyCompactList}\small\item\em Funkce vloží na danou pozici řetězec {\itshape s\/}. \item\end{DoxyCompactList}\item 
+void {\bf printc} (char c)
+\item 
+void {\bf print} (char $\ast$s)
+\begin{DoxyCompactList}\small\item\em vytiskne text do default\_\-screenu. \item\end{DoxyCompactList}\item 
+void {\bf clear\_\-screen} (char($\ast$screen)[LCD\_\-X\_\-MAX])
+\item 
+char {\bf lcd\_\-new\_\-frame} (void)
+\item 
+void {\bf printcxyd} (int x, int y, char c)
+\begin{DoxyCompactList}\small\item\em Vytiskne znak do defaultscreenu na souřadnici x,y. \item\end{DoxyCompactList}\item 
+void {\bf printnxyd} (int y, int x, char $\ast$s, int n)
+\begin{DoxyCompactList}\small\item\em Vytiskne n znaků do defaultscreenu na souřadnici x,y. \item\end{DoxyCompactList}\item 
+void {\bf printxyd} (int y, int x, char $\ast$s)
+\begin{DoxyCompactList}\small\item\em Tiskne do default\_\-screenu. \item\end{DoxyCompactList}\item 
+void {\bf clear\_\-dscreen} (void)
+\begin{DoxyCompactList}\small\item\em Vymaže default screen. \item\end{DoxyCompactList}\item 
+void {\bf printxyd\_\-P} (int y, int x, void $\ast$s)
+\begin{DoxyCompactList}\small\item\em Funkce vloží na danou pozici řetězec {\itshape s\/}. \item\end{DoxyCompactList}\item 
+void {\bf printnt\_\-P} (char $\ast$s)
+\item 
+void {\bf lcd\_\-w\_\-inst} (char c)
+\begin{DoxyCompactList}\small\item\em Zapiš instrukci. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Proměnné}
+\begin{DoxyCompactItemize}
+\item 
+char($\ast$ {\bf p\_\-akt\_\-screen} )[LCD\_\-X\_\-MAX]
+\item 
+char {\bf default\_\-screen} [LCD\_\-Y\_\-MAX][LCD\_\-X\_\-MAX]
+\end{DoxyCompactItemize}
+
+
+\subsection{Dokumentace k definicím maker}
+\index{lcd.h@{lcd.h}!DVA\_\-E@{DVA\_\-E}}
+\index{DVA\_\-E@{DVA\_\-E}!lcd.h@{lcd.h}}
+\subsubsection[{DVA\_\-E}]{\setlength{\rightskip}{0pt plus 5cm}\#define DVA\_\-E}\label{lcd_8h_aff26c292d8bc1fa5c6cf136b7f73b557}
+\index{lcd.h@{lcd.h}!LCD\_\-X\_\-MAX@{LCD\_\-X\_\-MAX}}
+\index{LCD\_\-X\_\-MAX@{LCD\_\-X\_\-MAX}!lcd.h@{lcd.h}}
+\subsubsection[{LCD\_\-X\_\-MAX}]{\setlength{\rightskip}{0pt plus 5cm}\#define LCD\_\-X\_\-MAX~40}\label{lcd_8h_a1d9ba2d8f9cc2124ff29e24abbe2c90d}
+\index{lcd.h@{lcd.h}!LCD\_\-Y\_\-MAX@{LCD\_\-Y\_\-MAX}}
+\index{LCD\_\-Y\_\-MAX@{LCD\_\-Y\_\-MAX}!lcd.h@{lcd.h}}
+\subsubsection[{LCD\_\-Y\_\-MAX}]{\setlength{\rightskip}{0pt plus 5cm}\#define LCD\_\-Y\_\-MAX~4}\label{lcd_8h_ad14583f7d91ea48ff9f3e6ec9a920a11}
+
+
+\subsection{Dokumentace funkcí}
+\index{lcd.h@{lcd.h}!clear\_\-dscreen@{clear\_\-dscreen}}
+\index{clear\_\-dscreen@{clear\_\-dscreen}!lcd.h@{lcd.h}}
+\subsubsection[{clear\_\-dscreen}]{\setlength{\rightskip}{0pt plus 5cm}void clear\_\-dscreen (void)}\label{lcd_8h_af632fc4d520fbb4468baea39b68bc17e}
+
+
+Vymaže default screen. \index{lcd.h@{lcd.h}!clear\_\-screen@{clear\_\-screen}}
+\index{clear\_\-screen@{clear\_\-screen}!lcd.h@{lcd.h}}
+\subsubsection[{clear\_\-screen}]{\setlength{\rightskip}{0pt plus 5cm}void clear\_\-screen (char($\ast$) {\em screen}[LCD\_\-X\_\-MAX])}\label{lcd_8h_a0d72a8b3fb4557babb0f1c61018f2327}
+\index{lcd.h@{lcd.h}!lcd\_\-control@{lcd\_\-control}}
+\index{lcd\_\-control@{lcd\_\-control}!lcd.h@{lcd.h}}
+\subsubsection[{lcd\_\-control}]{\setlength{\rightskip}{0pt plus 5cm}void lcd\_\-control (void)}\label{lcd_8h_aac5a8ac84d029ba77193f158761d10da}
+Funkce řídí činnost displeje. Jejím úkolem je neustále dokola vypisovat obsah lcd\_\-data na displej. Vždy když je zavolána, zjistí si co má vypsat dál a udělá to. \index{lcd.h@{lcd.h}!lcd\_\-init@{lcd\_\-init}}
+\index{lcd\_\-init@{lcd\_\-init}!lcd.h@{lcd.h}}
+\subsubsection[{lcd\_\-init}]{\setlength{\rightskip}{0pt plus 5cm}void lcd\_\-init (void)}\label{lcd_8h_a6842775ba83d166f02b8fef8bb63b1e6}
+\index{lcd.h@{lcd.h}!lcd\_\-new\_\-frame@{lcd\_\-new\_\-frame}}
+\index{lcd\_\-new\_\-frame@{lcd\_\-new\_\-frame}!lcd.h@{lcd.h}}
+\subsubsection[{lcd\_\-new\_\-frame}]{\setlength{\rightskip}{0pt plus 5cm}char lcd\_\-new\_\-frame (void)}\label{lcd_8h_a2fdcaa04d2a5ef5f829a2c0503b95009}
+\begin{DoxyReturn}{Návratová hodnota}
+Funkce vrátí 1 pokud se při dalším zavolání lcd\_\-control začne vykreslovat nový frame jinak vrátí nula 
+\end{DoxyReturn}
+\index{lcd.h@{lcd.h}!lcd\_\-w\_\-inst@{lcd\_\-w\_\-inst}}
+\index{lcd\_\-w\_\-inst@{lcd\_\-w\_\-inst}!lcd.h@{lcd.h}}
+\subsubsection[{lcd\_\-w\_\-inst}]{\setlength{\rightskip}{0pt plus 5cm}void lcd\_\-w\_\-inst (char {\em c})}\label{lcd_8h_a98e19b75c7263dd914e04a630f43cde1}
+
+
+Zapiš instrukci. \index{lcd.h@{lcd.h}!print@{print}}
+\index{print@{print}!lcd.h@{lcd.h}}
+\subsubsection[{print}]{\setlength{\rightskip}{0pt plus 5cm}void print (char $\ast$ {\em s})}\label{lcd_8h_a51283220f829206d8ef3284047a58fbd}
+
+
+vytiskne text do default\_\-screenu. \index{lcd.h@{lcd.h}!printc@{printc}}
+\index{printc@{printc}!lcd.h@{lcd.h}}
+\subsubsection[{printc}]{\setlength{\rightskip}{0pt plus 5cm}void printc (char {\em c})}\label{lcd_8h_a7ead26e52916805b53cb705997cb90bb}
+Funkce vytiskne znak na místo kurzoru. Funkce není prováděna ve \char`\"{}vlákně\char`\"{}. \index{lcd.h@{lcd.h}!printcxyd@{printcxyd}}
+\index{printcxyd@{printcxyd}!lcd.h@{lcd.h}}
+\subsubsection[{printcxyd}]{\setlength{\rightskip}{0pt plus 5cm}void printcxyd (int {\em x}, \/  int {\em y}, \/  char {\em c})}\label{lcd_8h_a73a10b7ac5330a420af6e1f443506937}
+
+
+Vytiskne znak do defaultscreenu na souřadnici x,y. \index{lcd.h@{lcd.h}!printnt\_\-P@{printnt\_\-P}}
+\index{printnt\_\-P@{printnt\_\-P}!lcd.h@{lcd.h}}
+\subsubsection[{printnt\_\-P}]{\setlength{\rightskip}{0pt plus 5cm}void printnt\_\-P (char $\ast$ {\em s})}\label{lcd_8h_aa4fa8c7956bc27eae6a818d41199691f}
+Funkce vypíše na současnou pozici kurzoru text z programové paměti. Funkce není napsána do \char`\"{}vlákna\char`\"{}. \index{lcd.h@{lcd.h}!printnxyd@{printnxyd}}
+\index{printnxyd@{printnxyd}!lcd.h@{lcd.h}}
+\subsubsection[{printnxyd}]{\setlength{\rightskip}{0pt plus 5cm}void printnxyd (int {\em y}, \/  int {\em x}, \/  char $\ast$ {\em s}, \/  int {\em n})}\label{lcd_8h_a9b70b5f13bd19a1a5ff3de4221c1dc72}
+
+
+Vytiskne n znaků do defaultscreenu na souřadnici x,y. \index{lcd.h@{lcd.h}!printxy@{printxy}}
+\index{printxy@{printxy}!lcd.h@{lcd.h}}
+\subsubsection[{printxy}]{\setlength{\rightskip}{0pt plus 5cm}void printxy (char($\ast$) {\em screen}[LCD\_\-X\_\-MAX], \/  int {\em x}, \/  int {\em y}, \/  char $\ast$ {\em s})}\label{lcd_8h_a753417a54b9788480a2d26716cde2a71}
+
+
+Funkce vloží na danou pozici řetězec {\itshape s\/}. \index{lcd.h@{lcd.h}!printxyd@{printxyd}}
+\index{printxyd@{printxyd}!lcd.h@{lcd.h}}
+\subsubsection[{printxyd}]{\setlength{\rightskip}{0pt plus 5cm}void printxyd (int {\em y}, \/  int {\em x}, \/  char $\ast$ {\em s})}\label{lcd_8h_af14cee58cda35b9331b261be186b3dd9}
+
+
+Tiskne do default\_\-screenu. \index{lcd.h@{lcd.h}!printxyd\_\-P@{printxyd\_\-P}}
+\index{printxyd\_\-P@{printxyd\_\-P}!lcd.h@{lcd.h}}
+\subsubsection[{printxyd\_\-P}]{\setlength{\rightskip}{0pt plus 5cm}void printxyd\_\-P (int {\em y}, \/  int {\em x}, \/  void $\ast$ {\em s})}\label{lcd_8h_ac49e278f3e1c0c3472a70b8c6efc5051}
+
+
+Funkce vloží na danou pozici řetězec {\itshape s\/}. 
+
+\subsection{Dokumentace proměnných}
+\index{lcd.h@{lcd.h}!default\_\-screen@{default\_\-screen}}
+\index{default\_\-screen@{default\_\-screen}!lcd.h@{lcd.h}}
+\subsubsection[{default\_\-screen}]{\setlength{\rightskip}{0pt plus 5cm}char {\bf default\_\-screen}[LCD\_\-Y\_\-MAX][LCD\_\-X\_\-MAX]}\label{lcd_8h_a461f2d625bd30828c33677c4c500f3a2}
+\index{lcd.h@{lcd.h}!p\_\-akt\_\-screen@{p\_\-akt\_\-screen}}
+\index{p\_\-akt\_\-screen@{p\_\-akt\_\-screen}!lcd.h@{lcd.h}}
+\subsubsection[{p\_\-akt\_\-screen}]{\setlength{\rightskip}{0pt plus 5cm}char($\ast$ {\bf p\_\-akt\_\-screen})[LCD\_\-X\_\-MAX]}\label{lcd_8h_a29229a718c28cd99acb4cb22eed55c33}

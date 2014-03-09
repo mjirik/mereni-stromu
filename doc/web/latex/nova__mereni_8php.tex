@@ -1,0 +1,123 @@
+\section{Dokumentace souboru nova\_\-mereni.php}
+\label{nova__mereni_8php}\index{nova_mereni.php@{nova\_\-mereni.php}}
+\subsection*{Proměnné}
+\begin{CompactItemize}
+\item 
+{\bf \$all} = \& new {\bf Template}('./tmpl/all.tmpl.php')
+\item 
+{\bf \$body} = \& new {\bf Template}('./tmpl/volni\_\-zakaznici\_\-mereni.tmpl.php')
+\item 
+{\bf \$add} = null
+\item 
+{\bf \$link} = connect\_\-db()
+\item 
+{\bf \$\_\-SESSION} [\char`\"{}ok\_\-text\char`\"{}] = \char`\"{}\char`\"{}
+\item 
+{\bf \$\_\-SESSION} [\char`\"{}ok\_\-hrefOk\char`\"{}] = \char`\"{}\char`\"{}
+\item 
+{\bf \$\_\-SESSION} [\char`\"{}ok\_\-hrefStorno\char`\"{}] = \char`\"{}\char`\"{}
+\item 
+{\bf \$\_\-GET} = null
+\item 
+{\bf \$check} = null
+\item 
+{\bf \$zobraz} = true
+\item 
+{\bf \$zobrazit} = true
+\item 
+{\bf \$\_\-GET} = null
+\item 
+{\bf \$zobraz} = false
+\item 
+{\bf \$\_\-SESSION} [\char`\"{}novy\_\-zakaznik\char`\"{}] = \$\_\-POST
+\item 
+{\bf \$zobrazit} = false
+\item 
+{\bf \$body} = \& new {\bf Template}('./tmpl/ok.tmpl.php')
+\end{CompactItemize}
+
+
+\subsection{Detailní popis}
+Skript hledá nová měření a vykresluje formuláž pro jejich přiřazení do systému. 
+
+\subsection{Dokumentace proměnných}
+\index{nova_mereni.php@{nova\_\-mereni.php}!$_GET@{\$\_\-GET}}
+\index{$_GET@{\$\_\-GET}!nova_mereni.php@{nova\_\-mereni.php}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}\$\_\-GET = null}\label{nova__mereni_8php_34a05c44df4978f17b5f0da9e766cda8}
+
+
+\index{nova_mereni.php@{nova\_\-mereni.php}!$_GET@{\$\_\-GET}}
+\index{$_GET@{\$\_\-GET}!nova_mereni.php@{nova\_\-mereni.php}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}\$\_\-GET = null}\label{nova__mereni_8php_34a05c44df4978f17b5f0da9e766cda8}
+
+
+\index{nova_mereni.php@{nova\_\-mereni.php}!$_SESSION@{\$\_\-SESSION}}
+\index{$_SESSION@{\$\_\-SESSION}!nova_mereni.php@{nova\_\-mereni.php}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}\$\_\-SESSION[\char`\"{}novy\_\-zakaznik\char`\"{}] = \$\_\-POST}\label{nova__mereni_8php_416d0e2ebd68ad16ae80a1e69cb21b9c}
+
+
+\index{nova_mereni.php@{nova\_\-mereni.php}!$_SESSION@{\$\_\-SESSION}}
+\index{$_SESSION@{\$\_\-SESSION}!nova_mereni.php@{nova\_\-mereni.php}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}\$\_\-SESSION[\char`\"{}ok\_\-hrefStorno\char`\"{}] = \char`\"{}\char`\"{}}\label{nova__mereni_8php_5c5d2f68ac0705ebeb114d4e7a67bc94}
+
+
+\index{nova_mereni.php@{nova\_\-mereni.php}!$_SESSION@{\$\_\-SESSION}}
+\index{$_SESSION@{\$\_\-SESSION}!nova_mereni.php@{nova\_\-mereni.php}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}\$\_\-SESSION[\char`\"{}ok\_\-hrefOk\char`\"{}] = \char`\"{}\char`\"{}}\label{nova__mereni_8php_55be1760b18e8fdbf113a78237e4adc2}
+
+
+\index{nova_mereni.php@{nova\_\-mereni.php}!$_SESSION@{\$\_\-SESSION}}
+\index{$_SESSION@{\$\_\-SESSION}!nova_mereni.php@{nova\_\-mereni.php}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}\$\_\-SESSION[\char`\"{}ok\_\-text\char`\"{}] = \char`\"{}\char`\"{}}\label{nova__mereni_8php_1169dce3a3019f09a3d51a5747879534}
+
+
+\index{nova_mereni.php@{nova\_\-mereni.php}!$add@{\$add}}
+\index{$add@{\$add}!nova_mereni.php@{nova\_\-mereni.php}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}\$add = null}\label{nova__mereni_8php_76aeb354fc71a358526ea9fbd7aae7a4}
+
+
+\index{nova_mereni.php@{nova\_\-mereni.php}!$all@{\$all}}
+\index{$all@{\$all}!nova_mereni.php@{nova\_\-mereni.php}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}\$all = \& new {\bf Template}('./tmpl/all.tmpl.php')}\label{nova__mereni_8php_3c74ea9d2348c9aba28d36e692bef2d2}
+
+
+\index{nova_mereni.php@{nova\_\-mereni.php}!$body@{\$body}}
+\index{$body@{\$body}!nova_mereni.php@{nova\_\-mereni.php}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}\$body = \& new {\bf Template}('./tmpl/ok.tmpl.php')}\label{nova__mereni_8php_26b9f9373f7bb79dfcf8a86dff086b45}
+
+
+\index{nova_mereni.php@{nova\_\-mereni.php}!$body@{\$body}}
+\index{$body@{\$body}!nova_mereni.php@{nova\_\-mereni.php}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}\$body = \& new {\bf Template}('./tmpl/volni\_\-zakaznici\_\-mereni.tmpl.php')}\label{nova__mereni_8php_26b9f9373f7bb79dfcf8a86dff086b45}
+
+
+\index{nova_mereni.php@{nova\_\-mereni.php}!$check@{\$check}}
+\index{$check@{\$check}!nova_mereni.php@{nova\_\-mereni.php}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}\$check = null}\label{nova__mereni_8php_830cf70d25fefacddcf4c6bc3fd7a0e0}
+
+
+\index{nova_mereni.php@{nova\_\-mereni.php}!$link@{\$link}}
+\index{$link@{\$link}!nova_mereni.php@{nova\_\-mereni.php}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}\$link = connect\_\-db()}\label{nova__mereni_8php_5d346e31b75d916e3bac9cb193bfc97f}
+
+
+\index{nova_mereni.php@{nova\_\-mereni.php}!$zobraz@{\$zobraz}}
+\index{$zobraz@{\$zobraz}!nova_mereni.php@{nova\_\-mereni.php}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}\$zobraz = false}\label{nova__mereni_8php_732145bb3782db2d3937a3b93c014115}
+
+
+\index{nova_mereni.php@{nova\_\-mereni.php}!$zobraz@{\$zobraz}}
+\index{$zobraz@{\$zobraz}!nova_mereni.php@{nova\_\-mereni.php}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}\$zobraz = true}\label{nova__mereni_8php_732145bb3782db2d3937a3b93c014115}
+
+
+\index{nova_mereni.php@{nova\_\-mereni.php}!$zobrazit@{\$zobrazit}}
+\index{$zobrazit@{\$zobrazit}!nova_mereni.php@{nova\_\-mereni.php}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}\$zobrazit = false}\label{nova__mereni_8php_8beeed4d90b445261cac3689bd9ed3e1}
+
+
+\index{nova_mereni.php@{nova\_\-mereni.php}!$zobrazit@{\$zobrazit}}
+\index{$zobrazit@{\$zobrazit}!nova_mereni.php@{nova\_\-mereni.php}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}\$zobrazit = true}\label{nova__mereni_8php_8beeed4d90b445261cac3689bd9ed3e1}
+
+

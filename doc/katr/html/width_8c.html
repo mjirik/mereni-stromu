@@ -1,0 +1,401 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<title>Zřízení na katru pro projekt měření objemu stromů: Dokumentace souboru width.c</title>
+<link href="doxygen.css" rel="stylesheet" type="text/css">
+<link href="tabs.css" rel="stylesheet" type="text/css">
+</head><body>
+<!-- Generováno programem Doxygen 1.5.2 -->
+<div class="tabs">
+  <ul>
+    <li><a href="index.html"><span>Hlavní&nbsp;stránka</span></a></li>
+    <li class="current"><a href="files.html"><span>Soubory</span></a></li>
+  </ul>
+</div>
+<div class="tabs">
+  <ul>
+    <li><a href="files.html"><span>Seznam&nbsp;souborů</span></a></li>
+    <li><a href="globals.html"><span>Globální&nbsp;symboly</span></a></li>
+  </ul>
+</div>
+<h1>Dokumentace souboru width.c</h1><code>#include &lt;avr/io.h&gt;</code><br>
+<code>#include &lt;avr/interrupt.h&gt;</code><br>
+<code>#include &lt;avr/signal.h&gt;</code><br>
+<code>#include &lt;stdio.h&gt;</code><br>
+<code>#include &quot;<a class="el" href="usart_8h.html">usart.h</a>&quot;</code><br>
+<code>#include &quot;<a class="el" href="main_8h.html">main.h</a>&quot;</code><br>
+<code>#include &quot;<a class="el" href="irc_8h.html">irc.h</a>&quot;</code><br>
+<table border="0" cellpadding="0" cellspacing="0">
+<tr><td></td></tr>
+<tr><td colspan="2"><br><h2>Definice maker</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="width_8c.html#4c8223e37dcdb26f92b32dea5bcdd62e">LenOfWidIntegrArr</a>&nbsp;&nbsp;&nbsp;80</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="width_8c.html#e0aefe8511ffe587f5579c715f827e2c">widthIterLimit</a>&nbsp;&nbsp;&nbsp;100</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="width_8c.html#80c64b38ef18a72c2a34309cdd8a454d">widthIterComparator</a>&nbsp;&nbsp;&nbsp;50</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="width_8c.html#8639f3cdce498b36b4f11b82726f3857">SizeOfMsg</a>&nbsp;&nbsp;&nbsp;5</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="width_8c.html#8aa6e267df3a121a5d5187aa8b1e267a">widthSlow</a>&nbsp;&nbsp;&nbsp;5</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="width_8c.html#00a06f68a27f566c37e5835b443b39f8">vzdalSvetlaOdSnimacu</a>&nbsp;&nbsp;&nbsp;2000</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="width_8c.html#3296643e72916022ad8fff528f9e3841">vzdalSnimacuOdStromu</a>&nbsp;&nbsp;&nbsp;50</td></tr>
+
+<tr><td colspan="2"><br><h2>Funkce</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="width_8c.html#a184476239f007137274f67a527e76a5">width_watch</a> (void)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="width_8c.html#ca643d23675a5e4cb4db5d59a144544f">width_watch_init</a> (void)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="width_8c.html#f7ca1de6284dbaba080478ffc9f35ed1">width_computation</a> (void)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="width_8c.html#b8ba8ae00e137cd48d48089b44422a84">width_send_msg</a> (void)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">uint16_t&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="width_8c.html#dc5e5de00526ee21858f22fd7d721b29">get_d_h</a> (void)</td></tr>
+
+<tr><td colspan="2"><br><h2>Proměnné</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="width_8c.html#fb651afd0a08e3bb953b24f0e8a01aed">width_integrate_array</a> [LenOfWidIntegrArr]</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">char&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="width_8c.html#5733cce2e2a05d2e8300f0171a07982a">width_multiplex_adress</a> = 0</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="width_8c.html#635eaca0e8a4201d47298f09ce0f4dea">width_counter</a> = 0</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="width_8c.html#fccd34e96fdbdbd5ac9091ccdec97940">width_valid</a> = 0</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">char&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="width_8c.html#f1fcc994df39613f5b36c3e3034f2a12">width_value</a> = 0</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">char&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="width_8c.html#644ab1e6fbad5b17be3f8141d1662682">data_msg</a> [SizeOfMsg]</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="width_8c.html#5c957366a7ea4d5eadc8f9dfd0b3ce7b">width_slow_counter</a> = widthSlow</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">char&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="width_8c.html#3724065d4ab6824238a5b10d8fef705d">width_prepocet</a> = 1</td></tr>
+
+</table>
+<hr><h2>Dokumentace k definicím maker</h2>
+<a class="anchor" name="4c8223e37dcdb26f92b32dea5bcdd62e"></a><!-- doxytag: member="width.c::LenOfWidIntegrArr" ref="4c8223e37dcdb26f92b32dea5bcdd62e" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define LenOfWidIntegrArr&nbsp;&nbsp;&nbsp;80          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+</div>
+</div><p>
+<a class="anchor" name="8639f3cdce498b36b4f11b82726f3857"></a><!-- doxytag: member="width.c::SizeOfMsg" ref="8639f3cdce498b36b4f11b82726f3857" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define SizeOfMsg&nbsp;&nbsp;&nbsp;5          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+</div>
+</div><p>
+<a class="anchor" name="3296643e72916022ad8fff528f9e3841"></a><!-- doxytag: member="width.c::vzdalSnimacuOdStromu" ref="3296643e72916022ad8fff528f9e3841" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define vzdalSnimacuOdStromu&nbsp;&nbsp;&nbsp;50          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+</div>
+</div><p>
+<a class="anchor" name="00a06f68a27f566c37e5835b443b39f8"></a><!-- doxytag: member="width.c::vzdalSvetlaOdSnimacu" ref="00a06f68a27f566c37e5835b443b39f8" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define vzdalSvetlaOdSnimacu&nbsp;&nbsp;&nbsp;2000          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+</div>
+</div><p>
+<a class="anchor" name="80c64b38ef18a72c2a34309cdd8a454d"></a><!-- doxytag: member="width.c::widthIterComparator" ref="80c64b38ef18a72c2a34309cdd8a454d" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define widthIterComparator&nbsp;&nbsp;&nbsp;50          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+</div>
+</div><p>
+<a class="anchor" name="e0aefe8511ffe587f5579c715f827e2c"></a><!-- doxytag: member="width.c::widthIterLimit" ref="e0aefe8511ffe587f5579c715f827e2c" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define widthIterLimit&nbsp;&nbsp;&nbsp;100          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+</div>
+</div><p>
+<a class="anchor" name="8aa6e267df3a121a5d5187aa8b1e267a"></a><!-- doxytag: member="width.c::widthSlow" ref="8aa6e267df3a121a5d5187aa8b1e267a" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define widthSlow&nbsp;&nbsp;&nbsp;5          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+</div>
+</div><p>
+<hr><h2>Dokumentace funkcí</h2>
+<a class="anchor" name="dc5e5de00526ee21858f22fd7d721b29"></a><!-- doxytag: member="width.c::get_d_h" ref="dc5e5de00526ee21858f22fd7d721b29" args="(void)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint16_t get_d_h           </td>
+          <td>(</td>
+          <td class="paramtype">void&nbsp;</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+</div>
+</div><p>
+<a class="anchor" name="f7ca1de6284dbaba080478ffc9f35ed1"></a><!-- doxytag: member="width.c::width_computation" ref="f7ca1de6284dbaba080478ffc9f35ed1" args="(void)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void width_computation           </td>
+          <td>(</td>
+          <td class="paramtype">void&nbsp;</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+</div>
+</div><p>
+<a class="anchor" name="b8ba8ae00e137cd48d48089b44422a84"></a><!-- doxytag: member="width.c::width_send_msg" ref="b8ba8ae00e137cd48d48089b44422a84" args="(void)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void width_send_msg           </td>
+          <td>(</td>
+          <td class="paramtype">void&nbsp;</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+</div>
+</div><p>
+<a class="anchor" name="a184476239f007137274f67a527e76a5"></a><!-- doxytag: member="width.c::width_watch" ref="a184476239f007137274f67a527e76a5" args="(void)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void width_watch           </td>
+          <td>(</td>
+          <td class="paramtype">void&nbsp;</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+</div>
+</div><p>
+<a class="anchor" name="ca643d23675a5e4cb4db5d59a144544f"></a><!-- doxytag: member="width.c::width_watch_init" ref="ca643d23675a5e4cb4db5d59a144544f" args="(void)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void width_watch_init           </td>
+          <td>(</td>
+          <td class="paramtype">void&nbsp;</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+</div>
+</div><p>
+<hr><h2>Dokumentace proměnných</h2>
+<a class="anchor" name="644ab1e6fbad5b17be3f8141d1662682"></a><!-- doxytag: member="width.c::data_msg" ref="644ab1e6fbad5b17be3f8141d1662682" args="[SizeOfMsg]" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char <a class="el" href="width_8c.html#644ab1e6fbad5b17be3f8141d1662682">data_msg</a>[SizeOfMsg]          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+</div>
+</div><p>
+<a class="anchor" name="635eaca0e8a4201d47298f09ce0f4dea"></a><!-- doxytag: member="width.c::width_counter" ref="635eaca0e8a4201d47298f09ce0f4dea" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int <a class="el" href="width_8c.html#635eaca0e8a4201d47298f09ce0f4dea">width_counter</a> = 0          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+</div>
+</div><p>
+<a class="anchor" name="fb651afd0a08e3bb953b24f0e8a01aed"></a><!-- doxytag: member="width.c::width_integrate_array" ref="fb651afd0a08e3bb953b24f0e8a01aed" args="[LenOfWidIntegrArr]" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int <a class="el" href="width_8c.html#fb651afd0a08e3bb953b24f0e8a01aed">width_integrate_array</a>[LenOfWidIntegrArr]          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+</div>
+</div><p>
+<a class="anchor" name="5733cce2e2a05d2e8300f0171a07982a"></a><!-- doxytag: member="width.c::width_multiplex_adress" ref="5733cce2e2a05d2e8300f0171a07982a" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char <a class="el" href="width_8c.html#5733cce2e2a05d2e8300f0171a07982a">width_multiplex_adress</a> = 0          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+</div>
+</div><p>
+<a class="anchor" name="3724065d4ab6824238a5b10d8fef705d"></a><!-- doxytag: member="width.c::width_prepocet" ref="3724065d4ab6824238a5b10d8fef705d" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char <a class="el" href="width_8h.html#3724065d4ab6824238a5b10d8fef705d">width_prepocet</a> = 1          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+</div>
+</div><p>
+<a class="anchor" name="5c957366a7ea4d5eadc8f9dfd0b3ce7b"></a><!-- doxytag: member="width.c::width_slow_counter" ref="5c957366a7ea4d5eadc8f9dfd0b3ce7b" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int <a class="el" href="width_8c.html#5c957366a7ea4d5eadc8f9dfd0b3ce7b">width_slow_counter</a> = widthSlow          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+</div>
+</div><p>
+<a class="anchor" name="fccd34e96fdbdbd5ac9091ccdec97940"></a><!-- doxytag: member="width.c::width_valid" ref="fccd34e96fdbdbd5ac9091ccdec97940" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int <a class="el" href="width_8c.html#fccd34e96fdbdbd5ac9091ccdec97940">width_valid</a> = 0          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+</div>
+</div><p>
+<a class="anchor" name="f1fcc994df39613f5b36c3e3034f2a12"></a><!-- doxytag: member="width.c::width_value" ref="f1fcc994df39613f5b36c3e3034f2a12" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char <a class="el" href="width_8c.html#f1fcc994df39613f5b36c3e3034f2a12">width_value</a> = 0          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+</div>
+</div><p>
+<p align=left>Miroslav JiĹ™Ă­k</p>

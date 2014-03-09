@@ -1,0 +1,288 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<title>Webová aplikace k projektu měření objemu řeziva: Dokumentace souboru seznam.php</title>
+<link href="doxygen.css" rel="stylesheet" type="text/css">
+<link href="tabs.css" rel="stylesheet" type="text/css">
+</head><body>
+<!-- Generováno programem Doxygen 1.5.2 -->
+<div class="tabs">
+  <ul>
+    <li><a href="index.html"><span>Hlavní&nbsp;stránka</span></a></li>
+    <li><a href="annotated.html"><span>Třídy</span></a></li>
+    <li class="current"><a href="files.html"><span>Soubory</span></a></li>
+    <li><a href="pages.html"><span>Ostatní&nbsp;stránky</span></a></li>
+  </ul>
+</div>
+<div class="tabs">
+  <ul>
+    <li><a href="files.html"><span>Seznam&nbsp;souborů</span></a></li>
+    <li><a href="globals.html"><span>Globální&nbsp;symboly</span></a></li>
+  </ul>
+</div>
+<h1>Dokumentace souboru seznam.php</h1><table border="0" cellpadding="0" cellspacing="0">
+<tr><td></td></tr>
+<tr><td colspan="2"><br><h2>Proměnné</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="seznam_8php.html#3c74ea9d2348c9aba28d36e692bef2d2">$all</a> = &amp; new <a class="el" href="classTemplate.html">Template</a>('./tmpl/print.tmpl.php')</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="seznam_8php.html#26b9f9373f7bb79dfcf8a86dff086b45">$body</a> = &amp; new <a class="el" href="classTemplate.html">Template</a>('./tmpl/seznam.tmpl.php')</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="seznam_8php.html#5d346e31b75d916e3bac9cb193bfc97f">$link</a> = connect_db()</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="seznam_8php.html#c3380e5da1cd2eb97cefa437bd99bea7">$seznam</a> = seznam_mereni($_GET[&quot;id&quot;],$link,true)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="seznam_8php.html#efab80aedcdbb988388e43e2f52491f1">$param</a> = parametry_seznamu($_GET[&quot;id&quot;],$link)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="seznam_8php.html#f532de612998acdb87d5a48bdccfb096">$zakaznik</a> = zakaznik($param[&quot;IDZakaznik&quot;],$link)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="seznam_8php.html#b97286650a73a4f3f6202b2f66bbcffb">$parametry</a> = druhy_dreva($link)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="seznam_8php.html#2599a827926830c9019f0748a076c4fe">$cenaCelkem</a> = 0</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="seznam_8php.html#487dc80bcdd32233f1326c5baf95e7db">$mezisoucty</a> = NULL</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="seznam_8php.html#579421ac13d700561fb325c376c523b4">$zaznam</a> [&quot;Cena&quot;] = cena_strom($zaznam,$param)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="seznam_8php.html#067e7c23094c43a221e0c09497ffc90a">$seznam</a> [$key] = $zaznam</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="seznam_8php.html#99590f361e9ab2fd6cb6d2e74d739741">$mezisoucty</a> [$zaznam[&quot;IDDruh_dreva&quot;]][$zaznam[&quot;IDManipulace&quot;]][$zaznam[&quot;IDDvakrat&quot;]][$zaznam[&quot;IDDalsi_zpracovani&quot;]][&quot;Cena&quot;] = $zaznam[&quot;Cena&quot;]</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="seznam_8php.html#1c94fbeb3e8e94659fca2f0e763cb2e2">$mezisoucty</a> [$zaznam[&quot;IDDruh_dreva&quot;]][$zaznam[&quot;IDManipulace&quot;]][$zaznam[&quot;IDDvakrat&quot;]][$zaznam[&quot;IDDalsi_zpracovani&quot;]][&quot;Objem&quot;] = $zaznam[&quot;Objem&quot;]</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="seznam_8php.html#40ed9d3c9da4f8c520f90fc8a4926d1e">$mezisoucty</a> [$zaznam[&quot;IDDruh_dreva&quot;]][$zaznam[&quot;IDManipulace&quot;]][$zaznam[&quot;IDDvakrat&quot;]][$zaznam[&quot;IDDalsi_zpracovani&quot;]][&quot;Popisek&quot;]</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="seznam_8php.html#2599a827926830c9019f0748a076c4fe">$cenaCelkem</a> = $cenaCelkem + $zaznam[&quot;Cena&quot;]</td></tr>
+
+</table>
+<hr><a name="_details"></a><h2>Detailní popis</h2>
+Soubor vypisuje náhlled tisku. <hr><h2>Dokumentace proměnných</h2>
+<a class="anchor" name="3c74ea9d2348c9aba28d36e692bef2d2"></a><!-- doxytag: member="seznam.php::$all" ref="3c74ea9d2348c9aba28d36e692bef2d2" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">$all = &amp; new <a class="el" href="classTemplate.html">Template</a>('./tmpl/print.tmpl.php')          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+</div>
+</div><p>
+<a class="anchor" name="26b9f9373f7bb79dfcf8a86dff086b45"></a><!-- doxytag: member="seznam.php::$body" ref="26b9f9373f7bb79dfcf8a86dff086b45" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">$body = &amp; new <a class="el" href="classTemplate.html">Template</a>('./tmpl/seznam.tmpl.php')          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+</div>
+</div><p>
+<a class="anchor" name="2599a827926830c9019f0748a076c4fe"></a><!-- doxytag: member="seznam.php::$cenaCelkem" ref="2599a827926830c9019f0748a076c4fe" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">$cenaCelkem = $cenaCelkem + $zaznam[&quot;Cena&quot;]          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+</div>
+</div><p>
+<a class="anchor" name="2599a827926830c9019f0748a076c4fe"></a><!-- doxytag: member="seznam.php::$cenaCelkem" ref="2599a827926830c9019f0748a076c4fe" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">$cenaCelkem = 0          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+</div>
+</div><p>
+<a class="anchor" name="5d346e31b75d916e3bac9cb193bfc97f"></a><!-- doxytag: member="seznam.php::$link" ref="5d346e31b75d916e3bac9cb193bfc97f" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">$link = connect_db()          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+</div>
+</div><p>
+<a class="anchor" name="40ed9d3c9da4f8c520f90fc8a4926d1e"></a><!-- doxytag: member="seznam.php::$mezisoucty" ref="40ed9d3c9da4f8c520f90fc8a4926d1e" args="[$zaznam[&quot;IDDruh_dreva&quot;]][$zaznam[&quot;IDManipulace&quot;]][$zaznam[&quot;IDDvakrat&quot;]][$zaznam[&quot;IDDalsi_zpracovani&quot;]][&quot;Popisek&quot;]" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">$mezisoucty[$zaznam[&quot;IDDruh_dreva&quot;]][$zaznam[&quot;IDManipulace&quot;]][$zaznam[&quot;IDDvakrat&quot;]][$zaznam[&quot;IDDalsi_zpracovani&quot;]][&quot;Popisek&quot;]          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+<b>Initializer:</b><div class="fragment"><pre class="fragment">
+    <span class="stringliteral">"&lt;i&gt;"</span>.$zaznam[<span class="stringliteral">"Druh_dreva"</span>].(($zaznam[<span class="stringliteral">"IDManipulace"</span>]==1)?<span class="stringliteral">", man"</span>:<span class="stringliteral">""</span>).
+        ((<a class="code" href="edit__seznam_8php.html#54d6ff0dc1b9495abd4a2a289b2eb2f8">$zaznam</a>[<span class="stringliteral">"IDDvakrat"</span>]==1)?<span class="stringliteral">", 2x"</span>:<span class="stringliteral">""</span>).($zaznam[<span class="stringliteral">"IDDalsi_zpracovani"</span>]&gt;1?<span class="stringliteral">", "</span>:<span class="stringliteral">""</span>).
+        (<a class="code" href="edit__seznam_8php.html#54d6ff0dc1b9495abd4a2a289b2eb2f8">$zaznam</a>[<span class="stringliteral">"Dalsi_zpracovani"</span>]).<span class="stringliteral">" ("</span>.<a class="code" href="funkce_8inc_8php.html#34a1e3c641c42a0949efc9ff0d926cbc">cena_strom_m3</a>(<a class="code" href="edit__seznam_8php.html#54d6ff0dc1b9495abd4a2a289b2eb2f8">$zaznam</a>,<a class="code" href="seznam_8php.html#efab80aedcdbb988388e43e2f52491f1">$param</a>).<span class="stringliteral">" kč/m³) &lt;/i&gt;"</span>
+</pre></div>
+</div>
+</div><p>
+<a class="anchor" name="1c94fbeb3e8e94659fca2f0e763cb2e2"></a><!-- doxytag: member="seznam.php::$mezisoucty" ref="1c94fbeb3e8e94659fca2f0e763cb2e2" args="[$zaznam[&quot;IDDruh_dreva&quot;]][$zaznam[&quot;IDManipulace&quot;]][$zaznam[&quot;IDDvakrat&quot;]][$zaznam[&quot;IDDalsi_zpracovani&quot;]][&quot;Objem&quot;]" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">$mezisoucty[$zaznam[&quot;IDDruh_dreva&quot;]][$zaznam[&quot;IDManipulace&quot;]][$zaznam[&quot;IDDvakrat&quot;]][$zaznam[&quot;IDDalsi_zpracovani&quot;]][&quot;Objem&quot;] = $zaznam[&quot;Objem&quot;]          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+</div>
+</div><p>
+<a class="anchor" name="99590f361e9ab2fd6cb6d2e74d739741"></a><!-- doxytag: member="seznam.php::$mezisoucty" ref="99590f361e9ab2fd6cb6d2e74d739741" args="[$zaznam[&quot;IDDruh_dreva&quot;]][$zaznam[&quot;IDManipulace&quot;]][$zaznam[&quot;IDDvakrat&quot;]][$zaznam[&quot;IDDalsi_zpracovani&quot;]][&quot;Cena&quot;]" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">$mezisoucty[$zaznam[&quot;IDDruh_dreva&quot;]][$zaznam[&quot;IDManipulace&quot;]][$zaznam[&quot;IDDvakrat&quot;]][$zaznam[&quot;IDDalsi_zpracovani&quot;]][&quot;Cena&quot;] = $zaznam[&quot;Cena&quot;]          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+<dl compact><dt><b><a class="el" href="todo.html#_todo000003">Plánované úpravy:</a></b></dt><dd>Zde by se nechalo optimalizovat - některé položky se vypočítávají pro každé měření znovu. Stačilo by počítat jednou. </dd></dl>
+
+</div>
+</div><p>
+<a class="anchor" name="487dc80bcdd32233f1326c5baf95e7db"></a><!-- doxytag: member="seznam.php::$mezisoucty" ref="487dc80bcdd32233f1326c5baf95e7db" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">$mezisoucty = NULL          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+</div>
+</div><p>
+<a class="anchor" name="efab80aedcdbb988388e43e2f52491f1"></a><!-- doxytag: member="seznam.php::$param" ref="efab80aedcdbb988388e43e2f52491f1" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">$param = parametry_seznamu($_GET[&quot;id&quot;],$link)          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+</div>
+</div><p>
+<a class="anchor" name="b97286650a73a4f3f6202b2f66bbcffb"></a><!-- doxytag: member="seznam.php::$parametry" ref="b97286650a73a4f3f6202b2f66bbcffb" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">$parametry = druhy_dreva($link)          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+</div>
+</div><p>
+<a class="anchor" name="067e7c23094c43a221e0c09497ffc90a"></a><!-- doxytag: member="seznam.php::$seznam" ref="067e7c23094c43a221e0c09497ffc90a" args="[$key]" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">$seznam[$key] = $zaznam          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+</div>
+</div><p>
+<a class="anchor" name="c3380e5da1cd2eb97cefa437bd99bea7"></a><!-- doxytag: member="seznam.php::$seznam" ref="c3380e5da1cd2eb97cefa437bd99bea7" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">$seznam = seznam_mereni($_GET[&quot;id&quot;],$link,true)          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+</div>
+</div><p>
+<a class="anchor" name="f532de612998acdb87d5a48bdccfb096"></a><!-- doxytag: member="seznam.php::$zakaznik" ref="f532de612998acdb87d5a48bdccfb096" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">$zakaznik = zakaznik($param[&quot;IDZakaznik&quot;],$link)          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+</div>
+</div><p>
+<a class="anchor" name="579421ac13d700561fb325c376c523b4"></a><!-- doxytag: member="seznam.php::$zaznam" ref="579421ac13d700561fb325c376c523b4" args="[&quot;Cena&quot;]" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">$zaznam[&quot;Cena&quot;] = cena_strom($zaznam,$param)          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+</div>
+</div><p>
+<p align=left>Miroslav Jiřík</p>

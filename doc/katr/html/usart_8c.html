@@ -1,0 +1,560 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<title>Zřízení na katru pro projekt měření objemu stromů: Dokumentace souboru usart.c</title>
+<link href="doxygen.css" rel="stylesheet" type="text/css">
+<link href="tabs.css" rel="stylesheet" type="text/css">
+</head><body>
+<!-- Generováno programem Doxygen 1.5.2 -->
+<div class="tabs">
+  <ul>
+    <li><a href="index.html"><span>Hlavní&nbsp;stránka</span></a></li>
+    <li class="current"><a href="files.html"><span>Soubory</span></a></li>
+  </ul>
+</div>
+<div class="tabs">
+  <ul>
+    <li><a href="files.html"><span>Seznam&nbsp;souborů</span></a></li>
+    <li><a href="globals.html"><span>Globální&nbsp;symboly</span></a></li>
+  </ul>
+</div>
+<h1>Dokumentace souboru usart.c</h1><code>#include &lt;avr/io.h&gt;</code><br>
+<code>#include &lt;avr/interrupt.h&gt;</code><br>
+<code>#include &lt;avr/signal.h&gt;</code><br>
+<code>#include &lt;stdio.h&gt;</code><br>
+<code>#include &lt;stdint.h&gt;</code><br>
+<code>#include &quot;<a class="el" href="usart__recv_8h.html">usart_recv.h</a>&quot;</code><br>
+<table border="0" cellpadding="0" cellspacing="0">
+<tr><td></td></tr>
+<tr><td colspan="2"><br><h2>Definice maker</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="usart_8c.html#cb383144a04ad304680b840cd65af5a5">DATASIZE</a>&nbsp;&nbsp;&nbsp;10</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="usart_8c.html#3225b26e3c8329d83e786c441799c2d2">LenOfMsg</a>&nbsp;&nbsp;&nbsp;DATASIZE + 1</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="usart_8c.html#917d375e0dd558c0164221a1a0a75a97">LenOfRecvBuff</a>&nbsp;&nbsp;&nbsp;2 + DATASIZE + 1 + (DATASIZE / 2)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="usart_8c.html#d24ac1262ed4066d12091ee2d4b640ca">LenOfTransBuff</a>&nbsp;&nbsp;&nbsp;2 + DATASIZE + 1 + (DATASIZE / 2)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="usart_8c.html#1bff58c0bf01ec2912bb7138fbb7fdad">LenOfMsgBuffer</a>&nbsp;&nbsp;&nbsp;5</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="usart_8c.html#da5117fc4f5cae9ee7091b2fd013ad02">Delay</a>&nbsp;&nbsp;&nbsp;500</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="usart_8c.html#6c162342474d34f8c1779594a389e823">set_bit</a>(c, bit)&nbsp;&nbsp;&nbsp;(c | (1 &lt;&lt; bit))</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="usart_8c.html#977e1538a0e8f01bd867a9c98cbaffb3">clear_bit</a>(c, bit)&nbsp;&nbsp;&nbsp;(c &amp; (254 &lt;&lt; bit))</td></tr>
+
+<tr><td colspan="2"><br><h2>Funkce</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="usart_8c.html#c6ebeb4ed2c70b120906228519a9c246">USART_Init</a> (unsigned int baud)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="usart_8c.html#5a2865727ce58839815fd664d3c376fd">zarad_tri_zpravy</a> (void)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="usart_8c.html#759190db192ee81162c88decd75d3a7d">send_msg</a> (void)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="usart_8c.html#f7f7e8050594c5346c22172e19d3c193">new_msg</a> (char *)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="usart_8c.html#2a0c93037e5ab2c9fdb185a48ce7b2f9">test_message</a> (char *msg)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="usart_8c.html#de70a49b9ce25bcf4eee6655335388d3">process_recived_msg</a> (void)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="usart_8c.html#1ff35b59737fc6dce1a47fbd8f878cfe">odesilame</a> (char c)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="usart_8c.html#ad0b06468af935e89ae3f73ee25a2d94">SIGNAL</a> (SIG_UART_RECV)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="usart_8c.html#385355aaf5ae15bdaa3a7d44f2fb4dae">SIGNAL</a> (SIG_UART_DATA)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="usart_8c.html#ef360141033e4d40aaacbfbbf3d4f187">to_transmitt_buffer</a> (char *msg)</td></tr>
+
+<tr><td colspan="2"><br><h2>Proměnné</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="usart_8c.html#3bb63f7d4ccc2ae47270f9ee0a86f8bd">usart_recv_count</a> = -1</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">char&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="usart_8c.html#fa759eaccfefd87bdc2bf4235d2e3e6b">usart_recv_buff</a> [LenOfRecvBuff]</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">char&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="usart_8c.html#de3e12ab8f79f2d6de185c3debfe47ef">usart_trans_buff</a> [LenOfTransBuff]</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="usart_8c.html#bd954e0bb7aa2f9b561bbc55c24a4838">usart_trans_count</a> = -1</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">char *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="usart_8c.html#a564ee2888e0a4d5e18727d14778b096">msg_buffer</a> [LenOfMsgBuffer]</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="usart_8c.html#c24254f988d7e9b7904c19993cb0b866">msg_buffer_counter</a> = -1</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">char&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="usart_8c.html#21394a6033cbdcabb80cb7c1b43fde38">recived_msg</a> [LenOfMsg]</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="usart_8c.html#7639023156bfa7e13b6d2f8c0a59d5d5">after_trans_delay_counter</a> = Delay</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">char&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="usart_8c.html#a91da9d930bda2f4765850aca7f57b90">vysilame</a> = 1</td></tr>
+
+</table>
+<hr><h2>Dokumentace k definicím maker</h2>
+<a class="anchor" name="977e1538a0e8f01bd867a9c98cbaffb3"></a><!-- doxytag: member="usart.c::clear_bit" ref="977e1538a0e8f01bd867a9c98cbaffb3" args="(c, bit)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define clear_bit          </td>
+          <td>(</td>
+          <td class="paramtype">c,         <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bit&nbsp;</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%">&nbsp;&nbsp;&nbsp;(c &amp; (254 &lt;&lt; bit))</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+</div>
+</div><p>
+<a class="anchor" name="cb383144a04ad304680b840cd65af5a5"></a><!-- doxytag: member="usart.c::DATASIZE" ref="cb383144a04ad304680b840cd65af5a5" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DATASIZE&nbsp;&nbsp;&nbsp;10          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+</div>
+</div><p>
+<a class="anchor" name="da5117fc4f5cae9ee7091b2fd013ad02"></a><!-- doxytag: member="usart.c::Delay" ref="da5117fc4f5cae9ee7091b2fd013ad02" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define Delay&nbsp;&nbsp;&nbsp;500          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+</div>
+</div><p>
+<a class="anchor" name="3225b26e3c8329d83e786c441799c2d2"></a><!-- doxytag: member="usart.c::LenOfMsg" ref="3225b26e3c8329d83e786c441799c2d2" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define LenOfMsg&nbsp;&nbsp;&nbsp;DATASIZE + 1          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+</div>
+</div><p>
+<a class="anchor" name="1bff58c0bf01ec2912bb7138fbb7fdad"></a><!-- doxytag: member="usart.c::LenOfMsgBuffer" ref="1bff58c0bf01ec2912bb7138fbb7fdad" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define LenOfMsgBuffer&nbsp;&nbsp;&nbsp;5          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+</div>
+</div><p>
+<a class="anchor" name="917d375e0dd558c0164221a1a0a75a97"></a><!-- doxytag: member="usart.c::LenOfRecvBuff" ref="917d375e0dd558c0164221a1a0a75a97" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define LenOfRecvBuff&nbsp;&nbsp;&nbsp;2 + DATASIZE + 1 + (DATASIZE / 2)          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+</div>
+</div><p>
+<a class="anchor" name="d24ac1262ed4066d12091ee2d4b640ca"></a><!-- doxytag: member="usart.c::LenOfTransBuff" ref="d24ac1262ed4066d12091ee2d4b640ca" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define LenOfTransBuff&nbsp;&nbsp;&nbsp;2 + DATASIZE + 1 + (DATASIZE / 2)          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+</div>
+</div><p>
+<a class="anchor" name="6c162342474d34f8c1779594a389e823"></a><!-- doxytag: member="usart.c::set_bit" ref="6c162342474d34f8c1779594a389e823" args="(c, bit)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define set_bit          </td>
+          <td>(</td>
+          <td class="paramtype">c,         <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bit&nbsp;</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%">&nbsp;&nbsp;&nbsp;(c | (1 &lt;&lt; bit))</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+</div>
+</div><p>
+<hr><h2>Dokumentace funkcí</h2>
+<a class="anchor" name="f7f7e8050594c5346c22172e19d3c193"></a><!-- doxytag: member="usart.c::new_msg" ref="f7f7e8050594c5346c22172e19d3c193" args="(char *)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void new_msg           </td>
+          <td>(</td>
+          <td class="paramtype">char *&nbsp;</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+</div>
+</div><p>
+<a class="anchor" name="1ff35b59737fc6dce1a47fbd8f878cfe"></a><!-- doxytag: member="usart.c::odesilame" ref="1ff35b59737fc6dce1a47fbd8f878cfe" args="(char c)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void odesilame           </td>
+          <td>(</td>
+          <td class="paramtype">char&nbsp;</td>
+          <td class="paramname"> <em>c</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+</div>
+</div><p>
+<a class="anchor" name="de70a49b9ce25bcf4eee6655335388d3"></a><!-- doxytag: member="usart.c::process_recived_msg" ref="de70a49b9ce25bcf4eee6655335388d3" args="(void)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void process_recived_msg           </td>
+          <td>(</td>
+          <td class="paramtype">void&nbsp;</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+</div>
+</div><p>
+<a class="anchor" name="759190db192ee81162c88decd75d3a7d"></a><!-- doxytag: member="usart.c::send_msg" ref="759190db192ee81162c88decd75d3a7d" args="(void)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void send_msg           </td>
+          <td>(</td>
+          <td class="paramtype">void&nbsp;</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+</div>
+</div><p>
+<a class="anchor" name="385355aaf5ae15bdaa3a7d44f2fb4dae"></a><!-- doxytag: member="usart.c::SIGNAL" ref="385355aaf5ae15bdaa3a7d44f2fb4dae" args="(SIG_UART_DATA)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">SIGNAL           </td>
+          <td>(</td>
+          <td class="paramtype">SIG_UART_DATA&nbsp;</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+</div>
+</div><p>
+<a class="anchor" name="ad0b06468af935e89ae3f73ee25a2d94"></a><!-- doxytag: member="usart.c::SIGNAL" ref="ad0b06468af935e89ae3f73ee25a2d94" args="(SIG_UART_RECV)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">SIGNAL           </td>
+          <td>(</td>
+          <td class="paramtype">SIG_UART_RECV&nbsp;</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+</div>
+</div><p>
+<a class="anchor" name="2a0c93037e5ab2c9fdb185a48ce7b2f9"></a><!-- doxytag: member="usart.c::test_message" ref="2a0c93037e5ab2c9fdb185a48ce7b2f9" args="(char *msg)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int test_message           </td>
+          <td>(</td>
+          <td class="paramtype">char *&nbsp;</td>
+          <td class="paramname"> <em>msg</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+</div>
+</div><p>
+<a class="anchor" name="ef360141033e4d40aaacbfbbf3d4f187"></a><!-- doxytag: member="usart.c::to_transmitt_buffer" ref="ef360141033e4d40aaacbfbbf3d4f187" args="(char *msg)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void to_transmitt_buffer           </td>
+          <td>(</td>
+          <td class="paramtype">char *&nbsp;</td>
+          <td class="paramname"> <em>msg</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+</div>
+</div><p>
+<a class="anchor" name="c6ebeb4ed2c70b120906228519a9c246"></a><!-- doxytag: member="usart.c::USART_Init" ref="c6ebeb4ed2c70b120906228519a9c246" args="(unsigned int baud)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void USART_Init           </td>
+          <td>(</td>
+          <td class="paramtype">unsigned int&nbsp;</td>
+          <td class="paramname"> <em>baud</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Inicializace usartu 
+</div>
+</div><p>
+<a class="anchor" name="5a2865727ce58839815fd664d3c376fd"></a><!-- doxytag: member="usart.c::zarad_tri_zpravy" ref="5a2865727ce58839815fd664d3c376fd" args="(void)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void zarad_tri_zpravy           </td>
+          <td>(</td>
+          <td class="paramtype">void&nbsp;</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+</div>
+</div><p>
+<hr><h2>Dokumentace proměnných</h2>
+<a class="anchor" name="7639023156bfa7e13b6d2f8c0a59d5d5"></a><!-- doxytag: member="usart.c::after_trans_delay_counter" ref="7639023156bfa7e13b6d2f8c0a59d5d5" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int <a class="el" href="usart_8c.html#7639023156bfa7e13b6d2f8c0a59d5d5">after_trans_delay_counter</a> = Delay          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+</div>
+</div><p>
+<a class="anchor" name="a564ee2888e0a4d5e18727d14778b096"></a><!-- doxytag: member="usart.c::msg_buffer" ref="a564ee2888e0a4d5e18727d14778b096" args="[LenOfMsgBuffer]" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char* <a class="el" href="usart_8c.html#a564ee2888e0a4d5e18727d14778b096">msg_buffer</a>[LenOfMsgBuffer]          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+</div>
+</div><p>
+<a class="anchor" name="c24254f988d7e9b7904c19993cb0b866"></a><!-- doxytag: member="usart.c::msg_buffer_counter" ref="c24254f988d7e9b7904c19993cb0b866" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int <a class="el" href="usart_8c.html#c24254f988d7e9b7904c19993cb0b866">msg_buffer_counter</a> = -1          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+</div>
+</div><p>
+<a class="anchor" name="21394a6033cbdcabb80cb7c1b43fde38"></a><!-- doxytag: member="usart.c::recived_msg" ref="21394a6033cbdcabb80cb7c1b43fde38" args="[LenOfMsg]" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char <a class="el" href="usart_8c.html#21394a6033cbdcabb80cb7c1b43fde38">recived_msg</a>[LenOfMsg]          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+</div>
+</div><p>
+<a class="anchor" name="fa759eaccfefd87bdc2bf4235d2e3e6b"></a><!-- doxytag: member="usart.c::usart_recv_buff" ref="fa759eaccfefd87bdc2bf4235d2e3e6b" args="[LenOfRecvBuff]" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char <a class="el" href="usart_8c.html#fa759eaccfefd87bdc2bf4235d2e3e6b">usart_recv_buff</a>[LenOfRecvBuff]          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+</div>
+</div><p>
+<a class="anchor" name="3bb63f7d4ccc2ae47270f9ee0a86f8bd"></a><!-- doxytag: member="usart.c::usart_recv_count" ref="3bb63f7d4ccc2ae47270f9ee0a86f8bd" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int <a class="el" href="usart_8c.html#3bb63f7d4ccc2ae47270f9ee0a86f8bd">usart_recv_count</a> = -1          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+</div>
+</div><p>
+<a class="anchor" name="de3e12ab8f79f2d6de185c3debfe47ef"></a><!-- doxytag: member="usart.c::usart_trans_buff" ref="de3e12ab8f79f2d6de185c3debfe47ef" args="[LenOfTransBuff]" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char <a class="el" href="usart_8c.html#de3e12ab8f79f2d6de185c3debfe47ef">usart_trans_buff</a>[LenOfTransBuff]          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+</div>
+</div><p>
+<a class="anchor" name="bd954e0bb7aa2f9b561bbc55c24a4838"></a><!-- doxytag: member="usart.c::usart_trans_count" ref="bd954e0bb7aa2f9b561bbc55c24a4838" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int <a class="el" href="usart_8c.html#bd954e0bb7aa2f9b561bbc55c24a4838">usart_trans_count</a> = -1          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+</div>
+</div><p>
+<a class="anchor" name="a91da9d930bda2f4765850aca7f57b90"></a><!-- doxytag: member="usart.c::vysilame" ref="a91da9d930bda2f4765850aca7f57b90" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char <a class="el" href="usart_8c.html#a91da9d930bda2f4765850aca7f57b90">vysilame</a> = 1          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+</div>
+</div><p>
+<p align=left>Miroslav JiĹ™Ă­k</p>

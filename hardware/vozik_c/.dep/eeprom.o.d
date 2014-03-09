@@ -1,13 +1,9 @@
-eeprom.o: eeprom.c eeprom.h irc.h data.h msr_scr.h watchdog.h measure.h
+build/eeprom.o: eeprom.c eeprom.h irc.h watchdog.h lcd.h
 
 eeprom.h:
 
 irc.h:
 
-data.h:
-
-msr_scr.h:
-
 watchdog.h:
 
-measure.h:
+lcd.h:

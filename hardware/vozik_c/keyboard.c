@@ -1,5 +1,5 @@
 /*
- * $Id: keyboard.c 64 2007-08-03 23:04:08Z Mira $
+ * $Id: keyboard.c 148 2009-10-25 13:54:05Z mjirik $
  * 
  * File name: keyboard.c
  * Date:      2006/07/31 22:21
@@ -8,11 +8,11 @@
 /**
  * @file keyboard.c
  * @brief
- * Modul obsluhuje klávesnici. Èasování je pøipojeno k pøerušení INT1, 
- * data jsou pøivedena na libovolnı pin. Hodnoty kláves jsou èteny dvìma funkcemi.
- * get_char() a get_spec(). Modul je vybaven vıstupním bufferem, take v pøípadì
- * stisku nìkolika kláves bezprostøednì po sobì, nedojde ke ztrátì v dùsledku
- * pomalého zpracovávání dalším programem.
+ * Modul obsluhuje klÃ¡vesnici. ÄŒasovÃ¡nÃ­ je pÅ™ipojeno k pÅ™eruÅ¡enÃ­ INT1, 
+ * data jsou pÅ™ivedena na libovolnÃ½ pin. Hodnoty klÃ¡ves jsou Äteny dvÄ›ma funkcemi.
+ * get_char() a get_spec(). Modul je vybaven vÃ½stupnÃ­m bufferem, takÅ¾e v pÅ™Ã­padÄ›
+ * stisku nÄ›kolika klÃ¡ves bezprostÅ™ednÄ› po sobÄ›, nedojde ke ztrÃ¡tÄ› v dÅ¯sledku
+ * pomalÃ©ho zpracovÃ¡vÃ¡nÃ­ dalÅ¡Ã­m programem.
  */
 
 #include <inttypes.h>
@@ -22,46 +22,55 @@
 #include "keyboard.h"
 #include "lcd.h"
 #include "convert.h"
+// kvuli odesÃ­lÃ¡nÃ­ zprÃ¡v o stisknutÃ© klÃ¡vese do PC
+#include <avr/pgmspace.h> 
+#include "usart.h"
+#include "main.h"
+#include "common/msgn.h"
+#include "memory.h"
+#include "watchdog.h"
 
-/// Konstanta uvádí, po kolika zavoláních pøi nedoruèeném bitu je resetován pøíjem.
-/// Tímto je ošetøen problém, kterı vznikal pøi pøipojení klaávesnice k bìícímu
-/// zaøízení. Dorazila pak vdy jen èást bitù a pøi stisku další klávesy byly
-/// chybjející data doplnìna zaèátkam následujících. Zavedení resetu problém øeší.
+
+/// Konstanta uvÃ¡dÃ­, po kolika zavolÃ¡nÃ­ch pÅ™i nedoruÄenÃ©m bitu je resetovÃ¡n pÅ™Ã­jem.
+/// TÃ­mto je oÅ¡etÅ™en problÃ©m, kterÃ½ vznikal pÅ™i pÅ™ipojenÃ­ klaÃ¡vesnice k bÄ›Å¾Ã­cÃ­mu
+/// zaÅ™Ã­zenÃ­. Dorazila pak vÅ¾dy jen ÄÃ¡st bitÅ¯ a pÅ™i stisku dalÅ¡Ã­ klÃ¡vesy byly
+/// chybjejÃ­cÃ­ data doplnÄ›na zaÄÃ¡tkam nÃ¡sledujÃ­cÃ­ch. ZavedenÃ­ resetu problÃ©m Å™eÅ¡Ã­.
 #define KEYB_RECV_WATCH_N 1000
 
-/// Velikost vıstupného bufferu klávesnice.
+/// Velikost vÃ½stupnÃ©ho bufferu klÃ¡vesnice.
 #define KEYB_BUFF_SIZE 3
 
 
 
-/// Struktura pro popis stisknuté klávesy.
-typedef struct key{
-  /// Vlajka ukazující typ klávesy, která byla stisknuta.
+/// Struktura pro popis stisknutÃ© klÃ¡vesy.
+
+typedef struct key {
+  /// Vlajka ukazujÃ­cÃ­ typ klÃ¡vesy, kterÃ¡ byla stisknuta.
   /// - 0 : nic
-  /// - 1 : pøijat char
-  /// - 2 : efko, šipka
+  /// - 1 : pÅ™ijat char
+  /// - 2 : efko, Å¡ipka
   char flag;
-  /// Vlastní kód klávesy. V pøípadì e je flag == 0, je to ASCII.
+  /// VlastnÃ­ kÃ³d klÃ¡vesy. V pÅ™Ã­padÄ› Å¾e je flag == 0, je to ASCII.
   char kod;
-}KEY;
+} KEY;
 
 
 
-static int8_t data_counter = 0;  ///< Poèítadl bitù, které ji pøišly od klávesnice.
-static char recivedc = 0; ///< Støadaè bitù.
+static int8_t data_counter = 0; ///< PoÄÃ­tadl bitÅ¯, kterÃ© jiÅ¾ pÅ™iÅ¡ly od klÃ¡vesnice.
+static char recivedc = 0; ///< StÅ™adaÄ bitÅ¯.
 
 static char minuly_kod = 0;
 static uint16_t keyb_recv_watchdog = 0;
 
-/// Buffer pro vıstupní kódy. Pracuje se s ním prostøednictvím
-/// funkcí keyb_in_buff() a get_key_from_buff().
-/// Buffer je pole v nìm jsou prvky typu key
-/// Buffer je implementován jako nekruhovı. Je to z dùodu ušetøení
-/// nìkolika málo bytù. Zvıøení vıpoèetní nároènosti je nevıznamné, neb
-/// velikost bufferu je celkem malá ( KEYB_BUFF_SIZE ). Posouvání
-/// kadé poloky o jedno místo pøi kadém pøíchodu nové klávesy a
-/// kadém ètení nezpomaluje bìh programu.
-static KEY keyb_buff[KEYB_BUFF_SIZE]; 
+/// Buffer pro vÃ½stupnÃ­ kÃ³dy. Pracuje se s nÃ­m prostÅ™ednictvÃ­m
+/// funkcÃ­ keyb_in_buff() a get_key_from_buff().
+/// Buffer je pole v nÄ›mÅ¾ jsou prvky typu key
+/// Buffer je implementovÃ¡n jako nekruhovÃ½. Je to z dÅ¯odu uÅ¡etÅ™enÃ­
+/// nÄ›kolika mÃ¡lo bytÅ¯. ZvÃ½Å™enÃ­ vÃ½poÄetnÃ­ nÃ¡roÄnosti je nevÃ½znamnÃ©, nebÅ¥
+/// velikost bufferu je celkem malÃ¡ ( KEYB_BUFF_SIZE ). PosouvÃ¡nÃ­
+/// kaÅ¾dÃ© poloÅ¾ky o jedno mÃ­sto pÅ™i kaÅ¾dÃ©m pÅ™Ã­chodu novÃ© klÃ¡vesy a
+/// kaÅ¾dÃ©m ÄtenÃ­ nezpomaluje bÄ›h programu.
+static KEY keyb_buff[KEYB_BUFF_SIZE];
 
 
 
@@ -69,26 +78,34 @@ static KEY keyb_buff[KEYB_BUFF_SIZE];
 void zpracuj_kod(char);
 static KEY get_key_from_buff(void);
 
-/// Funkce vloí do bufferu další klávesu.
-/// Funkce je definována v keyboard.h . Tím je umonìno Naèítání
-/// kláves i z jiného zdroje ne z klávesnice.
-/// @param flag Pøíznak typu klávesy.
+/// Funkce vloÅ¾Ã­ do bufferu dalÅ¡Ã­ klÃ¡vesu.
+/// Funkce je definovÃ¡na v keyboard.h . TÃ­m je umoÅ¾nÄ›no NaÄÃ­tÃ¡nÃ­
+/// klÃ¡ves i z jinÃ©ho zdroje neÅ¾ z klÃ¡vesnice.
+/// @param flag PÅ™Ã­znak typu klÃ¡vesy.
 /// - 0 : nic
-/// - 1 : pøijat char
-/// - 2 : efko, šipka
+/// - 1 : pÅ™ijat char
+/// - 2 : efko, Å¡ipka
 ///
-/// @param kod Vlastní kód klávesy.
-void keyb_in_buff(char flag, char kod){
+/// @param kod VlastnÃ­ kÃ³d klÃ¡vesy.
+
+void keyb_in_buff(char flag, char kod) {
+  char * msgkey;
   int i = 0;
 
   if (flag == 0)
     return;
-  
-  for (i = 0; i < (KEYB_BUFF_SIZE - 1); i++){
-    if ((keyb_buff[i+1].flag) != 0){
-      keyb_buff[i] = keyb_buff[i+1];
-    }
-    else{
+
+  msgkey = (void*) mmalloc(LenOfMsg);
+
+  msgkey[0] = MSGN_KEY;
+  msgkey[1] = flag;
+  msgkey[2] = kod;
+  new_msg(msgkey);
+
+  for (i = 0; i < (KEYB_BUFF_SIZE - 1); i++) {
+    if ((keyb_buff[i + 1].flag) != 0) {
+      keyb_buff[i] = keyb_buff[i + 1];
+    } else {
       keyb_buff[i].flag = flag;
       keyb_buff[i].kod = kod;
       return;
@@ -96,11 +113,14 @@ void keyb_in_buff(char flag, char kod){
   }
   keyb_buff[KEYB_BUFF_SIZE - 1].flag = flag;
   keyb_buff[KEYB_BUFF_SIZE - 1].kod = kod;
+
+  // pozor, sem funkce tÃ©mÄ›Å™ nikdy nedobÄ›hne, kvÅ¯li return ve for-cyklu
 }
-  
-/// Funkce pro vıbìr klávesy z bufferu. Pøi vıbìru je nutné posunout
-/// všechny prvky o jeden vpøed.
-static KEY get_key_from_buff(void){
+
+/// Funkce pro vÃ½bÄ›r klÃ¡vesy z bufferu. PÅ™i vÃ½bÄ›ru je nutnÃ© posunout
+/// vÅ¡echny prvky o jeden vpÅ™ed.
+
+static KEY get_key_from_buff(void) {
   int i = 0;
   KEY out;
 
@@ -109,31 +129,25 @@ static KEY get_key_from_buff(void){
   if (keyb_buff[0].flag == 0)
     return out;
 
-  for(i = 0; i < (KEYB_BUFF_SIZE - 1); i++){
-    if (keyb_buff[i+1].flag != 0){
-      keyb_buff[i] = keyb_buff[i+1];
-    }
-    else{
-      keyb_buff[i] = keyb_buff[i+1];
+  for (i = 0; i < (KEYB_BUFF_SIZE - 1); i++) {
+    if (keyb_buff[i + 1].flag != 0) {
+      keyb_buff[i] = keyb_buff[i + 1];
+    } else {
+      keyb_buff[i] = keyb_buff[i + 1];
       return out;
     }
   }
   keyb_buff[KEYB_BUFF_SIZE - 1].flag = 0;
   return out;
 }
-    
 
+SIGNAL(SIG_INTERRUPT1) {
 
+  keyb_recv_watchdog = 0; //
 
-
-SIGNAL(SIG_INTERRUPT1){
-
-  keyb_recv_watchdog = 0;  // 
-  
-  if ((data_counter > 0)&&(data_counter < 9)){
+  if ((data_counter > 0) && (data_counter < 9)) {
     recivedc |= ((PINC & 1) << (data_counter - 1));
-  }
-  else if(data_counter == 10) {
+  } else if (data_counter == 10) {
     data_counter = -1;
     //printxy(default_screen, 0,0,s);
     //printxy(default_screen, 0,2, int2string("   ",recivedc));
@@ -144,357 +158,358 @@ SIGNAL(SIG_INTERRUPT1){
   data_counter++;
 }
 
-/// Funkce na základì kódu pøijatého z klávesnice vytváøí kód pro funkce se kterımi
-/// pracuje zbytek programu. V pøípadì, e je stisknuta klávesa tisknutelného znaku,
-/// je ètecím funkcím poskytnuta jeho jeho ASCII hodnota. V pøípadì stiskutí klávesy
-/// jiného typu je nastaven recive_flag a funkce pro ètení bìnıch znakù ( get_char() )
-/// nic nevrátí. Pro naètení kódu speciální klávesy je nutno pouít funkci get_spec().
-void zpracuj_kod(char c){
-  if (minuly_kod == 0){
-    switch (c){
-    case (0x16):
-      keyb_in_buff(1,'1');
-      break;
-    case (0x1e):
-      keyb_in_buff(1,'2');
-      break;
-    case (0x26):
-      keyb_in_buff(1,'3');
-      break;
-    case (0x25):
-      keyb_in_buff(1,'4');
-      break;
-    case (0x2e):
-      keyb_in_buff(1,'5');
-      break;
-    case (0x36):
-      keyb_in_buff(1,'6');
-      break;
-    case (0x3d):
-      keyb_in_buff(1,'7');
-      break;
-    case (0x3e):
-      keyb_in_buff(1,'8');
-      break;
-    case (0x46):
-      keyb_in_buff(1,'9');
-      break;
-    case (0x45):
-      keyb_in_buff(1,'0');
-      break;
-    case (0x4e):
-      keyb_in_buff(1,'-');
-      break;
-    case (0x55):
-      keyb_in_buff(1,'=');
-      break;
-    case (0x66):  //Backspace 1
-      keyb_in_buff(2,1);
-      break;
-      
-    case (0x0d): //Ta 2
-      keyb_in_buff(2,2);
-      break;
-    case (0x15):
-      keyb_in_buff(1,'Q');
-      break;
-    case (0x1d):
-      keyb_in_buff(1,'W');
-      break;
-    case (0x24):
-      keyb_in_buff(1,'E');
-      break;
-    case (0x2d):
-      keyb_in_buff(1,'R');
-      break;
-    case (0x2c):
-      keyb_in_buff(1,'T');
-      break;
-    case (0x35):
-      keyb_in_buff(1,'Y');
-      break;
-    case (0x3c):
-      keyb_in_buff(1,'U');
-      break;
-    case (0x43):
-      keyb_in_buff(1,'I');
-      break;
-    case (0x44):
-      keyb_in_buff(1,'O');
-      break;
-    case (0x4d):
-      keyb_in_buff(1,'P');
-      break;
-    case (0x54):
-      keyb_in_buff(1,'[');
-      break;
-    case (0x5b):
-      keyb_in_buff(1,']');
-      break;
-    case (0x5d):
-      keyb_in_buff(1,'\\');
-      break;
-      
-    case (0x58): //Caps Lock
-      keyb_in_buff(2,3);
-      break;
-    case (0x1c):
-      keyb_in_buff(1,'A');
-      break;
-    case (0x1b):
-      keyb_in_buff(1,'S');
-      break;
-    case (0x23):
-      keyb_in_buff(1,'D');
-      break;
-    case (0x2b):
-      keyb_in_buff(1,'F');
-      break;
-    case (0x34):
-      keyb_in_buff(1,'G');
-      break;
-    case (0x33):
-      keyb_in_buff(1,
-'H');
-      break;
-    case (0x3b):
-      keyb_in_buff(1,'J');
-      break;
-    case (0x42):
-      keyb_in_buff(1,'K');
-      break;
-    case (0x4b):
-      keyb_in_buff(1,'L');
-      break;
-    case (0x4c):
-      keyb_in_buff(1,';');
-      break;
-    case (0x52):
-      keyb_in_buff(1,'\'');
-      break;
-    case (0x5a): //Enter
-      keyb_in_buff(2,4);
-      break;
-      
-    case (0x1a):
-      keyb_in_buff(1,'Z');
-      break;
-    case (0x22):
-      keyb_in_buff(1,'X');
-      break;
-    case (0x21):
-      keyb_in_buff(1,'C');
-      break;
-    case (0x2a):
-      keyb_in_buff(1,'V');
-      break;
-    case (0x32):
-      keyb_in_buff(1,'B');
-      break;
-    case (0x31):
-      keyb_in_buff(1,'N');
-      break;
-    case (0x3a):
-      keyb_in_buff(1,'M');
-      break;
-    case (0x41):
-      keyb_in_buff(1,',');
-      break;
-    case (0x49):
-      keyb_in_buff(1,'.');
-      break;
-    case (0x4a):
-      keyb_in_buff(1,'/');
-      break;
-      
-    case (0x29):
-      keyb_in_buff(1,' ');
-      break;
-      
-    case (0x76): //Esc
-      keyb_in_buff(2,5);
-      break;
-      
-    case 0x70: // 0_num
-      keyb_in_buff(1,'0');
-      break;
-    case 0x69: // 1_num
-      keyb_in_buff(1,'1');
-      break;
-    case 0x72: // 2_num
-      keyb_in_buff(1,'2');
-      break;
-    case 0x7A: // 3_num
-      keyb_in_buff(1,'3');
-      break;
-    case 0x6B: // 4_num
-      keyb_in_buff(1,'4');
-      break;
-    case 0x73: // 5_num
-      keyb_in_buff(1,'5');
-      break;
-    case 0x74: // 6_num
-      keyb_in_buff(1,'6');
-      break;
-    case 0x6C: // 7_num
-      keyb_in_buff(1,'7');
-      break;
-    case 0x75: // 8_num
-      keyb_in_buff(1,'8');
-      break;
-    case 0x7D: // 9_num
-      keyb_in_buff(1,'9');
-      break;
-    case 0x7B: // -_num
-      keyb_in_buff(1,'-');
-      break;
-    case 0x71: // ._num
-      keyb_in_buff(1,'.');
-      break;
-    case 0x7C: // *_num
-      keyb_in_buff(1,'*');
-      break;
-    case 0x79: // +_num
-      keyb_in_buff(1,'+');
-      break;
+/// Funkce na zÃ¡kladÄ› kÃ³du pÅ™ijatÃ©ho z klÃ¡vesnice vytvÃ¡Å™Ã­ kÃ³d pro funkce se kterÃ½mi
+/// pracuje zbytek programu. V pÅ™Ã­padÄ›, Å¾e je stisknuta klÃ¡vesa tisknutelnÃ©ho znaku,
+/// je ÄtecÃ­m funkcÃ­m poskytnuta jeho jeho ASCII hodnota. V pÅ™Ã­padÄ› stiskutÃ­ klÃ¡vesy
+/// jinÃ©ho typu je nastaven recive_flag a funkce pro ÄtenÃ­ bÄ›Å¾nÃ½ch znakÅ¯ ( get_char() )
+/// nic nevrÃ¡tÃ­. Pro naÄtenÃ­ kÃ³du speciÃ¡lnÃ­ klÃ¡vesy je nutno pouÅ¾Ã­t funkci get_spec().
+
+void zpracuj_kod(char c) {
+  if (minuly_kod == 0) {
+    switch (c) {
+      case (0x16) :
+                keyb_in_buff(1, '1');
+        break;
+      case (0x1e) :
+                keyb_in_buff(1, '2');
+        break;
+      case (0x26) :
+                keyb_in_buff(1, '3');
+        break;
+      case (0x25) :
+                keyb_in_buff(1, '4');
+        break;
+      case (0x2e) :
+                keyb_in_buff(1, '5');
+        break;
+      case (0x36) :
+                keyb_in_buff(1, '6');
+        break;
+      case (0x3d) :
+                keyb_in_buff(1, '7');
+        break;
+      case (0x3e) :
+                keyb_in_buff(1, '8');
+        break;
+      case (0x46) :
+                keyb_in_buff(1, '9');
+        break;
+      case (0x45) :
+                keyb_in_buff(1, '0');
+        break;
+      case (0x4e) :
+                keyb_in_buff(1, '-');
+        break;
+      case (0x55) :
+                keyb_in_buff(1, '=');
+        break;
+      case (0x66) : //Backspace 1
+                keyb_in_buff(2, 1);
+        break;
+
+      case (0x0d) : //Ta 2
+                keyb_in_buff(2, 2);
+        break;
+      case (0x15) :
+
+                keyb_in_buff(1, 'Q');
+
+        break;
+      case (0x1d) :
+                keyb_in_buff(1, 'W');
+        break;
+      case (0x24) :
+                keyb_in_buff(1, 'E');
+        break;
+      case (0x2d) :
+                keyb_in_buff(1, 'R');
+        break;
+      case (0x2c) :
+                keyb_in_buff(1, 'T');
+        break;
+      case (0x35) :
+                keyb_in_buff(1, 'Y');
+        break;
+      case (0x3c) :
+                keyb_in_buff(1, 'U');
+        break;
+      case (0x43) :
+                keyb_in_buff(1, 'I');
+        break;
+      case (0x44) :
+                keyb_in_buff(1, 'O');
+        break;
+      case (0x4d) :
+                keyb_in_buff(1, 'P');
+        break;
+      case (0x54) :
+                keyb_in_buff(1, '[');
+        break;
+      case (0x5b) :
+                keyb_in_buff(1, ']');
+        break;
+      case (0x5d) :
+                keyb_in_buff(1, '\\');
+        break;
+
+      case (0x58) : //Caps Lock
+                keyb_in_buff(2, 3);
+        break;
+      case (0x1c) :
+                keyb_in_buff(1, 'A');
+        break;
+      case (0x1b) :
+                keyb_in_buff(1, 'S');
+        break;
+      case (0x23) :
+                keyb_in_buff(1, 'D');
+        break;
+      case (0x2b) :
+                keyb_in_buff(1, 'F');
+        break;
+      case (0x34) :
+                keyb_in_buff(1, 'G');
+        break;
+      case (0x33) :
+                keyb_in_buff(1,
+                'H');
+        break;
+      case (0x3b) :
+                keyb_in_buff(1, 'J');
+        break;
+      case (0x42) :
+                keyb_in_buff(1, 'K');
+        break;
+      case (0x4b) :
+                keyb_in_buff(1, 'L');
+        break;
+      case (0x4c) :
+                keyb_in_buff(1, ';');
+        break;
+      case (0x52) :
+                keyb_in_buff(1, '\'');
+        break;
+      case (0x5a) : //Enter
+                keyb_in_buff(2, 4);
+        break;
+
+      case (0x1a) :
+                keyb_in_buff(1, 'Z');
+        break;
+      case (0x22) :
+                keyb_in_buff(1, 'X');
+        break;
+      case (0x21) :
+                keyb_in_buff(1, 'C');
+        break;
+      case (0x2a) :
+                keyb_in_buff(1, 'V');
+        break;
+      case (0x32) :
+                keyb_in_buff(1, 'B');
+        break;
+      case (0x31) :
+                keyb_in_buff(1, 'N');
+        break;
+      case (0x3a) :
+                keyb_in_buff(1, 'M');
+        break;
+      case (0x41) :
+                keyb_in_buff(1, ',');
+        break;
+      case (0x49) :
+                keyb_in_buff(1, '.');
+        break;
+      case (0x4a) :
+                keyb_in_buff(1, '/');
+        break;
+
+      case (0x29) :
+                keyb_in_buff(1, ' ');
+        break;
+
+      case (0x76) : //Esc
+                keyb_in_buff(2, 5);
+        break;
+
+      case 0x70: // 0_num
+        keyb_in_buff(1, '0');
+        break;
+      case 0x69: // 1_num
+        keyb_in_buff(1, '1');
+        break;
+      case 0x72: // 2_num
+        keyb_in_buff(1, '2');
+        break;
+      case 0x7A: // 3_num
+        keyb_in_buff(1, '3');
+        break;
+      case 0x6B: // 4_num
+        keyb_in_buff(1, '4');
+        break;
+      case 0x73: // 5_num
+        keyb_in_buff(1, '5');
+        break;
+      case 0x74: // 6_num
+        keyb_in_buff(1, '6');
+        break;
+      case 0x6C: // 7_num
+        keyb_in_buff(1, '7');
+        break;
+      case 0x75: // 8_num
+        keyb_in_buff(1, '8');
+        break;
+      case 0x7D: // 9_num
+        keyb_in_buff(1, '9');
+        break;
+      case 0x7B: // -_num
+        keyb_in_buff(1, '-');
+        break;
+      case 0x71: // ._num
+        keyb_in_buff(1, '.');
+        break;
+      case 0x7C: // *_num
+        keyb_in_buff(1, '*');
+        break;
+      case 0x79: // +_num
+        keyb_in_buff(1, '+');
+        break;
 
 
-      
-    case (0x05): //F1
-      keyb_in_buff(2,11);
-      break;
-    case (0x06): //F2
-      keyb_in_buff(2,12);
-      break;
-    case (0x04): //F3
-      keyb_in_buff(2,13);
-      break;
-    case (0x0c): //F4
-      keyb_in_buff(2,14);
-      break;
-    case (0x03): //F5
-      keyb_in_buff(2,15);
-      break;
-    case (0x0b): //F6
-      keyb_in_buff(2,16);
-      break;
-    case (0x83): //F7
-      keyb_in_buff(2,17);
-      break;
-    case (0x0a): //F8
-      keyb_in_buff(2,18);
-      break;
-    case (0x01): //F9
-      keyb_in_buff(2,19);
-      break;
-    case (0x09): //F10
-      keyb_in_buff(2,20);
-      break;
-    case (0x78): //F11
-      keyb_in_buff(2,21);
-      break;
-    case (0x07): //F12
-      keyb_in_buff(2,22);
-      break;
-    case (0xe0):
-      minuly_kod = 0xe0;
-      break;
-      
-    case (0xf0):
-      minuly_kod = 0xf0;
-      break;
-    default:
-      //keyb_in_buff(0;
-      //rec_buf = 0;
-      break;
-      
+
+      case (0x05) : //F1
+                keyb_in_buff(2, 11);
+        break;
+      case (0x06) : //F2
+                keyb_in_buff(2, 12);
+        break;
+      case (0x04) : //F3
+                keyb_in_buff(2, 13);
+        break;
+      case (0x0c) : //F4
+                keyb_in_buff(2, 14);
+        break;
+      case (0x03) : //F5
+                keyb_in_buff(2, 15);
+        break;
+      case (0x0b) : //F6
+                keyb_in_buff(2, 16);
+        break;
+      case (0x83) : //F7
+                keyb_in_buff(2, 17);
+        break;
+      case (0x0a) : //F8
+                keyb_in_buff(2, 18);
+        break;
+      case (0x01) : //F9
+                keyb_in_buff(2, 19);
+        break;
+      case (0x09) : //F10
+                keyb_in_buff(2, 20);
+        break;
+      case (0x78) : //F11
+                keyb_in_buff(2, 21);
+        break;
+      case (0x07) : //F12
+                keyb_in_buff(2, 22);
+        break;
+      case (0xe0) :
+                minuly_kod = 0xe0;
+        break;
+
+      case (0xf0) :
+                minuly_kod = 0xf0;
+        break;
+      default:
+        //keyb_in_buff(0;
+        //rec_buf = 0;
+        break;
+
     }
-  }
-  else if (minuly_kod == 0xe0){
-    switch (c){
-    case 0x71: //Del
-      keyb_in_buff(2,6);
-      break;
-    case 0x75: // Up
-      keyb_in_buff(2,7);
-      break;
-    case 0x72: // Down
-      keyb_in_buff(2,8);
-      break;
-    case 0x6B: // Left
-      keyb_in_buff(2,9);
-      break;
-    case 0x74: // Right
-      keyb_in_buff(2,10);
-      break;
-    case 0x5A: // Enter_num
-      keyb_in_buff(2,4);
-      break;
-    case 0x4A: // /_num
-      keyb_in_buff(1,'/');
-      break;
-    case 0xF0:
-      minuly_kod = 0xF0;
-      break;
-    case 0xE0:
-      minuly_kod = 0xE0;
-      break;
-    default:
-      break;
+  } else if (minuly_kod == 0xe0) {
+    switch (c) {
+      case 0x71: //Del
+        keyb_in_buff(2, 6);
+        break;
+      case 0x75: // Up
+        keyb_in_buff(2, 7);
+        break;
+      case 0x72: // Down
+        keyb_in_buff(2, 8);
+        break;
+      case 0x6B: // Left
+        keyb_in_buff(2, 9);
+        break;
+      case 0x74: // Right
+        keyb_in_buff(2, 10);
+        break;
+      case 0x5A: // Enter_num
+        keyb_in_buff(2, 4);
+        break;
+      case 0x4A: // /_num
+        keyb_in_buff(1, '/');
+        break;
+      case 0xF0:
+        minuly_kod = 0xF0;
+        break;
+      case 0xE0:
+        minuly_kod = 0xE0;
+        break;
+      default:
+        break;
     }
-  }
-  else if (minuly_kod == 0xF0 ){
+  } else if (minuly_kod == 0xF0) {
     // napriklad pri pusteni sipky
     minuly_kod = 0;
-  }
-  else{
+  } else {
     minuly_kod = 0;
   }
-  
-  
+
+
 }
 //TODO
-/// Funkce vrátí poslední pøijatı znak .
-char get_char(void){
-  if (keyb_buff[0].flag == 1){
+/// Funkce vrÃ¡tÃ­ poslednÃ­ pÅ™ijatÃ½ znak .
+
+char get_char(void) {
+  if (keyb_buff[0].flag == 1) {
     return get_key_from_buff().kod;
-  }
-  else
+  } else
     return 0;
 }
 
-/// Funkce vrátí poslední pøijatı stisk speciální klávesy.
-char get_spec(void){
-  if (keyb_buff[0].flag == 2){
+/// Funkce vrÃ¡tÃ­ poslednÃ­ pÅ™ijatÃ½ stisk speciÃ¡lnÃ­ klÃ¡vesy.
+
+char get_spec(void) {
+  if (keyb_buff[0].flag == 2) {
     return get_key_from_buff().kod;
-  }
-  else
+  } else
     return 0;
 }
 
-void keyboard_init(void){
-  MCUCR |= (1 << ISC11)|(0 << ISC10); // nastavení pøerušení se sestupnou hranou
+void keyboard_init(void) {
+  MCUCR |= (1 << ISC11) | (0 << ISC10); // nastavenï¿½ pï¿½eruï¿½enï¿½ se sestupnou hranou
   GICR |= (1 << INT1);
-  
-  // nastavení pull-up odporu na DATA pinu
+
+  // nastavenï¿½ pull-up odporu na DATA pinu
   PORTC |= 1;
 
-  //nastavení pull-up na CLK
+  //nastavenï¿½ pull-up na CLK
   PORTD |= (1 << 3);
 }
 
-/// V pøípadì e bìhem posledních pìti volání této funkce nedošlo k pøíjmu
-/// øádného bitu od klávesnice, (tedy pokud u dlouho nic nepøišlo)
-/// pøeruší pøíjem posledního signálu a nastaví data_counter na nulu pouívá se k
-/// øešení problému s s nesprávnım pøijetím zprávy a následnım posunutím pøijmu
-/// funkce pøijme tøeba jen polovinu bitù, ale neví e u je konec vysílání a kdy 
-/// dorazí první polovina dalšího kódu, zapíše je jako druhou èást pøedchozího.
-void keyboard_recv_watchdog(void){
-  if (keyb_recv_watchdog > KEYB_RECV_WATCH_N ){
+/// V pÅ™Ã­padÄ› Å¾e bÄ›hem poslednÃ­ch pÄ›ti volÃ¡nÃ­ tÃ©to funkce nedoÅ¡lo k pÅ™Ã­jmu
+/// Å™Ã¡dnÃ©ho bitu od klÃ¡vesnice, (tedy pokud uÅ¾ dlouho nic nepÅ™iÅ¡lo)
+/// pÅ™eruÅ¡Ã­ pÅ™Ã­jem poslednÃ­ho signÃ¡lu a nastavÃ­ data_counter na nulu pouÅ¾Ã­vÃ¡ se k
+/// Å™eÅ¡enÃ­ problÃ©mu s s nesprÃ¡vnÃ½m pÅ™ijetÃ­m zprÃ¡vy a nÃ¡slednÃ½m posunutÃ­m pÅ™ijmu
+/// funkce pÅ™ijme tÅ™eba jen polovinu bitÅ¯, ale nevÃ­ Å¾e uÅ¾ je konec vysÃ­lÃ¡nÃ­ a kdyÅ¾ 
+/// dorazÃ­ prvnÃ­ polovina dalÅ¡Ã­ho kÃ³du, zapÃ­Å¡e je jako druhou ÄÃ¡st pÅ™edchozÃ­ho.
+
+void keyboard_recv_watchdog(void) {
+  wtch_dbg_info();
+  if (keyb_recv_watchdog > KEYB_RECV_WATCH_N) {
     data_counter = 0;
     recivedc = 0;
-  }
-  else
+  } else
     keyb_recv_watchdog++;
 }
 

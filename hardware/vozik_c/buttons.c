@@ -1,46 +1,42 @@
-/* $Id: buttons.c 117 2007-09-18 21:53:25Z Mira $ */
+/* $Id: buttons.c 148 2009-10-25 13:54:05Z mjirik $ */
 /**
  * @file buttons.c
  * @brief
- * Modul zabezpeèuje funkci tlaèítek pro ovládání základních funkcí.
+ * Modul zabezpeÄuje funkci tlaÄÃ­tek pro ovlÃ¡dÃ¡nÃ­ zÃ¡kladnÃ­ch funkcÃ­.
  * 
  */
 #include <avr/io.h>
 #include "buttons.h"
 #include "keyboard.h"
+#include "watchdog.h" // kvuli wtch_dbg_info()
 static char minuly_stav = 0;
 
 
 static void button_on(char button);
 
 void buttons_init(void){
-  //Nastavení pull-up
-  // Ve skuteènosti bude PORTC == 0xff, protoe na prvním pinu je
-  // klávesnice, která si jej taky nastaví.
+  //NastavenÃ­ pull-up
+  // Ve skuteÄnosti bude PORTC == 0xff, protoÅ¾e na prvnÃ­m pinu je
+  // klÃ¡vesnice, kterÃ¡ si jej taky nastavÃ­.
   PORTC |= 0xFE;
   minuly_stav = 254; //PINC
 }
 
-void buttons(void){
+void buttons(void) {
   char zmena;
   char vzorek_pinc = PINC;
   int i = 0;
-
+  wtch_dbg_info();
 
 
   zmena = minuly_stav^vzorek_pinc;
 
 
-  for (i = 1; i < 8; i++)
-  {
-    if (((zmena >> i) & 1 ) == 1)
-    { //došlo-li ke zmìnì na pøslušném pinu
-      if (((minuly_stav >> i) & 1) == 1)
-      {  //sepnutí
-        button_on((char)i);
-      }
-      else
-      {
+  for (i = 1; i < 8; i++) {
+    if (((zmena >> i) & 1) == 1) { //doÅ¡lo-li ke zmÄ›nÄ› na pÅ™sluÅ¡nÃ©m pinu
+      if (((minuly_stav >> i) & 1) == 1) { //sepnutÃ­
+        button_on((char) i);
+      } else {
         // button_off((char)i);
       }
     }
@@ -49,14 +45,14 @@ void buttons(void){
 }
 
 /**
- * Funkce je spouštìna pøi stisku tlaèítka (nábìná hrana).
- * Zde je místo pro implementaci pøípadného filtru zákmitù.
- * Pro kadé konkrétní tlaèítko je zde nabindována klávesa klávesnice.
- * Je to provedeno voláním funkce keyb_in_buff(), která pøidá do bufferu
- * klávesnice kód libovolné klávesy.
+ * Funkce je spouÅ¡tÄ›na pÅ™i stisku tlaÄÃ­tka (nÃ¡bÄ›Å¾nÃ¡ hrana).
+ * Zde je mÃ­sto pro implementaci pÅ™Ã­padnÃ©ho filtru zÃ¡kmitÅ¯.
+ * Pro kaÅ¾dÃ© konkrÃ©tnÃ­ tlaÄÃ­tko je zde nabindovÃ¡na klÃ¡vesa klÃ¡vesnice.
+ * Je to provedeno volÃ¡nÃ­m funkce keyb_in_buff(), kterÃ¡ pÅ™idÃ¡ do bufferu
+ * klÃ¡vesnice kÃ³d libovolnÃ© klÃ¡vesy.
  * 
  * @param button
- * Udává které tlaèítko bylo stisknuto.
+ * UdÃ¡vÃ¡ kterÃ© tlaÄÃ­tko bylo stisknuto.
  */
 void button_on(char button){
   switch(button)

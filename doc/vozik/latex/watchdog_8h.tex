@@ -1,0 +1,61 @@
+\section{Dokumentace souboru watchdog.h}
+\label{watchdog_8h}\index{watchdog.h@{watchdog.h}}
+\subsection*{Definice maker}
+\begin{DoxyCompactItemize}
+\item 
+\#define {\bf wtch\_\-reset}()~{\bf wtch\_\-counter} = ({\bf wtch\_\-counter} $<$ 0)?wtch\_\-counter:0;
+\begin{DoxyCompactList}\small\item\em Makro pouřívané k resetování watchodogu. \item\end{DoxyCompactList}\item 
+\#define {\bf wtch\_\-reset2}()~{\bf wtch\_\-counter} = ({\bf wtch\_\-counter} $<$ 0)? wtch\_\-counter:0; wdt\_\-reset();
+\begin{DoxyCompactList}\small\item\em Makro používané k resetu obou watchdogů. \item\end{DoxyCompactList}\item 
+\#define {\bf wtch\_\-disable2}()~{\bf wtch\_\-counter} = -\/1; wdt\_\-disable();
+\begin{DoxyCompactList}\small\item\em Vypnutí watchdogu. \item\end{DoxyCompactList}\item 
+\#define {\bf wtch\_\-enable2}()~{\bf wtch\_\-counter} = 0; wdt\_\-enable(WDTO\_\-2S);
+\end{DoxyCompactItemize}
+\subsection*{Funkce}
+\begin{DoxyCompactItemize}
+\item 
+void {\bf wtch\_\-main} (void)
+\item 
+void {\bf wtch\_\-init} (void)
+\end{DoxyCompactItemize}
+\subsection*{Proměnné}
+\begin{DoxyCompactItemize}
+\item 
+uint16\_\-t {\bf wtch\_\-counter}
+\end{DoxyCompactItemize}
+
+
+\subsection{Dokumentace k definicím maker}
+\index{watchdog.h@{watchdog.h}!wtch\_\-disable2@{wtch\_\-disable2}}
+\index{wtch\_\-disable2@{wtch\_\-disable2}!watchdog.h@{watchdog.h}}
+\subsubsection[{wtch\_\-disable2}]{\setlength{\rightskip}{0pt plus 5cm}\#define wtch\_\-disable2()~{\bf wtch\_\-counter} = -\/1; wdt\_\-disable();}\label{watchdog_8h_a7a047399f54a574f9f9c6c477cc1cdd5}
+
+
+Vypnutí watchdogu. \index{watchdog.h@{watchdog.h}!wtch\_\-enable2@{wtch\_\-enable2}}
+\index{wtch\_\-enable2@{wtch\_\-enable2}!watchdog.h@{watchdog.h}}
+\subsubsection[{wtch\_\-enable2}]{\setlength{\rightskip}{0pt plus 5cm}\#define wtch\_\-enable2()~{\bf wtch\_\-counter} = 0; wdt\_\-enable(WDTO\_\-2S);}\label{watchdog_8h_ab6f29e0682cc95138fa8de612c529b43}
+\index{watchdog.h@{watchdog.h}!wtch\_\-reset@{wtch\_\-reset}}
+\index{wtch\_\-reset@{wtch\_\-reset}!watchdog.h@{watchdog.h}}
+\subsubsection[{wtch\_\-reset}]{\setlength{\rightskip}{0pt plus 5cm}\#define wtch\_\-reset()~{\bf wtch\_\-counter} = ({\bf wtch\_\-counter} $<$ 0)?wtch\_\-counter:0;}\label{watchdog_8h_a838ac15df7e81187dbe205888842548c}
+
+
+Makro pouřívané k resetování watchodogu. \index{watchdog.h@{watchdog.h}!wtch\_\-reset2@{wtch\_\-reset2}}
+\index{wtch\_\-reset2@{wtch\_\-reset2}!watchdog.h@{watchdog.h}}
+\subsubsection[{wtch\_\-reset2}]{\setlength{\rightskip}{0pt plus 5cm}\#define wtch\_\-reset2()~{\bf wtch\_\-counter} = ({\bf wtch\_\-counter} $<$ 0)? wtch\_\-counter:0; wdt\_\-reset();}\label{watchdog_8h_aec7bb1ec2da2c0cd4a620e8201652167}
+
+
+Makro používané k resetu obou watchdogů. 
+
+\subsection{Dokumentace funkcí}
+\index{watchdog.h@{watchdog.h}!wtch\_\-init@{wtch\_\-init}}
+\index{wtch\_\-init@{wtch\_\-init}!watchdog.h@{watchdog.h}}
+\subsubsection[{wtch\_\-init}]{\setlength{\rightskip}{0pt plus 5cm}void wtch\_\-init (void)}\label{watchdog_8h_acbdab9cad3f2f8b16ff00ad69af20145}
+\index{watchdog.h@{watchdog.h}!wtch\_\-main@{wtch\_\-main}}
+\index{wtch\_\-main@{wtch\_\-main}!watchdog.h@{watchdog.h}}
+\subsubsection[{wtch\_\-main}]{\setlength{\rightskip}{0pt plus 5cm}void wtch\_\-main (void)}\label{watchdog_8h_ab51323d0a8ec8c832d7be1ab44ffbc3b}
+Funkce sleduje činnost jednočipu. Pokud dojde k \char`\"{}zaseknutí\char`\"{} v nějaké vnitřní smyčce, je vypsán chybový výpis, data jsou uložena do eeprom a program je uveden do nekonečné smyčky, ve které čeká na reset prostřednictvím softwarového watchdogu. Watchdog lze deaktivovat nastavením čítače na zápornou hodnotu. 
+
+\subsection{Dokumentace proměnných}
+\index{watchdog.h@{watchdog.h}!wtch\_\-counter@{wtch\_\-counter}}
+\index{wtch\_\-counter@{wtch\_\-counter}!watchdog.h@{watchdog.h}}
+\subsubsection[{wtch\_\-counter}]{\setlength{\rightskip}{0pt plus 5cm}uint16\_\-t {\bf wtch\_\-counter}}\label{watchdog_8h_a65366c710bff228f8a652480055368bc}

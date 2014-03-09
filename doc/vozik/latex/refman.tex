@@ -1,0 +1,90 @@
+\documentclass[a4paper]{book}
+\usepackage{a4wide}
+\usepackage{makeidx}
+\usepackage{graphicx}
+\usepackage{multicol}
+\usepackage{float}
+\usepackage{listings}
+\usepackage{color}
+\usepackage{textcomp}
+\usepackage{alltt}
+\usepackage{times}
+\usepackage[utf8]{inputenc}
+\usepackage[T2A]{fontenc}
+\usepackage[czech]{babel}
+
+\usepackage{doxygen}
+\lstset{language=C++,inputencoding=utf8,basicstyle=\footnotesize,breaklines=true,breakatwhitespace=true,tabsize=2,numbers=left }
+\makeindex
+\setcounter{tocdepth}{3}
+\renewcommand{\footrulewidth}{0.4pt}
+\begin{document}
+\begin{titlepage}
+\vspace*{7cm}
+\begin{center}
+{\Large Zařízení na vozíku pro projekt měření objemu stromů \\[1ex]\large 1.0 }\\
+\vspace*{1cm}
+{\large Generováno programem Doxygen 1.6.1}\\
+\vspace*{0.5cm}
+{\small Sun Sep 27 14:19:55 2009}\\
+\end{center}
+\end{titlepage}
+\clearemptydoublepage
+\pagenumbering{roman}
+\tableofcontents
+\clearemptydoublepage
+\pagenumbering{arabic}
+\chapter{Zařízení na vozíku}
+\label{index}\input{index}
+\chapter{Manuál obsluhy}
+\label{Manual}
+\include{Manual}
+\chapter{Seznam plánovaných úprav}
+\label{todo}
+\include{todo}
+\chapter{Seznam chyb}
+\label{bug}
+\include{bug}
+\chapter{Rejstřík datových struktur}
+\input{annotated}
+\chapter{Rejstřík souborů}
+\input{files}
+\chapter{Dokumentace datových struktur}
+\input{structkey}
+\chapter{Dokumentace souborů}
+\input{author_8txt}
+\include{buttons_8c}
+\include{buttons_8h}
+\include{convert_8c}
+\include{convert_8h}
+\include{default__scr_8c}
+\include{default__scr_8h}
+\include{doc_8txt}
+\include{eeprom_8c}
+\include{eeprom_8h}
+\include{error_8c}
+\include{error_8h}
+\include{inout_8c}
+\include{inout_8h}
+\include{irc_8c}
+\include{irc_8h}
+\include{irc2_8c}
+\include{irc2_8h}
+\include{keyboard_8c}
+\include{keyboard_8h}
+\include{lcd_8c}
+\include{lcd_8h}
+\include{main_8c}
+\include{main_8h}
+\include{manual_8txt}
+\include{memory_8c}
+\include{memory_8h}
+\include{msgn_8h}
+\include{usart_8c}
+\include{usart_8h}
+\include{usart__recv_8c}
+\include{usart__recv_8h}
+\include{watchdog_8c}
+\include{watchdog_8h}
+\printindex
+\end{document}

@@ -1,0 +1,64 @@
+\section{Úvod}\label{Manual_uvod}
+Tyto manuálové stránky patří do rukou obsluhy systému automatického měření objěmu stromů. Měřící systém je rozdělen na dvě části:
+\begin{DoxyItemize}
+\item část pro získání dat
+\item část pro zpracování dat
+\end{DoxyItemize}
+
+Zařízení zajišťující získání dat se nalézá v prostorách pily, zpracování je prováděno prostřednictvím webové aplikace provozované na serveru v administrační budově.
+
+Zařízení sloužící ke sběru dat se skládá z:
+\begin{DoxyItemize}
+\item inkrementálního čidla pro měření polohy přítlačného válce
+\item magnetického čidla pro získání referenční vzdálenosti
+\item měřcí lišty pro měření vodorovného průměru
+\item krabice s elektronikou pro vyhodnocení dat získaných výše zmíněnými prostředky
+\item inkrementálním čidlem pro získání polohy vozíku
+\item magnetického čidla pro získání referenční vzdálenosti
+\item hlavní obslužné jednotky, která zajišťuje zpracování dat a jejich bezpečné odeslání na server.
+\end{DoxyItemize}\section{Proces měření}\label{Manual_proces_mereni}
+Měření je zahájeno stisknutím příslušného tlačítka. V ten okamžik je naměřena vzdálenost vozíku od katru a ta je dále považována za délku řezaného kmene. Jak je strom postupně rozžezáván je průběžně měřen jeho svislý i vodorovný průměr. Po ukončení měření je z průběžně získaných dat vypočítána hodnota středového průměru.
+
+V případě, že se vozík přestane pohybovat s řezanou kládou nelze v měření pokračovat. V okamžiku kdy se začne vozík pohybovat vzad, je měření automaticky přerušeno. Pokud již bylo získáno dostatek dat, je z nich vypočítán průměr a data jsou zaznamenána. V opačném případě je měření neúspěšné a je vypsána chybová hláška a data jsou ztracena.\section{Uživatelské rozhraní obslužné jednotky}\label{Manual_obsluzna_jednotka}
+Obslužná jednotka komunikuje s uživatelem prostřednicvím panelu , který obsahuje LCD displej a několik tlačítek. K systému je dále připojena klávesnice, která slouží zejména pro zadávání jmen zákazníků.
+
+K ovkádání většiny funckí postačuje sedmice tlačítek v okolí displeje.
+\begin{DoxyItemize}
+\item tlačítko \char`\"{}ODESLAT\char`\"{} slouží pro odesílání naměřených dat na server
+\item tlačítko \char`\"{}START\char`\"{} je určeno pro zahájení procesu měření
+\item tlačítko \char`\"{}STOP\char`\"{} přeruší probíhající měření
+\item tlačítka šipek slouří pro ovládání kurzoru
+\item tlačítko \char`\"{}OK\char`\"{} slouší pro potvrzování
+\item tlačítko \char`\"{}ZRUŠIT\char`\"{} je určeno pro přerušení akce, návrat k předchozí obrazovce atd.
+\end{DoxyItemize}
+
+Horní tři tlačítka (ODESLAT, START, STOP) pracují ve všech režimech stejně.
+
+Po stisknutí tlačítka \char`\"{}ODESLAT\char`\"{} se ovládací jednotka pokusí odeslat dosud naměřená data na server. V případě úspěchu je vypsána hláška oznamující úspěšné odeslání a dosud naměřená data jsou uvolněna z paměti. V případě, že server něběží, nebo v případě jiné poruchy je zobrazena příslušná chybová zpráva.
+
+Tlačíto \char`\"{}START\char`\"{} slouží pro zahájení měření. Je změřena vzdálenost vozíku od katru a je považována za délku měřeného stromu. Je proto nutné, aby bylo stiskuto v okamžiku, kdy je měený kmen v těsné blízkosti katru. Další měření je možné zahájit až po ukončení předchozího měření.
+
+Tlačítko \char`\"{}STOP\char`\"{} je určeno pro přerušení probíhajícího měření. Po jeho stisknutí jsou dosud získaná data ztracena a systém je připraven měřit znova.
+
+Uživatelské rozhraní je tvořeno několika obrazovkami:
+\begin{DoxyItemize}
+\item obrazovka měření
+\item obrazovka naměžených dat
+\item obrazovka zákazníků
+\item obrazovka pro výpis chyb
+\end{DoxyItemize}\subsection{Obrazovka měření}\label{Manual_obrazovka_mereni}
+Tato obrazovka zobrazuje nejdůležitější informace z probíhajícího měření a umožňuje nastavit informace pro určení ceny za rozřezání.
+
+V levé části je menu, jehož prostřednictvím lze nastavit, zda bude daný kmen účtován jako manipulovaný, zda jde dvakrát katrem, atd. Volba se provádí tak, že se šipkami přemístí kurzor k příslušné položce a postupným stiskáváním tlačítka \char`\"{}OK\char`\"{} je hodnota položky měněna. V případě vybrání jména zákazníka, dojde k přepnutí do obrazovky zákazníků, pokud je zvolena položka \char`\"{}Data\char`\"{}, zobrazí se obrazovka s naměřenými daty.\subsection{Obrazovka naměřených dat}\label{Manual_obrazovka_data}
+Zde jsou zobrazena všechna změřená měření (s výjimkou toho, které ještě nebylo dokončeno). Informace pro výpočet ceny lze dodatečně upravovat. K tomu je nutno navolit šipkami příslušný řádek a stisknout tlačítko \char`\"{}OK\char`\"{}. Kurzor se přesune mezi jednotlivé položky (zákazník, druh dřeva, atd.). Tlačítkem \char`\"{}OK\char`\"{} lze položky měnit. Tlačítkem \char`\"{}ZRUŠIT\char`\"{} se opouští úprava tohoto řádku. Pro úplné opuštění obrazovky s daty stačí opět stisknou tlačítko \char`\"{}ZRUŠIT\char`\"{}.\subsection{Obrazovka zákazníků}\label{Manual_obrazovka_zakaznici}
+\subsection{Obrazovka nastavení parametrů}\label{Manual_obrazovka_setup}
+Pro vyvolání obrazovky je nutno přesunout kurzor na položku data a pak stisknout klávesu F6.
+
+v\_\-irc\_\-k Multiplikativní konstanta irc na vozíku. Udává se v milimetrech, výchozí nastavení je asi 420.
+
+v\_\-irc\_\-l Nastavení vzdálenosti resetovacího čidla. Udává se v centimetrech.
+
+lista 0 znamená že se horizontální průměr neměří, 1 je měření pomocí měřící lišty, 2 měření pomocí vrat (není naimplementováno)\subsection{Obrazovka s vyobrazením přijmu seriového kanálu.}\label{Manual_obrazovka_serial}
+Pro vyvolání obrazovky je nutno přesunout kurzor na položku data a pak stisknout klávesu F5.
+
+ 

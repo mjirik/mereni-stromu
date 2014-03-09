@@ -1,0 +1,121 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<title>Zařízení na vozíku pro projekt měření objemu stromů: Dokumentace souboru buttons.c</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<!-- Generováno programem Doxygen 1.6.1 -->
+<div class="navigation" id="top">
+  <div class="tabs">
+    <ul>
+      <li><a href="index.html"><span>Hlavní&nbsp;stránka</span></a></li>
+      <li><a href="pages.html"><span>Ostatní&nbsp;stránky</span></a></li>
+      <li><a href="annotated.html"><span>Třídy</span></a></li>
+      <li class="current"><a href="files.html"><span>Soubory</span></a></li>
+    </ul>
+  </div>
+  <div class="tabs">
+    <ul>
+      <li><a href="files.html"><span>Seznam&nbsp;souborů</span></a></li>
+      <li><a href="globals.html"><span>Globální&nbsp;symboly</span></a></li>
+    </ul>
+  </div>
+</div>
+<div class="contents">
+<h1>Dokumentace souboru buttons.c</h1>
+<p>Modul zabezpečuje funkci tlačítek pro ovládání základních funkcí.  
+<a href="#_details">...</a></p>
+<code>#include &lt;avr/io.h&gt;</code><br/>
+<code>#include &quot;<a class="el" href="buttons_8h.html">buttons.h</a>&quot;</code><br/>
+<code>#include &quot;<a class="el" href="keyboard_8h.html">keyboard.h</a>&quot;</code><br/>
+<table border="0" cellpadding="0" cellspacing="0">
+<tr><td colspan="2"><h2>Funkce</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="buttons_8c.html#acd06a8377fd0f71bed87188db5c904c3">button_on</a> (char button)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="buttons_8c.html#acef6dd444cb6560da652897ee43ab306">buttons_init</a> (void)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="buttons_8c.html#a82b6a0bb2d8a5f28c7be78d77f07a471">buttons</a> (void)</td></tr>
+<tr><td colspan="2"><h2>Proměnné</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static char&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="buttons_8c.html#afd49bb358edddbdb2baf13667c693378">minuly_stav</a> = 0</td></tr>
+</table>
+<hr/><a name="_details"></a><h2>Detailní popis</h2>
+<p>Modul zabezpečuje funkci tlačítek pro ovládání základních funkcí. </p>
+<hr/><h2>Dokumentace funkcí</h2>
+<a class="anchor" id="acd06a8377fd0f71bed87188db5c904c3"></a><!-- doxytag: member="buttons.c::button_on" ref="acd06a8377fd0f71bed87188db5c904c3" args="(char button)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void button_on </td>
+          <td>(</td>
+          <td class="paramtype">char&nbsp;</td>
+          <td class="paramname"> <em>button</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [static]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Funkce je spouštěna při stisku tlačítka (náběžná hrana). Zde je místo pro implementaci případného filtru zákmitů. Pro každé konkrétní tlačítko je zde nabindována klávesa klávesnice. Je to provedeno voláním funkce <a class="el" href="keyboard_8c.html#a4b4fdc8611d94ae6541af55ff1c7140f">keyb_in_buff()</a>, která přidá do bufferu klávesnice kód libovolné klávesy.</p>
+<dl><dt><b>Parametry:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>button</em>&nbsp;</td><td>Udává které tlačítko bylo stisknuto. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a82b6a0bb2d8a5f28c7be78d77f07a471"></a><!-- doxytag: member="buttons.c::buttons" ref="a82b6a0bb2d8a5f28c7be78d77f07a471" args="(void)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void buttons </td>
+          <td>(</td>
+          <td class="paramtype">void&nbsp;</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="acef6dd444cb6560da652897ee43ab306"></a><!-- doxytag: member="buttons.c::buttons_init" ref="acef6dd444cb6560da652897ee43ab306" args="(void)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void buttons_init </td>
+          <td>(</td>
+          <td class="paramtype">void&nbsp;</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
+<hr/><h2>Dokumentace proměnných</h2>
+<a class="anchor" id="afd49bb358edddbdb2baf13667c693378"></a><!-- doxytag: member="buttons.c::minuly_stav" ref="afd49bb358edddbdb2baf13667c693378" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char <a class="el" href="buttons_8c.html#afd49bb358edddbdb2baf13667c693378">minuly_stav</a> = 0<code> [static]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
+</div>
+<p align=left>Miroslav Jiřík</p>

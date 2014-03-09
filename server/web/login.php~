@@ -1,0 +1,67 @@
+﻿<?php
+include_once ("funkce.php");
+$Link = connect_db();
+if (empty($Link)){
+  $error = "Selhalo spojení s databází";
+}
+
+$BudemeZobrazovat = true;
+
+if (!empty($_POST) and (!empty($Link))){
+  $ID =iduzivatele($_POST["nick"], $_POST["heslo"], $Link);
+  if (isroot($_POST["nick"], $_POST["heslo"]) == true){
+    $ID = 0;
+  }
+  
+  if ($ID == -1){
+    echo "Uživatelské jméno a/nebo heslo nesouhlasí<br>" ;
+  }
+  else{
+    $BudemeZobrazovat=false;
+    session_start();
+    session_register("id");
+    session_register("link");
+    session_register("page");
+    session_register("archivSeznam");
+    session_register("archivZakaznik");
+    session_register("ok_text");
+    session_register("ok_hrefOk");
+    session_register("ok_hrefStorno");
+    $_SESSION["id"]= $ID;
+    $_SESSION["link"]= $Link;
+    $_SESSION["archivSeznam"]= 0;
+    $_SESSION["archivZakaznik"]= 0;
+    include("zakazky.php");
+  }
+}
+
+
+if ($BudemeZobrazovat){
+?>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title> index </title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<div id="login">
+<?php
+  if (!empty($error)){
+    echo "<div class=\"error\">";
+    echo $error;
+    echo "</div">; 
+  }
+  echo "<form method=\"post\" action=\"login.php?\">";
+  echo "<table>";
+  formln("Nick:","<input name=\"nick\" >");
+  formln("Heslo:","<input type=password name=\"heslo\" >");
+  formln("","<input type=\"Submit\" name=\"odesli\" size = 10 value = \"Login\">");
+  echo "</table>";
+  echo "</form>";
+  echo $_SERVER["REMOTE_ADDR"];
+?>
+</div>
+</body>
+</html>
+<?php } ?>

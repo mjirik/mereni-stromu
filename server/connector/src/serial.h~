@@ -1,0 +1,4 @@
+void open_port(char * port);
+void write_port(void);
+void read_port(void);
+void close_port(void);

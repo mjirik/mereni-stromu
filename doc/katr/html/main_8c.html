@@ -1,0 +1,176 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<title>Zřízení na katru pro projekt měření objemu stromů: Dokumentace souboru main.c</title>
+<link href="doxygen.css" rel="stylesheet" type="text/css">
+<link href="tabs.css" rel="stylesheet" type="text/css">
+</head><body>
+<!-- Generováno programem Doxygen 1.5.2 -->
+<div class="tabs">
+  <ul>
+    <li><a href="index.html"><span>Hlavní&nbsp;stránka</span></a></li>
+    <li class="current"><a href="files.html"><span>Soubory</span></a></li>
+  </ul>
+</div>
+<div class="tabs">
+  <ul>
+    <li><a href="files.html"><span>Seznam&nbsp;souborů</span></a></li>
+    <li><a href="globals.html"><span>Globální&nbsp;symboly</span></a></li>
+  </ul>
+</div>
+<h1>Dokumentace souboru main.c</h1><code>#include &lt;avr/io.h&gt;</code><br>
+<code>#include &lt;avr/interrupt.h&gt;</code><br>
+<code>#include &lt;stdio.h&gt;</code><br>
+<code>#include &lt;util/delay.h&gt;</code><br>
+<code>#include &quot;<a class="el" href="width_8h.html">width.h</a>&quot;</code><br>
+<code>#include &quot;<a class="el" href="usart_8h.html">usart.h</a>&quot;</code><br>
+<code>#include &quot;<a class="el" href="irc_8h.html">irc.h</a>&quot;</code><br>
+<code>#include &quot;<a class="el" href="eeprom_8h.html">eeprom.h</a>&quot;</code><br>
+<table border="0" cellpadding="0" cellspacing="0">
+<tr><td></td></tr>
+<tr><td colspan="2"><br><h2>Definice maker</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#8639f3cdce498b36b4f11b82726f3857">SizeOfMsg</a>&nbsp;&nbsp;&nbsp;11</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#43bafb28b29491ec7f871319b5a3b2f8">F_CPU</a>&nbsp;&nbsp;&nbsp;8000000UL</td></tr>
+
+<tr><td colspan="2"><br><h2>Funkce</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#cc0188f99a5e4cb2df4cf3d81fc373ef">SIGNAL</a> (SIG_OUTPUT_COMPARE1A)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#69f95b1ec6b9c81ade176f604a9b2034">test_shutdown</a> (void)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#f63a4042de4220d64088f03ef65f9dbf">ioinit</a> (void)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#840291bc02cba5474a4cb46a9b9566fe">main</a> (void)</td></tr>
+
+<tr><td colspan="2"><br><h2>Proměnné</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">char&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#644ab1e6fbad5b17be3f8141d1662682">data_msg</a> [SizeOfMsg]</td></tr>
+
+</table>
+<hr><h2>Dokumentace k definicím maker</h2>
+<a class="anchor" name="43bafb28b29491ec7f871319b5a3b2f8"></a><!-- doxytag: member="main.c::F_CPU" ref="43bafb28b29491ec7f871319b5a3b2f8" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define F_CPU&nbsp;&nbsp;&nbsp;8000000UL          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+</div>
+</div><p>
+<a class="anchor" name="8639f3cdce498b36b4f11b82726f3857"></a><!-- doxytag: member="main.c::SizeOfMsg" ref="8639f3cdce498b36b4f11b82726f3857" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define SizeOfMsg&nbsp;&nbsp;&nbsp;11          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+</div>
+</div><p>
+<hr><h2>Dokumentace funkcí</h2>
+<a class="anchor" name="f63a4042de4220d64088f03ef65f9dbf"></a><!-- doxytag: member="main.c::ioinit" ref="f63a4042de4220d64088f03ef65f9dbf" args="(void)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ioinit           </td>
+          <td>(</td>
+          <td class="paramtype">void&nbsp;</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+</div>
+</div><p>
+<a class="anchor" name="840291bc02cba5474a4cb46a9b9566fe"></a><!-- doxytag: member="main.c::main" ref="840291bc02cba5474a4cb46a9b9566fe" args="(void)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int main           </td>
+          <td>(</td>
+          <td class="paramtype">void&nbsp;</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+</div>
+</div><p>
+<a class="anchor" name="cc0188f99a5e4cb2df4cf3d81fc373ef"></a><!-- doxytag: member="main.c::SIGNAL" ref="cc0188f99a5e4cb2df4cf3d81fc373ef" args="(SIG_OUTPUT_COMPARE1A)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">SIGNAL           </td>
+          <td>(</td>
+          <td class="paramtype">SIG_OUTPUT_COMPARE1A&nbsp;</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+</div>
+</div><p>
+<a class="anchor" name="69f95b1ec6b9c81ade176f604a9b2034"></a><!-- doxytag: member="main.c::test_shutdown" ref="69f95b1ec6b9c81ade176f604a9b2034" args="(void)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void test_shutdown           </td>
+          <td>(</td>
+          <td class="paramtype">void&nbsp;</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+</div>
+</div><p>
+<hr><h2>Dokumentace proměnných</h2>
+<a class="anchor" name="644ab1e6fbad5b17be3f8141d1662682"></a><!-- doxytag: member="main.c::data_msg" ref="644ab1e6fbad5b17be3f8141d1662682" args="[SizeOfMsg]" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char <a class="el" href="width_8c.html#644ab1e6fbad5b17be3f8141d1662682">data_msg</a>[SizeOfMsg]          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+</div>
+</div><p>
+<p align=left>Miroslav JiĹ™Ă­k</p>

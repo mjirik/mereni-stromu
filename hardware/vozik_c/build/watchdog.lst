@@ -1,0 +1,254 @@
+   1               		.file	"watchdog.c"
+   2               	__SREG__ = 0x3f
+   3               	__SP_H__ = 0x3e
+   4               	__SP_L__ = 0x3d
+   5               	__CCP__  = 0x34
+   6               	__tmp_reg__ = 0
+   7               	__zero_reg__ = 1
+  15               	.Ltext0:
+  16               	.global	wtch_init
+  18               	wtch_init:
+  19               	.LFB7:
+  20               	.LM1:
+  21               	/* prologue: function */
+  22               	/* frame size = 0 */
+  23               	.LM2:
+  24 0000 1092 0000 		sts (wtch_counter)+1,__zero_reg__
+  25 0004 1092 0000 		sts wtch_counter,__zero_reg__
+  26 0008 2FE0      		ldi r18,lo8(15)
+  27 000a 88E1      		ldi r24,lo8(24)
+  28 000c 90E0      		ldi r25,hi8(24)
+  29               	/* #APP */
+  30               	 ;  41 "watchdog.c" 1
+  31 000e 0FB6      		in __tmp_reg__,__SREG__
+  32 0010 F894      		cli
+  33 0012 A895      		wdr
+  34 0014 81BD      		out 33,r24
+  35 0016 0FBE      		out __SREG__,__tmp_reg__
+  36 0018 21BD      		out 33,r18
+  37               	 ;  0 "" 2
+  38               	/* epilogue start */
+  39               	.LM3:
+  40               	/* #NOAPP */
+  41 001a 0895      		ret
+  42               	.LFE7:
+  44               		.data
+  45               	.LC0:
+  46 0000 2000      		.string	" "
+  47               	.LC1:
+  48 0002 2569 00   		.string	"%i"
+  49               		.text
+  50               	.global	wtch_main
+  52               	wtch_main:
+  53               	.LFB8:
+  54               	.LM4:
+  55 001c 0F93      		push r16
+  56 001e 1F93      		push r17
+  57 0020 DF93      		push r29
+  58 0022 CF93      		push r28
+  59 0024 CDB7      		in r28,__SP_L__
+  60 0026 DEB7      		in r29,__SP_H__
+  61 0028 2A97      		sbiw r28,10
+  62 002a 0FB6      		in __tmp_reg__,__SREG__
+  63 002c F894      		cli
+  64 002e DEBF      		out __SP_H__,r29
+  65 0030 0FBE      		out __SREG__,__tmp_reg__
+  66 0032 CDBF      		out __SP_L__,r28
+  67               	/* prologue: function */
+  68               	/* frame size = 10 */
+  69               	.LM5:
+  70 0034 8091 0000 		lds r24,wtch_counter
+  71 0038 9091 0000 		lds r25,(wtch_counter)+1
+  72 003c 97FD      		sbrc r25,7
+  73 003e 00C0      		rjmp .L9
+  74               	.LM6:
+  75 0040 23E1      		ldi r18,hi8(5000)
+  76 0042 8838      		cpi r24,lo8(5000)
+  77 0044 9207      		cpc r25,r18
+  78 0046 04F4      		brge .L5
+  79               	.LM7:
+  80 0048 0196      		adiw r24,1
+  81 004a 9093 0000 		sts (wtch_counter)+1,r25
+  82 004e 8093 0000 		sts wtch_counter,r24
+  83 0052 00C0      		rjmp .L9
+  84               	.L5:
+  85               	.LBB13:
+  86               	.LM8:
+  87 0054 81E0      		ldi r24,lo8(1)
+  88 0056 0E94 0000 		call lcd_w_inst
+  89               	.LM9:
+  90 005a 80E0      		ldi r24,lo8(err97)
+  91 005c 90E0      		ldi r25,hi8(err97)
+  92 005e 0E94 0000 		call printnt_P
+  93               	.LM10:
+  94 0062 0E94 0000 		call eeprom_save
+  95               	.LM11:
+  96 0066 81E0      		ldi r24,lo8(1)
+  97 0068 0E94 0000 		call lcd_w_inst
+  98               	.LM12:
+  99 006c 80E0      		ldi r24,lo8(err97b)
+ 100 006e 90E0      		ldi r25,hi8(err97b)
+ 101 0070 0E94 0000 		call printnt_P
+ 102               	.LM13:
+ 103 0074 80E0      		ldi r24,lo8(.LC0)
+ 104 0076 90E0      		ldi r25,hi8(.LC0)
+ 105 0078 0E94 0000 		call printnt
+ 106               	.LM14:
+ 107 007c 8091 0000 		lds r24,wtch_sfile
+ 108 0080 9091 0000 		lds r25,(wtch_sfile)+1
+ 109 0084 0E94 0000 		call printnt
+ 110               	.LM15:
+ 111 0088 80E0      		ldi r24,lo8(.LC0)
+ 112 008a 90E0      		ldi r25,hi8(.LC0)
+ 113 008c 0E94 0000 		call printnt
+ 114               	.LM16:
+ 115 0090 00D0      		rcall .
+ 116 0092 00D0      		rcall .
+ 117 0094 00D0      		rcall .
+ 118 0096 EDB7      		in r30,__SP_L__
+ 119 0098 FEB7      		in r31,__SP_H__
+ 120 009a 3196      		adiw r30,1
+ 121 009c 8E01      		movw r16,r28
+ 122 009e 0F5F      		subi r16,lo8(-(1))
+ 123 00a0 1F4F      		sbci r17,hi8(-(1))
+ 124 00a2 ADB7      		in r26,__SP_L__
+ 125 00a4 BEB7      		in r27,__SP_H__
+ 126 00a6 1296      		adiw r26,1+1
+ 127 00a8 1C93      		st X,r17
+ 128 00aa 0E93      		st -X,r16
+ 129 00ac 1197      		sbiw r26,1
+ 130 00ae 80E0      		ldi r24,lo8(.LC1)
+ 131 00b0 90E0      		ldi r25,hi8(.LC1)
+ 132 00b2 9383      		std Z+3,r25
+ 133 00b4 8283      		std Z+2,r24
+ 134 00b6 8091 0000 		lds r24,wtch_sline
+ 135 00ba 9091 0000 		lds r25,(wtch_sline)+1
+ 136 00be 9583      		std Z+5,r25
+ 137 00c0 8483      		std Z+4,r24
+ 138 00c2 0E94 0000 		call sprintf
+ 139               	.LM17:
+ 140 00c6 8DB7      		in r24,__SP_L__
+ 141 00c8 9EB7      		in r25,__SP_H__
+ 142 00ca 0696      		adiw r24,6
+ 143 00cc 0FB6      		in __tmp_reg__,__SREG__
+ 144 00ce F894      		cli
+ 145 00d0 9EBF      		out __SP_H__,r25
+ 146 00d2 0FBE      		out __SREG__,__tmp_reg__
+ 147 00d4 8DBF      		out __SP_L__,r24
+ 148 00d6 C801      		movw r24,r16
+ 149 00d8 0E94 0000 		call printnt
+ 150               	.LM18:
+ 151               	/* #APP */
+ 152               	 ;  77 "watchdog.c" 1
+ 153 00dc A895      		wdr
+ 154               	 ;  0 "" 2
+ 155               	/* #NOAPP */
+ 156 00de 20E0      		ldi r18,lo8(0)
+ 157 00e0 30E0      		ldi r19,hi8(0)
+ 158               	.LVL0:
+ 159               	.LBB14:
+ 160               	.LBB15:
+ 161               	.LBB16:
+ 162               	.LBB17:
+ 163               	.LM19:
+ 164 00e2 40ED      		ldi r20,lo8(2000)
+ 165 00e4 57E0      		ldi r21,hi8(2000)
+ 166               	.L7:
+ 167 00e6 CA01      		movw r24,r20
+ 168               	.LVL1:
+ 169               	/* #APP */
+ 170               	 ;  105 "c:/winavr-20090313/lib/gcc/../../avr/include/util/delay_basic.h" 1
+ 171 00e8 0197      		1: sbiw r24,1
+ 172 00ea 01F4      		brne 1b
+ 173               	 ;  0 "" 2
+ 174               	/* #NOAPP */
+ 175               	.LBE17:
+ 176               	.LBE16:
+ 177               	.LBE15:
+ 178               	.LBE14:
+ 179               	.LM20:
+ 180               	/* #APP */
+ 181               	 ;  81 "watchdog.c" 1
+ 182 00ec A895      		wdr
+ 183               	 ;  0 "" 2
+ 184               	.LM21:
+ 185               	/* #NOAPP */
+ 186 00ee 2F5F      		subi r18,lo8(-(1))
+ 187 00f0 3F4F      		sbci r19,hi8(-(1))
+ 188 00f2 9BE0      		ldi r25,hi8(3000)
+ 189 00f4 283B      		cpi r18,lo8(3000)
+ 190 00f6 3907      		cpc r19,r25
+ 191 00f8 01F4      		brne .L7
+ 192               	.L8:
+ 193 00fa 00C0      		rjmp .L8
+ 194               	.LVL2:
+ 195               	.L9:
+ 196               	/* epilogue start */
+ 197               	.LBE13:
+ 198               	.LM22:
+ 199 00fc 2A96      		adiw r28,10
+ 200 00fe 0FB6      		in __tmp_reg__,__SREG__
+ 201 0100 F894      		cli
+ 202 0102 DEBF      		out __SP_H__,r29
+ 203 0104 0FBE      		out __SREG__,__tmp_reg__
+ 204 0106 CDBF      		out __SP_L__,r28
+ 205 0108 CF91      		pop r28
+ 206 010a DF91      		pop r29
+ 207 010c 1F91      		pop r17
+ 208 010e 0F91      		pop r16
+ 209 0110 0895      		ret
+ 210               	.LFE8:
+ 212               	.global	wtch_sfile
+ 213               		.data
+ 214               	.LC2:
+ 215 0005 7761 7463 		.string	"watchdog.c"
+ 215      6864 6F67 
+ 215      2E63 00
+ 218               	wtch_sfile:
+ 219 0010 0000      		.word	.LC2
+ 220               	.global	wtch_sline
+ 223               	wtch_sline:
+ 224 0012 1900      		.word	25
+ 225               	.global	wtch_counter
+ 226               	.global	wtch_counter
+ 227               		.section .bss
+ 230               	wtch_counter:
+ 231 0000 0000      		.skip 2,0
+ 232               		.section	.progmem.data,"a",@progbits
+ 235               	err97:
+ 236 0000 4572 726F 		.string	"Error 97: Vazna chyba behu programu.    Ukladani dat."
+ 236      7220 3937 
+ 236      3A20 5661 
+ 236      7A6E 6120 
+ 236      6368 7962 
+ 239               	err97b:
+ 240 0036 4572 726F 		.string	"Error 97: Data ulozena. Reset."
+ 240      7220 3937 
+ 240      3A20 4461 
+ 240      7461 2075 
+ 240      6C6F 7A65 
+ 273               	.Letext0:
+DEFINED SYMBOLS
+                            *ABS*:00000000 watchdog.c
+C:/Users/mjirik/AppData/Local/Temp/ccxZqp6J.s:2      *ABS*:0000003f __SREG__
+C:/Users/mjirik/AppData/Local/Temp/ccxZqp6J.s:3      *ABS*:0000003e __SP_H__
+C:/Users/mjirik/AppData/Local/Temp/ccxZqp6J.s:4      *ABS*:0000003d __SP_L__
+C:/Users/mjirik/AppData/Local/Temp/ccxZqp6J.s:5      *ABS*:00000034 __CCP__
+C:/Users/mjirik/AppData/Local/Temp/ccxZqp6J.s:6      *ABS*:00000000 __tmp_reg__
+C:/Users/mjirik/AppData/Local/Temp/ccxZqp6J.s:7      *ABS*:00000001 __zero_reg__
+C:/Users/mjirik/AppData/Local/Temp/ccxZqp6J.s:18     .text:00000000 wtch_init
+C:/Users/mjirik/AppData/Local/Temp/ccxZqp6J.s:230    .bss:00000000 wtch_counter
+C:/Users/mjirik/AppData/Local/Temp/ccxZqp6J.s:52     .text:0000001c wtch_main
+C:/Users/mjirik/AppData/Local/Temp/ccxZqp6J.s:235    .progmem.data:00000000 err97
+C:/Users/mjirik/AppData/Local/Temp/ccxZqp6J.s:239    .progmem.data:00000036 err97b
+C:/Users/mjirik/AppData/Local/Temp/ccxZqp6J.s:218    .data:00000010 wtch_sfile
+C:/Users/mjirik/AppData/Local/Temp/ccxZqp6J.s:223    .data:00000012 wtch_sline
+
+UNDEFINED SYMBOLS
+lcd_w_inst
+printnt_P
+eeprom_save
+printnt
+sprintf
+__do_copy_data
+__do_clear_bss

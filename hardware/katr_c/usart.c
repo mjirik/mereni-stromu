@@ -1,5 +1,5 @@
 /*
- * $Id: usart.c 17 2007-03-23 06:50:40Z Mira $
+ * $Id: usart.c 122 2007-09-21 06:18:10Z Mira $
  * File name: usart.c
  * Date:      2006/01/21 17:07
  * Author:    Mira
@@ -12,7 +12,7 @@
 
 #include <avr/io.h>
 #include <avr/interrupt.h>
-#include <avr/signal.h>
+//#include <avr/signal.h>
 #include <stdio.h>
 #include <stdint.h>
 

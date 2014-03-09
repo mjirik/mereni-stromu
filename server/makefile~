@@ -1,0 +1,15 @@
+install:
+	echo "Kopiovani webove casti"
+	@cp -R web /var/www/html
+	@echo "Instalace databaze"
+	@mysql --user=root --password=moje.heslo < ./db/start.sql
+	@echo "Nastaveni spoustecich prav k prislusnym souborum"
+	@chmod +x ./init/pila_connector.sh
+	@chmod +x ./connector/bin/pila_connector
+	@echo "Kopirovani binarek pila_connector"
+	@cp ./connector/bin/pila_connector /usr/local/bin/pila_connector
+	@echo "Kopirovani konfiguracniho souboru connectoru"
+	@cp ./connector/etc/pila_connector /usr/local/etc/pila_connector
+	@echo "Zajisteni automatickeho spousteni pri startu"
+	@cp ./init/pila_connector.sh /etc/init.d/pila_connector.sh
+	@ln -s /etc/init.d/pila_connector.sh /etc/rc3.d/S99pila_connector.sh

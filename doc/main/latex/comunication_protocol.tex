@@ -1,0 +1,37 @@
+\section{Popis protokolu}\label{comunication_protocol_cp_popis}
+\section{Kódy zpráv -\/ katr}\label{comunication_protocol_cp_katr}
+
+\begin{DoxyItemize}
+\item 01 \& out \& Chyba přenosu -\/ neshoda v$\sim$kontrolních bytech
+\item 02 \& out \& Chyba přenosu -\/ zahájeno nesprávným znakem
+\item 03 \& out \& Chyba měření šířky -\/ více zastíněných ploch
+\item 04 \& out \& Chyba IRC -\/ změna obou vstupů
+\item 05 \& out \& Chyba IRC -\/ rozdíl IRC oproti referenci
+\item 07 \& out \& Chyba přenosu -\/ plná odesílací fronta
+\item 09 \& in \& zastavuje nebo spouší odesílání z katru
+\item 0A \& in \& Ulož do EEPROM
+\item 10 \& in \& Nastav konstantu pro přenásobení hodnoty
+\item 11 \& in \& Nastav vzálenost referenčního bodu
+\item 13 \& in \& Vypíná přepočet průměru na skutečný
+\item 16 \& in \& Pokyn k odeslání datové zprávy
+\item 14 \& out \& Potvrení příjmu
+\item 40 \& out \& Datová zpráva
+\end{DoxyItemize}\section{Kódy zpráv -\/ vozík}\label{comunication_protocol_cp_vozik}
+
+\begin{DoxyItemize}
+\item 04 \& in \& Chyba IRC -\/ změna obou vstupů
+\item 0A \& in/out \& Ulož do EEPROM (i na katru)
+\item 0E \& in \& Nastav konstantu pro přenásobení hodnoty (vozík)
+\item 0F \& in \& Nastav vzálenost referenčního bodu (vozík)
+\item 14 \& out \& Potvrení příjmu
+\item 16 \& out \& Pokyn k odeslání datové zprávy z katru
+\item 1A \& in \& Nastavení zdroje dat měření šířky
+\item 40 \& in \& Datová zpráva
+\item 41 \& out \& Jméno zákazníka
+\item 42 \& out \& Naměřený strom
+\item 43 \& out \& Odesláno poslední měření
+\item 44 \& out \& Zahájení odesílání dat
+\item 46 \& z vozíku \& výzva pro server, zda nemá nějaká data.
+\item 47 \& ze serveru \& ukončení odesílání dat
+\item 48 \& in(server) \& data o šířce ze serveru 
+\end{DoxyItemize}

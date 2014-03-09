@@ -1,0 +1,480 @@
+   1               		.file	"width.c"
+   2               		.arch atmega8
+   3               	__SREG__ = 0x3f
+   4               	__SP_H__ = 0x3e
+   5               	__SP_L__ = 0x3d
+   6               	__tmp_reg__ = 0
+   7               	__zero_reg__ = 1
+   8               		.global __do_copy_data
+   9               		.global __do_clear_bss
+  17               	.Ltext0:
+  18               	.global	width_watch_init
+  20               	width_watch_init:
+  21               	.LFB4:
+  22               	.LM1:
+  23               	/* prologue: frame size=0 */
+  24               	/* prologue end (size=0) */
+  25 0000 E0E0      		ldi r30,lo8(width_integrate_array)
+  26 0002 F0E0      		ldi r31,hi8(width_integrate_array)
+  27               	.L2:
+  28               	.LM2:
+  29 0004 1192      		st Z+,__zero_reg__
+  30 0006 1192      		st Z+,__zero_reg__
+  31               	.LM3:
+  32 0008 80E0      		ldi r24,hi8(width_integrate_array+160)
+  33 000a E030      		cpi r30,lo8(width_integrate_array+160)
+  34 000c F807      		cpc r31,r24
+  35 000e 01F4      		brne .L2
+  36               	.LM4:
+  37 0010 84B3      		in r24,52-0x20
+  38 0012 8760      		ori r24,lo8(7)
+  39 0014 84BB      		out 52-0x20,r24
+  40               	.LM5:
+  41 0016 95B3      		in r25,53-0x20
+  42 0018 987F      		andi r25,lo8(-8)
+  43 001a 8091 0000 		lds r24,width_multiplex_adress
+  44 001e 8770      		andi r24,lo8(7)
+  45 0020 982B      		or r25,r24
+  46 0022 95BB      		out 53-0x20,r25
+  47               	.LM6:
+  48 0024 8FEF      		ldi r24,lo8(-1)
+  49 0026 88BB      		out 56-0x20,r24
+  50               	.LM7:
+  51 0028 82B3      		in r24,50-0x20
+  52 002a 806C      		ori r24,lo8(-64)
+  53 002c 82BB      		out 50-0x20,r24
+  54               	/* epilogue: frame size=0 */
+  55 002e 0895      		ret
+  56               	/* epilogue end (size=1) */
+  57               	/* function width_watch_init size 24 (23) */
+  58               	.LFE4:
+  60               	.global	get_d_h
+  62               	get_d_h:
+  63               	.LFB6:
+  64               	.LM8:
+  65               	/* prologue: frame size=0 */
+  66 0030 CF92      		push r12
+  67 0032 DF92      		push r13
+  68 0034 EF92      		push r14
+  69 0036 FF92      		push r15
+  70 0038 0F93      		push r16
+  71 003a 1F93      		push r17
+  72 003c CF93      		push r28
+  73 003e DF93      		push r29
+  74               	/* prologue end (size=8) */
+  75               	.LM9:
+  76 0040 8091 0000 		lds r24,width_value
+  77 0044 9AE0      		ldi r25,lo8(10)
+  78 0046 899F      		mul r24,r25
+  79 0048 E001      		movw r28,r0
+  80 004a 1124      		clr r1
+  81               	.LVL0:
+  82               	.LM10:
+  83 004c 8091 0000 		lds r24,width_prepocet
+  84 0050 8823      		tst r24
+  85 0052 01F0      		breq .L8
+  86               	.LM11:
+  87 0054 00D0      		rcall irc_get_d
+  88 0056 8C01      		movw r16,r24
+  89               	.LM12:
+  90 0058 BE01      		movw r22,r28
+  91 005a 8827      		clr r24
+  92 005c 77FD      		sbrc r23,7
+  93 005e 8095      		com r24
+  94 0060 982F      		mov r25,r24
+  95 0062 00D0      		rcall __floatsisf
+  96 0064 20E0      		ldi r18,lo8(0x44fa0000)
+  97 0066 30E0      		ldi r19,hi8(0x44fa0000)
+  98 0068 4AEF      		ldi r20,hlo8(0x44fa0000)
+  99 006a 54E4      		ldi r21,hhi8(0x44fa0000)
+ 100 006c 00D0      		rcall __divsf3
+ 101 006e 6B01      		movw r12,r22
+ 102 0070 7C01      		movw r14,r24
+ 103 0072 B801      		movw r22,r16
+ 104 0074 8827      		clr r24
+ 105 0076 77FD      		sbrc r23,7
+ 106 0078 8095      		com r24
+ 107 007a 982F      		mov r25,r24
+ 108 007c 00D0      		rcall __floatsisf
+ 109 007e 17FF      		sbrs r17,7
+ 110 0080 00C0      		rjmp .L11
+ 111 0082 20E0      		ldi r18,lo8(0x47800000)
+ 112 0084 30E0      		ldi r19,hi8(0x47800000)
+ 113 0086 40E8      		ldi r20,hlo8(0x47800000)
+ 114 0088 57E4      		ldi r21,hhi8(0x47800000)
+ 115 008a 00D0      		rcall __addsf3
+ 116               	.L11:
+ 117 008c 20E0      		ldi r18,lo8(0x3f000000)
+ 118 008e 30E0      		ldi r19,hi8(0x3f000000)
+ 119 0090 40E0      		ldi r20,hlo8(0x3f000000)
+ 120 0092 5FE3      		ldi r21,hhi8(0x3f000000)
+ 121 0094 00D0      		rcall __mulsf3
+ 122 0096 9B01      		movw r18,r22
+ 123 0098 AC01      		movw r20,r24
+ 124 009a 60E0      		ldi r22,lo8(0x44fa0000)
+ 125 009c 70E0      		ldi r23,hi8(0x44fa0000)
+ 126 009e 8AEF      		ldi r24,hlo8(0x44fa0000)
+ 127 00a0 94E4      		ldi r25,hhi8(0x44fa0000)
+ 128 00a2 00D0      		rcall __subsf3
+ 129 00a4 20E0      		ldi r18,lo8(0x42480000)
+ 130 00a6 30E0      		ldi r19,hi8(0x42480000)
+ 131 00a8 48E4      		ldi r20,hlo8(0x42480000)
+ 132 00aa 52E4      		ldi r21,hhi8(0x42480000)
+ 133 00ac 00D0      		rcall __subsf3
+ 134 00ae 9B01      		movw r18,r22
+ 135 00b0 AC01      		movw r20,r24
+ 136 00b2 C701      		movw r24,r14
+ 137 00b4 B601      		movw r22,r12
+ 138 00b6 00D0      		rcall __mulsf3
+ 139 00b8 00D0      		rcall __fixunssfsi
+ 140 00ba EB01      		movw r28,r22
+ 141               	.L8:
+ 142               	.LM13:
+ 143 00bc CE01      		movw r24,r28
+ 144               	/* epilogue: frame size=0 */
+ 145 00be DF91      		pop r29
+ 146 00c0 CF91      		pop r28
+ 147 00c2 1F91      		pop r17
+ 148 00c4 0F91      		pop r16
+ 149 00c6 FF90      		pop r15
+ 150 00c8 EF90      		pop r14
+ 151 00ca DF90      		pop r13
+ 152 00cc CF90      		pop r12
+ 153 00ce 0895      		ret
+ 154               	/* epilogue end (size=9) */
+ 155               	/* function get_d_h size 80 (63) */
+ 156               	.LFE6:
+ 158               	.global	width_send_msg
+ 160               	width_send_msg:
+ 161               	.LFB7:
+ 162               	.LM14:
+ 163               	/* prologue: frame size=0 */
+ 164               	/* prologue end (size=0) */
+ 165               	.LM15:
+ 166 00d0 00D0      		rcall get_d_h
+ 167 00d2 9C01      		movw r18,r24
+ 168               	.LVL1:
+ 169               	.LM16:
+ 170 00d4 432F      		mov r20,r19
+ 171 00d6 5527      		clr r21
+ 172               	.LM17:
+ 173 00d8 8091 0000 		lds r24,data_msg+3
+ 174 00dc 8217      		cp r24,r18
+ 175 00de 01F4      		brne .L14
+ 176               	.LM18:
+ 177 00e0 8091 0000 		lds r24,data_msg+4
+ 178               	.LVL2:
+ 179 00e4 8417      		cp r24,r20
+ 180 00e6 01F0      		breq .L17
+ 181               	.L14:
+ 182               	.LM19:
+ 183 00e8 2093 0000 		sts data_msg+3,r18
+ 184               	.LVL3:
+ 185               	.LM20:
+ 186 00ec 4093 0000 		sts data_msg+4,r20
+ 187               	.LM21:
+ 188 00f0 80E0      		ldi r24,lo8(data_msg)
+ 189 00f2 90E0      		ldi r25,hi8(data_msg)
+ 190 00f4 00D0      		rcall new_msg
+ 191               	.LVL4:
+ 192               	.LVL5:
+ 193               	.L17:
+ 194 00f6 0895      		ret
+ 195               	/* epilogue: frame size=0 */
+ 196               	/* epilogue: noreturn */
+ 197               	/* epilogue end (size=0) */
+ 198               	/* function width_send_msg size 20 (20) */
+ 199               	.LFE7:
+ 201               	.global	width_computation
+ 203               	width_computation:
+ 204               	.LFB5:
+ 205               	.LM22:
+ 206               	/* prologue: frame size=0 */
+ 207               	/* prologue end (size=0) */
+ 208 00f8 40E0      		ldi r20,lo8(0)
+ 209               	.LVL6:
+ 210 00fa 50E0      		ldi r21,lo8(0)
+ 211               	.LVL7:
+ 212 00fc 20E0      		ldi r18,lo8(0)
+ 213               	.LVL8:
+ 214 00fe 30E0      		ldi r19,lo8(0)
+ 215               	.LVL9:
+ 216 0100 E0E0      		ldi r30,lo8(width_integrate_array)
+ 217 0102 F0E0      		ldi r31,hi8(width_integrate_array)
+ 218               	.L19:
+ 219               	.LM23:
+ 220 0104 8081      		ld r24,Z
+ 221 0106 9181      		ldd r25,Z+1
+ 222 0108 C397      		sbiw r24,51
+ 223 010a 04F4      		brge .L20
+ 224 010c 522F      		mov r21,r18
+ 225 010e 20E0      		ldi r18,lo8(0)
+ 226 0110 00C0      		rjmp .L22
+ 227               	.L20:
+ 228               	.LM24:
+ 229 0112 4F5F      		subi r20,lo8(-(1))
+ 230               	.LM25:
+ 231 0114 2223      		tst r18
+ 232 0116 01F0      		breq .L23
+ 233 0118 522F      		mov r21,r18
+ 234 011a 00C0      		rjmp .L34
+ 235               	.L23:
+ 236               	.LM26:
+ 237 011c 3F5F      		subi r19,lo8(-(1))
+ 238               	.LM27:
+ 239 011e 5130      		cpi r21,lo8(1)
+ 240 0120 01F0      		breq .L25
+ 241 0122 50E0      		ldi r21,lo8(0)
+ 242 0124 00C0      		rjmp .L34
+ 243               	.L25:
+ 244               	.LM28:
+ 245 0126 3150      		subi r19,lo8(-(-1))
+ 246               	.LM29:
+ 247 0128 4F5F      		subi r20,lo8(-(1))
+ 248               	.L34:
+ 249 012a 21E0      		ldi r18,lo8(1)
+ 250               	.L22:
+ 251               	.LM30:
+ 252 012c 1192      		st Z+,__zero_reg__
+ 253 012e 1192      		st Z+,__zero_reg__
+ 254               	.LM31:
+ 255 0130 80E0      		ldi r24,hi8(width_integrate_array+160)
+ 256 0132 E030      		cpi r30,lo8(width_integrate_array+160)
+ 257 0134 F807      		cpc r31,r24
+ 258 0136 01F4      		brne .L19
+ 259               	.LM32:
+ 260 0138 3230      		cpi r19,lo8(2)
+ 261 013a 00F4      		brsh .L28
+ 262               	.LM33:
+ 263 013c 4093 0000 		sts width_value,r20
+ 264               	.LM34:
+ 265 0140 81E0      		ldi r24,lo8(1)
+ 266 0142 90E0      		ldi r25,hi8(1)
+ 267 0144 9093 0000 		sts (width_valid)+1,r25
+ 268 0148 8093 0000 		sts width_valid,r24
+ 269 014c 00C0      		rjmp .L35
+ 270               	.L28:
+ 271               	.LM35:
+ 272 014e 1092 0000 		sts (width_valid)+1,__zero_reg__
+ 273 0152 1092 0000 		sts width_valid,__zero_reg__
+ 274               	.LM36:
+ 275 0156 4093 0000 		sts width_value,r20
+ 276               	.L35:
+ 277               	.LM37:
+ 278 015a 00D0      		rcall width_send_msg
+ 279               	.LVL10:
+ 280 015c 0895      		ret
+ 281               	/* epilogue: frame size=0 */
+ 282               	/* epilogue: noreturn */
+ 283               	/* epilogue end (size=0) */
+ 284               	/* function width_computation size 52 (52) */
+ 285               	.LFE5:
+ 287               	.global	width_watch
+ 289               	width_watch:
+ 290               	.LFB3:
+ 291               	.LM38:
+ 292               	/* prologue: frame size=0 */
+ 293 015e CF93      		push r28
+ 294 0160 DF93      		push r29
+ 295               	/* prologue end (size=2) */
+ 296               	.LM39:
+ 297 0162 8091 0000 		lds r24,width_slow_counter
+ 298 0166 9091 0000 		lds r25,(width_slow_counter)+1
+ 299 016a 0097      		sbiw r24,0
+ 300 016c 01F0      		breq .+2
+ 301 016e 00C0      		rjmp .L37
+ 302               	.LM40:
+ 303 0170 86B3      		in r24,54-0x20
+ 304               	.LVL11:
+ 305               	.LM41:
+ 306 0172 A0B3      		in r26,48-0x20
+ 307               	.LVL12:
+ 308 0174 A295      		swap r26
+ 309 0176 A695      		lsr r26
+ 310 0178 A695      		lsr r26
+ 311 017a A370      		andi r26,0x3
+ 312               	.LM42:
+ 313 017c B091 0000 		lds r27,width_multiplex_adress
+ 314 0180 4B2F      		mov r20,r27
+ 315 0182 5527      		clr r21
+ 316 0184 FA01      		movw r30,r20
+ 317 0186 EE0F      		lsl r30
+ 318 0188 FF1F      		rol r31
+ 319 018a E050      		subi r30,lo8(-(width_integrate_array))
+ 320 018c F040      		sbci r31,hi8(-(width_integrate_array))
+ 321 018e 60E0      		ldi r22,lo8(0)
+ 322 0190 70E0      		ldi r23,hi8(0)
+ 323               	.LVL13:
+ 324 0192 C82F      		mov r28,r24
+ 325 0194 DD27      		clr r29
+ 326               	.LVL14:
+ 327               	.L39:
+ 328 0196 9E01      		movw r18,r28
+ 329 0198 062E      		mov r0,r22
+ 330 019a 00C0      		rjmp 2f
+ 331 019c 3595      	1:	asr r19
+ 332 019e 2795      		ror r18
+ 333 01a0 0A94      	2:	dec r0
+ 334 01a2 02F4      		brpl 1b
+ 335 01a4 2170      		andi r18,lo8(1)
+ 336 01a6 3070      		andi r19,hi8(1)
+ 337 01a8 8081      		ld r24,Z
+ 338 01aa 9181      		ldd r25,Z+1
+ 339 01ac 820F      		add r24,r18
+ 340 01ae 931F      		adc r25,r19
+ 341 01b0 9183      		std Z+1,r25
+ 342 01b2 8083      		st Z,r24
+ 343               	.LM43:
+ 344 01b4 6F5F      		subi r22,lo8(-(1))
+ 345 01b6 7F4F      		sbci r23,hi8(-(1))
+ 346 01b8 7096      		adiw r30,16
+ 347 01ba 6830      		cpi r22,8
+ 348 01bc 7105      		cpc r23,__zero_reg__
+ 349 01be 01F4      		brne .L39
+ 350               	.LM44:
+ 351 01c0 440F      		lsl r20
+ 352 01c2 551F      		rol r21
+ 353 01c4 FA01      		movw r30,r20
+ 354 01c6 E050      		subi r30,lo8(-(width_integrate_array+128))
+ 355 01c8 F040      		sbci r31,hi8(-(width_integrate_array+128))
+ 356 01ca 2A2F      		mov r18,r26
+ 357 01cc 3327      		clr r19
+ 358 01ce 2170      		andi r18,lo8(1)
+ 359 01d0 3070      		andi r19,hi8(1)
+ 360 01d2 8081      		ld r24,Z
+ 361 01d4 9181      		ldd r25,Z+1
+ 362 01d6 820F      		add r24,r18
+ 363 01d8 931F      		adc r25,r19
+ 364 01da 9183      		std Z+1,r25
+ 365 01dc 8083      		st Z,r24
+ 366               	.LM45:
+ 367 01de FA01      		movw r30,r20
+ 368 01e0 E050      		subi r30,lo8(-(width_integrate_array+144))
+ 369 01e2 F040      		sbci r31,hi8(-(width_integrate_array+144))
+ 370 01e4 A695      		lsr r26
+ 371 01e6 8081      		ld r24,Z
+ 372 01e8 9181      		ldd r25,Z+1
+ 373 01ea 8A0F      		add r24,r26
+ 374 01ec 911D      		adc r25,__zero_reg__
+ 375 01ee 9183      		std Z+1,r25
+ 376 01f0 8083      		st Z,r24
+ 377               	.LM46:
+ 378 01f2 B730      		cpi r27,lo8(7)
+ 379 01f4 00F4      		brsh .L41
+ 380               	.LM47:
+ 381 01f6 BF5F      		subi r27,lo8(-(1))
+ 382 01f8 B093 0000 		sts width_multiplex_adress,r27
+ 383 01fc 00C0      		rjmp .L43
+ 384               	.L41:
+ 385               	.LM48:
+ 386 01fe 1092 0000 		sts width_multiplex_adress,__zero_reg__
+ 387               	.LM49:
+ 388 0202 8091 0000 		lds r24,width_counter
+ 389 0206 9091 0000 		lds r25,(width_counter)+1
+ 390 020a 8436      		cpi r24,100
+ 391 020c 9105      		cpc r25,__zero_reg__
+ 392 020e 04F4      		brge .L44
+ 393               	.LM50:
+ 394 0210 0196      		adiw r24,1
+ 395 0212 9093 0000 		sts (width_counter)+1,r25
+ 396 0216 8093 0000 		sts width_counter,r24
+ 397 021a 00C0      		rjmp .L43
+ 398               	.L44:
+ 399               	.LM51:
+ 400 021c 1092 0000 		sts (width_counter)+1,__zero_reg__
+ 401 0220 1092 0000 		sts width_counter,__zero_reg__
+ 402               	.LM52:
+ 403 0224 00D0      		rcall width_computation
+ 404               	.LVL15:
+ 405               	.L43:
+ 406               	.LM53:
+ 407 0226 85B3      		in r24,53-0x20
+ 408 0228 887F      		andi r24,lo8(-8)
+ 409 022a 9091 0000 		lds r25,width_multiplex_adress
+ 410 022e 9770      		andi r25,lo8(7)
+ 411 0230 892B      		or r24,r25
+ 412 0232 85BB      		out 53-0x20,r24
+ 413               	.LM54:
+ 414 0234 85E0      		ldi r24,lo8(5)
+ 415 0236 90E0      		ldi r25,hi8(5)
+ 416 0238 00C0      		rjmp .L50
+ 417               	.LVL16:
+ 418               	.L37:
+ 419               	.LM55:
+ 420 023a 0197      		sbiw r24,1
+ 421               	.LVL17:
+ 422               	.L50:
+ 423 023c 9093 0000 		sts (width_slow_counter)+1,r25
+ 424 0240 8093 0000 		sts width_slow_counter,r24
+ 425               	/* epilogue: frame size=0 */
+ 426 0244 DF91      		pop r29
+ 427 0246 CF91      		pop r28
+ 428 0248 0895      		ret
+ 429               	/* epilogue end (size=3) */
+ 430               	/* function width_watch size 118 (113) */
+ 431               	.LFE3:
+ 433               	.global	width_multiplex_adress
+ 434               	.global	width_multiplex_adress
+ 435               		.section .bss
+ 438               	width_multiplex_adress:
+ 439 0000 00        		.skip 1,0
+ 440               	.global	width_counter
+ 441               	.global	width_counter
+ 444               	width_counter:
+ 445 0001 0000      		.skip 2,0
+ 446               	.global	width_valid
+ 447               	.global	width_valid
+ 450               	width_valid:
+ 451 0003 0000      		.skip 2,0
+ 452               	.global	width_value
+ 453               	.global	width_value
+ 456               	width_value:
+ 457 0005 00        		.skip 1,0
+ 458               	.global	width_slow_counter
+ 459               		.data
+ 462               	width_slow_counter:
+ 463 0000 0500      		.word	5
+ 464               	.global	width_prepocet
+ 467               	width_prepocet:
+ 468 0002 01        		.byte	1
+ 469               		.comm data_msg,5,1
+ 470               		.comm irc_counter,4,1
+ 471               		.comm irc_set_on_value,4,1
+ 472               		.comm irc_k,2,1
+ 473               		.comm width_integrate_array,160,1
+ 530               	.Letext0:
+DEFINED SYMBOLS
+                            *ABS*:00000000 width.c
+C:\DOCUME~1\Mira\LOCALS~1\Temp/cc1H2mMJ.s:3      *ABS*:0000003f __SREG__
+C:\DOCUME~1\Mira\LOCALS~1\Temp/cc1H2mMJ.s:4      *ABS*:0000003e __SP_H__
+C:\DOCUME~1\Mira\LOCALS~1\Temp/cc1H2mMJ.s:5      *ABS*:0000003d __SP_L__
+C:\DOCUME~1\Mira\LOCALS~1\Temp/cc1H2mMJ.s:6      *ABS*:00000000 __tmp_reg__
+C:\DOCUME~1\Mira\LOCALS~1\Temp/cc1H2mMJ.s:7      *ABS*:00000001 __zero_reg__
+C:\DOCUME~1\Mira\LOCALS~1\Temp/cc1H2mMJ.s:20     .text:00000000 width_watch_init
+                            *COM*:000000a0 width_integrate_array
+C:\DOCUME~1\Mira\LOCALS~1\Temp/cc1H2mMJ.s:438    .bss:00000000 width_multiplex_adress
+C:\DOCUME~1\Mira\LOCALS~1\Temp/cc1H2mMJ.s:62     .text:00000030 get_d_h
+C:\DOCUME~1\Mira\LOCALS~1\Temp/cc1H2mMJ.s:456    .bss:00000005 width_value
+C:\DOCUME~1\Mira\LOCALS~1\Temp/cc1H2mMJ.s:467    .data:00000002 width_prepocet
+C:\DOCUME~1\Mira\LOCALS~1\Temp/cc1H2mMJ.s:160    .text:000000d0 width_send_msg
+                            *COM*:00000005 data_msg
+C:\DOCUME~1\Mira\LOCALS~1\Temp/cc1H2mMJ.s:203    .text:000000f8 width_computation
+C:\DOCUME~1\Mira\LOCALS~1\Temp/cc1H2mMJ.s:450    .bss:00000003 width_valid
+C:\DOCUME~1\Mira\LOCALS~1\Temp/cc1H2mMJ.s:289    .text:0000015e width_watch
+C:\DOCUME~1\Mira\LOCALS~1\Temp/cc1H2mMJ.s:462    .data:00000000 width_slow_counter
+C:\DOCUME~1\Mira\LOCALS~1\Temp/cc1H2mMJ.s:444    .bss:00000001 width_counter
+                            *COM*:00000004 irc_counter
+                            *COM*:00000004 irc_set_on_value
+                            *COM*:00000002 irc_k
+
+UNDEFINED SYMBOLS
+__do_copy_data
+__do_clear_bss
+irc_get_d
+__floatsisf
+__divsf3
+__addsf3
+__mulsf3
+__subsf3
+__fixunssfsi
+new_msg

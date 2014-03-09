@@ -6,7 +6,7 @@
 // Inkludy
 #include <avr/io.h>
 #include <avr/interrupt.h>
-#include <avr/signal.h>
+//#include <avr/signal.h>
 #include <stdio.h>
 
 #include "usart.h"

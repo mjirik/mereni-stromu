@@ -1,0 +1,548 @@
+   1               		.file	"eeprom.c"
+   2               	__SREG__ = 0x3f
+   3               	__SP_H__ = 0x3e
+   4               	__SP_L__ = 0x3d
+   5               	__CCP__  = 0x34
+   6               	__tmp_reg__ = 0
+   7               	__zero_reg__ = 1
+  15               	.Ltext0:
+  17               	eeprom_read_byte:
+  18               	.LFB2:
+  19               	.LM1:
+  20               	.LVL0:
+  21               	/* prologue: function */
+  22               	/* frame size = 0 */
+  23 0000 9C01      		movw r18,r24
+  24               	.LVL1:
+  25               	.L2:
+  26               	.LM2:
+  27 0002 E199      		sbic 60-32,1
+  28 0004 00C0      		rjmp .L2
+  29               	.LM3:
+  30 0006 3FBB      		out (62)+1-32,r19
+  31 0008 2EBB      		out 62-32,r18
+  32               	.LM4:
+  33               	/* #APP */
+  34               	 ;  208 "c:/winavr-20090313/lib/gcc/../../avr/include/avr/eeprom.h" 1
+  35               		/* START EEPROM READ CRITICAL SECTION */ 
+  36 000a E09A      		sbi 28, 0 
+  37 000c 8DB3      		in r24, 29 
+  38               		/* END EEPROM READ CRITICAL SECTION */ 
+  39               		
+  40               	 ;  0 "" 2
+  41               	.LVL2:
+  42               	.LVL3:
+  43               	/* epilogue start */
+  44               	.LM5:
+  45               	/* #NOAPP */
+  46 000e 0895      		ret
+  47               	.LFE2:
+  50               	eeprom_write_byte:
+  51               	.LFB6:
+  52               	.LM6:
+  53               	.LVL4:
+  54               	/* prologue: function */
+  55               	/* frame size = 0 */
+  56 0010 9C01      		movw r18,r24
+  57               	.LVL5:
+  58               	.L6:
+  59               	.LM7:
+  60 0012 E199      		sbic 60-32,1
+  61 0014 00C0      		rjmp .L6
+  62               	.LM8:
+  63 0016 3FBB      		out (62)+1-32,r19
+  64 0018 2EBB      		out 62-32,r18
+  65               	.LM9:
+  66 001a 6DBB      		out 61-32,r22
+  67               	.LM10:
+  68               	/* #APP */
+  69               	 ;  315 "c:/winavr-20090313/lib/gcc/../../avr/include/avr/eeprom.h" 1
+  70               		/* START EEPROM WRITE CRITICAL SECTION */
+  71 001c 0FB6      		in	r0, 63		
+  72 001e F894      		cli				
+  73 0020 E29A      		sbi	28, 2	
+  74 0022 E19A      		sbi	28, 1	
+  75 0024 0FBE      		out	63, r0		
+  76               		/* END EEPROM WRITE CRITICAL SECTION */
+  77               	 ;  0 "" 2
+  78               	/* epilogue start */
+  79               	.LM11:
+  80               	/* #NOAPP */
+  81 0026 0895      		ret
+  82               	.LFE6:
+  84               	.global	eeprom_w8
+  86               	eeprom_w8:
+  87               	.LFB12:
+  88               	.LM12:
+  89               	.LVL6:
+  90               	/* prologue: function */
+  91               	/* frame size = 0 */
+  92 0028 9C01      		movw r18,r24
+  93               	.LVL7:
+  94               	.LM13:
+  95 002a 8091 0000 		lds r24,wtch_counter
+  96 002e 9091 0000 		lds r25,(wtch_counter)+1
+  97 0032 1816      		cp __zero_reg__,r24
+  98 0034 1906      		cpc __zero_reg__,r25
+  99 0036 04F4      		brge .L10
+ 100 0038 80E0      		ldi r24,lo8(0)
+ 101 003a 90E0      		ldi r25,hi8(0)
+ 102               	.L10:
+ 103 003c 9093 0000 		sts (wtch_counter)+1,r25
+ 104 0040 8093 0000 		sts wtch_counter,r24
+ 105               	/* #APP */
+ 106               	 ;  83 "eeprom.c" 1
+ 107 0044 A895      		wdr
+ 108               	 ;  0 "" 2
+ 109               	/* #NOAPP */
+ 110               	.L11:
+ 111               	.LM14:
+ 112 0046 E199      		sbic 60-32,1
+ 113 0048 00C0      		rjmp .L11
+ 114               	.L14:
+ 115               	.LBB26:
+ 116               	.LBB27:
+ 117               	.LM15:
+ 118 004a E199      		sbic 60-32,1
+ 119 004c 00C0      		rjmp .L14
+ 120               	.LM16:
+ 121 004e 3FBB      		out (62)+1-32,r19
+ 122 0050 2EBB      		out 62-32,r18
+ 123               	.LM17:
+ 124 0052 6DBB      		out 61-32,r22
+ 125               	.LM18:
+ 126               	/* #APP */
+ 127               	 ;  315 "c:/winavr-20090313/lib/gcc/../../avr/include/avr/eeprom.h" 1
+ 128               		/* START EEPROM WRITE CRITICAL SECTION */
+ 129 0054 0FB6      		in	r0, 63		
+ 130 0056 F894      		cli				
+ 131 0058 E29A      		sbi	28, 2	
+ 132 005a E19A      		sbi	28, 1	
+ 133 005c 0FBE      		out	63, r0		
+ 134               		/* END EEPROM WRITE CRITICAL SECTION */
+ 135               	 ;  0 "" 2
+ 136               	/* epilogue start */
+ 137               	/* #NOAPP */
+ 138               	.LBE27:
+ 139               	.LBE26:
+ 140               	.LM19:
+ 141 005e 0895      		ret
+ 142               	.LFE12:
+ 144               	.global	eeprom_r8
+ 146               	eeprom_r8:
+ 147               	.LFB13:
+ 148               	.LM20:
+ 149               	.LVL8:
+ 150               	/* prologue: function */
+ 151               	/* frame size = 0 */
+ 152 0060 9C01      		movw r18,r24
+ 153               	.LVL9:
+ 154               	.L18:
+ 155               	.LBB28:
+ 156               	.LBB29:
+ 157               	.LM21:
+ 158 0062 E199      		sbic 60-32,1
+ 159 0064 00C0      		rjmp .L18
+ 160               	.LM22:
+ 161 0066 3FBB      		out (62)+1-32,r19
+ 162 0068 2EBB      		out 62-32,r18
+ 163               	.LM23:
+ 164               	/* #APP */
+ 165               	 ;  208 "c:/winavr-20090313/lib/gcc/../../avr/include/avr/eeprom.h" 1
+ 166               		/* START EEPROM READ CRITICAL SECTION */ 
+ 167 006a E09A      		sbi 28, 0 
+ 168 006c 8DB3      		in r24, 29 
+ 169               		/* END EEPROM READ CRITICAL SECTION */ 
+ 170               		
+ 171               	 ;  0 "" 2
+ 172               	.LVL10:
+ 173               	.LVL11:
+ 174               	/* epilogue start */
+ 175               	/* #NOAPP */
+ 176               	.LBE29:
+ 177               	.LBE28:
+ 178               	.LM24:
+ 179 006e 0895      		ret
+ 180               	.LFE13:
+ 182               	.global	eeprom_r32
+ 184               	eeprom_r32:
+ 185               	.LFB17:
+ 186               	.LM25:
+ 187               	.LVL12:
+ 188 0070 DF93      		push r29
+ 189 0072 CF93      		push r28
+ 190 0074 00D0      		rcall .
+ 191 0076 00D0      		rcall .
+ 192 0078 CDB7      		in r28,__SP_L__
+ 193 007a DEB7      		in r29,__SP_H__
+ 194               	/* prologue: function */
+ 195               	/* frame size = 4 */
+ 196 007c BC01      		movw r22,r24
+ 197               	.LM26:
+ 198 007e 8091 0000 		lds r24,wtch_counter
+ 199 0082 9091 0000 		lds r25,(wtch_counter)+1
+ 200               	.LVL13:
+ 201 0086 1816      		cp __zero_reg__,r24
+ 202 0088 1906      		cpc __zero_reg__,r25
+ 203 008a 04F4      		brge .L22
+ 204 008c 80E0      		ldi r24,lo8(0)
+ 205 008e 90E0      		ldi r25,hi8(0)
+ 206               	.L22:
+ 207 0090 9093 0000 		sts (wtch_counter)+1,r25
+ 208 0094 8093 0000 		sts wtch_counter,r24
+ 209               	/* #APP */
+ 210               	 ;  114 "eeprom.c" 1
+ 211 0098 A895      		wdr
+ 212               	 ;  0 "" 2
+ 213               	.LM27:
+ 214               	/* #NOAPP */
+ 215 009a 1982      		std Y+1,__zero_reg__
+ 216 009c 1A82      		std Y+2,__zero_reg__
+ 217 009e 1B82      		std Y+3,__zero_reg__
+ 218 00a0 1C82      		std Y+4,__zero_reg__
+ 219               	.LVL14:
+ 220               	.LBB30:
+ 221               	.LBB31:
+ 222               	.LM28:
+ 223 00a2 CE01      		movw r24,r28
+ 224 00a4 0196      		adiw r24,1
+ 225 00a6 44E0      		ldi r20,lo8(4)
+ 226 00a8 50E0      		ldi r21,hi8(4)
+ 227 00aa 20E0      		ldi r18,lo8(gs(eeprom_read_byte))
+ 228 00ac 30E0      		ldi r19,hi8(gs(eeprom_read_byte))
+ 229 00ae 0E94 0000 		call __eerd_block
+ 230               	.LVL15:
+ 231 00b2 6981      		ldd r22,Y+1
+ 232 00b4 7A81      		ldd r23,Y+2
+ 233               	.LVL16:
+ 234               	.LBE31:
+ 235               	.LBE30:
+ 236               	.LM29:
+ 237 00b6 8B81      		ldd r24,Y+3
+ 238               	.LVL17:
+ 239 00b8 9C81      		ldd r25,Y+4
+ 240               	.LVL18:
+ 241               	/* epilogue start */
+ 242 00ba 0F90      		pop __tmp_reg__
+ 243 00bc 0F90      		pop __tmp_reg__
+ 244 00be 0F90      		pop __tmp_reg__
+ 245 00c0 0F90      		pop __tmp_reg__
+ 246 00c2 CF91      		pop r28
+ 247 00c4 DF91      		pop r29
+ 248 00c6 0895      		ret
+ 249               	.LFE17:
+ 251               	.global	eeprom_w32
+ 253               	eeprom_w32:
+ 254               	.LFB16:
+ 255               	.LM30:
+ 256               	.LVL19:
+ 257 00c8 DF93      		push r29
+ 258 00ca CF93      		push r28
+ 259 00cc 00D0      		rcall .
+ 260 00ce 00D0      		rcall .
+ 261 00d0 CDB7      		in r28,__SP_L__
+ 262 00d2 DEB7      		in r29,__SP_H__
+ 263               	/* prologue: function */
+ 264               	/* frame size = 4 */
+ 265 00d4 4983      		std Y+1,r20
+ 266 00d6 5A83      		std Y+2,r21
+ 267 00d8 6B83      		std Y+3,r22
+ 268 00da 7C83      		std Y+4,r23
+ 269               	.LVL20:
+ 270               	.L25:
+ 271               	.LM31:
+ 272 00dc E199      		sbic 60-32,1
+ 273 00de 00C0      		rjmp .L25
+ 274               	.LBB32:
+ 275               	.LBB33:
+ 276               	.LM32:
+ 277 00e0 BE01      		movw r22,r28
+ 278 00e2 6F5F      		subi r22,lo8(-(1))
+ 279 00e4 7F4F      		sbci r23,hi8(-(1))
+ 280 00e6 44E0      		ldi r20,lo8(4)
+ 281 00e8 50E0      		ldi r21,hi8(4)
+ 282 00ea 20E0      		ldi r18,lo8(gs(eeprom_write_byte))
+ 283 00ec 30E0      		ldi r19,hi8(gs(eeprom_write_byte))
+ 284 00ee 0E94 0000 		call __eewr_block
+ 285               	.LVL21:
+ 286               	/* epilogue start */
+ 287               	.LBE33:
+ 288               	.LBE32:
+ 289               	.LM33:
+ 290 00f2 0F90      		pop __tmp_reg__
+ 291 00f4 0F90      		pop __tmp_reg__
+ 292 00f6 0F90      		pop __tmp_reg__
+ 293 00f8 0F90      		pop __tmp_reg__
+ 294 00fa CF91      		pop r28
+ 295 00fc DF91      		pop r29
+ 296 00fe 0895      		ret
+ 297               	.LFE16:
+ 299               	.global	eeprom_r16
+ 301               	eeprom_r16:
+ 302               	.LFB15:
+ 303               	.LM34:
+ 304               	.LVL22:
+ 305               	/* prologue: function */
+ 306               	/* frame size = 0 */
+ 307               	.LBB34:
+ 308               	.LM35:
+ 309 0100 60E0      		ldi r22,lo8(gs(eeprom_read_byte))
+ 310 0102 70E0      		ldi r23,hi8(gs(eeprom_read_byte))
+ 311 0104 0E94 0000 		call __eerd_word
+ 312               	.LVL23:
+ 313               	/* epilogue start */
+ 314               	.LBE34:
+ 315               	.LM36:
+ 316 0108 0895      		ret
+ 317               	.LFE15:
+ 319               	.global	eeprom_w16
+ 321               	eeprom_w16:
+ 322               	.LFB14:
+ 323               	.LM37:
+ 324               	.LVL24:
+ 325               	/* prologue: function */
+ 326               	/* frame size = 0 */
+ 327               	.LM38:
+ 328 010a 2091 0000 		lds r18,wtch_counter
+ 329 010e 3091 0000 		lds r19,(wtch_counter)+1
+ 330 0112 1216      		cp __zero_reg__,r18
+ 331 0114 1306      		cpc __zero_reg__,r19
+ 332 0116 04F4      		brge .L31
+ 333 0118 20E0      		ldi r18,lo8(0)
+ 334 011a 30E0      		ldi r19,hi8(0)
+ 335               	.L31:
+ 336 011c 3093 0000 		sts (wtch_counter)+1,r19
+ 337 0120 2093 0000 		sts wtch_counter,r18
+ 338               	/* #APP */
+ 339               	 ;  96 "eeprom.c" 1
+ 340 0124 A895      		wdr
+ 341               	 ;  0 "" 2
+ 342               	/* #NOAPP */
+ 343               	.L32:
+ 344               	.LM39:
+ 345 0126 E199      		sbic 60-32,1
+ 346 0128 00C0      		rjmp .L32
+ 347               	.LBB35:
+ 348               	.LBB36:
+ 349               	.LM40:
+ 350 012a 40E0      		ldi r20,lo8(gs(eeprom_write_byte))
+ 351 012c 50E0      		ldi r21,hi8(gs(eeprom_write_byte))
+ 352 012e 0E94 0000 		call __eewr_word
+ 353               	.LVL25:
+ 354               	/* epilogue start */
+ 355               	.LBE36:
+ 356               	.LBE35:
+ 357               	.LM41:
+ 358 0132 0895      		ret
+ 359               	.LFE14:
+ 361               	.global	eeprom_save
+ 363               	eeprom_save:
+ 364               	.LFB11:
+ 365               	.LM42:
+ 366               	/* prologue: function */
+ 367               	/* frame size = 0 */
+ 368               	.LM43:
+ 369               	/* #APP */
+ 370               	 ;  65 "eeprom.c" 1
+ 371 0134 A895      		wdr
+ 372               	 ;  0 "" 2
+ 373               	.LM44:
+ 374               	/* #NOAPP */
+ 375 0136 8FEF      		ldi r24,lo8(-1)
+ 376 0138 9FEF      		ldi r25,hi8(-1)
+ 377 013a 9093 0000 		sts (wtch_counter)+1,r25
+ 378 013e 8093 0000 		sts wtch_counter,r24
+ 379 0142 88E1      		ldi r24,lo8(24)
+ 380               	/* #APP */
+ 381               	 ;  66 "eeprom.c" 1
+ 382 0144 0FB6      		in __tmp_reg__, __SREG__
+ 383 0146 F894      		cli
+ 384 0148 81BD      		out 33, r24
+ 385 014a 11BC      		out 33, __zero_reg__
+ 386 014c 0FBE      		out __SREG__,__tmp_reg__
+ 387               		
+ 388               	 ;  0 "" 2
+ 389               	.LM45:
+ 390               	/* #NOAPP */
+ 391 014e 0E94 0000 		call get_irc1_counter
+ 392 0152 AB01      		movw r20,r22
+ 393 0154 BC01      		movw r22,r24
+ 394 0156 80E0      		ldi r24,lo8(0)
+ 395 0158 90E0      		ldi r25,hi8(0)
+ 396 015a 0E94 0000 		call eeprom_w32
+ 397               	.LBB37:
+ 398               	.LBB38:
+ 399               	.LM46:
+ 400               	/* #APP */
+ 401               	 ;  83 "eeprom.c" 1
+ 402 015e A895      		wdr
+ 403               	 ;  0 "" 2
+ 404               	/* #NOAPP */
+ 405               	.L36:
+ 406               	.LM47:
+ 407 0160 E199      		sbic 60-32,1
+ 408 0162 00C0      		rjmp .L36
+ 409               	.L39:
+ 410               	.LBB39:
+ 411               	.LBB40:
+ 412               	.LM48:
+ 413 0164 E199      		sbic 60-32,1
+ 414 0166 00C0      		rjmp .L39
+ 415               	.LM49:
+ 416 0168 8BE0      		ldi r24,lo8(11)
+ 417 016a 90E0      		ldi r25,hi8(11)
+ 418 016c 9FBB      		out (62)+1-32,r25
+ 419 016e 8EBB      		out 62-32,r24
+ 420               	.LM50:
+ 421 0170 8FE3      		ldi r24,lo8(63)
+ 422 0172 8DBB      		out 61-32,r24
+ 423               	.LM51:
+ 424               	/* #APP */
+ 425               	 ;  315 "c:/winavr-20090313/lib/gcc/../../avr/include/avr/eeprom.h" 1
+ 426               		/* START EEPROM WRITE CRITICAL SECTION */
+ 427 0174 0FB6      		in	r0, 63		
+ 428 0176 F894      		cli				
+ 429 0178 E29A      		sbi	28, 2	
+ 430 017a E19A      		sbi	28, 1	
+ 431 017c 0FBE      		out	63, r0		
+ 432               		/* END EEPROM WRITE CRITICAL SECTION */
+ 433               	 ;  0 "" 2
+ 434               	/* #NOAPP */
+ 435               	.LBE40:
+ 436               	.LBE39:
+ 437               	.LBE38:
+ 438               	.LBE37:
+ 439               	.LM52:
+ 440 017e 2FE0      		ldi r18,lo8(15)
+ 441 0180 88E1      		ldi r24,lo8(24)
+ 442 0182 90E0      		ldi r25,hi8(24)
+ 443               	/* #APP */
+ 444               	 ;  76 "eeprom.c" 1
+ 445 0184 0FB6      		in __tmp_reg__,__SREG__
+ 446 0186 F894      		cli
+ 447 0188 A895      		wdr
+ 448 018a 81BD      		out 33,r24
+ 449 018c 0FBE      		out __SREG__,__tmp_reg__
+ 450 018e 21BD      		out 33,r18
+ 451               	 ;  0 "" 2
+ 452               	.LM53:
+ 453               	/* #NOAPP */
+ 454 0190 1092 0000 		sts (wtch_counter)+1,__zero_reg__
+ 455 0194 1092 0000 		sts wtch_counter,__zero_reg__
+ 456               	/* #APP */
+ 457               	 ;  77 "eeprom.c" 1
+ 458 0198 A895      		wdr
+ 459               	 ;  0 "" 2
+ 460               	/* epilogue start */
+ 461               	.LM54:
+ 462               	/* #NOAPP */
+ 463 019a 0895      		ret
+ 464               	.LFE11:
+ 466               	.global	eeprom_load
+ 468               	eeprom_load:
+ 469               	.LFB10:
+ 470               	.LM55:
+ 471               	/* prologue: function */
+ 472               	/* frame size = 0 */
+ 473               	.LM56:
+ 474 019c 80E0      		ldi r24,lo8(0)
+ 475 019e 90E0      		ldi r25,hi8(0)
+ 476 01a0 0E94 0000 		call eeprom_r32
+ 477 01a4 0E94 0000 		call set_irc1_counter
+ 478               	.LBB41:
+ 479               	.LBB42:
+ 480               	.LBB43:
+ 481               	.LM57:
+ 482 01a8 84E0      		ldi r24,lo8(4)
+ 483 01aa 90E0      		ldi r25,hi8(4)
+ 484 01ac 60E0      		ldi r22,lo8(gs(eeprom_read_byte))
+ 485 01ae 70E0      		ldi r23,hi8(gs(eeprom_read_byte))
+ 486 01b0 0E94 0000 		call __eerd_word
+ 487               	.LBE43:
+ 488               	.LBE42:
+ 489               	.LBE41:
+ 490               	.LM58:
+ 491 01b4 0E94 0000 		call set_irc1_k
+ 492               	.LM59:
+ 493 01b8 86E0      		ldi r24,lo8(6)
+ 494 01ba 90E0      		ldi r25,hi8(6)
+ 495 01bc 0E94 0000 		call eeprom_r32
+ 496 01c0 0E94 0000 		call set_irc1_set_on_value
+ 497               	.L43:
+ 498               	.LBB44:
+ 499               	.LBB45:
+ 500               	.LBB46:
+ 501               	.LBB47:
+ 502               	.LM60:
+ 503 01c4 E199      		sbic 60-32,1
+ 504 01c6 00C0      		rjmp .L43
+ 505               	.LM61:
+ 506 01c8 8BE0      		ldi r24,lo8(11)
+ 507 01ca 90E0      		ldi r25,hi8(11)
+ 508 01cc 9FBB      		out (62)+1-32,r25
+ 509 01ce 8EBB      		out 62-32,r24
+ 510               	.LM62:
+ 511               	/* #APP */
+ 512               	 ;  208 "c:/winavr-20090313/lib/gcc/../../avr/include/avr/eeprom.h" 1
+ 513               		/* START EEPROM READ CRITICAL SECTION */ 
+ 514 01d0 E09A      		sbi 28, 0 
+ 515 01d2 8DB3      		in r24, 29 
+ 516               		/* END EEPROM READ CRITICAL SECTION */ 
+ 517               		
+ 518               	 ;  0 "" 2
+ 519               	.LVL26:
+ 520               	/* #NOAPP */
+ 521               	.LBE47:
+ 522               	.LBE46:
+ 523               	.LBE45:
+ 524               	.LBE44:
+ 525               	.LM63:
+ 526 01d4 8F33      		cpi r24,lo8(63)
+ 527 01d6 01F0      		breq .L45
+ 528               	.LM64:
+ 529 01d8 80E5      		ldi r24,lo8(336)
+ 530 01da 91E0      		ldi r25,hi8(336)
+ 531               	.LVL27:
+ 532 01dc 0E94 0000 		call set_irc1_k_mm
+ 533               	.LM65:
+ 534 01e0 6CEC      		ldi r22,lo8(4300)
+ 535 01e2 70E1      		ldi r23,hi8(4300)
+ 536 01e4 80E0      		ldi r24,hlo8(4300)
+ 537 01e6 90E0      		ldi r25,hhi8(4300)
+ 538 01e8 0E94 0000 		call set_irc1_set_on_value_mm
+ 539               	.LVL28:
+ 540               	.L45:
+ 541 01ec 0895      		ret
+ 542               	.LFE10:
+ 640               	.Letext0:
+DEFINED SYMBOLS
+                            *ABS*:00000000 eeprom.c
+C:/Users/mjirik/AppData/Local/Temp/ccmCNfqs.s:2      *ABS*:0000003f __SREG__
+C:/Users/mjirik/AppData/Local/Temp/ccmCNfqs.s:3      *ABS*:0000003e __SP_H__
+C:/Users/mjirik/AppData/Local/Temp/ccmCNfqs.s:4      *ABS*:0000003d __SP_L__
+C:/Users/mjirik/AppData/Local/Temp/ccmCNfqs.s:5      *ABS*:00000034 __CCP__
+C:/Users/mjirik/AppData/Local/Temp/ccmCNfqs.s:6      *ABS*:00000000 __tmp_reg__
+C:/Users/mjirik/AppData/Local/Temp/ccmCNfqs.s:7      *ABS*:00000001 __zero_reg__
+C:/Users/mjirik/AppData/Local/Temp/ccmCNfqs.s:17     .text:00000000 eeprom_read_byte
+C:/Users/mjirik/AppData/Local/Temp/ccmCNfqs.s:50     .text:00000010 eeprom_write_byte
+C:/Users/mjirik/AppData/Local/Temp/ccmCNfqs.s:86     .text:00000028 eeprom_w8
+C:/Users/mjirik/AppData/Local/Temp/ccmCNfqs.s:146    .text:00000060 eeprom_r8
+C:/Users/mjirik/AppData/Local/Temp/ccmCNfqs.s:184    .text:00000070 eeprom_r32
+C:/Users/mjirik/AppData/Local/Temp/ccmCNfqs.s:253    .text:000000c8 eeprom_w32
+C:/Users/mjirik/AppData/Local/Temp/ccmCNfqs.s:301    .text:00000100 eeprom_r16
+C:/Users/mjirik/AppData/Local/Temp/ccmCNfqs.s:321    .text:0000010a eeprom_w16
+C:/Users/mjirik/AppData/Local/Temp/ccmCNfqs.s:363    .text:00000134 eeprom_save
+C:/Users/mjirik/AppData/Local/Temp/ccmCNfqs.s:468    .text:0000019c eeprom_load
+
+UNDEFINED SYMBOLS
+wtch_counter
+__eerd_block
+__eewr_block
+__eerd_word
+__eewr_word
+get_irc1_counter
+set_irc1_counter
+set_irc1_k
+set_irc1_set_on_value
+set_irc1_k_mm
+set_irc1_set_on_value_mm

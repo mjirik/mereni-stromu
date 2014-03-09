@@ -1,0 +1,4 @@
+int mysql_connect_database(char * user, char * psswd);
+int sql_querry(char * s);
+void insertZakaznik(int id, char * jmeno);
+

@@ -1,0 +1,135 @@
+\section{Dokumentace souboru error.c}
+\label{error_8c}\index{error.c@{error.c}}
+
+
+Modul spravuje výpisy chybových hlášek. Chybové hlášky jsou uloženy v programové paměti. V případě potřeby jsou načteny do SRAM a vypsány na LCD.  
+{\ttfamily \#include $<$inttypes.h$>$}\par
+{\ttfamily \#include $<$stdio.h$>$}\par
+{\ttfamily \#include $<$avr/io.h$>$}\par
+{\ttfamily \#include $<$avr/pgmspace.h$>$}\par
+{\ttfamily \#include $<$stdlib.h$>$}\par
+{\ttfamily \#include $<$string.h$>$}\par
+{\ttfamily \#include \char`\"{}error.h\char`\"{}}\par
+{\ttfamily \#include \char`\"{}lcd.h\char`\"{}}\par
+{\ttfamily \#include \char`\"{}main.h\char`\"{}}\par
+{\ttfamily \#include \char`\"{}keyboard.h\char`\"{}}\par
+{\ttfamily \#include \char`\"{}memory.h\char`\"{}}\par
+{\ttfamily \#include \char`\"{}usart.h\char`\"{}}\par
+{\ttfamily \#include \char`\"{}msgn.h\char`\"{}}\par
+\subsection*{Definice maker}
+\begin{DoxyCompactItemize}
+\item 
+\#define {\bf ERR\_\-TIME}~300
+\end{DoxyCompactItemize}
+\subsection*{Funkce}
+\begin{DoxyCompactItemize}
+\item 
+char $\ast$ {\bf error\_\-text} (uint8\_\-t err\_\-num)
+\item 
+void {\bf print\_\-err} (void)
+\item 
+void {\bf err\_\-control} (void)
+\item 
+void {\bf err\_\-scr\_\-open} (void)
+\item 
+void {\bf new\_\-error} (uint8\_\-t err\_\-num)
+\item 
+void {\bf new\_\-str\_\-error} (uint8\_\-t err\_\-num, char $\ast$s)
+\item 
+void {\bf error\_\-scr\_\-draw} (void)
+\item 
+void {\bf error\_\-scr\_\-control} (void)
+\item 
+void {\bf err\_\-assert} (char $\ast$soubor, int radek)
+\end{DoxyCompactItemize}
+\subsection*{Proměnné}
+\begin{DoxyCompactItemize}
+\item 
+int8\_\-t {\bf prev\_\-scr} = 0
+\item 
+uint8\_\-t {\bf last\_\-err} = 255
+\item 
+char $\ast$ {\bf err\_\-str} = NULL
+\item 
+char {\bf new\_\-err} = 0
+\begin{DoxyCompactList}\small\item\em 
+\begin{DoxyItemize}
+\item proměnná indikuje, zda má být při příštím volání \doxyref{err\_\-control()}{s.}{error_8c_ad55f51b13448734dee621455a92e74f1} vyhlášen chybový stav. 
+\end{DoxyItemize}\item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{Indent}{\bf Chybové výpisy}\par
+{\em \label{_amgrpab59e12c0733f27380b5e1770fe17f53}
+ Jsou uloženy v programové paměti. Je to kvůli úspoře paměti SRAM. }\begin{DoxyCompactItemize}
+\item 
+static char err1[$\,$] {\bf PROGMEM} = \char`\"{}Error 1: Doslo k chybe v kontrolnim$\backslash$nsouctu pri prijmu zpravy na katru. $\backslash$nNemusi to znamenat zadne potize.\char`\"{}
+\begin{DoxyCompactList}\small\item\em error 98 -\/ výpadek napájení -\/ reset -\/ implementováno v \doxyref{main.c}{s.}{main_8c} \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+
+
+\subsection{Detailní popis}
+Modul spravuje výpisy chybových hlášek. Chybové hlášky jsou uloženy v programové paměti. V případě potřeby jsou načteny do SRAM a vypsány na LCD. Od indexu 150 jsou errory s dynamickým řetězcem.
+
+Kromě chyb jsou prostřednictvím prostředků tohoto modulu předávány obsluze i ryze \char`\"{}nechybové\char`\"{} zprávy. Jsou uloženy od indexu 200. 
+
+\subsection{Dokumentace k definicím maker}
+\index{error.c@{error.c}!ERR\_\-TIME@{ERR\_\-TIME}}
+\index{ERR\_\-TIME@{ERR\_\-TIME}!error.c@{error.c}}
+\subsubsection[{ERR\_\-TIME}]{\setlength{\rightskip}{0pt plus 5cm}\#define ERR\_\-TIME~300}\label{error_8c_a7f28a364345237e97db7906e251de307}
+
+
+\subsection{Dokumentace funkcí}
+\index{error.c@{error.c}!err\_\-assert@{err\_\-assert}}
+\index{err\_\-assert@{err\_\-assert}!error.c@{error.c}}
+\subsubsection[{err\_\-assert}]{\setlength{\rightskip}{0pt plus 5cm}void err\_\-assert (char $\ast$ {\em soubor}, \/  int {\em radek})}\label{error_8c_ae6dd1f6c6a4f232ddee182df66ee0b28}
+Funkce je volána v případě že makro \doxyref{assert()}{s.}{error_8h_ad6d5aaa966ca7424f7cb9bd01f2c838b} nalezlo nějakou chybu. Funkce vyvtoří řeťězec, v němˇž je popsáno jméno funkce, jméno souboru a řádek, z něhož je makro spouštěno. \index{error.c@{error.c}!err\_\-control@{err\_\-control}}
+\index{err\_\-control@{err\_\-control}!error.c@{error.c}}
+\subsubsection[{err\_\-control}]{\setlength{\rightskip}{0pt plus 5cm}void err\_\-control (void)}\label{error_8c_ad55f51b13448734dee621455a92e74f1}
+Funkce, která zajišťuje asynchroní vypisování errorů. Dříve totiž mohlo dojít k přerušení běhu programu uprostřed vykonávání některé funkce a to vedlo k potížím s korektním navracením systémových prostředků. \index{error.c@{error.c}!err\_\-scr\_\-open@{err\_\-scr\_\-open}}
+\index{err\_\-scr\_\-open@{err\_\-scr\_\-open}!error.c@{error.c}}
+\subsubsection[{err\_\-scr\_\-open}]{\setlength{\rightskip}{0pt plus 5cm}void err\_\-scr\_\-open (void)}\label{error_8c_a2dad9aca4b62c3ded6ee140807e1a9a5}
+\index{error.c@{error.c}!error\_\-scr\_\-control@{error\_\-scr\_\-control}}
+\index{error\_\-scr\_\-control@{error\_\-scr\_\-control}!error.c@{error.c}}
+\subsubsection[{error\_\-scr\_\-control}]{\setlength{\rightskip}{0pt plus 5cm}void error\_\-scr\_\-control (void)}\label{error_8c_a316a9c1c700f5cde9d2fc570632a9f37}
+\index{error.c@{error.c}!error\_\-scr\_\-draw@{error\_\-scr\_\-draw}}
+\index{error\_\-scr\_\-draw@{error\_\-scr\_\-draw}!error.c@{error.c}}
+\subsubsection[{error\_\-scr\_\-draw}]{\setlength{\rightskip}{0pt plus 5cm}void error\_\-scr\_\-draw (void)}\label{error_8c_a7fc70ff887a46ce08c06b9b9762ef200}
+\index{error.c@{error.c}!error\_\-text@{error\_\-text}}
+\index{error\_\-text@{error\_\-text}!error.c@{error.c}}
+\subsubsection[{error\_\-text}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ error\_\-text (uint8\_\-t {\em err\_\-num})}\label{error_8c_a72f3ba95376bd725543d9f73b14b1a62}
+\index{error.c@{error.c}!new\_\-error@{new\_\-error}}
+\index{new\_\-error@{new\_\-error}!error.c@{error.c}}
+\subsubsection[{new\_\-error}]{\setlength{\rightskip}{0pt plus 5cm}void new\_\-error (uint8\_\-t {\em err\_\-num})}\label{error_8c_acb5cd57cbb1a2f9e632a003540b2df1d}
+Funkce vytváří novou chybu. Dojde k přepnutí na \char`\"{}error screen\char`\"{} a k výpisu textu popisujícího tuto chybu. 
+\begin{DoxyParams}{Parametry}
+\item[{\em err\_\-num}]Identifikuje číslem chybovou hlášku. \end{DoxyParams}
+\index{error.c@{error.c}!new\_\-str\_\-error@{new\_\-str\_\-error}}
+\index{new\_\-str\_\-error@{new\_\-str\_\-error}!error.c@{error.c}}
+\subsubsection[{new\_\-str\_\-error}]{\setlength{\rightskip}{0pt plus 5cm}void new\_\-str\_\-error (uint8\_\-t {\em err\_\-num}, \/  char $\ast$ {\em s})}\label{error_8c_af408b3e4a42f097577e775b58e78e06d}
+Funkce vytvoří nový error. Jeho text je zadán v parametru s. \index{error.c@{error.c}!print\_\-err@{print\_\-err}}
+\index{print\_\-err@{print\_\-err}!error.c@{error.c}}
+\subsubsection[{print\_\-err}]{\setlength{\rightskip}{0pt plus 5cm}void print\_\-err (void)}\label{error_8c_af263748d66d06bcc7e8cf3e8e5ddfb37}
+
+
+\subsection{Dokumentace proměnných}
+\index{error.c@{error.c}!err\_\-str@{err\_\-str}}
+\index{err\_\-str@{err\_\-str}!error.c@{error.c}}
+\subsubsection[{err\_\-str}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ {\bf err\_\-str} = NULL}\label{error_8c_a6472a0f347efd3e832db2b9f028d31a5}
+\index{error.c@{error.c}!last\_\-err@{last\_\-err}}
+\index{last\_\-err@{last\_\-err}!error.c@{error.c}}
+\subsubsection[{last\_\-err}]{\setlength{\rightskip}{0pt plus 5cm}uint8\_\-t {\bf last\_\-err} = 255}\label{error_8c_a2852ad478aca7815ec04556c12023e01}
+\index{error.c@{error.c}!new\_\-err@{new\_\-err}}
+\index{new\_\-err@{new\_\-err}!error.c@{error.c}}
+\subsubsection[{new\_\-err}]{\setlength{\rightskip}{0pt plus 5cm}char {\bf new\_\-err} = 0}\label{error_8c_a3730d7a244c803bf5c7536882cecf57e}
+
+
+
+\begin{DoxyItemize}
+\item proměnná indikuje, zda má být při příštím volání \doxyref{err\_\-control()}{s.}{error_8c_ad55f51b13448734dee621455a92e74f1} vyhlášen chybový stav. 
+\end{DoxyItemize}\index{error.c@{error.c}!prev\_\-scr@{prev\_\-scr}}
+\index{prev\_\-scr@{prev\_\-scr}!error.c@{error.c}}
+\subsubsection[{prev\_\-scr}]{\setlength{\rightskip}{0pt plus 5cm}int8\_\-t {\bf prev\_\-scr} = 0}\label{error_8c_abcd96d5cf4202894aef292e65eea421e}
+\index{error.c@{error.c}!PROGMEM@{PROGMEM}}
+\index{PROGMEM@{PROGMEM}!error.c@{error.c}}
+\subsubsection[{PROGMEM}]{\setlength{\rightskip}{0pt plus 5cm}char err201 [$\,$] {\bf PROGMEM} = \char`\"{}Error 1: Doslo k chybe v kontrolnim$\backslash$nsouctu pri prijmu zpravy na katru. $\backslash$nNemusi to znamenat zadne potize.\char`\"{}\hspace{0.3cm}{\ttfamily  [static]}}\label{error_8c_a46c9c313c59969496af3c9355cd5ecf1}
+
+
+error 98 -\/ výpadek napájení -\/ reset -\/ implementováno v \doxyref{main.c}{s.}{main_8c} 

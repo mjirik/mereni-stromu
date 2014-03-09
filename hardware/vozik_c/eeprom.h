@@ -23,7 +23,7 @@ extern unsigned char width_src;
 #define ee_data 156 // asi 105*7
 */
 
-// píší se velikosti dat
+// pÃ­Å¡Ã­ se velikosti dat
 #define ee_irc_counter_size 4 //size 4 Byte
 #define ee_irc_k_size 2 //size 2 Byte
 #define ee_irc_set_on_value_size 4//size 4 Byte

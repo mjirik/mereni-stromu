@@ -1,0 +1,51 @@
+\documentclass[a4paper]{book}
+\usepackage{a4wide}
+\usepackage{makeidx}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{multicol}
+\usepackage{float}
+\usepackage{textcomp}
+\usepackage{alltt}
+\usepackage{times}
+\usepackage[utf8]{inputenc}
+\usepackage[T2A]{fontenc}
+\usepackage[czech]{babel}
+
+\usepackage{doxygen}
+\makeindex
+\setcounter{tocdepth}{1}
+\renewcommand{\footrulewidth}{0.4pt}
+\begin{document}
+\begin{titlepage}
+\vspace*{7cm}
+\begin{center}
+{\Large Zřízení na katru pro projekt měření objemu stromů Referenční příručka\\[1ex]\large 1.0 }\\
+\vspace*{1cm}
+{\large Generováno programem Doxygen 1.5.2}\\
+\vspace*{0.5cm}
+{\small Sun Sep 16 11:08:08 2007}\\
+\end{center}
+\end{titlepage}
+\clearemptydoublepage
+\pagenumbering{roman}
+\tableofcontents
+\clearemptydoublepage
+\pagenumbering{arabic}
+\chapter{Zřízení na katru pro projekt měření objemu stromů Rejstřík souborů}
+\input{files}
+\chapter{Zřízení na katru pro projekt měření objemu stromů Dokumentace souborů}
+\input{eeprom_8c}
+\include{eeprom_8h}
+\include{irc_8c}
+\include{irc_8h}
+\include{main_8c}
+\include{main_8h}
+\include{usart_8c}
+\include{usart_8h}
+\include{usart__recv_8c}
+\include{usart__recv_8h}
+\include{width_8c}
+\include{width_8h}
+\printindex
+\end{document}

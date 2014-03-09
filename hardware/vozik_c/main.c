@@ -1,40 +1,41 @@
 /*
- * $Id: main.c 120 2007-09-21 05:43:42Z Mira $
+ * $Id: main.c 149 2009-10-25 17:36:42Z mjirik $
  */
 /**
  * @file main.c
  * @brief 
- * Tento modul je hlavní hlavní èástí programu pro zaøízení na vozíku v rámci
- * projektu mìøení objemu øeziva pro pilu v Nìmèicích. Zaøízení na vozíku má
- * za úkol zpracovávat informace, které dostává po sériové lince ze zaøízení na
- * katru, komunikovat s navazujícím databázovım systémem, obsluhovat mìøení
- * vzdálenosti vozíku od katru pomoocí IRC a zajišovat komunikaci s uivatelem
- * prostøednictvím znakového displeje (4x20 znakù) a standartní poèítaèové
- * klávesnice.
+ * Tento modul je hlavnÃ­ hlavnÃ­ ÄÃ¡stÃ­ programu pro zaÅ™Ã­zenÃ­ na vozÃ­ku v rÃ¡mci
+ * projektu mÄ›Å™enÃ­ objemu Å™eziva pro pilu v NÄ›mÄicÃ­ch. ZaÅ™Ã­zenÃ­ na vozÃ­ku mÃ¡
+ * za Ãºkol zpracovÃ¡vat informace, kterÃ© dostÃ¡vÃ¡ po sÃ©riovÃ© lince ze zaÅ™Ã­zenÃ­ na
+ * katru, komunikovat s navazujÃ­cÃ­m databÃ¡zovÃ½m systÃ©mem, obsluhovat mÄ›Å™enÃ­
+ * vzdÃ¡lenosti vozÃ­ku od katru pomoocÃ­ IRC a zajiÅ¡Å¥ovat komunikaci s uÅ¾ivatelem
+ * prostÅ™ednictvÃ­m znakovÃ©ho displeje (4x20 znakÅ¯) a standartnÃ­ poÄÃ­taÄovÃ©
+ * klÃ¡vesnice.
  *
- * V tomto modulu je hlavní funkce main. Jednotlivé èásti programu jsou volány
- * z ní. Nejprve probíhají nutné inicializace ostatních modulù. Pak program
- * vejde do nekoneèné smyèky, která opakovanì volá funkce pro obsluhu
- * jednotlivıch èástí. Obsluhu inkrementálního èidla je nutné provádìt co moná
- * nejèastìji. Dùleité je hlavnì nepøekroèení urèitého èasu mezi voláním
- * obsluné funkce. Ta je proto volána prostøednictvím pøerušení èítaèe. Volání
- * displeje zase naopak vyaduje mezi voláním urèitı èas. Proto je øešeno v
- * závislosti na poètu pøerušení generovanıch èítaèem(kterı je pouíván i pro
+ * V tomto modulu je hlavnÃ­ funkce main. JednotlivÃ© ÄÃ¡sti programu jsou volÃ¡ny
+ * z nÃ­. Nejprve probÃ­hajÃ­ nutnÃ© inicializace ostatnÃ­ch modulÅ¯. Pak program
+ * vejde do nekoneÄnÃ© smyÄky, kterÃ¡ opakovanÄ› volÃ¡ funkce pro obsluhu
+ * jednotlivÃ½ch ÄÃ¡stÃ­. Obsluhu inkrementÃ¡lnÃ­ho Äidla je nutnÃ© provÃ¡dÄ›t co moÅ¾nÃ¡
+ * nejÄastÄ›ji. DÅ¯leÅ¾itÃ© je hlavnÄ› nepÅ™ekroÄenÃ­ urÄitÃ©ho Äasu mezi volÃ¡nÃ­m
+ * obsluÅ¾nÃ© funkce. Ta je proto volÃ¡na prostÅ™ednictvÃ­m pÅ™eruÅ¡enÃ­ ÄÃ­taÄe. VolÃ¡nÃ­
+ * displeje zase naopak vyÅ¾aduje mezi volÃ¡nÃ­m urÄitÃ½ Äas. Proto je Å™eÅ¡eno v
+ * zÃ¡vislosti na poÄtu pÅ™eruÅ¡enÃ­ generovanÃ½ch ÄÃ­taÄem(kterÃ½ je pouÅ¾Ã­vÃ¡n i pro
  * IRC).
  *
- * Pro pøípad vıpadku napájení je v obvodu zaøazen záloní kondenzátor. Ten
- * zajistí napájení obvodu po nìjakı èas bìhem vıpadku. V tomto èase dochází k
- * ukládání ivotnì dùleitıch dat do EEPROM. To je øešeno ve funkci
- * test_shutdown(). Pokud dojde k obnovení napájení pøed vyèerpáním záloních
- * zdrojù, fuunkce vyèká, aby napìtí na kondenzátoru vystoupilo nad 4.5 V
- * (kvùli LCD), znovu inicializuje LCD a obnoví provoz zaøízení.
+ * Pro pÅ™Ã­pad vÃ½padku napÃ¡jenÃ­ je v obvodu zaÅ™azen zÃ¡loÅ¾nÃ­ kondenzÃ¡tor. Ten
+ * zajistÃ­ napÃ¡jenÃ­ obvodu po nÄ›jakÃ½ Äas bÄ›hem vÃ½padku. V tomto Äase dochÃ¡zÃ­ k
+ * uklÃ¡dÃ¡nÃ­ Å¾ivotnÄ› dÅ¯leÅ¾itÃ½ch dat do EEPROM. To je Å™eÅ¡eno ve funkci
+ * test_shutdown(). Pokud dojde k obnovenÃ­ napÃ¡jenÃ­ pÅ™ed vyÄerpÃ¡nÃ­m zÃ¡loÅ¾nÃ­ch
+ * zdrojÅ¯, fuunkce vyÄkÃ¡, aby napÄ›tÃ­ na kondenzÃ¡toru vystoupilo nad 4.5 V
+ * (kvÅ¯li LCD), znovu inicializuje LCD a obnovÃ­ provoz zaÅ™Ã­zenÃ­.
  */
 
 
+#include <stdio.h>
 #include <avr/io.h>
 #include <avr/interrupt.h>
 //#include <avr/signal.h>
-#include <stdlib.h>
+#include <stdlib.h> // kvuli mmalloc
 //#include <stdio.h>
 //#include <math.h>
 #include <util/delay.h>
@@ -44,56 +45,107 @@
 #include "main.h"
 #include "usart.h"
 #include "irc.h"
+#include "irc2.h"
 #include "eeprom.h"
-#include "measure.h"
+//#include "measure.h"
 #include "lcd.h"
 #include "convert.h"
-#include "data.h"
-#include "gui.h"
+//#include "data.h"
+//#include "gui.h"
 #include "error.h"
 #include "keyboard.h"
-#include "dat_scr.h"
+//#include "dat_scr.h"
 #include "buttons.h"
 #include "watchdog.h"
+#include "common/msgn.h"
+#include "inout.h"
+#include "default_scr.h"
+#include "memory.h"
+#include "sysinfo.h"
+#include "common\msgn.h"
+
+// global
+//char data_msg[SizeOfMsg];
+char str_buf[41];
+char * getstr_P( PGM_P s_p);
+
+void my_watchdog(void);
+
+//#define _TICTOC
+
+#ifdef _TICTOC
+void tic(void);
+uint16_t toc(void);
+#endif
+// global
 
 
 //#define SizeOfMsg 5
-#define F_CPU 8000000UL ///< Frekvence oscilátoru 8MHz
-#define T_LCD_MAX 5 ///< Kolikrát pomaleji bude bìet pøekreslování lcd oproti kontrole irc
+#define F_CPU 8000000UL ///< Frekvence oscilÃ¡toru 8MHz
+#define T_LCD_MAX 1 ///< KolikrÃ¡t pomaleji bude bÄ›Å¾et pÅ™ekreslovÃ¡nÃ­ lcd oproti kontrole irc
 
 
 
 
 
 /**
- * LCD není èasovì tak kritické jako konrola irc, ale je tøeba zaruèit minimální dobu mezi obsluhou lcd.
- * Pobìí tedy v závislosti na poètu cyklù kontoly irc, ale spouštìt se nebude
- * kadı n-tı cyklus, ale vdy v normální èasové smyèce, a na nìj dojde øada.
+ * LCD nenÃ­ ÄasovÄ› tak kritickÃ© jako konrola irc, ale je tÅ™eba zaruÄit minimÃ¡lnÃ­ dobu mezi obsluhou lcd.
+ * PobÄ›Å¾Ã­ tedy v zÃ¡vislosti na poÄtu cyklÅ¯ kontoly irc, ale spouÅ¡tÄ›t se nebude
+ * kaÅ¾dÃ½ n-tÃ½ cyklus, ale vÅ¾dy v normÃ¡lnÃ­ ÄasovÃ© smyÄce, aÅ¾ na nÄ›j dojde Å™ada.
  */
-uint16_t t_lcd = 0;
+static uint16_t t_lcd = 0;
 
+//static int qqq=0;
 
-static char err98[] PROGMEM = "Error 98: Doslo ke krátkému vıpadku     napájení. Data ulozena. Reset.";
+static char err98[] PROGMEM = "Error 98: Doslo ke krÃ¡tkÃ©mu vÃ½padku     napÃ¡jenÃ­. Data ulozena. Reset.";
 
 
 void get_data_from_katr(void);
+void send_irc_values_to_PC(void);
+void send_start_msg(void);
+
+// Funkce pro odlazenÃ­
+#ifdef _TICTOC
+uint16_t t_tictoc;
+
+void tic(void){
+  t_tictoc = 0;
+}
+
+uint16_t toc(void){
+  return t_tictoc;
+}
+
+void toclcd(void){
+  sprintf(str_buf,"%8d",t_tictoc);
+  printxyd(0,20,str_buf);
+}
+#endif
+
+
+
+
+
 
 
 /**
- * Funkce pøi svém zavolání ovìøí, zda je na pøísluèném pinu napìtí (napájení).
- * Pokud ne, zahájí se ukládání dat do eeprom.
+ * Funkce pÅ™i svÃ©m zavolÃ¡nÃ­ ovÄ›Å™Ã­, zda je na pÅ™Ã­sluÄnÃ©m pinu napÄ›tÃ­ (napÃ¡jenÃ­).
+ * Pokud ne, zahÃ¡jÃ­ se uklÃ¡dÃ¡nÃ­ dat do eeprom.
  */
 void test_shutdown(void){
   uint8_t time = 0;
   uint16_t i = 0;
 //  char * s = __FILE__;
 
+  wtch_dbg_info();
+
   if (((PIND >> 2) & (0x01)) == 0){
+    printcxyd(1,1,'x');
     eeprom_save();
     //wtch_disable2();
 
-    //Tenhle while bìhá dokola. Pokud alespò na 5 ms naskoèí na pinu 2 portu d
-    //jednièka, èekání skonèí.
+    //Tenhle while bÄ›hÃ¡ dokola. Pokud alespÅˆ na 5 ms naskoÄÃ­ na pinu 2 portu d
+    //jedniÄka, ÄekÃ¡nÃ­ skonÄÃ­.
     while(1){
       _delay_ms(1);
       wtch_reset2();
@@ -107,14 +159,14 @@ void test_shutdown(void){
         break;
     }
 
-    // poèkáme vteøinku
-    // to je kvùli tomu, aby napští na kondenzátoru vylezlo nad 4.5 V, co je nutné pro chod LCD
+    // poÄkÃ¡me vteÅ™inku
+    // to je kvÅ¯li tomu, aby napÅ¡tÃ­ na kondenzÃ¡toru vylezlo nad 4.5 V, coÅ¾ je nutnÃ© pro chod LCD
     for(i=0 ; i < 500;i++){
       wtch_reset2();
       _delay_ms(1);
     }
     lcd_w_inst(0x01);
-    printnt_P((void *)err98); // Vıpadek napájení - reset.
+    printnt_P((void *)err98); // VÃ½padek napÃ¡jenÃ­ - reset.
 
     for(i=0 ; i < 5000;i++){
        wtch_reset2();
@@ -128,48 +180,57 @@ void test_shutdown(void){
     //lcd_init();
 
 
-    //scr_ch(MSR_SCR); // zajistí vypsání popiskù ("Zakaz:", "Drevo:" ,atd.
+    //scr_ch(MSR_SCR); // zajistÃ­ vypsÃ¡nÃ­ popiskÅ¯ ("Zakaz:", "Drevo:" ,atd.
     //wtch_enable();
-    // a pokraèujeme v programu
+    // a pokraÄujeme v programu
   }
 }
 
-/// Obsluha inkrementálního èidla je volána v pøerušení èítaèe
+/// Obsluha inkrementÃ¡lnÃ­ho Äidla je volÃ¡na v pÅ™eruÅ¡enÃ­ ÄÃ­taÄe
 SIGNAL (SIG_OUTPUT_COMPARE1A) {
   t_lcd++;
-  
-  irc_watch();
+//  qqq++;
+
+
+  irc1_watch();
+  irc2_watch();
   wtch_main();
+  
+  #ifdef _TICTOC
+  t_tictoc++;
+  #endif
+//wtch_reset2();
+  
   
 }
 
 
 
-/// Inicializace èítaèe pro volání inkrementálního èidla
+/// Inicializace ÄÃ­taÄe pro volÃ¡nÃ­ inkrementÃ¡lnÃ­ho Äidla
 void ioinit (void) {
-  int pocet_cyklu = 500;
+  int pocet_cyklu = 2500;
 
-  // citac bude citat v kadém cyklu, reim - Clear Timer on Compare (CTC)
+  // citac bude citat v kaÅ¾dÃ©m cyklu, reÅ¾im - Clear Timer on Compare (CTC)
   TCCR1B = (1 << CS10) | (1 << WGM12);
-  // nastaveni pøerušení pøi porovnání
+  // nastaveni pÅ™eruÅ¡enÃ­ pÅ™i porovnÃ¡nÃ­
   TIMSK = (1 << OCIE1A);
 
-  // Nastavení jak èasto se bude volat 
+  // NastavenÃ­ jak Äasto se bude volat 
   OCR1AH = (unsigned char)(pocet_cyklu >> 8);
   OCR1AL = (unsigned char) pocet_cyklu;
 }
 
 /** 
- * Toto je hlavní funkce programu. Na poèátku jsou provedeny inicializace,
- * pak bìí program v nekoneèné smyèce. V Té jsou postupnì volány funkce,
- * které obsluhují LCD, klávesnici, zajiš_tují mìøení atd.
+ * Toto je hlavnÃ­ funkce programu. Na poÄÃ¡tku jsou provedeny inicializace,
+ * pak bÄ›Å¾Ã­ program v nekoneÄnÃ© smyÄce. V TÃ© jsou postupnÄ› volÃ¡ny funkce,
+ * kterÃ© obsluhujÃ­ LCD, klÃ¡vesnici, zajiÅ¡_tujÃ­ mÄ›Å™enÃ­ atd.
  *
- * Èást funkcí (napø obsluha LCD, nebo kontrola IRC) je èasovì kritická. Jejich
- * volání je proto provádìno v závislosti na èasocaèi.
+ * ÄŒÃ¡st funkcÃ­ (napÅ™ obsluha LCD, nebo kontrola IRC) je ÄasovÄ› kritickÃ¡. Jejich
+ * volÃ¡nÃ­ je proto provÃ¡dÄ›no v zÃ¡vislosti na ÄasocaÄi.
  */
 int main(void){
-  char c = 0;
-  char i;
+  //char c = 0;
+  int i;
 
 
   for(i=0 ; i <200;i++){
@@ -180,67 +241,174 @@ int main(void){
   ioinit();
 
   DDRC = 128; //testy
-  PORTC=0;
+  PORTC = 0;
   PORTD = _BV(7);
   
-  irc_init();
+  irc1_init();
+  irc2_init();
   lcd_init();
-  
-  eeprom_load();
 
-  gui_init();
+
+  // pozor - moÅ¾nÃ¡ uÅ¾iteÄnÃ©
+  //eeprom_load();
+
+  //gui_init();
 
   keyboard_init();
 
   buttons_init();
   USART_Init(51);
-  msr_init();
+  //msr_init();
+  
+  
+
+
+  //io_msr_led_on();
+
+  
+
+  //
+  //get_data_from_katr();
+  printnt("Start");
+
+  for(i=0 ; i <1000;i++){
+    _delay_ms(1);
+  }
+
   wtch_init();
-
-
-
+  wtch_dbg_info();
   sei();
+  
+  printxyd(1,5, "Cekani na spojeni...");
+  send_start_msg();
 
-  get_data_from_katr();
   while(1){
-    c++;
+//    char st[2]=" ";
+    //static char prekreslit = 1;
+    static char cc = 0;
 
-    if (t_lcd > T_LCD_MAX){
-      lcd_control();
-      t_lcd = 0;
-      gui_control();
-      keyboard_recv_watchdog();
-      serial_msg_ack_timer();
+    wtch_dbg_info();
+    
+    si_print_run(cc);
+    
+    cc++;
+
+
+    // bÄ›Å¾Ã­ 5x pomaleji neÅ¾ obsluha usart
+    //if (t_lcd > T_LCD_MAX){
+      //static char counter1 = 0;
+      //uint16_t a;
      
+     //tic();
+ 
+
+      //a = t_lcd;
+ //     counter1++;
+
+
+  if (t_lcd > T_LCD_MAX){
+    msg_time_pp();
+        //printcxyd(2,2,cc);
+        lcd_control();
+        //printxyd(1,0,__FILE__);
+        //printnt(st);
+        t_lcd = 0;
+      }
       
-    } 
+      keyboard_recv_watchdog();
+      //serial_msg_ack_timer();
+     
+      //bÄ›Å¾Ã­ 25x pomaleji neÅ¾ usart
+      //if (counter1 > 1){
+        //counter1 = 0;
+        //gui_control();
+
+      //sprintf(str_buf, "%d",(int) (get_msg_time()));
+      //printxyd(1,1,str_buf);
+
+
+        // zde je vykreslovÃ¡nÃ­ obrazovky pokud nenÃ­ po nÄ›jakou dobu dosaÅ¾en server
+        //  tato doba je dÃ¡na konstantou v if nÃ­Å¾e
+        //if (get_msg_time() > 20e4){
+      /*
+        if (msg_time > 20e4){
+
+          // tohle zajiÅ¡Å¥uje, Å¾e se displej vykreslÃ­ jen jednou
+          if (prekreslit == 1){
+            
+            default_scr_draw();
+            prekreslit = 0;
+          }
+          default_scr_control();
+    
+        }
+        else{
+          prekreslit = 1;
+        }*/
+
+
+
+        send_irc_values_to_PC();
+
+
+
+        //sprintf(str_buf,"%i",qqq);
+        //printxyd(3,15,str_buf);
+        //qqq=0;
 
     buttons();
-    measure();
+    
+    //measure();
     test_shutdown();
-    err_control();
+    //err_control();
+    sysinfo();
+    serial_read_buffer();
     wtch_reset2();
+    
+    wtch_dbg_info();
+    
     //my_watchdog_counter = 0; //my_watchdog
   }
 }
 
 
+void send_irc_values_to_PC(void){
+  static uint16_t irc1_tmp = 0;
+  static uint16_t irc2_tmp = 0;
+  uint16_t irc1;
+  uint16_t irc2;
 
+  
+  wtch_dbg_info();
+
+  irc1 = irc1_get_l();
+  irc2 = irc2_get_l();
+
+  // doÅ¡lo ke zmÄ›nÄ›
+  if ((irc1_tmp != irc1)||(irc2_tmp != irc2)){
+    send_uint32(MSGN_IRC,(uint32_t) irc1, (uint32_t)irc2);
+
+    //send_msg...
+    irc1_tmp = irc1;
+    irc2_tmp = irc2;
+  }
+   wtch_dbg_info();
+}
 
 /* ------------------ */
 
 
 /**
- * Funkce slouí pro naètení øetìzce z programové pamìti. Funkce naalokuje
- * pamì pro uloení øetìzce do SRAM, øetìzec tam zkopíruje a vrátí ukazatel na
- * toto místo.
- * @param s_p Ukazatel do programové pamìti.
- * @return Ukazatel v pamìti SRAM, kam je zkopírován øetìzec z \a s_p
+ * Funkce slouÅ¾Ã­ pro naÄtenÃ­ Å™etÄ›zce z programovÃ© pamÄ›ti. Funkce naalokuje
+ * pamÄ›Å¥ pro uloÅ¾enÃ­ Å™etÄ›zce do SRAM, Å™etÄ›zec tam zkopÃ­ruje a vrÃ¡tÃ­ ukazatel na
+ * toto mÃ­sto.
+ * @param s_p Ukazatel do programovÃ© pamÄ›ti.
+ * @return Ukazatel v pamÄ›ti SRAM, kam je zkopÃ­rovÃ¡n Å™etÄ›zec z \a s_p
  **/
 char * getstr_P( PGM_P s_p){
   char * p_pom;
 
-  p_pom = (char *) malloc(strlen_P(s_p) + 1);
+  p_pom = (char *) mmalloc(strlen_P(s_p) + 1);
   if(p_pom == NULL){
     new_error(88);
     return NULL;
@@ -252,24 +420,24 @@ char * getstr_P( PGM_P s_p){
   return p_pom;
 }
 
-/// Má alokaèní funkce. Testuje, zda nebyla naplnìna pamì. Pokud ano, vypíše
-/// chybovou hlášku.
-void * mmalloc (unsigned int size){
-  void * pointer;
-  pointer = malloc (size);
-  if (pointer == NULL){
-    new_error(88);
-    return NULL;
-  }
-  else {
-    return pointer;
-  }
-}
-
 
 
 /**
-Tato funkce je volána pøi startu jednoèipu. Jejím úkolem je získat data z katru.
+Tato funkce je volÃ¡na pÅ™i startu jednoÄipu. JejÃ­m Ãºkolem je zÃ­skat data z katru.
+*/
+void send_start_msg(void){
+    char * msg1;
+
+    msg1 =(void*) mmalloc (DATASIZE);
+
+    msg1[0] = MSGN_START;
+    msg1[1] = (unsigned char) 1;
+    new_msg(msg1);
+
+}
+
+/**
+Tato funkce je volÃ¡na pÅ™i startu jednoÄipu. JejÃ­m Ãºkolem je zÃ­skat data z katru.
 */
 void get_data_from_katr(void){
     char * msg1;
@@ -289,16 +457,16 @@ void get_data_from_katr(void){
 }
 
 void err102(void){
-  new_error(102); // chyba pøi komunikaci se serverem
+  new_error(102); // chyba pÅ™i komunikaci se serverem
 }
 
 void prazdna(char* s){
 }
 
 /**
-Funkce je volána v pøípadì, e je nastaveno získávání dat o šíøce ze serveru.
-Zajišuje vızvu k odesílání pro server a èekání na odpovìï.
-@todo Pøepsat. Chce to zajistit umlèení katru.
+Funkce je volÃ¡na v pÅ™Ã­padÄ›, Å¾e je nastaveno zÃ­skÃ¡vÃ¡nÃ­ dat o Å¡Ã­Å™ce ze serveru.
+ZajiÅ¡Å¥uje vÃ½zvu k odesÃ­lÃ¡nÃ­ pro server a ÄekÃ¡nÃ­ na odpovÄ›Ä.
+@todo PÅ™epsat. Chce to zajistit umlÄenÃ­ katru.
 */
 void get_data_from_server(void){
   char * msg = (char *)mmalloc(DATASIZE);

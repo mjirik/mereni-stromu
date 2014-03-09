@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<title>Měření objemu stromu: Komunikační protokol</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<!-- Generováno programem Doxygen 1.6.1 -->
+<div class="navigation" id="top">
+  <div class="tabs">
+    <ul>
+      <li><a href="index.html"><span>Hlavní&nbsp;stránka</span></a></li>
+      <li class="current"><a href="pages.html"><span>Ostatní&nbsp;stránky</span></a></li>
+    </ul>
+  </div>
+</div>
+<div class="contents">
+
+
+<h1><a class="anchor" id="comunication_protocol">Komunikační protokol </a></h1><h2><a class="anchor" id="cp_popis">
+Popis protokolu</a></h2>
+<h2><a class="anchor" id="cp_katr">
+Kódy zpráv - katr</a></h2>
+<ul>
+<li>01 &amp; out &amp; Chyba přenosu - neshoda v~kontrolních bytech</li>
+<li>02 &amp; out &amp; Chyba přenosu - zahájeno nesprávným znakem</li>
+<li>03 &amp; out &amp; Chyba měření šířky - více zastíněných ploch</li>
+<li>04 &amp; out &amp; Chyba IRC - změna obou vstupů</li>
+<li>05 &amp; out &amp; Chyba IRC - rozdíl IRC oproti referenci</li>
+<li>07 &amp; out &amp; Chyba přenosu - plná odesílací fronta</li>
+<li>09 &amp; in &amp; zastavuje nebo spouší odesílání z katru</li>
+<li>0A &amp; in &amp; Ulož do EEPROM</li>
+<li>10 &amp; in &amp; Nastav konstantu pro přenásobení hodnoty</li>
+<li>11 &amp; in &amp; Nastav vzálenost referenčního bodu</li>
+<li>13 &amp; in &amp; Vypíná přepočet průměru na skutečný</li>
+<li>16 &amp; in &amp; Pokyn k odeslání datové zprávy</li>
+<li>14 &amp; out &amp; Potvrení příjmu</li>
+<li>40 &amp; out &amp; Datová zpráva</li>
+</ul>
+<h2><a class="anchor" id="cp_vozik">
+Kódy zpráv - vozík</a></h2>
+<ul>
+<li>04 &amp; in &amp; Chyba IRC - změna obou vstupů</li>
+<li>0A &amp; in/out &amp; Ulož do EEPROM (i na katru)</li>
+<li>0E &amp; in &amp; Nastav konstantu pro přenásobení hodnoty (vozík)</li>
+<li>0F &amp; in &amp; Nastav vzálenost referenčního bodu (vozík)</li>
+<li>14 &amp; out &amp; Potvrení příjmu</li>
+<li>16 &amp; out &amp; Pokyn k odeslání datové zprávy z katru</li>
+<li>1A &amp; in &amp; Nastavení zdroje dat měření šířky</li>
+<li>40 &amp; in &amp; Datová zpráva</li>
+<li>41 &amp; out &amp; Jméno zákazníka</li>
+<li>42 &amp; out &amp; Naměřený strom</li>
+<li>43 &amp; out &amp; Odesláno poslední měření</li>
+<li>44 &amp; out &amp; Zahájení odesílání dat</li>
+<li>46 &amp; z vozíku &amp; výzva pro server, zda nemá nějaká data.</li>
+<li>47 &amp; ze serveru &amp; ukončení odesílání dat</li>
+<li>48 &amp; in(server) &amp; data o šířce ze serveru </li>
+</ul>
+</div>
+<hr size="1"/><address style="text-align: right;"><small>Generováno Sun Sep 27 14:19:57 2009 pro projekt Měření objemu stromu programem&nbsp;
+<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.1 </small></address>
+</body>
+</html>

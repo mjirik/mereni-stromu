@@ -1,0 +1,151 @@
+#include <mysql/mysql.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include "mysql.h"
+
+MYSQL m;
+
+static char print_row(void);
+
+int mysql_connect_database(char * user, char * psswd) {
+
+
+
+
+  /*
+    Inicializace struktury
+  */
+  if (!mysql_init(&m)) {
+    fputs("mysql_init\n", stderr);
+    return -1;
+  }
+  /*
+    Pipojen�k (nebezpe��nastaven� datab�i jako root bez hesla
+  */
+  if (
+      !mysql_real_connect(
+			  &m,
+			  NULL /* = localhost*/,
+			  user, /* uivatel */
+			  psswd, /* heslo */
+			  "Pila", /* datab�e */
+			  0, /* defaultn�port*/
+			  NULL, /* �n socket */
+			  0) /* �n�flagy */
+      )
+    {
+      fputs("mysql_real_connect(\n", stderr);
+      return -1;
+    }
+  //  insertZakaznik(1,"Jirka");
+  /*
+    Select pes tabulku "jmena"
+  */
+  if (mysql_query(&m, "SELECT jmeno FROM Zakaznik_tmpl")) {
+    fputs("mysql_query\n", stderr);
+    return -1;
+  }
+
+  if (print_row() != 0){
+    printf("Chyba pri tisku vysledku");
+  }
+  /*
+    Zk��vsledku
+  */
+  /*
+    Zaven�spojen�
+  */
+  mysql_close(&m);
+  return 0;
+}
+
+/* Funkce vrati posledni vysledek z mysql-spojeni m */
+char print_row(void){
+  MYSQL_ROW row;
+  MYSQL_RES *result;
+  result = mysql_store_result(&m);
+  if (!result) {
+    fputs("mysql_store_result\n", stderr);
+    return -1;
+  }
+  /*
+    Cyklus pes vechny �ky
+  */
+  while ((row = mysql_fetch_row(result)) != 0){
+    /*
+      Vpis �ky
+    */
+    puts(row[0]);
+  }
+  /*
+    Uvoln��vsledku
+  */
+  mysql_free_result(result);
+
+  return 0;
+}
+
+
+int sql_querry(char * s){
+  if (mysql_query(&m, s)) {
+    fputs("mysql_query\n", stderr);
+    printf("ERROR\n");
+    return -1;
+  }
+  return 0;
+}
+
+void insertZakaznik(int id, char * jmeno){
+  char *s = NULL;
+  s = (char *) malloc (100);
+  printf("Nacitani do db\n");
+  sprintf(s,"call sp_insertLoadZakaznik(%i, \"%s\");",id,jmeno);
+  sql_querry(s);
+  free (s);
+}
+
+/* Funkce zapisuje do databaze mereni.
+   Pokud je 'manipulace' a 'dvakrat' rovno 0, je prevedeno na NULL
+*/
+void insertMereni(int idzak, float delka, float prumer, int druh_dreva, int manipulace, int dalsi_zpracovani, int dvakrat ){
+  char *s = NULL;
+  char *s_manipulace = NULL;
+  char *s_dvakrat = NULL;
+
+  s = (char *) malloc (200);
+  s_manipulace = (char *) malloc (10);
+  s_dvakrat = (char *) malloc (10);
+
+  if (manipulace == 0){
+    sprintf(s_manipulace,"NULL");
+  }
+  else {
+    sprintf(s_manipulace,"%i",manipulace);
+  }
+
+  if (dvakrat == 0){
+    sprintf(s_dvakrat,"NULL");
+  }
+  else {
+    sprintf(s_dvakrat,"%i",dvakrat);
+  }
+  
+  //Manipulace
+  //dvakrat
+  printf("Nacitani do db\n");
+  sprintf(s,"call sp_insertLoadMereni(%i,%f,%f,%i,%s,%i,%s);",idzak,delka,prumer, druh_dreva + 1, s_manipulace, dalsi_zpracovani + 1, s_dvakrat);
+  printf("%s\n",s);
+  sql_querry(s);
+
+  free (s);
+  free (s_manipulace);
+  free (s_dvakrat);
+}
+
+void insertTimemark(void){
+  sql_querry("call sp_Timemark();");
+}
+
+void dataLoad(void){
+  sql_querry("call sp_Load();");
+}

@@ -1,0 +1,61 @@
+\section{Dokumentace souboru main.h}
+\label{main_8h}\index{main.h@{main.h}}
+\subsection*{Definice maker}
+\begin{DoxyCompactItemize}
+\item 
+\#define {\bf SizeOfMsg}~11
+\item 
+\#define {\bf \_\-TICTOC}
+\end{DoxyCompactItemize}
+\subsection*{Funkce}
+\begin{DoxyCompactItemize}
+\item 
+char $\ast$ {\bf getstr\_\-P} (PGM\_\-P s\_\-p)
+\item 
+void {\bf my\_\-watchdog} (void)
+\item 
+void {\bf tic} (void)
+\item 
+uint16\_\-t {\bf toc} (void)
+\end{DoxyCompactItemize}
+\subsection*{Proměnné}
+\begin{DoxyCompactItemize}
+\item 
+char {\bf str\_\-buf} [41]
+\end{DoxyCompactItemize}
+
+
+\subsection{Dokumentace k definicím maker}
+\index{main.h@{main.h}!\_\-TICTOC@{\_\-TICTOC}}
+\index{\_\-TICTOC@{\_\-TICTOC}!main.h@{main.h}}
+\subsubsection[{\_\-TICTOC}]{\setlength{\rightskip}{0pt plus 5cm}\#define \_\-TICTOC}\label{main_8h_a29835c64ae960bf66a163842a562abde}
+\index{main.h@{main.h}!SizeOfMsg@{SizeOfMsg}}
+\index{SizeOfMsg@{SizeOfMsg}!main.h@{main.h}}
+\subsubsection[{SizeOfMsg}]{\setlength{\rightskip}{0pt plus 5cm}\#define SizeOfMsg~11}\label{main_8h_a8639f3cdce498b36b4f11b82726f3857}
+
+
+\subsection{Dokumentace funkcí}
+\index{main.h@{main.h}!getstr\_\-P@{getstr\_\-P}}
+\index{getstr\_\-P@{getstr\_\-P}!main.h@{main.h}}
+\subsubsection[{getstr\_\-P}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ getstr\_\-P (PGM\_\-P {\em s\_\-p})}\label{main_8h_a94c5fb482b0b9ce39cae1619bf51b0ae}
+Funkce slouží pro načtení řetězce z programové paměti. Funkce naalokuje paměť pro uložení řetězce do SRAM, řetězec tam zkopíruje a vrátí ukazatel na toto místo. 
+\begin{DoxyParams}{Parametry}
+\item[{\em s\_\-p}]Ukazatel do programové paměti. \end{DoxyParams}
+\begin{DoxyReturn}{Návratová hodnota}
+Ukazatel v paměti SRAM, kam je zkopírován řetězec z {\itshape s\_\-p\/} 
+\end{DoxyReturn}
+\index{main.h@{main.h}!my\_\-watchdog@{my\_\-watchdog}}
+\index{my\_\-watchdog@{my\_\-watchdog}!main.h@{main.h}}
+\subsubsection[{my\_\-watchdog}]{\setlength{\rightskip}{0pt plus 5cm}void my\_\-watchdog (void)}\label{main_8h_acf97371d95f45fa044173f164fec85f1}
+\index{main.h@{main.h}!tic@{tic}}
+\index{tic@{tic}!main.h@{main.h}}
+\subsubsection[{tic}]{\setlength{\rightskip}{0pt plus 5cm}void tic (void)}\label{main_8h_ace51fd7d8435f88c8b2b3bcf64367673}
+\index{main.h@{main.h}!toc@{toc}}
+\index{toc@{toc}!main.h@{main.h}}
+\subsubsection[{toc}]{\setlength{\rightskip}{0pt plus 5cm}uint16\_\-t toc (void)}\label{main_8h_a88df1dabdebb9698dcabfeb1359fa23f}
+
+
+\subsection{Dokumentace proměnných}
+\index{main.h@{main.h}!str\_\-buf@{str\_\-buf}}
+\index{str\_\-buf@{str\_\-buf}!main.h@{main.h}}
+\subsubsection[{str\_\-buf}]{\setlength{\rightskip}{0pt plus 5cm}char {\bf str\_\-buf}[41]}\label{main_8h_a7ae8aac9d74f11560f00e9f0a396b264}

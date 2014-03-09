@@ -1,0 +1,150 @@
+\section{Dokumentace souboru keyboard.c}
+\label{keyboard_8c}\index{keyboard.c@{keyboard.c}}
+
+
+Modul obsluhuje klávesnici. Časování je připojeno k přerušení INT1, data jsou přivedena na libovolný pin. Hodnoty kláves jsou čteny dvěma funkcemi. \doxyref{get\_\-char()}{s.}{keyboard_8c_af0d08de095c0c6a062d084562f436b9e} a \doxyref{get\_\-spec()}{s.}{keyboard_8c_a6a0ab525eb476112b5b6259dd180cfa9}. Modul je vybaven výstupním bufferem, takže v případě stisku několika kláves bezprostředně po sobě, nedojde ke ztrátě v důsledku pomalého zpracovávání dalším programem.  
+{\ttfamily \#include $<$inttypes.h$>$}\par
+{\ttfamily \#include $<$stdio.h$>$}\par
+{\ttfamily \#include $<$avr/io.h$>$}\par
+{\ttfamily \#include $<$avr/interrupt.h$>$}\par
+{\ttfamily \#include \char`\"{}keyboard.h\char`\"{}}\par
+{\ttfamily \#include \char`\"{}lcd.h\char`\"{}}\par
+{\ttfamily \#include \char`\"{}convert.h\char`\"{}}\par
+{\ttfamily \#include $<$avr/pgmspace.h$>$}\par
+{\ttfamily \#include \char`\"{}usart.h\char`\"{}}\par
+{\ttfamily \#include \char`\"{}main.h\char`\"{}}\par
+{\ttfamily \#include \char`\"{}msgn.h\char`\"{}}\par
+{\ttfamily \#include \char`\"{}memory.h\char`\"{}}\par
+\subsection*{Datové struktry}
+\begin{DoxyCompactItemize}
+\item 
+struct {\bf key}
+\begin{DoxyCompactList}\small\item\em Struktura pro popis stisknuté klávesy. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Definice maker}
+\begin{DoxyCompactItemize}
+\item 
+\#define {\bf KEYB\_\-RECV\_\-WATCH\_\-N}~1000
+\item 
+\#define {\bf KEYB\_\-BUFF\_\-SIZE}~3
+\begin{DoxyCompactList}\small\item\em Velikost výstupného bufferu klávesnice. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Definice typů}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct {\bf key} {\bf KEY}
+\begin{DoxyCompactList}\small\item\em Struktura pro popis stisknuté klávesy. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Funkce}
+\begin{DoxyCompactItemize}
+\item 
+void {\bf zpracuj\_\-kod} (char)
+\item 
+static {\bf KEY} {\bf get\_\-key\_\-from\_\-buff} (void)
+\item 
+void {\bf keyb\_\-in\_\-buff} (char flag, char kod)
+\item 
+{\bf SIGNAL} (SIG\_\-INTERRUPT1)
+\item 
+char {\bf get\_\-char} (void)
+\begin{DoxyCompactList}\small\item\em Funkce vrátí poslední přijatý znak . \item\end{DoxyCompactList}\item 
+char {\bf get\_\-spec} (void)
+\begin{DoxyCompactList}\small\item\em Funkce vrátí poslední přijatý stisk speciální klávesy. \item\end{DoxyCompactList}\item 
+void {\bf keyboard\_\-init} (void)
+\item 
+void {\bf keyboard\_\-recv\_\-watchdog} (void)
+\end{DoxyCompactItemize}
+\subsection*{Proměnné}
+\begin{DoxyCompactItemize}
+\item 
+static int8\_\-t {\bf data\_\-counter} = 0
+\begin{DoxyCompactList}\small\item\em Počítadl bitů, které již přišly od klávesnice. \item\end{DoxyCompactList}\item 
+static char {\bf recivedc} = 0
+\begin{DoxyCompactList}\small\item\em Střadač bitů. \item\end{DoxyCompactList}\item 
+static char {\bf minuly\_\-kod} = 0
+\item 
+static uint16\_\-t {\bf keyb\_\-recv\_\-watchdog} = 0
+\item 
+static {\bf KEY} {\bf keyb\_\-buff} [KEYB\_\-BUFF\_\-SIZE]
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailní popis}
+Modul obsluhuje klávesnici. Časování je připojeno k přerušení INT1, data jsou přivedena na libovolný pin. Hodnoty kláves jsou čteny dvěma funkcemi. \doxyref{get\_\-char()}{s.}{keyboard_8c_af0d08de095c0c6a062d084562f436b9e} a \doxyref{get\_\-spec()}{s.}{keyboard_8c_a6a0ab525eb476112b5b6259dd180cfa9}. Modul je vybaven výstupním bufferem, takže v případě stisku několika kláves bezprostředně po sobě, nedojde ke ztrátě v důsledku pomalého zpracovávání dalším programem. 
+
+\subsection{Dokumentace k definicím maker}
+\index{keyboard.c@{keyboard.c}!KEYB\_\-BUFF\_\-SIZE@{KEYB\_\-BUFF\_\-SIZE}}
+\index{KEYB\_\-BUFF\_\-SIZE@{KEYB\_\-BUFF\_\-SIZE}!keyboard.c@{keyboard.c}}
+\subsubsection[{KEYB\_\-BUFF\_\-SIZE}]{\setlength{\rightskip}{0pt plus 5cm}\#define KEYB\_\-BUFF\_\-SIZE~3}\label{keyboard_8c_af9b6f546f2720d1aabcaf9f1a8ad9b75}
+
+
+Velikost výstupného bufferu klávesnice. \index{keyboard.c@{keyboard.c}!KEYB\_\-RECV\_\-WATCH\_\-N@{KEYB\_\-RECV\_\-WATCH\_\-N}}
+\index{KEYB\_\-RECV\_\-WATCH\_\-N@{KEYB\_\-RECV\_\-WATCH\_\-N}!keyboard.c@{keyboard.c}}
+\subsubsection[{KEYB\_\-RECV\_\-WATCH\_\-N}]{\setlength{\rightskip}{0pt plus 5cm}\#define KEYB\_\-RECV\_\-WATCH\_\-N~1000}\label{keyboard_8c_af82dee349f6ba70158ae157021bdc5b6}
+Konstanta uvádí, po kolika zavoláních při nedoručeném bitu je resetován příjem. Tímto je ošetřen problém, který vznikal při připojení klaávesnice k běžícímu zařízení. Dorazila pak vždy jen část bitů a při stisku další klávesy byly chybjející data doplněna začátkam následujících. Zavedení resetu problém řeší. 
+
+\subsection{Dokumentace definic typů}
+\index{keyboard.c@{keyboard.c}!KEY@{KEY}}
+\index{KEY@{KEY}!keyboard.c@{keyboard.c}}
+\subsubsection[{KEY}]{\setlength{\rightskip}{0pt plus 5cm}typedef struct {\bf key}  {\bf KEY}}\label{keyboard_8c_a38d80b67cca10d0f2c0a1706d7b63660}
+
+
+Struktura pro popis stisknuté klávesy. 
+
+\subsection{Dokumentace funkcí}
+\index{keyboard.c@{keyboard.c}!get\_\-char@{get\_\-char}}
+\index{get\_\-char@{get\_\-char}!keyboard.c@{keyboard.c}}
+\subsubsection[{get\_\-char}]{\setlength{\rightskip}{0pt plus 5cm}char get\_\-char (void)}\label{keyboard_8c_af0d08de095c0c6a062d084562f436b9e}
+
+
+Funkce vrátí poslední přijatý znak . \index{keyboard.c@{keyboard.c}!get\_\-key\_\-from\_\-buff@{get\_\-key\_\-from\_\-buff}}
+\index{get\_\-key\_\-from\_\-buff@{get\_\-key\_\-from\_\-buff}!keyboard.c@{keyboard.c}}
+\subsubsection[{get\_\-key\_\-from\_\-buff}]{\setlength{\rightskip}{0pt plus 5cm}static {\bf KEY} get\_\-key\_\-from\_\-buff (void)\hspace{0.3cm}{\ttfamily  [static]}}\label{keyboard_8c_a634e36eab86a3bc50aee821b3770742e}
+Funkce pro výběr klávesy z bufferu. Při výběru je nutné posunout všechny prvky o jeden vpřed. \index{keyboard.c@{keyboard.c}!get\_\-spec@{get\_\-spec}}
+\index{get\_\-spec@{get\_\-spec}!keyboard.c@{keyboard.c}}
+\subsubsection[{get\_\-spec}]{\setlength{\rightskip}{0pt plus 5cm}char get\_\-spec (void)}\label{keyboard_8c_a6a0ab525eb476112b5b6259dd180cfa9}
+
+
+Funkce vrátí poslední přijatý stisk speciální klávesy. \index{keyboard.c@{keyboard.c}!keyb\_\-in\_\-buff@{keyb\_\-in\_\-buff}}
+\index{keyb\_\-in\_\-buff@{keyb\_\-in\_\-buff}!keyboard.c@{keyboard.c}}
+\subsubsection[{keyb\_\-in\_\-buff}]{\setlength{\rightskip}{0pt plus 5cm}void keyb\_\-in\_\-buff (char {\em flag}, \/  char {\em kod})}\label{keyboard_8c_a4b4fdc8611d94ae6541af55ff1c7140f}
+Funkce vloží do bufferu další klávesu. Funkce je definována v \doxyref{keyboard.h}{s.}{keyboard_8h} . Tím je umožněno Načítání kláves i z jiného zdroje než z klávesnice. 
+\begin{DoxyParams}{Parametry}
+\item[{\em flag}]Příznak typu klávesy.
+\begin{DoxyItemize}
+\item 0 : nic
+\item 1 : přijat char
+\item 2 : efko, šipka
+\end{DoxyItemize}\item[{\em kod}]Vlastní kód klávesy. \end{DoxyParams}
+\index{keyboard.c@{keyboard.c}!keyboard\_\-init@{keyboard\_\-init}}
+\index{keyboard\_\-init@{keyboard\_\-init}!keyboard.c@{keyboard.c}}
+\subsubsection[{keyboard\_\-init}]{\setlength{\rightskip}{0pt plus 5cm}void keyboard\_\-init (void)}\label{keyboard_8c_a5aae8263abc1dec4671638e7ed4af681}
+\index{keyboard.c@{keyboard.c}!keyboard\_\-recv\_\-watchdog@{keyboard\_\-recv\_\-watchdog}}
+\index{keyboard\_\-recv\_\-watchdog@{keyboard\_\-recv\_\-watchdog}!keyboard.c@{keyboard.c}}
+\subsubsection[{keyboard\_\-recv\_\-watchdog}]{\setlength{\rightskip}{0pt plus 5cm}void keyboard\_\-recv\_\-watchdog (void)}\label{keyboard_8c_a01edeb550d4a5e49474b974d03adf41e}
+V případě že během posledních pěti volání této funkce nedošlo k příjmu řádného bitu od klávesnice, (tedy pokud už dlouho nic nepřišlo) přeruší příjem posledního signálu a nastaví data\_\-counter na nulu používá se k řešení problému s s nesprávným přijetím zprávy a následným posunutím přijmu funkce přijme třeba jen polovinu bitů, ale neví že už je konec vysílání a když dorazí první polovina dalšího kódu, zapíše je jako druhou část předchozího. \index{keyboard.c@{keyboard.c}!SIGNAL@{SIGNAL}}
+\index{SIGNAL@{SIGNAL}!keyboard.c@{keyboard.c}}
+\subsubsection[{SIGNAL}]{\setlength{\rightskip}{0pt plus 5cm}SIGNAL (SIG\_\-INTERRUPT1)}\label{keyboard_8c_a1ac4291762bc07b651eae702323894fb}
+\index{keyboard.c@{keyboard.c}!zpracuj\_\-kod@{zpracuj\_\-kod}}
+\index{zpracuj\_\-kod@{zpracuj\_\-kod}!keyboard.c@{keyboard.c}}
+\subsubsection[{zpracuj\_\-kod}]{\setlength{\rightskip}{0pt plus 5cm}void zpracuj\_\-kod (char {\em c})}\label{keyboard_8c_a886e9a16dadc5bd9d5331a1ac3c028ae}
+Funkce na základě kódu přijatého z klávesnice vytváří kód pro funkce se kterými pracuje zbytek programu. V případě, že je stisknuta klávesa tisknutelného znaku, je čtecím funkcím poskytnuta jeho jeho ASCII hodnota. V případě stiskutí klávesy jiného typu je nastaven recive\_\-flag a funkce pro čtení běžných znaků ( \doxyref{get\_\-char()}{s.}{keyboard_8c_af0d08de095c0c6a062d084562f436b9e} ) nic nevrátí. Pro načtení kódu speciální klávesy je nutno použít funkci \doxyref{get\_\-spec()}{s.}{keyboard_8c_a6a0ab525eb476112b5b6259dd180cfa9}. 
+
+\subsection{Dokumentace proměnných}
+\index{keyboard.c@{keyboard.c}!data\_\-counter@{data\_\-counter}}
+\index{data\_\-counter@{data\_\-counter}!keyboard.c@{keyboard.c}}
+\subsubsection[{data\_\-counter}]{\setlength{\rightskip}{0pt plus 5cm}int8\_\-t {\bf data\_\-counter} = 0\hspace{0.3cm}{\ttfamily  [static]}}\label{keyboard_8c_a94962cd5e2de8fc881ffdac88fe81449}
+
+
+Počítadl bitů, které již přišly od klávesnice. \index{keyboard.c@{keyboard.c}!keyb\_\-buff@{keyb\_\-buff}}
+\index{keyb\_\-buff@{keyb\_\-buff}!keyboard.c@{keyboard.c}}
+\subsubsection[{keyb\_\-buff}]{\setlength{\rightskip}{0pt plus 5cm}{\bf KEY} {\bf keyb\_\-buff}[KEYB\_\-BUFF\_\-SIZE]\hspace{0.3cm}{\ttfamily  [static]}}\label{keyboard_8c_ac524b19ad362e0fe206ce5b3dae2e2fa}
+Buffer pro výstupní kódy. Pracuje se s ním prostřednictvím funkcí \doxyref{keyb\_\-in\_\-buff()}{s.}{keyboard_8c_a4b4fdc8611d94ae6541af55ff1c7140f} a \doxyref{get\_\-key\_\-from\_\-buff()}{s.}{keyboard_8c_a634e36eab86a3bc50aee821b3770742e}. Buffer je pole v němž jsou prvky typu \doxyref{key}{s.}{structkey} Buffer je implementován jako nekruhový. Je to z důodu ušetření několika málo bytů. Zvýření výpočetní náročnosti je nevýznamné, nebť velikost bufferu je celkem malá ( KEYB\_\-BUFF\_\-SIZE ). Posouvání každé položky o jedno místo při každém příchodu nové klávesy a každém čtení nezpomaluje běh programu. \index{keyboard.c@{keyboard.c}!keyb\_\-recv\_\-watchdog@{keyb\_\-recv\_\-watchdog}}
+\index{keyb\_\-recv\_\-watchdog@{keyb\_\-recv\_\-watchdog}!keyboard.c@{keyboard.c}}
+\subsubsection[{keyb\_\-recv\_\-watchdog}]{\setlength{\rightskip}{0pt plus 5cm}uint16\_\-t {\bf keyb\_\-recv\_\-watchdog} = 0\hspace{0.3cm}{\ttfamily  [static]}}\label{keyboard_8c_a0231eef69075ddf53fe8c05bce81235a}
+\index{keyboard.c@{keyboard.c}!minuly\_\-kod@{minuly\_\-kod}}
+\index{minuly\_\-kod@{minuly\_\-kod}!keyboard.c@{keyboard.c}}
+\subsubsection[{minuly\_\-kod}]{\setlength{\rightskip}{0pt plus 5cm}char {\bf minuly\_\-kod} = 0\hspace{0.3cm}{\ttfamily  [static]}}\label{keyboard_8c_ac879afe8e9548108268fe0d1360e58a6}
+\index{keyboard.c@{keyboard.c}!recivedc@{recivedc}}
+\index{recivedc@{recivedc}!keyboard.c@{keyboard.c}}
+\subsubsection[{recivedc}]{\setlength{\rightskip}{0pt plus 5cm}char {\bf recivedc} = 0\hspace{0.3cm}{\ttfamily  [static]}}\label{keyboard_8c_a89959d68e404325764357ceceab9b4e6}
+
+
+Střadač bitů. 

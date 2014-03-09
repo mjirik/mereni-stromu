@@ -1,30 +1,42 @@
-main.o: main.c main.h usart.h irc.h eeprom.h measure.h lcd.h convert.h \
-  data.h gui.h error.h keyboard.h dat_scr.h buttons.h watchdog.h
+build/main.o: main.c main.h usart.h common/msgn.h irc.h irc2.h eeprom.h \
+  lcd.h convert.h error.h common/errn.h keyboard.h buttons.h watchdog.h \
+  inout.h default_scr.h memory.h sysinfo.h common/sysinfo_flag.h \
+  common\msgn.h
 
 main.h:
 
 usart.h:
 
+common/msgn.h:
+
 irc.h:
 
-eeprom.h:
+irc2.h:
 
-measure.h:
+eeprom.h:
 
 lcd.h:
 
 convert.h:
 
-data.h:
-
-gui.h:
-
 error.h:
 
-keyboard.h:
+common/errn.h:
 
-dat_scr.h:
+keyboard.h:
 
 buttons.h:
 
 watchdog.h:
+
+inout.h:
+
+default_scr.h:
+
+memory.h:
+
+sysinfo.h:
+
+common/sysinfo_flag.h:
+
+common\msgn.h:

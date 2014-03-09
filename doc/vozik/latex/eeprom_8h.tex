@@ -1,0 +1,135 @@
+\section{Dokumentace souboru eeprom.h}
+\label{eeprom_8h}\index{eeprom.h@{eeprom.h}}
+\subsection*{Definice maker}
+\begin{DoxyCompactItemize}
+\item 
+\#define {\bf ee\_\-irc\_\-counter\_\-size}~4
+\item 
+\#define {\bf ee\_\-irc\_\-k\_\-size}~2
+\item 
+\#define {\bf ee\_\-irc\_\-set\_\-on\_\-value\_\-size}~4
+\item 
+\#define {\bf ee\_\-width\_\-src\_\-size}~1
+\item 
+\#define {\bf ee\_\-flag\_\-size}~1
+\item 
+\#define {\bf ee\_\-lst\_\-size}~9$\ast$16
+\item 
+\#define {\bf ee\_\-data\_\-size}~105$\ast$7
+\item 
+\#define {\bf ee\_\-irc\_\-counter}~0
+\item 
+\#define {\bf ee\_\-irc\_\-k}~(ee\_\-irc\_\-counter + ee\_\-irc\_\-counter\_\-size)
+\item 
+\#define {\bf ee\_\-irc\_\-set\_\-on\_\-value}~(ee\_\-irc\_\-k + ee\_\-irc\_\-k\_\-size)
+\item 
+\#define {\bf ee\_\-width\_\-src}~(ee\_\-irc\_\-set\_\-on\_\-value + ee\_\-irc\_\-set\_\-on\_\-value\_\-size)
+\item 
+\#define {\bf ee\_\-flag}~(ee\_\-width\_\-src + ee\_\-width\_\-src\_\-size)
+\item 
+\#define {\bf ee\_\-lst}~(ee\_\-flag + ee\_\-flag\_\-size)
+\item 
+\#define {\bf ee\_\-data}~(ee\_\-lst + ee\_\-lst\_\-size)
+\end{DoxyCompactItemize}
+\subsection*{Funkce}
+\begin{DoxyCompactItemize}
+\item 
+void {\bf eeprom\_\-load} (void)
+\item 
+void {\bf eeprom\_\-save} (void)
+\item 
+char {\bf eeprom\_\-r8} (void $\ast$uiAddress)
+\item 
+void {\bf eeprom\_\-w8} (void $\ast$uiAddress, uint8\_\-t c)
+\item 
+void {\bf eeprom\_\-w16} (void $\ast$uiAddress, uint16\_\-t word)
+\item 
+uint16\_\-t {\bf eeprom\_\-r16} (void $\ast$uiAddress)
+\item 
+void {\bf eeprom\_\-w32} (void $\ast$uiAddress, uint32\_\-t data)
+\item 
+uint32\_\-t {\bf eeprom\_\-r32} (void $\ast$uiAddress)
+\end{DoxyCompactItemize}
+\subsection*{Proměnné}
+\begin{DoxyCompactItemize}
+\item 
+unsigned char {\bf width\_\-src}
+\end{DoxyCompactItemize}
+
+
+\subsection{Dokumentace k definicím maker}
+\index{eeprom.h@{eeprom.h}!ee\_\-data@{ee\_\-data}}
+\index{ee\_\-data@{ee\_\-data}!eeprom.h@{eeprom.h}}
+\subsubsection[{ee\_\-data}]{\setlength{\rightskip}{0pt plus 5cm}\#define ee\_\-data~(ee\_\-lst + ee\_\-lst\_\-size)}\label{eeprom_8h_abf76ff63503b998e2fadf9dc86df16c0}
+\index{eeprom.h@{eeprom.h}!ee\_\-data\_\-size@{ee\_\-data\_\-size}}
+\index{ee\_\-data\_\-size@{ee\_\-data\_\-size}!eeprom.h@{eeprom.h}}
+\subsubsection[{ee\_\-data\_\-size}]{\setlength{\rightskip}{0pt plus 5cm}\#define ee\_\-data\_\-size~105$\ast$7}\label{eeprom_8h_a4737983a3c375cf206f43a824e86c954}
+\index{eeprom.h@{eeprom.h}!ee\_\-flag@{ee\_\-flag}}
+\index{ee\_\-flag@{ee\_\-flag}!eeprom.h@{eeprom.h}}
+\subsubsection[{ee\_\-flag}]{\setlength{\rightskip}{0pt plus 5cm}\#define ee\_\-flag~(ee\_\-width\_\-src + ee\_\-width\_\-src\_\-size)}\label{eeprom_8h_af950e674ba924e46f868f0e0e466dafa}
+\index{eeprom.h@{eeprom.h}!ee\_\-flag\_\-size@{ee\_\-flag\_\-size}}
+\index{ee\_\-flag\_\-size@{ee\_\-flag\_\-size}!eeprom.h@{eeprom.h}}
+\subsubsection[{ee\_\-flag\_\-size}]{\setlength{\rightskip}{0pt plus 5cm}\#define ee\_\-flag\_\-size~1}\label{eeprom_8h_aaed292bd7b9e8d197d31f57c95c36c85}
+\index{eeprom.h@{eeprom.h}!ee\_\-irc\_\-counter@{ee\_\-irc\_\-counter}}
+\index{ee\_\-irc\_\-counter@{ee\_\-irc\_\-counter}!eeprom.h@{eeprom.h}}
+\subsubsection[{ee\_\-irc\_\-counter}]{\setlength{\rightskip}{0pt plus 5cm}\#define ee\_\-irc\_\-counter~0}\label{eeprom_8h_a7e7f16f7f5faef1189e2c269718a8366}
+\index{eeprom.h@{eeprom.h}!ee\_\-irc\_\-counter\_\-size@{ee\_\-irc\_\-counter\_\-size}}
+\index{ee\_\-irc\_\-counter\_\-size@{ee\_\-irc\_\-counter\_\-size}!eeprom.h@{eeprom.h}}
+\subsubsection[{ee\_\-irc\_\-counter\_\-size}]{\setlength{\rightskip}{0pt plus 5cm}\#define ee\_\-irc\_\-counter\_\-size~4}\label{eeprom_8h_abc14ad542a25cb181424ac5129cabc66}
+\index{eeprom.h@{eeprom.h}!ee\_\-irc\_\-k@{ee\_\-irc\_\-k}}
+\index{ee\_\-irc\_\-k@{ee\_\-irc\_\-k}!eeprom.h@{eeprom.h}}
+\subsubsection[{ee\_\-irc\_\-k}]{\setlength{\rightskip}{0pt plus 5cm}\#define ee\_\-irc\_\-k~(ee\_\-irc\_\-counter + ee\_\-irc\_\-counter\_\-size)}\label{eeprom_8h_ab448aa04f20455aba896df38be5e0c7f}
+\index{eeprom.h@{eeprom.h}!ee\_\-irc\_\-k\_\-size@{ee\_\-irc\_\-k\_\-size}}
+\index{ee\_\-irc\_\-k\_\-size@{ee\_\-irc\_\-k\_\-size}!eeprom.h@{eeprom.h}}
+\subsubsection[{ee\_\-irc\_\-k\_\-size}]{\setlength{\rightskip}{0pt plus 5cm}\#define ee\_\-irc\_\-k\_\-size~2}\label{eeprom_8h_a9b87dadec373be2f2c4b7a372a9d7d02}
+\index{eeprom.h@{eeprom.h}!ee\_\-irc\_\-set\_\-on\_\-value@{ee\_\-irc\_\-set\_\-on\_\-value}}
+\index{ee\_\-irc\_\-set\_\-on\_\-value@{ee\_\-irc\_\-set\_\-on\_\-value}!eeprom.h@{eeprom.h}}
+\subsubsection[{ee\_\-irc\_\-set\_\-on\_\-value}]{\setlength{\rightskip}{0pt plus 5cm}\#define ee\_\-irc\_\-set\_\-on\_\-value~(ee\_\-irc\_\-k + ee\_\-irc\_\-k\_\-size)}\label{eeprom_8h_a38dc747d14591ede830e78c5f2ae6440}
+\index{eeprom.h@{eeprom.h}!ee\_\-irc\_\-set\_\-on\_\-value\_\-size@{ee\_\-irc\_\-set\_\-on\_\-value\_\-size}}
+\index{ee\_\-irc\_\-set\_\-on\_\-value\_\-size@{ee\_\-irc\_\-set\_\-on\_\-value\_\-size}!eeprom.h@{eeprom.h}}
+\subsubsection[{ee\_\-irc\_\-set\_\-on\_\-value\_\-size}]{\setlength{\rightskip}{0pt plus 5cm}\#define ee\_\-irc\_\-set\_\-on\_\-value\_\-size~4}\label{eeprom_8h_a2e817c573e3752b1a87da64339692358}
+\index{eeprom.h@{eeprom.h}!ee\_\-lst@{ee\_\-lst}}
+\index{ee\_\-lst@{ee\_\-lst}!eeprom.h@{eeprom.h}}
+\subsubsection[{ee\_\-lst}]{\setlength{\rightskip}{0pt plus 5cm}\#define ee\_\-lst~(ee\_\-flag + ee\_\-flag\_\-size)}\label{eeprom_8h_a46ea9e83c7b9a3440d201e9d7b82b3b8}
+\index{eeprom.h@{eeprom.h}!ee\_\-lst\_\-size@{ee\_\-lst\_\-size}}
+\index{ee\_\-lst\_\-size@{ee\_\-lst\_\-size}!eeprom.h@{eeprom.h}}
+\subsubsection[{ee\_\-lst\_\-size}]{\setlength{\rightskip}{0pt plus 5cm}\#define ee\_\-lst\_\-size~9$\ast$16}\label{eeprom_8h_aeb95ebd6bd902b30e4380b707537f57c}
+\index{eeprom.h@{eeprom.h}!ee\_\-width\_\-src@{ee\_\-width\_\-src}}
+\index{ee\_\-width\_\-src@{ee\_\-width\_\-src}!eeprom.h@{eeprom.h}}
+\subsubsection[{ee\_\-width\_\-src}]{\setlength{\rightskip}{0pt plus 5cm}\#define ee\_\-width\_\-src~(ee\_\-irc\_\-set\_\-on\_\-value + ee\_\-irc\_\-set\_\-on\_\-value\_\-size)}\label{eeprom_8h_ad22ea911935c9edc5c6debab5abc3b6a}
+\index{eeprom.h@{eeprom.h}!ee\_\-width\_\-src\_\-size@{ee\_\-width\_\-src\_\-size}}
+\index{ee\_\-width\_\-src\_\-size@{ee\_\-width\_\-src\_\-size}!eeprom.h@{eeprom.h}}
+\subsubsection[{ee\_\-width\_\-src\_\-size}]{\setlength{\rightskip}{0pt plus 5cm}\#define ee\_\-width\_\-src\_\-size~1}\label{eeprom_8h_a0278d146c749aace1329b06ab183fb4e}
+
+
+\subsection{Dokumentace funkcí}
+\index{eeprom.h@{eeprom.h}!eeprom\_\-load@{eeprom\_\-load}}
+\index{eeprom\_\-load@{eeprom\_\-load}!eeprom.h@{eeprom.h}}
+\subsubsection[{eeprom\_\-load}]{\setlength{\rightskip}{0pt plus 5cm}void eeprom\_\-load (void)}\label{eeprom_8h_ac2c42f2dcbb794e911c7640d3fe24bb6}
+\index{eeprom.h@{eeprom.h}!eeprom\_\-r16@{eeprom\_\-r16}}
+\index{eeprom\_\-r16@{eeprom\_\-r16}!eeprom.h@{eeprom.h}}
+\subsubsection[{eeprom\_\-r16}]{\setlength{\rightskip}{0pt plus 5cm}uint16\_\-t eeprom\_\-r16 (void $\ast$ {\em uiAddress})}\label{eeprom_8h_abe13ae00e4d18d600c9fb3b007f33a40}
+\index{eeprom.h@{eeprom.h}!eeprom\_\-r32@{eeprom\_\-r32}}
+\index{eeprom\_\-r32@{eeprom\_\-r32}!eeprom.h@{eeprom.h}}
+\subsubsection[{eeprom\_\-r32}]{\setlength{\rightskip}{0pt plus 5cm}uint32\_\-t eeprom\_\-r32 (void $\ast$ {\em uiAddress})}\label{eeprom_8h_a7879f50820ed839b1a3f83c3e6d5294d}
+\index{eeprom.h@{eeprom.h}!eeprom\_\-r8@{eeprom\_\-r8}}
+\index{eeprom\_\-r8@{eeprom\_\-r8}!eeprom.h@{eeprom.h}}
+\subsubsection[{eeprom\_\-r8}]{\setlength{\rightskip}{0pt plus 5cm}char eeprom\_\-r8 (void $\ast$ {\em uiAddress})}\label{eeprom_8h_aaf8e0160a22f011071c6eef05108dd02}
+\index{eeprom.h@{eeprom.h}!eeprom\_\-save@{eeprom\_\-save}}
+\index{eeprom\_\-save@{eeprom\_\-save}!eeprom.h@{eeprom.h}}
+\subsubsection[{eeprom\_\-save}]{\setlength{\rightskip}{0pt plus 5cm}void eeprom\_\-save (void)}\label{eeprom_8h_a967222c6b1a76007b1656eca35ff7c08}
+\index{eeprom.h@{eeprom.h}!eeprom\_\-w16@{eeprom\_\-w16}}
+\index{eeprom\_\-w16@{eeprom\_\-w16}!eeprom.h@{eeprom.h}}
+\subsubsection[{eeprom\_\-w16}]{\setlength{\rightskip}{0pt plus 5cm}void eeprom\_\-w16 (void $\ast$ {\em uiAddress}, \/  uint16\_\-t {\em word})}\label{eeprom_8h_aacd26e87298620ea075952631cdfe66a}
+\index{eeprom.h@{eeprom.h}!eeprom\_\-w32@{eeprom\_\-w32}}
+\index{eeprom\_\-w32@{eeprom\_\-w32}!eeprom.h@{eeprom.h}}
+\subsubsection[{eeprom\_\-w32}]{\setlength{\rightskip}{0pt plus 5cm}void eeprom\_\-w32 (void $\ast$ {\em uiAddress}, \/  uint32\_\-t {\em data})}\label{eeprom_8h_af83bc20fbdc5083109537fd2db28fa13}
+\index{eeprom.h@{eeprom.h}!eeprom\_\-w8@{eeprom\_\-w8}}
+\index{eeprom\_\-w8@{eeprom\_\-w8}!eeprom.h@{eeprom.h}}
+\subsubsection[{eeprom\_\-w8}]{\setlength{\rightskip}{0pt plus 5cm}void eeprom\_\-w8 (void $\ast$ {\em uiAddress}, \/  uint8\_\-t {\em c})}\label{eeprom_8h_ab66d92098db926da6dd7f28c9886d884}
+
+
+\subsection{Dokumentace proměnných}
+\index{eeprom.h@{eeprom.h}!width\_\-src@{width\_\-src}}
+\index{width\_\-src@{width\_\-src}!eeprom.h@{eeprom.h}}
+\subsubsection[{width\_\-src}]{\setlength{\rightskip}{0pt plus 5cm}unsigned char {\bf width\_\-src}}\label{eeprom_8h_a438d690afcf99fcf144f660af7e2cddc}

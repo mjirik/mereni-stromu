@@ -1,4 +1,4 @@
-port = /dev/ttyS0
+port = com2
 db_user = root
 db_psswd = moje.heslo
 irc_vozik_otacka_cm = 50.0

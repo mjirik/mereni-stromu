@@ -1,0 +1,126 @@
+\section{Dokumentace souboru usart.h}
+\label{usart_8h}\index{usart.h@{usart.h}}
+\subsection*{Definice maker}
+\begin{DoxyCompactItemize}
+\item 
+\#define {\bf DATASIZE}~10
+\item 
+\#define {\bf LenOfMsg}~DATASIZE + 1
+\item 
+\#define {\bf LenOfRecvBuff}~2 + DATASIZE + 1 + (DATASIZE / 2)
+\item 
+\#define {\bf LenOfTransBuff}~2 + DATASIZE + 1 + (DATASIZE / 2)
+\item 
+\#define {\bf LCD\_\-NBYTES}~10
+\end{DoxyCompactItemize}
+\subsection*{Funkce}
+\begin{DoxyCompactItemize}
+\item 
+void {\bf USART\_\-Init} (unsigned int baud)
+\item 
+void {\bf new\_\-msg} (char $\ast$)
+\item 
+void {\bf new\_\-ack\_\-msg} (char $\ast$msg, unsigned char repeats, void($\ast$p\_\-fcn)(char $\ast$s), void($\ast$p\_\-fcn\_\-nresponse)(void))
+\item 
+void {\bf msg\_\-ack\_\-fcn} (char $\ast$msg)
+\item 
+void {\bf serial\_\-msg\_\-ack\_\-timer} (void)
+\item 
+void {\bf new\_\-msg\_\-P} (PGM\_\-P s\_\-p)
+\item 
+char {\bf usart\_\-get\_\-recv\_\-buff} (int i)
+\begin{DoxyCompactList}\small\item\em Funkce vrací příslušný znak z přijímacího bufferu sériového kanálu. \item\end{DoxyCompactList}\item 
+void {\bf send\_\-uint16} (char msgn, uint16\_\-t number1, uint16\_\-t number2)
+\item 
+void {\bf msg\_\-time\_\-0} (void)
+\begin{DoxyCompactList}\small\item\em Funkce nuluje počítadlo. \item\end{DoxyCompactList}\item 
+void {\bf msg\_\-time\_\-pp} (void)
+\begin{DoxyCompactList}\small\item\em funkce inkrementuje počítadlo od poslední doručené zprávy \item\end{DoxyCompactList}\item 
+uint32\_\-t {\bf get\_\-msg\_\-time} (void)
+\begin{DoxyCompactList}\small\item\em funkce vrací hodnotu počítadla \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Proměnné}
+\begin{DoxyCompactItemize}
+\item 
+uint32\_\-t {\bf msg\_\-time}
+\end{DoxyCompactItemize}
+
+
+\subsection{Dokumentace k definicím maker}
+\index{usart.h@{usart.h}!DATASIZE@{DATASIZE}}
+\index{DATASIZE@{DATASIZE}!usart.h@{usart.h}}
+\subsubsection[{DATASIZE}]{\setlength{\rightskip}{0pt plus 5cm}\#define DATASIZE~10}\label{usart_8h_acb383144a04ad304680b840cd65af5a5}
+Velikost dat -\/ sta�� zm�nit zde \index{usart.h@{usart.h}!LCD\_\-NBYTES@{LCD\_\-NBYTES}}
+\index{LCD\_\-NBYTES@{LCD\_\-NBYTES}!usart.h@{usart.h}}
+\subsubsection[{LCD\_\-NBYTES}]{\setlength{\rightskip}{0pt plus 5cm}\#define LCD\_\-NBYTES~10}\label{usart_8h_ae86b88ffc9a31c1fea5b564c0aadbadb}
+počet bytů LCD odesílaných po sériové lince. Musí být menší nebo roven DATASIZE \index{usart.h@{usart.h}!LenOfMsg@{LenOfMsg}}
+\index{LenOfMsg@{LenOfMsg}!usart.h@{usart.h}}
+\subsubsection[{LenOfMsg}]{\setlength{\rightskip}{0pt plus 5cm}\#define LenOfMsg~DATASIZE + 1}\label{usart_8h_a3225b26e3c8329d83e786c441799c2d2}
+Délka zprávy \index{usart.h@{usart.h}!LenOfRecvBuff@{LenOfRecvBuff}}
+\index{LenOfRecvBuff@{LenOfRecvBuff}!usart.h@{usart.h}}
+\subsubsection[{LenOfRecvBuff}]{\setlength{\rightskip}{0pt plus 5cm}\#define LenOfRecvBuff~2 + DATASIZE + 1 + (DATASIZE / 2)}\label{usart_8h_a917d375e0dd558c0164221a1a0a75a97}
+Délka přijímacího bufferu \index{usart.h@{usart.h}!LenOfTransBuff@{LenOfTransBuff}}
+\index{LenOfTransBuff@{LenOfTransBuff}!usart.h@{usart.h}}
+\subsubsection[{LenOfTransBuff}]{\setlength{\rightskip}{0pt plus 5cm}\#define LenOfTransBuff~2 + DATASIZE + 1 + (DATASIZE / 2)}\label{usart_8h_ad24ac1262ed4066d12091ee2d4b640ca}
+Délka bufferu pro odeslání 
+
+\subsection{Dokumentace funkcí}
+\index{usart.h@{usart.h}!get\_\-msg\_\-time@{get\_\-msg\_\-time}}
+\index{get\_\-msg\_\-time@{get\_\-msg\_\-time}!usart.h@{usart.h}}
+\subsubsection[{get\_\-msg\_\-time}]{\setlength{\rightskip}{0pt plus 5cm}uint32\_\-t get\_\-msg\_\-time (void)}\label{usart_8h_ac615ce8c07d61bbd036d865021d0535b}
+
+
+funkce vrací hodnotu počítadla \index{usart.h@{usart.h}!msg\_\-ack\_\-fcn@{msg\_\-ack\_\-fcn}}
+\index{msg\_\-ack\_\-fcn@{msg\_\-ack\_\-fcn}!usart.h@{usart.h}}
+\subsubsection[{msg\_\-ack\_\-fcn}]{\setlength{\rightskip}{0pt plus 5cm}void msg\_\-ack\_\-fcn (char $\ast$ {\em msg})}\label{usart_8h_a2c55776d951e70bb73e5b15621e30361}
+Funkce je volána při příjmu potvrzovací zprávy. Zavolá funkci, která má být volána po potvrzení. \index{usart.h@{usart.h}!msg\_\-time\_\-0@{msg\_\-time\_\-0}}
+\index{msg\_\-time\_\-0@{msg\_\-time\_\-0}!usart.h@{usart.h}}
+\subsubsection[{msg\_\-time\_\-0}]{\setlength{\rightskip}{0pt plus 5cm}void msg\_\-time\_\-0 (void)}\label{usart_8h_a0405ce6027c0b29fe71ec8a995df096f}
+
+
+Funkce nuluje počítadlo. \index{usart.h@{usart.h}!msg\_\-time\_\-pp@{msg\_\-time\_\-pp}}
+\index{msg\_\-time\_\-pp@{msg\_\-time\_\-pp}!usart.h@{usart.h}}
+\subsubsection[{msg\_\-time\_\-pp}]{\setlength{\rightskip}{0pt plus 5cm}void msg\_\-time\_\-pp (void)}\label{usart_8h_a170941d619f0e1bbf13ec95111cecb19}
+
+
+funkce inkrementuje počítadlo od poslední doručené zprávy \index{usart.h@{usart.h}!new\_\-ack\_\-msg@{new\_\-ack\_\-msg}}
+\index{new\_\-ack\_\-msg@{new\_\-ack\_\-msg}!usart.h@{usart.h}}
+\subsubsection[{new\_\-ack\_\-msg}]{\setlength{\rightskip}{0pt plus 5cm}void new\_\-ack\_\-msg (char $\ast$ {\em msg}, \/  unsigned char {\em repeats}, \/  void($\ast$)(char $\ast$s) {\em p\_\-fcn}, \/  void($\ast$)(void) {\em p\_\-fcn\_\-nresponse})}\label{usart_8h_aece32bc3ab3397ea8202203edf547eb2}
+Funkce odešlě zprávu, na kterou je očekávána odpověď. V okamžiku, kdy odpověď přijde, bude zavolána funkce v argumentu (fcn).
+
+
+\begin{DoxyParams}{Parametry}
+\item[{\em msg}]Parametr je ukazatelem na žeťezec, který bude tvořit zprávu. Na tuto zprávu bude očekávána odpověď.\item[{\em repeats}]Parametr určuje počet pokusů o odeslání zprávy.\item[{\em p\_\-fcn}]Ukazatel na funkci, která je spouštěna při odpovědi na na zprávu. Nesmí být NULL, pak by nefungoval časovač, který toto testuje.\item[{\em p\_\-fcn\_\-nresponse}]Ukazatel na funkci, která bude volána v případě neúpěšného čekání na odpověď.\end{DoxyParams}
+\begin{Desc}
+\item[{\bf Chyba}]Podezření na chyby v uvolňování paměti. Při opakovaném odeslání asi dochází k uvolnění paměti po řetězci msg, při dalším odesílání se však odesílají data opět z ukazatele msg, která jsou však již uvolněná.\end{Desc}
+\index{usart.h@{usart.h}!new\_\-msg@{new\_\-msg}}
+\index{new\_\-msg@{new\_\-msg}!usart.h@{usart.h}}
+\subsubsection[{new\_\-msg}]{\setlength{\rightskip}{0pt plus 5cm}void new\_\-msg (char $\ast$ {\em msg})}\label{usart_8h_af7f7e8050594c5346c22172e19d3c193}
+Vstupem do teto funkce je ukazatel na zpravu pokud se ukazatel uz v seznamu nenachazi, tak je zarazen na konec seznamu. Prostor musí být správně naalokovaný. Po odeslání zprávy je paměť uvolněna. \index{usart.h@{usart.h}!new\_\-msg\_\-P@{new\_\-msg\_\-P}}
+\index{new\_\-msg\_\-P@{new\_\-msg\_\-P}!usart.h@{usart.h}}
+\subsubsection[{new\_\-msg\_\-P}]{\setlength{\rightskip}{0pt plus 5cm}void new\_\-msg\_\-P (PGM\_\-P {\em s\_\-p})}\label{usart_8h_a2da7b3916466fa7fbf44b68406ee9b76}
+Funkce slouží k odesílání zpráv, které jsou uloženy v paměti programu. Funkce naalokuje paměť pro uložení řetězce do SRAM, řetězec tam zkopíruje a zprávu odešle 
+\begin{DoxyParams}{Parametry}
+\item[{\em s\_\-p}]Ukazatel do programové paměti. \end{DoxyParams}
+\begin{DoxyReturn}{Návratová hodnota}
+Ukazatel v paměti SRAM, kam je zkopírován řetězec z {\itshape s\_\-p\/} 
+\end{DoxyReturn}
+\index{usart.h@{usart.h}!send\_\-uint16@{send\_\-uint16}}
+\index{send\_\-uint16@{send\_\-uint16}!usart.h@{usart.h}}
+\subsubsection[{send\_\-uint16}]{\setlength{\rightskip}{0pt plus 5cm}void send\_\-uint16 (char {\em msgn}, \/  uint16\_\-t {\em number1}, \/  uint16\_\-t {\em number2})}\label{usart_8h_aae4c07a844ed5fbcb7284bc9cd8b2831}
+Funkce odešle jedno až dvě čísla uint16 po sériové lince \index{usart.h@{usart.h}!serial\_\-msg\_\-ack\_\-timer@{serial\_\-msg\_\-ack\_\-timer}}
+\index{serial\_\-msg\_\-ack\_\-timer@{serial\_\-msg\_\-ack\_\-timer}!usart.h@{usart.h}}
+\subsubsection[{serial\_\-msg\_\-ack\_\-timer}]{\setlength{\rightskip}{0pt plus 5cm}void serial\_\-msg\_\-ack\_\-timer (void)}\label{usart_8h_aeeeece096429d4491b2992685be8f0c6}
+Zde je išetřeno čekání na potvrzovanou zprávu. Funkce zobsluhuje čítač doby čekání na odezvu zprávy a čítač počtu pokusů o odeslání. Na odpověď na každou potvrzovanou zprávu se čeká MAX\_\-MSG\_\-ACK\_\-DELAY cyklů. Po uplynutí této doby je zpráva zopakována. Po MAX\_\-MSG\_\-ACK\_\-REPEATS -\/ tém opakování je vytvořen error. \index{usart.h@{usart.h}!usart\_\-get\_\-recv\_\-buff@{usart\_\-get\_\-recv\_\-buff}}
+\index{usart\_\-get\_\-recv\_\-buff@{usart\_\-get\_\-recv\_\-buff}!usart.h@{usart.h}}
+\subsubsection[{usart\_\-get\_\-recv\_\-buff}]{\setlength{\rightskip}{0pt plus 5cm}char usart\_\-get\_\-recv\_\-buff (int {\em i})}\label{usart_8h_a5ac8e318d028590a813919560a120742}
+
+
+Funkce vrací příslušný znak z přijímacího bufferu sériového kanálu. \index{usart.h@{usart.h}!USART\_\-Init@{USART\_\-Init}}
+\index{USART\_\-Init@{USART\_\-Init}!usart.h@{usart.h}}
+\subsubsection[{USART\_\-Init}]{\setlength{\rightskip}{0pt plus 5cm}void USART\_\-Init (unsigned int {\em baud})}\label{usart_8h_ac6ebeb4ed2c70b120906228519a9c246}
+Inicializace usartu 
+
+\subsection{Dokumentace proměnných}
+\index{usart.h@{usart.h}!msg\_\-time@{msg\_\-time}}
+\index{msg\_\-time@{msg\_\-time}!usart.h@{usart.h}}
+\subsubsection[{msg\_\-time}]{\setlength{\rightskip}{0pt plus 5cm}uint32\_\-t {\bf msg\_\-time}}\label{usart_8h_a35cefd336a24746f2d8203c9fabf54c6}

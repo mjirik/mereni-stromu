@@ -1,0 +1,91 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<title>Zařízení na vozíku pro projekt měření objemu stromů: Manuál obsluhy</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<!-- Generováno programem Doxygen 1.6.1 -->
+<div class="navigation" id="top">
+  <div class="tabs">
+    <ul>
+      <li><a href="index.html"><span>Hlavní&nbsp;stránka</span></a></li>
+      <li class="current"><a href="pages.html"><span>Ostatní&nbsp;stránky</span></a></li>
+      <li><a href="annotated.html"><span>Třídy</span></a></li>
+      <li><a href="files.html"><span>Soubory</span></a></li>
+    </ul>
+  </div>
+</div>
+<div class="contents">
+
+
+<h1><a class="anchor" id="Manual">Manuál obsluhy </a></h1><h2><a class="anchor" id="uvod">
+Úvod</a></h2>
+<p>Tyto manuálové stránky patří do rukou obsluhy systému automatického měření objěmu stromů. Měřící systém je rozdělen na dvě části:</p>
+<ul>
+<li>část pro získání dat</li>
+<li>část pro zpracování dat</li>
+</ul>
+<p>Zařízení zajišťující získání dat se nalézá v prostorách pily, zpracování je prováděno prostřednictvím webové aplikace provozované na serveru v administrační budově.</p>
+<p>Zařízení sloužící ke sběru dat se skládá z:</p>
+<ul>
+<li>inkrementálního čidla pro měření polohy přítlačného válce</li>
+<li>magnetického čidla pro získání referenční vzdálenosti</li>
+<li>měřcí lišty pro měření vodorovného průměru</li>
+<li>krabice s elektronikou pro vyhodnocení dat získaných výše zmíněnými prostředky</li>
+<li>inkrementálním čidlem pro získání polohy vozíku</li>
+<li>magnetického čidla pro získání referenční vzdálenosti</li>
+<li>hlavní obslužné jednotky, která zajišťuje zpracování dat a jejich bezpečné odeslání na server.</li>
+</ul>
+<h2><a class="anchor" id="proces_mereni">
+Proces měření</a></h2>
+<p>Měření je zahájeno stisknutím příslušného tlačítka. V ten okamžik je naměřena vzdálenost vozíku od katru a ta je dále považována za délku řezaného kmene. Jak je strom postupně rozžezáván je průběžně měřen jeho svislý i vodorovný průměr. Po ukončení měření je z průběžně získaných dat vypočítána hodnota středového průměru.</p>
+<p>V případě, že se vozík přestane pohybovat s řezanou kládou nelze v měření pokračovat. V okamžiku kdy se začne vozík pohybovat vzad, je měření automaticky přerušeno. Pokud již bylo získáno dostatek dat, je z nich vypočítán průměr a data jsou zaznamenána. V opačném případě je měření neúspěšné a je vypsána chybová hláška a data jsou ztracena.</p>
+<h2><a class="anchor" id="obsluzna_jednotka">
+Uživatelské rozhraní obslužné jednotky</a></h2>
+<p>Obslužná jednotka komunikuje s uživatelem prostřednicvím panelu , který obsahuje LCD displej a několik tlačítek. K systému je dále připojena klávesnice, která slouží zejména pro zadávání jmen zákazníků.</p>
+<p>K ovkádání většiny funckí postačuje sedmice tlačítek v okolí displeje.</p>
+<ul>
+<li>tlačítko "ODESLAT" slouží pro odesílání naměřených dat na server</li>
+<li>tlačítko "START" je určeno pro zahájení procesu měření</li>
+<li>tlačítko "STOP" přeruší probíhající měření</li>
+<li>tlačítka šipek slouří pro ovládání kurzoru</li>
+<li>tlačítko "OK" slouší pro potvrzování</li>
+<li>tlačítko "ZRUŠIT" je určeno pro přerušení akce, návrat k předchozí obrazovce atd.</li>
+</ul>
+<p>Horní tři tlačítka (ODESLAT, START, STOP) pracují ve všech režimech stejně.</p>
+<p>Po stisknutí tlačítka "ODESLAT" se ovládací jednotka pokusí odeslat dosud naměřená data na server. V případě úspěchu je vypsána hláška oznamující úspěšné odeslání a dosud naměřená data jsou uvolněna z paměti. V případě, že server něběží, nebo v případě jiné poruchy je zobrazena příslušná chybová zpráva.</p>
+<p>Tlačíto "START" slouží pro zahájení měření. Je změřena vzdálenost vozíku od katru a je považována za délku měřeného stromu. Je proto nutné, aby bylo stiskuto v okamžiku, kdy je měený kmen v těsné blízkosti katru. Další měření je možné zahájit až po ukončení předchozího měření.</p>
+<p>Tlačítko "STOP" je určeno pro přerušení probíhajícího měření. Po jeho stisknutí jsou dosud získaná data ztracena a systém je připraven měřit znova.</p>
+<p>Uživatelské rozhraní je tvořeno několika obrazovkami:</p>
+<ul>
+<li>obrazovka měření</li>
+<li>obrazovka naměžených dat</li>
+<li>obrazovka zákazníků</li>
+<li>obrazovka pro výpis chyb</li>
+</ul>
+<h3><a class="anchor" id="obrazovka_mereni">
+Obrazovka měření</a></h3>
+<p>Tato obrazovka zobrazuje nejdůležitější informace z probíhajícího měření a umožňuje nastavit informace pro určení ceny za rozřezání.</p>
+<p>V levé části je menu, jehož prostřednictvím lze nastavit, zda bude daný kmen účtován jako manipulovaný, zda jde dvakrát katrem, atd. Volba se provádí tak, že se šipkami přemístí kurzor k příslušné položce a postupným stiskáváním tlačítka "OK" je hodnota položky měněna. V případě vybrání jména zákazníka, dojde k přepnutí do obrazovky zákazníků, pokud je zvolena položka "Data", zobrazí se obrazovka s naměřenými daty.</p>
+<h3><a class="anchor" id="obrazovka_data">
+Obrazovka naměřených dat</a></h3>
+<p>Zde jsou zobrazena všechna změřená měření (s výjimkou toho, které ještě nebylo dokončeno). Informace pro výpočet ceny lze dodatečně upravovat. K tomu je nutno navolit šipkami příslušný řádek a stisknout tlačítko "OK". Kurzor se přesune mezi jednotlivé položky (zákazník, druh dřeva, atd.). Tlačítkem "OK" lze položky měnit. Tlačítkem "ZRUŠIT" se opouští úprava tohoto řádku. Pro úplné opuštění obrazovky s daty stačí opět stisknou tlačítko "ZRUŠIT".</p>
+<h3><a class="anchor" id="obrazovka_zakaznici">
+Obrazovka zákazníků</a></h3>
+<h3><a class="anchor" id="obrazovka_setup">
+Obrazovka nastavení parametrů</a></h3>
+<p>Pro vyvolání obrazovky je nutno přesunout kurzor na položku data a pak stisknout klávesu F6.</p>
+<p>v_irc_k Multiplikativní konstanta irc na vozíku. Udává se v milimetrech, výchozí nastavení je asi 420.</p>
+<p>v_irc_l Nastavení vzdálenosti resetovacího čidla. Udává se v centimetrech.</p>
+<p>lista 0 znamená že se horizontální průměr neměří, 1 je měření pomocí měřící lišty, 2 měření pomocí vrat (není naimplementováno)</p>
+<h3><a class="anchor" id="obrazovka_serial">
+Obrazovka s vyobrazením přijmu seriového kanálu.</a></h3>
+<p>Pro vyvolání obrazovky je nutno přesunout kurzor na položku data a pak stisknout klávesu F5.</p>
+<div align="center">
+<img src="pic.jpg" alt="pic.jpg"/>
+<p><strong>Toto je můj obrázek</strong></p></div>
+ </div>
+<p align=left>Miroslav Jiřík</p>

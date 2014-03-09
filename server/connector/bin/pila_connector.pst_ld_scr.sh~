@@ -1,0 +1,4 @@
+#! /bin/sh
+# Skript je provádìn po úspìšném naètení dat ze sériového portu do databáze.
+# Je urèen pro zálohování dat.
+

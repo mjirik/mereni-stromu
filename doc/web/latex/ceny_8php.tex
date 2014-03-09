@@ -1,0 +1,46 @@
+\section{Dokumentace souboru ceny.php}
+\label{ceny_8php}\index{ceny.php@{ceny.php}}
+\subsection*{Proměnné}
+\begin{CompactItemize}
+\item 
+{\bf \$link} = connect\_\-db()
+\item 
+{\bf \$all} = \& new {\bf Template}('./tmpl/all.tmpl.php')
+\item 
+{\bf \$body} = \& new {\bf Template}('./tmpl/ceny.tmpl.php')
+\item 
+{\bf \$zdruhy} = druhy\_\-dreva(\$link)
+\item 
+{\bf \$ceny} = getCeny(\$link)
+\end{CompactItemize}
+
+
+\subsection{Detailní popis}
+Soubor zajišťuje editaci cen. 
+
+\subsection{Dokumentace proměnných}
+\index{ceny.php@{ceny.php}!$all@{\$all}}
+\index{$all@{\$all}!ceny.php@{ceny.php}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}\$all = \& new {\bf Template}('./tmpl/all.tmpl.php')}\label{ceny_8php_3c74ea9d2348c9aba28d36e692bef2d2}
+
+
+\index{ceny.php@{ceny.php}!$body@{\$body}}
+\index{$body@{\$body}!ceny.php@{ceny.php}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}\$body = \& new {\bf Template}('./tmpl/ceny.tmpl.php')}\label{ceny_8php_26b9f9373f7bb79dfcf8a86dff086b45}
+
+
+\index{ceny.php@{ceny.php}!$ceny@{\$ceny}}
+\index{$ceny@{\$ceny}!ceny.php@{ceny.php}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}\$ceny = getCeny(\$link)}\label{ceny_8php_22c2c5c2c686d4be1f43b067588d790a}
+
+
+\index{ceny.php@{ceny.php}!$link@{\$link}}
+\index{$link@{\$link}!ceny.php@{ceny.php}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}\$link = connect\_\-db()}\label{ceny_8php_5d346e31b75d916e3bac9cb193bfc97f}
+
+
+\index{ceny.php@{ceny.php}!$zdruhy@{\$zdruhy}}
+\index{$zdruhy@{\$zdruhy}!ceny.php@{ceny.php}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}\$zdruhy = druhy\_\-dreva(\$link)}\label{ceny_8php_2f4727ea869082ec91e88aa9c5116231}
+
+

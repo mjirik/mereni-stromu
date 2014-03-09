@@ -1,0 +1,77 @@
+\section{Dokumentace souboru main.c}
+\label{main_8c}\index{main.c@{main.c}}
+{\tt \#include $<$avr/io.h$>$}\par
+{\tt \#include $<$avr/interrupt.h$>$}\par
+{\tt \#include $<$stdio.h$>$}\par
+{\tt \#include $<$util/delay.h$>$}\par
+{\tt \#include \char`\"{}width.h\char`\"{}}\par
+{\tt \#include \char`\"{}usart.h\char`\"{}}\par
+{\tt \#include \char`\"{}irc.h\char`\"{}}\par
+{\tt \#include \char`\"{}eeprom.h\char`\"{}}\par
+\subsection*{Definice maker}
+\begin{CompactItemize}
+\item 
+\#define {\bf SizeOfMsg}~11
+\item 
+\#define {\bf F\_\-CPU}~8000000UL
+\end{CompactItemize}
+\subsection*{Funkce}
+\begin{CompactItemize}
+\item 
+{\bf SIGNAL} (SIG\_\-OUTPUT\_\-COMPARE1A)
+\item 
+void {\bf test\_\-shutdown} (void)
+\item 
+void {\bf ioinit} (void)
+\item 
+int {\bf main} (void)
+\end{CompactItemize}
+\subsection*{Proměnné}
+\begin{CompactItemize}
+\item 
+char {\bf data\_\-msg} [SizeOfMsg]
+\end{CompactItemize}
+
+
+\subsection{Dokumentace k definicím maker}
+\index{main.c@{main.c}!F_CPU@{F\_\-CPU}}
+\index{F_CPU@{F\_\-CPU}!main.c@{main.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}\#define F\_\-CPU~8000000UL}\label{main_8c_43bafb28b29491ec7f871319b5a3b2f8}
+
+
+\index{main.c@{main.c}!SizeOfMsg@{SizeOfMsg}}
+\index{SizeOfMsg@{SizeOfMsg}!main.c@{main.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}\#define SizeOfMsg~11}\label{main_8c_8639f3cdce498b36b4f11b82726f3857}
+
+
+
+
+\subsection{Dokumentace funkcí}
+\index{main.c@{main.c}!ioinit@{ioinit}}
+\index{ioinit@{ioinit}!main.c@{main.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void ioinit (void)}\label{main_8c_f63a4042de4220d64088f03ef65f9dbf}
+
+
+\index{main.c@{main.c}!main@{main}}
+\index{main@{main}!main.c@{main.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int main (void)}\label{main_8c_840291bc02cba5474a4cb46a9b9566fe}
+
+
+\index{main.c@{main.c}!SIGNAL@{SIGNAL}}
+\index{SIGNAL@{SIGNAL}!main.c@{main.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}SIGNAL (SIG\_\-OUTPUT\_\-COMPARE1A)}\label{main_8c_cc0188f99a5e4cb2df4cf3d81fc373ef}
+
+
+\index{main.c@{main.c}!test_shutdown@{test\_\-shutdown}}
+\index{test_shutdown@{test\_\-shutdown}!main.c@{main.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void test\_\-shutdown (void)}\label{main_8c_69f95b1ec6b9c81ade176f604a9b2034}
+
+
+
+
+\subsection{Dokumentace proměnných}
+\index{main.c@{main.c}!data_msg@{data\_\-msg}}
+\index{data_msg@{data\_\-msg}!main.c@{main.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}char {\bf data\_\-msg}[SizeOfMsg]}\label{main_8c_644ab1e6fbad5b17be3f8141d1662682}
+
+

@@ -1,0 +1,180 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<title>Webová aplikace k projektu měření objemu řeziva: Dokumentace třídy CachedTemplate</title>
+<link href="doxygen.css" rel="stylesheet" type="text/css">
+<link href="tabs.css" rel="stylesheet" type="text/css">
+</head><body>
+<!-- Generováno programem Doxygen 1.5.2 -->
+<div class="tabs">
+  <ul>
+    <li><a href="index.html"><span>Hlavní&nbsp;stránka</span></a></li>
+    <li class="current"><a href="annotated.html"><span>Třídy</span></a></li>
+    <li><a href="files.html"><span>Soubory</span></a></li>
+    <li><a href="pages.html"><span>Ostatní&nbsp;stránky</span></a></li>
+  </ul>
+</div>
+<div class="tabs">
+  <ul>
+    <li><a href="annotated.html"><span>Datové&nbsp;struktury</span></a></li>
+    <li><a href="hierarchy.html"><span>Hierarchie&nbsp;tříd</span></a></li>
+    <li><a href="functions.html"><span>Datové&nbsp;položky</span></a></li>
+  </ul>
+</div>
+<h1>Dokumentace třídy CachedTemplate</h1><!-- doxytag: class="CachedTemplate" --><!-- doxytag: inherits="Template" --><p>Diagram dědičnosti pro třídu CachedTemplate
+<p><center><img src="classCachedTemplate.png" usemap="#CachedTemplate_map" border="0" alt=""></center>
+<map name="CachedTemplate_map">
+<area href="classTemplate.html" alt="Template" shape="rect" coords="0,0,106,24">
+</map>
+<table border="0" cellpadding="0" cellspacing="0">
+<tr><td></td></tr>
+<tr><td colspan="2"><br><h2>Veřejné metody</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCachedTemplate.html#1faa0e63bb5473509022fe8f415fc560">CachedTemplate</a> ($cache_id=null, $expire=900)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCachedTemplate.html#34ae05b638aad2a22e677c6845f4ef43">is_cached</a> ()</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCachedTemplate.html#db9de9d3ea96a25c895876df27260722">fetch_cache</a> ($file)</td></tr>
+
+<tr><td colspan="2"><br><h2>Datové položky</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCachedTemplate.html#1862568621acd4c78e325b045811d091">$cache_id</a></td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCachedTemplate.html#e1fa8b2f2da35d463b69047643c4f1f2">$expire</a></td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCachedTemplate.html#2e6fab9f815c00587bd37d0fde91b7c6">$cached</a></td></tr>
+
+</table>
+<hr><a name="_details"></a><h2>Detailní popis</h2>
+An extension to <a class="el" href="classTemplate.html">Template</a> that provides automatic caching of template contents. 
+<p>
+<hr><h2>Dokumentace k metodám</h2>
+<a class="anchor" name="1faa0e63bb5473509022fe8f415fc560"></a><!-- doxytag: member="CachedTemplate::CachedTemplate" ref="1faa0e63bb5473509022fe8f415fc560" args="($cache_id=null, $expire=900)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CachedTemplate::CachedTemplate           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>cache_id</em> = <code>null</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>expire</em> = <code>900</code></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Constructor.<p>
+<dl compact><dt><b>Parametry:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>$cache_id</em>&nbsp;</td><td>string unique cache identifier </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>$expire</em>&nbsp;</td><td>int number of seconds the cache will live </td></tr>
+  </table>
+</dl>
+
+</div>
+</div><p>
+<a class="anchor" name="34ae05b638aad2a22e677c6845f4ef43"></a><!-- doxytag: member="CachedTemplate::is_cached" ref="34ae05b638aad2a22e677c6845f4ef43" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CachedTemplate::is_cached           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Test to see whether the currently loaded cache_id has a valid corrosponding cache file. 
+<p>
+Cache the results of this <a class="el" href="classCachedTemplate.html#34ae05b638aad2a22e677c6845f4ef43">is_cached()</a> call. Why? So we don't have to double the overhead for each template. If we didn't cache, it would be hitting the file system twice as much (file_exists() &amp; filemtime() [twice each]). 
+</div>
+</div><p>
+<a class="anchor" name="db9de9d3ea96a25c895876df27260722"></a><!-- doxytag: member="CachedTemplate::fetch_cache" ref="db9de9d3ea96a25c895876df27260722" args="($file)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CachedTemplate::fetch_cache           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>file</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+This function returns a cached copy of a template (if it exists), otherwise, it parses it as normal and caches the content.<p>
+<dl compact><dt><b>Parametry:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>$file</em>&nbsp;</td><td>string the template file </td></tr>
+  </table>
+</dl>
+
+</div>
+</div><p>
+<hr><h2>Dokumentace k položkám</h2>
+<a class="anchor" name="1862568621acd4c78e325b045811d091"></a><!-- doxytag: member="CachedTemplate::$cache_id" ref="1862568621acd4c78e325b045811d091" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CachedTemplate::$cache_id          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+</div>
+</div><p>
+<a class="anchor" name="e1fa8b2f2da35d463b69047643c4f1f2"></a><!-- doxytag: member="CachedTemplate::$expire" ref="e1fa8b2f2da35d463b69047643c4f1f2" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CachedTemplate::$expire          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+</div>
+</div><p>
+<a class="anchor" name="2e6fab9f815c00587bd37d0fde91b7c6"></a><!-- doxytag: member="CachedTemplate::$cached" ref="2e6fab9f815c00587bd37d0fde91b7c6" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CachedTemplate::$cached          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+</div>
+</div><p>
+<hr>Dokumentace pro tuto třídu byla generována z následujícího souboru:<ul>
+<li><a class="el" href="template_8class_8php.html">template.class.php</a></ul>
+<p align=left>Miroslav Jiřík</p>

@@ -1,0 +1,345 @@
+   1               		.file	"eeprom.c"
+   2               		.arch atmega8
+   3               	__SREG__ = 0x3f
+   4               	__SP_H__ = 0x3e
+   5               	__SP_L__ = 0x3d
+   6               	__tmp_reg__ = 0
+   7               	__zero_reg__ = 1
+   8               		.global __do_copy_data
+   9               		.global __do_clear_bss
+  17               	.Ltext0:
+  18               	.global	eeprom_w8
+  20               	eeprom_w8:
+  21               	.LFB10:
+  22               	.LM1:
+  23               	/* prologue: frame size=0 */
+  24               	/* prologue end (size=0) */
+  25               	.LVL0:
+  26 0000 DC01      		movw r26,r24
+  27               	.LVL1:
+  28               	.L3:
+  29               	.LM2:
+  30 0002 E199      		sbic 60-0x20,1
+  31 0004 00C0      		rjmp .L3
+  32               	.LBB14:
+  33               	.LBB15:
+  34               	.LM3:
+  35               	/* #APP */
+  36 0006 062E      		mov __tmp_reg__,r22
+  37 0008 00D0      		rcall __eeprom_write_byte_1C1D1E
+  38               	.LVL2:
+  39               	/* #NOAPP */
+  40               	.LBE15:
+  41               	.LBE14:
+  42               	/* epilogue: frame size=0 */
+  43 000a 0895      		ret
+  44               	/* epilogue end (size=1) */
+  45               	/* function eeprom_w8 size 8 (7) */
+  46               	.LFE10:
+  48               	.global	eeprom_r8
+  50               	eeprom_r8:
+  51               	.LFB11:
+  52               	.LM4:
+  53               	/* prologue: frame size=0 */
+  54               	/* prologue end (size=0) */
+  55               	.LVL3:
+  56               	.LBB18:
+  57               	.LBB19:
+  58               	.LM5:
+  59 000c DC01      		movw r26,r24
+  60               	.LVL4:
+  61               	/* #APP */
+  62 000e 00D0      		rcall __eeprom_read_byte_1C1D1E
+  63 0010 802D      		mov r24,__tmp_reg__
+  64               	.LVL5:
+  65               	/* #NOAPP */
+  66               	.LBE19:
+  67               	.LBE18:
+  68               	.LM6:
+  69 0012 9927      		clr r25
+  70               	.LVL6:
+  71               	/* epilogue: frame size=0 */
+  72 0014 0895      		ret
+  73               	/* epilogue end (size=1) */
+  74               	/* function eeprom_r8 size 7 (6) */
+  75               	.LFE11:
+  77               	.global	eeprom_w16
+  79               	eeprom_w16:
+  80               	.LFB12:
+  81               	.LM7:
+  82               	/* prologue: frame size=0 */
+  83               	/* prologue end (size=0) */
+  84               	.LVL7:
+  85 0016 DC01      		movw r26,r24
+  86               	.LVL8:
+  87               	.L12:
+  88               	.LM8:
+  89 0018 E199      		sbic 60-0x20,1
+  90 001a 00C0      		rjmp .L12
+  91               	.LBB22:
+  92               	.LBB23:
+  93               	.LM9:
+  94               	/* #APP */
+  95 001c 0B01      		movw __tmp_reg__,r22
+  96 001e 00D0      		rcall __eeprom_write_word_1C1D1E
+  97               		
+  98               	.LVL9:
+  99               	/* #NOAPP */
+ 100               	.LBE23:
+ 101               	.LBE22:
+ 102               	/* epilogue: frame size=0 */
+ 103 0020 0895      		ret
+ 104               	/* epilogue end (size=1) */
+ 105               	/* function eeprom_w16 size 10 (9) */
+ 106               	.LFE12:
+ 108               	.global	eeprom_r16
+ 110               	eeprom_r16:
+ 111               	.LFB13:
+ 112               	.LM10:
+ 113               	/* prologue: frame size=0 */
+ 114               	/* prologue end (size=0) */
+ 115               	.LVL10:
+ 116               	.LM11:
+ 117 0022 DC01      		movw r26,r24
+ 118               	.LVL11:
+ 119               	/* #APP */
+ 120 0024 00D0      		rcall __eeprom_read_word_1C1D1E
+ 121               		
+ 122               	/* #NOAPP */
+ 123 0026 CF01      		movw r24,r30
+ 124               	.LVL12:
+ 125               	/* epilogue: frame size=0 */
+ 126 0028 0895      		ret
+ 127               	/* epilogue end (size=1) */
+ 128               	/* function eeprom_r16 size 7 (6) */
+ 129               	.LFE13:
+ 131               	.global	eeprom_r32
+ 133               	eeprom_r32:
+ 134               	.LFB15:
+ 135               	.LM12:
+ 136               	/* prologue: frame size=4 */
+ 137 002a CF93      		push r28
+ 138 002c DF93      		push r29
+ 139 002e CDB7      		in r28,__SP_L__
+ 140 0030 DEB7      		in r29,__SP_H__
+ 141 0032 2497      		sbiw r28,4
+ 142 0034 0FB6      		in __tmp_reg__,__SREG__
+ 143 0036 F894      		cli
+ 144 0038 DEBF      		out __SP_H__,r29
+ 145 003a 0FBE      		out __SREG__,__tmp_reg__
+ 146 003c CDBF      		out __SP_L__,r28
+ 147               	/* prologue end (size=10) */
+ 148               	.LVL13:
+ 149               	.LM13:
+ 150 003e 1982      		std Y+1,__zero_reg__
+ 151 0040 1A82      		std Y+2,__zero_reg__
+ 152 0042 1B82      		std Y+3,__zero_reg__
+ 153 0044 1C82      		std Y+4,__zero_reg__
+ 154               	.LVL14:
+ 155               	.LBB24:
+ 156               	.LBB25:
+ 157               	.LBB26:
+ 158               	.LM14:
+ 159 0046 24E0      		ldi r18,lo8(4)
+ 160 0048 FE01      		movw r30,r28
+ 161 004a 3196      		adiw r30,1
+ 162 004c DC01      		movw r26,r24
+ 163               	.LVL15:
+ 164               	/* #APP */
+ 165 004e 122E      		mov __zero_reg__,r18
+ 166 0050 00D0      		rcall __eeprom_read_block_1C1D1E
+ 167               	.LVL16:
+ 168               	/* #NOAPP */
+ 169 0052 6981      		ldd r22,Y+1
+ 170 0054 7A81      		ldd r23,Y+2
+ 171 0056 8B81      		ldd r24,Y+3
+ 172 0058 9C81      		ldd r25,Y+4
+ 173               	.LBE26:
+ 174               	.LBE25:
+ 175               	.LBE24:
+ 176               	/* epilogue: frame size=4 */
+ 177 005a 2496      		adiw r28,4
+ 178 005c 0FB6      		in __tmp_reg__,__SREG__
+ 179 005e F894      		cli
+ 180 0060 DEBF      		out __SP_H__,r29
+ 181 0062 0FBE      		out __SREG__,__tmp_reg__
+ 182 0064 CDBF      		out __SP_L__,r28
+ 183 0066 DF91      		pop r29
+ 184 0068 CF91      		pop r28
+ 185 006a 0895      		ret
+ 186               	/* epilogue end (size=9) */
+ 187               	/* function eeprom_r32 size 35 (16) */
+ 188               	.LFE15:
+ 190               	.global	eeprom_w32
+ 192               	eeprom_w32:
+ 193               	.LFB14:
+ 194               	.LM15:
+ 195               	/* prologue: frame size=4 */
+ 196 006c CF93      		push r28
+ 197 006e DF93      		push r29
+ 198 0070 CDB7      		in r28,__SP_L__
+ 199 0072 DEB7      		in r29,__SP_H__
+ 200 0074 2497      		sbiw r28,4
+ 201 0076 0FB6      		in __tmp_reg__,__SREG__
+ 202 0078 F894      		cli
+ 203 007a DEBF      		out __SP_H__,r29
+ 204 007c 0FBE      		out __SREG__,__tmp_reg__
+ 205 007e CDBF      		out __SP_L__,r28
+ 206               	/* prologue end (size=10) */
+ 207               	.LVL17:
+ 208 0080 DC01      		movw r26,r24
+ 209 0082 4983      		std Y+1,r20
+ 210 0084 5A83      		std Y+2,r21
+ 211 0086 6B83      		std Y+3,r22
+ 212 0088 7C83      		std Y+4,r23
+ 213               	.LVL18:
+ 214               	.L23:
+ 215               	.LM16:
+ 216 008a E199      		sbic 60-0x20,1
+ 217 008c 00C0      		rjmp .L23
+ 218               	.LBB27:
+ 219               	.LBB28:
+ 220               	.LBB29:
+ 221               	.LM17:
+ 222 008e 84E0      		ldi r24,lo8(4)
+ 223 0090 FE01      		movw r30,r28
+ 224 0092 3196      		adiw r30,1
+ 225               	/* #APP */
+ 226 0094 182E      		mov __zero_reg__,r24
+ 227 0096 00D0      		rcall __eeprom_write_block_1C1D1E
+ 228               	.LVL19:
+ 229               	/* #NOAPP */
+ 230               	.LBE29:
+ 231               	.LBE28:
+ 232               	.LBE27:
+ 233               	/* epilogue: frame size=4 */
+ 234 0098 2496      		adiw r28,4
+ 235 009a 0FB6      		in __tmp_reg__,__SREG__
+ 236 009c F894      		cli
+ 237 009e DEBF      		out __SP_H__,r29
+ 238 00a0 0FBE      		out __SREG__,__tmp_reg__
+ 239 00a2 CDBF      		out __SP_L__,r28
+ 240 00a4 DF91      		pop r29
+ 241 00a6 CF91      		pop r28
+ 242 00a8 0895      		ret
+ 243               	/* epilogue end (size=9) */
+ 244               	/* function eeprom_w32 size 33 (14) */
+ 245               	.LFE14:
+ 247               	.global	eeprom_save
+ 249               	eeprom_save:
+ 250               	.LFB9:
+ 251               	.LM18:
+ 252               	/* prologue: frame size=0 */
+ 253               	/* prologue end (size=0) */
+ 254               	.LM19:
+ 255 00aa 4091 0000 		lds r20,irc_counter
+ 256 00ae 5091 0000 		lds r21,(irc_counter)+1
+ 257 00b2 6091 0000 		lds r22,(irc_counter)+2
+ 258 00b6 7091 0000 		lds r23,(irc_counter)+3
+ 259 00ba 80E0      		ldi r24,lo8(0)
+ 260 00bc 90E0      		ldi r25,hi8(0)
+ 261 00be 00D0      		rcall eeprom_w32
+ 262               	/* epilogue: frame size=0 */
+ 263 00c0 0895      		ret
+ 264               	/* epilogue end (size=1) */
+ 265               	/* function eeprom_save size 12 (11) */
+ 266               	.LFE9:
+ 268               	.global	eeprom_load
+ 270               	eeprom_load:
+ 271               	.LFB8:
+ 272               	.LM20:
+ 273               	/* prologue: frame size=0 */
+ 274               	/* prologue end (size=0) */
+ 275               	.LM21:
+ 276 00c2 80E0      		ldi r24,lo8(0)
+ 277 00c4 90E0      		ldi r25,hi8(0)
+ 278 00c6 00D0      		rcall eeprom_r32
+ 279 00c8 6093 0000 		sts irc_counter,r22
+ 280 00cc 7093 0000 		sts (irc_counter)+1,r23
+ 281 00d0 8093 0000 		sts (irc_counter)+2,r24
+ 282 00d4 9093 0000 		sts (irc_counter)+3,r25
+ 283               	.LBB34:
+ 284               	.LBB35:
+ 285               	.LBB36:
+ 286               	.LBB37:
+ 287               	.LM22:
+ 288 00d8 A4E0      		ldi r26,lo8(4)
+ 289 00da B0E0      		ldi r27,hi8(4)
+ 290               	/* #APP */
+ 291 00dc 00D0      		rcall __eeprom_read_word_1C1D1E
+ 292               		
+ 293               	.LVL20:
+ 294               	/* #NOAPP */
+ 295               	.LBE37:
+ 296               	.LBE36:
+ 297               	.LBE35:
+ 298               	.LBE34:
+ 299               	.LM23:
+ 300 00de F093 0000 		sts (irc_k)+1,r31
+ 301 00e2 E093 0000 		sts irc_k,r30
+ 302               	.LM24:
+ 303 00e6 86E0      		ldi r24,lo8(6)
+ 304 00e8 90E0      		ldi r25,hi8(6)
+ 305 00ea 00D0      		rcall eeprom_r32
+ 306               	.LVL21:
+ 307 00ec 6093 0000 		sts irc_set_on_value,r22
+ 308 00f0 7093 0000 		sts (irc_set_on_value)+1,r23
+ 309 00f4 8093 0000 		sts (irc_set_on_value)+2,r24
+ 310 00f8 9093 0000 		sts (irc_set_on_value)+3,r25
+ 311               	.LM25:
+ 312 00fc 8091 0000 		lds r24,irc_k
+ 313 0100 9091 0000 		lds r25,(irc_k)+1
+ 314 0104 8151      		subi r24,lo8(10001)
+ 315 0106 9742      		sbci r25,hi8(10001)
+ 316 0108 00F0      		brlo .L33
+ 317               	.LM26:
+ 318 010a 89EA      		ldi r24,lo8(425)
+ 319 010c 91E0      		ldi r25,hi8(425)
+ 320 010e 00D0      		rcall set_irc_k
+ 321               	.LM27:
+ 322 0110 62EC      		ldi r22,lo8(450)
+ 323 0112 71E0      		ldi r23,hi8(450)
+ 324 0114 80E0      		ldi r24,hlo8(450)
+ 325 0116 90E0      		ldi r25,hhi8(450)
+ 326 0118 00D0      		rcall set_irc_set_on_value
+ 327               	.L33:
+ 328 011a 0895      		ret
+ 329               	/* epilogue: frame size=0 */
+ 330               	/* epilogue: noreturn */
+ 331               	/* epilogue end (size=0) */
+ 332               	/* function eeprom_load size 49 (49) */
+ 333               	.LFE8:
+ 335               		.comm irc_counter,4,1
+ 336               		.comm irc_set_on_value,4,1
+ 337               		.comm irc_k,2,1
+ 418               	.Letext0:
+DEFINED SYMBOLS
+                            *ABS*:00000000 eeprom.c
+C:\DOCUME~1\Mira\LOCALS~1\Temp/ccqC0moO.s:3      *ABS*:0000003f __SREG__
+C:\DOCUME~1\Mira\LOCALS~1\Temp/ccqC0moO.s:4      *ABS*:0000003e __SP_H__
+C:\DOCUME~1\Mira\LOCALS~1\Temp/ccqC0moO.s:5      *ABS*:0000003d __SP_L__
+C:\DOCUME~1\Mira\LOCALS~1\Temp/ccqC0moO.s:6      *ABS*:00000000 __tmp_reg__
+C:\DOCUME~1\Mira\LOCALS~1\Temp/ccqC0moO.s:7      *ABS*:00000001 __zero_reg__
+C:\DOCUME~1\Mira\LOCALS~1\Temp/ccqC0moO.s:20     .text:00000000 eeprom_w8
+C:\DOCUME~1\Mira\LOCALS~1\Temp/ccqC0moO.s:50     .text:0000000c eeprom_r8
+C:\DOCUME~1\Mira\LOCALS~1\Temp/ccqC0moO.s:79     .text:00000016 eeprom_w16
+C:\DOCUME~1\Mira\LOCALS~1\Temp/ccqC0moO.s:110    .text:00000022 eeprom_r16
+C:\DOCUME~1\Mira\LOCALS~1\Temp/ccqC0moO.s:133    .text:0000002a eeprom_r32
+C:\DOCUME~1\Mira\LOCALS~1\Temp/ccqC0moO.s:192    .text:0000006c eeprom_w32
+C:\DOCUME~1\Mira\LOCALS~1\Temp/ccqC0moO.s:249    .text:000000aa eeprom_save
+                            *COM*:00000004 irc_counter
+C:\DOCUME~1\Mira\LOCALS~1\Temp/ccqC0moO.s:270    .text:000000c2 eeprom_load
+                            *COM*:00000002 irc_k
+                            *COM*:00000004 irc_set_on_value
+
+UNDEFINED SYMBOLS
+__do_copy_data
+__do_clear_bss
+__eeprom_write_byte_1C1D1E
+__eeprom_read_byte_1C1D1E
+__eeprom_write_word_1C1D1E
+__eeprom_read_word_1C1D1E
+__eeprom_read_block_1C1D1E
+__eeprom_write_block_1C1D1E
+set_irc_k
+set_irc_set_on_value

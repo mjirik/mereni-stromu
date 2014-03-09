@@ -6,6 +6,8 @@
  * error.c
  */
 
+#include "common/errn.h"
+
 void new_str_error(uint8_t err_num, char * s);
 void new_error(uint8_t err_num);
 void error_scr_draw(void);

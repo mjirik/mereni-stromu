@@ -1,20 +1,22 @@
-error.o: error.c error.h lcd.h gui.h main.h keyboard.h keyfcn.h msr_scr.h \
-  measure.h data_serial.h
+build/error.o: error.c error.h common/errn.h lcd.h main.h keyboard.h \
+  memory.h usart.h common/msgn.h sysinfo.h common/sysinfo_flag.h
 
 error.h:
 
-lcd.h:
+common/errn.h:
 
-gui.h:
+lcd.h:
 
 main.h:
 
 keyboard.h:
 
-keyfcn.h:
+memory.h:
 
-msr_scr.h:
+usart.h:
 
-measure.h:
+common/msgn.h:
 
-data_serial.h:
+sysinfo.h:
+
+common/sysinfo_flag.h:
