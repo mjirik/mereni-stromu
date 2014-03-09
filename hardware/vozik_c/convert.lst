@@ -1,0 +1,385 @@
+   1               		.file	"convert.c"
+   2               	__SREG__ = 0x3f
+   3               	__SP_H__ = 0x3e
+   4               	__SP_L__ = 0x3d
+   5               	__CCP__  = 0x34
+   6               	__tmp_reg__ = 0
+   7               	__zero_reg__ = 1
+  15               	.Ltext0:
+  16               	.global	mezery
+  18               	mezery:
+  19               	.LFB2:
+  20               	.LM1:
+  21               	.LVL0:
+  22               	/* prologue: function */
+  23               	/* frame size = 0 */
+  24 0000 AC01      		movw r20,r24
+  25               	.LM2:
+  26 0002 20E0      		ldi r18,lo8(0)
+  27 0004 30E0      		ldi r19,hi8(0)
+  28               	.LVL1:
+  29               	.LM3:
+  30 0006 A62F      		mov r26,r22
+  31 0008 B0E0      		ldi r27,lo8(0)
+  32               	.LVL2:
+  33               	.LM4:
+  34 000a 80E2      		ldi r24,lo8(32)
+  35               	.LVL3:
+  36 000c 00C0      		rjmp .L2
+  37               	.LVL4:
+  38               	.L3:
+  39 000e FA01      		movw r30,r20
+  40 0010 E20F      		add r30,r18
+  41 0012 F31F      		adc r31,r19
+  42 0014 8083      		st Z,r24
+  43               	.LM5:
+  44 0016 2F5F      		subi r18,lo8(-(1))
+  45 0018 3F4F      		sbci r19,hi8(-(1))
+  46               	.L2:
+  47 001a 2A17      		cp r18,r26
+  48 001c 3B07      		cpc r19,r27
+  49 001e 04F0      		brlt .L3
+  50               	.LM6:
+  51 0020 A40F      		add r26,r20
+  52 0022 B51F      		adc r27,r21
+  53               	.LVL5:
+  54 0024 1C92      		st X,__zero_reg__
+  55               	.LM7:
+  56 0026 CA01      		movw r24,r20
+  57               	.LVL6:
+  58               	/* epilogue start */
+  59 0028 0895      		ret
+  60               	.LFE2:
+  62               	.global	strlen
+  64               	strlen:
+  65               	.LFB3:
+  66               	.LM8:
+  67               	.LVL7:
+  68               	/* prologue: function */
+  69               	/* frame size = 0 */
+  70 002a AC01      		movw r20,r24
+  71               	.LM9:
+  72 002c 20E0      		ldi r18,lo8(0)
+  73 002e 30E0      		ldi r19,hi8(0)
+  74               	.LVL8:
+  75 0030 00C0      		rjmp .L6
+  76               	.LVL9:
+  77               	.L7:
+  78 0032 2F5F      		subi r18,lo8(-(1))
+  79 0034 3F4F      		sbci r19,hi8(-(1))
+  80               	.LVL10:
+  81               	.L6:
+  82               	.LM10:
+  83 0036 FA01      		movw r30,r20
+  84 0038 E20F      		add r30,r18
+  85 003a F31F      		adc r31,r19
+  86 003c 8081      		ld r24,Z
+  87 003e 8823      		tst r24
+  88 0040 01F4      		brne .L7
+  89               	.LM11:
+  90 0042 C901      		movw r24,r18
+  91               	.LVL11:
+  92               	/* epilogue start */
+  93 0044 0895      		ret
+  94               	.LFE3:
+  96               	.global	int2strn
+  98               	int2strn:
+  99               	.LFB5:
+ 100               	.LM12:
+ 101               	.LVL12:
+ 102 0046 8F92      		push r8
+ 103 0048 9F92      		push r9
+ 104 004a AF92      		push r10
+ 105 004c BF92      		push r11
+ 106 004e CF92      		push r12
+ 107 0050 DF92      		push r13
+ 108 0052 EF92      		push r14
+ 109 0054 FF92      		push r15
+ 110 0056 0F93      		push r16
+ 111 0058 1F93      		push r17
+ 112 005a DF93      		push r29
+ 113 005c CF93      		push r28
+ 114 005e CDB7      		in r28,__SP_L__
+ 115 0060 DEB7      		in r29,__SP_H__
+ 116 0062 2A97      		sbiw r28,10
+ 117 0064 0FB6      		in __tmp_reg__,__SREG__
+ 118 0066 F894      		cli
+ 119 0068 DEBF      		out __SP_H__,r29
+ 120 006a 0FBE      		out __SREG__,__tmp_reg__
+ 121 006c CDBF      		out __SP_L__,r28
+ 122               	/* prologue: function */
+ 123               	/* frame size = 10 */
+ 124 006e 4C01      		movw r8,r24
+ 125 0070 7B01      		movw r14,r22
+ 126 0072 B42E      		mov r11,r20
+ 127 0074 452F      		mov r20,r21
+ 128               	.LVL13:
+ 129               	.LM13:
+ 130 0076 DE01      		movw r26,r28
+ 131 0078 1196      		adiw r26,1
+ 132 007a E0E0      		ldi r30,lo8(C.2.1428)
+ 133 007c F0E0      		ldi r31,hi8(C.2.1428)
+ 134 007e 8AE0      		ldi r24,lo8(10)
+ 135               	.LVL14:
+ 136               	.L10:
+ 137 0080 0190      		ld r0,Z+
+ 138 0082 0D92      		st X+,r0
+ 139 0084 8150      		subi r24,lo8(-(-1))
+ 140 0086 01F4      		brne .L10
+ 141               	.LM14:
+ 142 0088 F401      		movw r30,r8
+ 143 008a EE0D      		add r30,r14
+ 144 008c FF1D      		adc r31,r15
+ 145 008e 1082      		st Z,__zero_reg__
+ 146               	.LM15:
+ 147 0090 D401      		movw r26,r8
+ 148 0092 AC90      		ld r10,X
+ 149               	.LM16:
+ 150 0094 B5E0      		ldi r27,lo8(5)
+ 151 0096 EB16      		cp r14,r27
+ 152 0098 F104      		cpc r15,__zero_reg__
+ 153 009a 04F0      		brlt .L11
+ 154 009c 04E0      		ldi r16,lo8(4)
+ 155 009e 10E0      		ldi r17,hi8(4)
+ 156               	.LVL15:
+ 157 00a0 00C0      		rjmp .L12
+ 158               	.LVL16:
+ 159               	.L11:
+ 160               	.LM17:
+ 161 00a2 8701      		movw r16,r14
+ 162               	.LVL17:
+ 163 00a4 0150      		subi r16,lo8(-(-1))
+ 164 00a6 1040      		sbci r17,hi8(-(-1))
+ 165               	.L12:
+ 166               	.LM18:
+ 167 00a8 F801      		movw r30,r16
+ 168 00aa EE0F      		lsl r30
+ 169 00ac FF1F      		rol r31
+ 170 00ae 9E01      		movw r18,r28
+ 171 00b0 2F5F      		subi r18,lo8(-(1))
+ 172 00b2 3F4F      		sbci r19,hi8(-(1))
+ 173 00b4 E20F      		add r30,r18
+ 174 00b6 F31F      		adc r31,r19
+ 175 00b8 6081      		ld r22,Z
+ 176 00ba 7181      		ldd r23,Z+1
+ 177 00bc 8B2D      		mov r24,r11
+ 178 00be 942F      		mov r25,r20
+ 179 00c0 0E94 0000 		call __udivmodhi4
+ 180 00c4 6A30      		cpi r22,10
+ 181 00c6 7105      		cpc r23,__zero_reg__
+ 182 00c8 00F4      		brsh .L13
+ 183               	.LM19:
+ 184 00ca 0430      		cpi r16,4
+ 185 00cc 1105      		cpc r17,__zero_reg__
+ 186 00ce 01F0      		breq .L14
+ 187               	.LM20:
+ 188 00d0 C801      		movw r24,r16
+ 189 00d2 0196      		adiw r24,1
+ 190 00d4 880F      		lsl r24
+ 191 00d6 991F      		rol r25
+ 192 00d8 280F      		add r18,r24
+ 193 00da 391F      		adc r19,r25
+ 194 00dc F901      		movw r30,r18
+ 195 00de 6081      		ld r22,Z
+ 196 00e0 7181      		ldd r23,Z+1
+ 197               	.L22:
+ 198 00e2 8B2D      		mov r24,r11
+ 199 00e4 942F      		mov r25,r20
+ 200 00e6 0E94 0000 		call __udivmodhi4
+ 201 00ea B82E      		mov r11,r24
+ 202 00ec 492F      		mov r20,r25
+ 203               	.L13:
+ 204 00ee CC24      		clr r12
+ 205 00f0 DD24      		clr r13
+ 206               	.LVL18:
+ 207 00f2 F0E3      		ldi r31,lo8(48)
+ 208 00f4 AF16      		cp r10,r31
+ 209 00f6 01F4      		brne .L15
+ 210 00f8 31E0      		ldi r19,lo8(1)
+ 211 00fa C32E      		mov r12,r19
+ 212 00fc D12C      		mov r13,__zero_reg__
+ 213               	.L15:
+ 214 00fe F701      		movw r30,r14
+ 215 0100 E01B      		sub r30,r16
+ 216 0102 F10B      		sbc r31,r17
+ 217 0104 3197      		sbiw r30,1
+ 218 0106 E80D      		add r30,r8
+ 219 0108 F91D      		adc r31,r9
+ 220 010a C801      		movw r24,r16
+ 221 010c 880F      		lsl r24
+ 222 010e 991F      		rol r25
+ 223 0110 7E01      		movw r14,r28
+ 224               	.LVL19:
+ 225 0112 0894      		sec
+ 226 0114 E11C      		adc r14,__zero_reg__
+ 227 0116 F11C      		adc r15,__zero_reg__
+ 228 0118 E80E      		add r14,r24
+ 229 011a F91E      		adc r15,r25
+ 230               	.LBB4:
+ 231               	.LM21:
+ 232 011c 90E2      		ldi r25,lo8(32)
+ 233 011e A92E      		mov r10,r25
+ 234 0120 00C0      		rjmp .L16
+ 235               	.LVL20:
+ 236               	.L14:
+ 237               	.LBE4:
+ 238               	.LM22:
+ 239 0122 6985      		ldd r22,Y+9
+ 240 0124 7A85      		ldd r23,Y+10
+ 241 0126 00C0      		rjmp .L22
+ 242               	.LVL21:
+ 243               	.L19:
+ 244               	.LBB5:
+ 245               	.LM23:
+ 246 0128 D701      		movw r26,r14
+ 247 012a 2D91      		ld r18,X+
+ 248 012c 3C91      		ld r19,X
+ 249 012e 8B2D      		mov r24,r11
+ 250 0130 942F      		mov r25,r20
+ 251 0132 B901      		movw r22,r18
+ 252 0134 0E94 0000 		call __udivmodhi4
+ 253 0138 CB01      		movw r24,r22
+ 254               	.LM24:
+ 255 013a 6115      		cp r22,__zero_reg__
+ 256 013c 7105      		cpc r23,__zero_reg__
+ 257               	.LVL22:
+ 258 013e 01F4      		brne .L17
+ 259 0140 C114      		cp r12,__zero_reg__
+ 260 0142 D104      		cpc r13,__zero_reg__
+ 261 0144 01F4      		brne .L17
+ 262 0146 2230      		cpi r18,2
+ 263 0148 3105      		cpc r19,__zero_reg__
+ 264 014a 00F0      		brlo .L17
+ 265               	.LM25:
+ 266 014c A082      		st Z,r10
+ 267 014e 00C0      		rjmp .L18
+ 268               	.L17:
+ 269               	.LM26:
+ 270 0150 805D      		subi r24,lo8(-(48))
+ 271 0152 8083      		st Z,r24
+ 272 0154 81E0      		ldi r24,lo8(1)
+ 273 0156 C82E      		mov r12,r24
+ 274 0158 D12C      		mov r13,__zero_reg__
+ 275               	.L18:
+ 276               	.LM27:
+ 277 015a 8B2D      		mov r24,r11
+ 278 015c 942F      		mov r25,r20
+ 279 015e B901      		movw r22,r18
+ 280               	.LVL23:
+ 281 0160 0E94 0000 		call __udivmodhi4
+ 282 0164 B82E      		mov r11,r24
+ 283 0166 492F      		mov r20,r25
+ 284               	.LM28:
+ 285 0168 0150      		subi r16,lo8(-(-1))
+ 286 016a 1040      		sbci r17,hi8(-(-1))
+ 287 016c 3196      		adiw r30,1
+ 288 016e 8EEF      		ldi r24,lo8(-2)
+ 289 0170 9FEF      		ldi r25,hi8(-2)
+ 290 0172 E80E      		add r14,r24
+ 291 0174 F91E      		adc r15,r25
+ 292               	.L16:
+ 293               	.LBE5:
+ 294               	.LM29:
+ 295 0176 17FF      		sbrs r17,7
+ 296 0178 00C0      		rjmp .L19
+ 297               	.LM30:
+ 298 017a C401      		movw r24,r8
+ 299               	.LVL24:
+ 300               	/* epilogue start */
+ 301 017c 2A96      		adiw r28,10
+ 302 017e 0FB6      		in __tmp_reg__,__SREG__
+ 303 0180 F894      		cli
+ 304 0182 DEBF      		out __SP_H__,r29
+ 305 0184 0FBE      		out __SREG__,__tmp_reg__
+ 306 0186 CDBF      		out __SP_L__,r28
+ 307 0188 CF91      		pop r28
+ 308 018a DF91      		pop r29
+ 309 018c 1F91      		pop r17
+ 310 018e 0F91      		pop r16
+ 311               	.LVL25:
+ 312 0190 FF90      		pop r15
+ 313 0192 EF90      		pop r14
+ 314 0194 DF90      		pop r13
+ 315 0196 CF90      		pop r12
+ 316               	.LVL26:
+ 317 0198 BF90      		pop r11
+ 318               	.LVL27:
+ 319 019a AF90      		pop r10
+ 320 019c 9F90      		pop r9
+ 321 019e 8F90      		pop r8
+ 322 01a0 0895      		ret
+ 323               	.LFE5:
+ 325               	.global	int2str
+ 327               	int2str:
+ 328               	.LFB4:
+ 329               	.LM31:
+ 330               	.LVL28:
+ 331               	/* prologue: function */
+ 332               	/* frame size = 0 */
+ 333 01a2 9C01      		movw r18,r24
+ 334 01a4 AB01      		movw r20,r22
+ 335               	.LM32:
+ 336 01a6 60E0      		ldi r22,lo8(0)
+ 337 01a8 70E0      		ldi r23,hi8(0)
+ 338               	.LVL29:
+ 339 01aa 00C0      		rjmp .L24
+ 340               	.LVL30:
+ 341               	.L25:
+ 342               	.LBB6:
+ 343               	.LBB7:
+ 344               	.LM33:
+ 345 01ac 6F5F      		subi r22,lo8(-(1))
+ 346 01ae 7F4F      		sbci r23,hi8(-(1))
+ 347               	.LVL31:
+ 348               	.L24:
+ 349               	.LM34:
+ 350 01b0 F901      		movw r30,r18
+ 351 01b2 E60F      		add r30,r22
+ 352 01b4 F71F      		adc r31,r23
+ 353 01b6 8081      		ld r24,Z
+ 354 01b8 8823      		tst r24
+ 355 01ba 01F4      		brne .L25
+ 356               	.LBE7:
+ 357               	.LBE6:
+ 358               	.LM35:
+ 359 01bc C901      		movw r24,r18
+ 360 01be 0E94 0000 		call int2strn
+ 361               	.LVL32:
+ 362               	/* epilogue start */
+ 363               	.LM36:
+ 364 01c2 0895      		ret
+ 365               	.LFE4:
+ 367               		.data
+ 370               	C.2.1428:
+ 371 0000 0100      		.word	1
+ 372 0002 0A00      		.word	10
+ 373 0004 6400      		.word	100
+ 374 0006 E803      		.word	1000
+ 375 0008 1027      		.word	10000
+ 376               		.comm p_akt_screen,2,1
+ 377               		.comm default_screen,160,1
+ 378               		.comm data_msg,11,1
+ 379               		.comm str_buf,41,1
+ 428               	.Letext0:
+DEFINED SYMBOLS
+                            *ABS*:00000000 convert.c
+C:\Users\mjirik\AppData\Local\Temp/cc4VIxLG.s:2      *ABS*:0000003f __SREG__
+C:\Users\mjirik\AppData\Local\Temp/cc4VIxLG.s:3      *ABS*:0000003e __SP_H__
+C:\Users\mjirik\AppData\Local\Temp/cc4VIxLG.s:4      *ABS*:0000003d __SP_L__
+C:\Users\mjirik\AppData\Local\Temp/cc4VIxLG.s:5      *ABS*:00000034 __CCP__
+C:\Users\mjirik\AppData\Local\Temp/cc4VIxLG.s:6      *ABS*:00000000 __tmp_reg__
+C:\Users\mjirik\AppData\Local\Temp/cc4VIxLG.s:7      *ABS*:00000001 __zero_reg__
+C:\Users\mjirik\AppData\Local\Temp/cc4VIxLG.s:18     .text:00000000 mezery
+C:\Users\mjirik\AppData\Local\Temp/cc4VIxLG.s:64     .text:0000002a strlen
+C:\Users\mjirik\AppData\Local\Temp/cc4VIxLG.s:98     .text:00000046 int2strn
+C:\Users\mjirik\AppData\Local\Temp/cc4VIxLG.s:370    .data:00000000 C.2.1428
+C:\Users\mjirik\AppData\Local\Temp/cc4VIxLG.s:327    .text:000001a2 int2str
+                            *COM*:00000002 p_akt_screen
+                            *COM*:000000a0 default_screen
+                            *COM*:0000000b data_msg
+                            *COM*:00000029 str_buf
+
+UNDEFINED SYMBOLS
+__udivmodhi4
+__do_copy_data
+__do_clear_bss

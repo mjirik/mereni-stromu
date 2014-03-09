@@ -1,0 +1,5 @@
+/**
+ * @mainpage
+ * Tento dokument tvoøí dokumentaci k programu pro jednoèip ATmega8, kterı
+ * zajišuje chod zaøízení na vozíku.  
+ */

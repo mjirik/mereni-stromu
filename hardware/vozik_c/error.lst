@@ -1,0 +1,1011 @@
+   1               		.file	"error.c"
+   2               	__SREG__ = 0x3f
+   3               	__SP_H__ = 0x3e
+   4               	__SP_L__ = 0x3d
+   5               	__CCP__  = 0x34
+   6               	__tmp_reg__ = 0
+   7               	__zero_reg__ = 1
+  15               	.Ltext0:
+  16               	.global	err_scr_open
+  18               	err_scr_open:
+  19               	.LFB4:
+  20               	.LM1:
+  21               	/* prologue: function */
+  22               	/* frame size = 0 */
+  23               	.LM2:
+  24 0000 8091 0000 		lds r24,akt_scr
+  25 0004 8093 0000 		sts prev_scr,r24
+  26               	/* epilogue start */
+  27               	.LM3:
+  28 0008 0895      		ret
+  29               	.LFE4:
+  31               	.global	new_error
+  33               	new_error:
+  34               	.LFB5:
+  35               	.LM4:
+  36               	.LVL0:
+  37               	/* prologue: function */
+  38               	/* frame size = 0 */
+  39               	.LM5:
+  40 000a 8093 0000 		sts last_err,r24
+  41               	.LM6:
+  42 000e 81E0      		ldi r24,lo8(1)
+  43               	.LVL1:
+  44 0010 8093 0000 		sts new_err,r24
+  45               	/* epilogue start */
+  46               	.LM7:
+  47 0014 0895      		ret
+  48               	.LFE5:
+  50               		.data
+  51               	.LC0:
+  52 0000 6572 726F 		.string	"error.c"
+  52      722E 6300 
+  53               		.text
+  54               	.global	new_str_error
+  56               	new_str_error:
+  57               	.LFB6:
+  58               	.LM8:
+  59               	.LVL2:
+  60 0016 1F93      		push r17
+  61 0018 CF93      		push r28
+  62 001a DF93      		push r29
+  63               	/* prologue: function */
+  64               	/* frame size = 0 */
+  65 001c 182F      		mov r17,r24
+  66 001e EB01      		movw r28,r22
+  67               	.LM9:
+  68 0020 8639      		cpi r24,lo8(-106)
+  69 0022 00F4      		brsh .L6
+  70               	.LVL3:
+  71 0024 80E0      		ldi r24,lo8(.LC0)
+  72 0026 90E0      		ldi r25,hi8(.LC0)
+  73               	.LVL4:
+  74 0028 66E7      		ldi r22,lo8(118)
+  75 002a 70E0      		ldi r23,hi8(118)
+  76 002c 0E94 0000 		call err_assert
+  77               	.LVL5:
+  78               	.L6:
+  79               	.LM10:
+  80 0030 1093 0000 		sts last_err,r17
+  81               	.LM11:
+  82 0034 D093 0000 		sts (err_str)+1,r29
+  83 0038 C093 0000 		sts err_str,r28
+  84               	.LM12:
+  85 003c 83E0      		ldi r24,lo8(3)
+  86 003e 0E94 0000 		call scr_ch
+  87               	/* epilogue start */
+  88               	.LM13:
+  89 0042 DF91      		pop r29
+  90 0044 CF91      		pop r28
+  91               	.LVL6:
+  92 0046 1F91      		pop r17
+  93               	.LVL7:
+  94 0048 0895      		ret
+  95               	.LFE6:
+  97               		.data
+  98               	.LC1:
+  99 0008 4572 726F 		.string	"Error 150: assert()\n%s\n%i"
+  99      7220 3135 
+  99      303A 2061 
+  99      7373 6572 
+  99      7428 290A 
+ 100               		.text
+ 101               	.global	err_assert
+ 103               	err_assert:
+ 104               	.LFB10:
+ 105               	.LM14:
+ 106               	.LVL8:
+ 107 004a CF92      		push r12
+ 108 004c DF92      		push r13
+ 109 004e EF92      		push r14
+ 110 0050 FF92      		push r15
+ 111 0052 0F93      		push r16
+ 112 0054 1F93      		push r17
+ 113               	/* prologue: function */
+ 114               	/* frame size = 0 */
+ 115 0056 D82E      		mov r13,r24
+ 116 0058 C92E      		mov r12,r25
+ 117               	.LVL9:
+ 118 005a 8B01      		movw r16,r22
+ 119               	.LM15:
+ 120 005c A82F      		mov r26,r24
+ 121 005e B92F      		mov r27,r25
+ 122 0060 FD01      		movw r30,r26
+ 123 0062 0190      		ld __tmp_reg__,Z+
+ 124 0064 0020      		tst __tmp_reg__
+ 125 0066 01F4      		brne .-6
+ 126 0068 EA1B      		sub r30,r26
+ 127 006a FB0B      		sbc r31,r27
+ 128 006c CF01      		movw r24,r30
+ 129               	.LVL10:
+ 130 006e 4A96      		adiw r24,26
+ 131 0070 0E94 0000 		call mmalloc
+ 132               	.LVL11:
+ 133 0074 F82E      		mov r15,r24
+ 134 0076 E92E      		mov r14,r25
+ 135               	.LM16:
+ 136 0078 8DB7      		in r24,__SP_L__
+ 137 007a 9EB7      		in r25,__SP_H__
+ 138 007c 0897      		sbiw r24,8
+ 139 007e 0FB6      		in __tmp_reg__,__SREG__
+ 140 0080 F894      		cli
+ 141 0082 9EBF      		out __SP_H__,r25
+ 142 0084 0FBE      		out __SREG__,__tmp_reg__
+ 143 0086 8DBF      		out __SP_L__,r24
+ 144 0088 EDB7      		in r30,__SP_L__
+ 145 008a FEB7      		in r31,__SP_H__
+ 146 008c 3196      		adiw r30,1
+ 147 008e ADB7      		in r26,__SP_L__
+ 148 0090 BEB7      		in r27,__SP_H__
+ 149 0092 1196      		adiw r26,1
+ 150 0094 FC92      		st X,r15
+ 151 0096 E182      		std Z+1,r14
+ 152 0098 80E0      		ldi r24,lo8(.LC1)
+ 153 009a 90E0      		ldi r25,hi8(.LC1)
+ 154 009c 9383      		std Z+3,r25
+ 155 009e 8283      		std Z+2,r24
+ 156 00a0 D482      		std Z+4,r13
+ 157 00a2 C582      		std Z+5,r12
+ 158 00a4 1783      		std Z+7,r17
+ 159 00a6 0683      		std Z+6,r16
+ 160 00a8 0E94 0000 		call sprintf
+ 161               	.LM17:
+ 162 00ac 8DB7      		in r24,__SP_L__
+ 163 00ae 9EB7      		in r25,__SP_H__
+ 164 00b0 0896      		adiw r24,8
+ 165 00b2 0FB6      		in __tmp_reg__,__SREG__
+ 166 00b4 F894      		cli
+ 167 00b6 9EBF      		out __SP_H__,r25
+ 168 00b8 0FBE      		out __SREG__,__tmp_reg__
+ 169 00ba 8DBF      		out __SP_L__,r24
+ 170 00bc 86E9      		ldi r24,lo8(-106)
+ 171 00be 6F2D      		mov r22,r15
+ 172 00c0 7E2D      		mov r23,r14
+ 173 00c2 0E94 0000 		call new_str_error
+ 174               	/* epilogue start */
+ 175               	.LM18:
+ 176 00c6 1F91      		pop r17
+ 177 00c8 0F91      		pop r16
+ 178               	.LVL12:
+ 179 00ca FF90      		pop r15
+ 180 00cc EF90      		pop r14
+ 181 00ce DF90      		pop r13
+ 182               	.LVL13:
+ 183 00d0 CF90      		pop r12
+ 184               	.LVL14:
+ 185 00d2 0895      		ret
+ 186               	.LFE10:
+ 188               	.global	err_control
+ 190               	err_control:
+ 191               	.LFB3:
+ 192               	.LM19:
+ 193               	/* prologue: function */
+ 194               	/* frame size = 0 */
+ 195               	.LM20:
+ 196 00d4 8091 0000 		lds r24,new_err
+ 197 00d8 8130      		cpi r24,lo8(1)
+ 198 00da 01F4      		brne .L12
+ 199               	.LM21:
+ 200 00dc 83E0      		ldi r24,lo8(3)
+ 201 00de 0E94 0000 		call scr_ch
+ 202               	.LM22:
+ 203 00e2 1092 0000 		sts new_err,__zero_reg__
+ 204               	.L12:
+ 205 00e6 0895      		ret
+ 206               	.LFE3:
+ 208               	.global	error_scr_control
+ 210               	error_scr_control:
+ 211               	.LFB9:
+ 212               	.LM23:
+ 213               	/* prologue: function */
+ 214               	/* frame size = 0 */
+ 215               	.LM24:
+ 216 00e8 0E94 0000 		call get_spec
+ 217 00ec 8823      		tst r24
+ 218               	.LVL15:
+ 219 00ee 01F0      		breq .L19
+ 220               	.LM25:
+ 221 00f0 8531      		cpi r24,lo8(21)
+ 222 00f2 01F0      		breq .L16
+ 223 00f4 8631      		cpi r24,lo8(22)
+ 224 00f6 00F4      		brsh .L18
+ 225 00f8 8450      		subi r24,lo8(-(-4))
+ 226 00fa 8230      		cpi r24,lo8(2)
+ 227 00fc 00F4      		brsh .L19
+ 228 00fe 00C0      		rjmp .L21
+ 229               	.L18:
+ 230 0100 8631      		cpi r24,lo8(22)
+ 231 0102 01F4      		brne .L19
+ 232 0104 00C0      		rjmp .L22
+ 233               	.L21:
+ 234               	.LM26:
+ 235 0106 8091 0000 		lds r24,prev_scr
+ 236               	.LVL16:
+ 237 010a 0E94 0000 		call scr_ch
+ 238 010e 0895      		ret
+ 239               	.LVL17:
+ 240               	.L16:
+ 241               	.LM27:
+ 242 0110 0E94 0000 		call kf_zrusit
+ 243               	.LVL18:
+ 244 0114 0895      		ret
+ 245               	.LVL19:
+ 246               	.L22:
+ 247               	.LM28:
+ 248 0116 0E94 0000 		call send_data
+ 249               	.LVL20:
+ 250               	.L19:
+ 251 011a 0895      		ret
+ 252               	.LFE9:
+ 254               	.global	print_err
+ 256               	print_err:
+ 257               	.LFB7:
+ 258               	.LM29:
+ 259               	/* prologue: function */
+ 260               	/* frame size = 0 */
+ 261               	.LM30:
+ 262 011c 8091 0000 		lds r24,last_err
+ 263 0120 8835      		cpi r24,lo8(88)
+ 264 0122 01F4      		brne .+2
+ 265 0124 00C0      		rjmp .L39
+ 266 0126 8935      		cpi r24,lo8(89)
+ 267 0128 00F4      		brsh .L54
+ 268 012a 8035      		cpi r24,lo8(80)
+ 269 012c 01F4      		brne .+2
+ 270 012e 00C0      		rjmp .L31
+ 271 0130 8135      		cpi r24,lo8(81)
+ 272 0132 00F4      		brsh .L55
+ 273 0134 8630      		cpi r24,lo8(6)
+ 274 0136 01F4      		brne .+2
+ 275 0138 00C0      		rjmp .L27
+ 276 013a 8730      		cpi r24,lo8(7)
+ 277 013c 00F4      		brsh .L56
+ 278 013e 8130      		cpi r24,lo8(1)
+ 279 0140 01F4      		brne .+2
+ 280 0142 00C0      		rjmp .L25
+ 281 0144 8430      		cpi r24,lo8(4)
+ 282 0146 01F0      		breq .+2
+ 283 0148 00C0      		rjmp .L61
+ 284 014a 00C0      		rjmp .L66
+ 285               	.L56:
+ 286 014c 8A30      		cpi r24,lo8(10)
+ 287 014e 01F4      		brne .+2
+ 288 0150 00C0      		rjmp .L29
+ 289 0152 8B30      		cpi r24,lo8(11)
+ 290 0154 01F4      		brne .+2
+ 291 0156 00C0      		rjmp .L30
+ 292 0158 8730      		cpi r24,lo8(7)
+ 293 015a 01F0      		breq .+2
+ 294 015c 00C0      		rjmp .L61
+ 295 015e 00C0      		rjmp .L67
+ 296               	.L55:
+ 297 0160 8435      		cpi r24,lo8(84)
+ 298 0162 01F4      		brne .+2
+ 299 0164 00C0      		rjmp .L35
+ 300 0166 8535      		cpi r24,lo8(85)
+ 301 0168 00F4      		brsh .L57
+ 302 016a 8235      		cpi r24,lo8(82)
+ 303 016c 01F4      		brne .+2
+ 304 016e 00C0      		rjmp .L33
+ 305 0170 8335      		cpi r24,lo8(83)
+ 306 0172 00F0      		brlo .+2
+ 307 0174 00C0      		rjmp .L34
+ 308 0176 00C0      		rjmp .L68
+ 309               	.L57:
+ 310 0178 8635      		cpi r24,lo8(86)
+ 311 017a 01F4      		brne .+2
+ 312 017c 00C0      		rjmp .L37
+ 313 017e 8735      		cpi r24,lo8(87)
+ 314 0180 00F0      		brlo .+2
+ 315 0182 00C0      		rjmp .L38
+ 316 0184 00C0      		rjmp .L69
+ 317               	.L54:
+ 318 0186 8F35      		cpi r24,lo8(95)
+ 319 0188 01F4      		brne .+2
+ 320 018a 00C0      		rjmp .L46
+ 321 018c 8036      		cpi r24,lo8(96)
+ 322 018e 00F4      		brsh .L58
+ 323 0190 8B35      		cpi r24,lo8(91)
+ 324 0192 01F4      		brne .+2
+ 325 0194 00C0      		rjmp .L42
+ 326 0196 8C35      		cpi r24,lo8(92)
+ 327 0198 00F4      		brsh .L59
+ 328 019a 8935      		cpi r24,lo8(89)
+ 329 019c 01F4      		brne .+2
+ 330 019e 00C0      		rjmp .L40
+ 331 01a0 8A35      		cpi r24,lo8(90)
+ 332 01a2 01F0      		breq .+2
+ 333 01a4 00C0      		rjmp .L61
+ 334 01a6 00C0      		rjmp .L70
+ 335               	.L59:
+ 336 01a8 8D35      		cpi r24,lo8(93)
+ 337 01aa 01F4      		brne .+2
+ 338 01ac 00C0      		rjmp .L44
+ 339 01ae 8E35      		cpi r24,lo8(94)
+ 340 01b0 00F0      		brlo .+2
+ 341 01b2 00C0      		rjmp .L45
+ 342 01b4 00C0      		rjmp .L71
+ 343               	.L58:
+ 344 01b6 8536      		cpi r24,lo8(101)
+ 345 01b8 01F4      		brne .+2
+ 346 01ba 00C0      		rjmp .L50
+ 347 01bc 8636      		cpi r24,lo8(102)
+ 348 01be 00F4      		brsh .L60
+ 349 01c0 8336      		cpi r24,lo8(99)
+ 350 01c2 01F4      		brne .+2
+ 351 01c4 00C0      		rjmp .L48
+ 352 01c6 8436      		cpi r24,lo8(100)
+ 353 01c8 00F0      		brlo .+2
+ 354 01ca 00C0      		rjmp .L49
+ 355 01cc 8036      		cpi r24,lo8(96)
+ 356 01ce 01F0      		breq .+2
+ 357 01d0 00C0      		rjmp .L61
+ 358 01d2 00C0      		rjmp .L72
+ 359               	.L60:
+ 360 01d4 883C      		cpi r24,lo8(-56)
+ 361 01d6 01F4      		brne .+2
+ 362 01d8 00C0      		rjmp .L52
+ 363 01da 893C      		cpi r24,lo8(-55)
+ 364 01dc 01F4      		brne .+2
+ 365 01de 00C0      		rjmp .L53
+ 366 01e0 8636      		cpi r24,lo8(102)
+ 367 01e2 01F0      		breq .+2
+ 368 01e4 00C0      		rjmp .L61
+ 369 01e6 00C0      		rjmp .L73
+ 370               	.L25:
+ 371               	.LM31:
+ 372 01e8 80E0      		ldi r24,lo8(0)
+ 373 01ea 90E0      		ldi r25,hi8(0)
+ 374 01ec 60E0      		ldi r22,lo8(0)
+ 375 01ee 70E0      		ldi r23,hi8(0)
+ 376 01f0 40E0      		ldi r20,lo8(err1)
+ 377 01f2 50E0      		ldi r21,hi8(err1)
+ 378 01f4 00C0      		rjmp .L65
+ 379               	.L66:
+ 380               	.LM32:
+ 381 01f6 80E0      		ldi r24,lo8(0)
+ 382 01f8 90E0      		ldi r25,hi8(0)
+ 383 01fa 60E0      		ldi r22,lo8(0)
+ 384 01fc 70E0      		ldi r23,hi8(0)
+ 385 01fe 40E0      		ldi r20,lo8(err4)
+ 386 0200 50E0      		ldi r21,hi8(err4)
+ 387 0202 00C0      		rjmp .L65
+ 388               	.L27:
+ 389               	.LM33:
+ 390 0204 80E0      		ldi r24,lo8(0)
+ 391 0206 90E0      		ldi r25,hi8(0)
+ 392 0208 60E0      		ldi r22,lo8(0)
+ 393 020a 70E0      		ldi r23,hi8(0)
+ 394 020c 40E0      		ldi r20,lo8(err6)
+ 395 020e 50E0      		ldi r21,hi8(err6)
+ 396 0210 00C0      		rjmp .L65
+ 397               	.L67:
+ 398               	.LM34:
+ 399 0212 80E0      		ldi r24,lo8(0)
+ 400 0214 90E0      		ldi r25,hi8(0)
+ 401 0216 60E0      		ldi r22,lo8(0)
+ 402 0218 70E0      		ldi r23,hi8(0)
+ 403 021a 40E0      		ldi r20,lo8(err7)
+ 404 021c 50E0      		ldi r21,hi8(err7)
+ 405 021e 00C0      		rjmp .L65
+ 406               	.L29:
+ 407               	.LM35:
+ 408 0220 80E0      		ldi r24,lo8(0)
+ 409 0222 90E0      		ldi r25,hi8(0)
+ 410 0224 60E0      		ldi r22,lo8(0)
+ 411 0226 70E0      		ldi r23,hi8(0)
+ 412 0228 40E0      		ldi r20,lo8(err10)
+ 413 022a 50E0      		ldi r21,hi8(err10)
+ 414 022c 00C0      		rjmp .L65
+ 415               	.L30:
+ 416               	.LM36:
+ 417 022e 80E0      		ldi r24,lo8(0)
+ 418 0230 90E0      		ldi r25,hi8(0)
+ 419 0232 60E0      		ldi r22,lo8(0)
+ 420 0234 70E0      		ldi r23,hi8(0)
+ 421 0236 40E0      		ldi r20,lo8(err11)
+ 422 0238 50E0      		ldi r21,hi8(err11)
+ 423 023a 00C0      		rjmp .L65
+ 424               	.L31:
+ 425               	.LM37:
+ 426 023c 80E0      		ldi r24,lo8(0)
+ 427 023e 90E0      		ldi r25,hi8(0)
+ 428 0240 60E0      		ldi r22,lo8(0)
+ 429 0242 70E0      		ldi r23,hi8(0)
+ 430 0244 40E0      		ldi r20,lo8(err80)
+ 431 0246 50E0      		ldi r21,hi8(err80)
+ 432 0248 00C0      		rjmp .L65
+ 433               	.L68:
+ 434               	.LM38:
+ 435 024a 80E0      		ldi r24,lo8(0)
+ 436 024c 90E0      		ldi r25,hi8(0)
+ 437 024e 60E0      		ldi r22,lo8(0)
+ 438 0250 70E0      		ldi r23,hi8(0)
+ 439 0252 40E0      		ldi r20,lo8(err81)
+ 440 0254 50E0      		ldi r21,hi8(err81)
+ 441 0256 00C0      		rjmp .L65
+ 442               	.L33:
+ 443               	.LM39:
+ 444 0258 80E0      		ldi r24,lo8(0)
+ 445 025a 90E0      		ldi r25,hi8(0)
+ 446 025c 60E0      		ldi r22,lo8(0)
+ 447 025e 70E0      		ldi r23,hi8(0)
+ 448 0260 40E0      		ldi r20,lo8(err82)
+ 449 0262 50E0      		ldi r21,hi8(err82)
+ 450 0264 00C0      		rjmp .L65
+ 451               	.L34:
+ 452               	.LM40:
+ 453 0266 80E0      		ldi r24,lo8(0)
+ 454 0268 90E0      		ldi r25,hi8(0)
+ 455 026a 60E0      		ldi r22,lo8(0)
+ 456 026c 70E0      		ldi r23,hi8(0)
+ 457 026e 40E0      		ldi r20,lo8(err83)
+ 458 0270 50E0      		ldi r21,hi8(err83)
+ 459 0272 00C0      		rjmp .L65
+ 460               	.L35:
+ 461               	.LM41:
+ 462 0274 80E0      		ldi r24,lo8(0)
+ 463 0276 90E0      		ldi r25,hi8(0)
+ 464 0278 60E0      		ldi r22,lo8(0)
+ 465 027a 70E0      		ldi r23,hi8(0)
+ 466 027c 40E0      		ldi r20,lo8(err84)
+ 467 027e 50E0      		ldi r21,hi8(err84)
+ 468 0280 00C0      		rjmp .L65
+ 469               	.L69:
+ 470               	.LM42:
+ 471 0282 80E0      		ldi r24,lo8(0)
+ 472 0284 90E0      		ldi r25,hi8(0)
+ 473 0286 60E0      		ldi r22,lo8(0)
+ 474 0288 70E0      		ldi r23,hi8(0)
+ 475 028a 40E0      		ldi r20,lo8(err85)
+ 476 028c 50E0      		ldi r21,hi8(err85)
+ 477 028e 00C0      		rjmp .L65
+ 478               	.L37:
+ 479               	.LM43:
+ 480 0290 80E0      		ldi r24,lo8(0)
+ 481 0292 90E0      		ldi r25,hi8(0)
+ 482 0294 60E0      		ldi r22,lo8(0)
+ 483 0296 70E0      		ldi r23,hi8(0)
+ 484 0298 40E0      		ldi r20,lo8(err86)
+ 485 029a 50E0      		ldi r21,hi8(err86)
+ 486 029c 00C0      		rjmp .L65
+ 487               	.L38:
+ 488               	.LM44:
+ 489 029e 80E0      		ldi r24,lo8(0)
+ 490 02a0 90E0      		ldi r25,hi8(0)
+ 491 02a2 60E0      		ldi r22,lo8(0)
+ 492 02a4 70E0      		ldi r23,hi8(0)
+ 493 02a6 40E0      		ldi r20,lo8(err87)
+ 494 02a8 50E0      		ldi r21,hi8(err87)
+ 495 02aa 00C0      		rjmp .L65
+ 496               	.L39:
+ 497               	.LM45:
+ 498 02ac 80E0      		ldi r24,lo8(0)
+ 499 02ae 90E0      		ldi r25,hi8(0)
+ 500 02b0 60E0      		ldi r22,lo8(0)
+ 501 02b2 70E0      		ldi r23,hi8(0)
+ 502 02b4 40E0      		ldi r20,lo8(err88)
+ 503 02b6 50E0      		ldi r21,hi8(err88)
+ 504 02b8 00C0      		rjmp .L65
+ 505               	.L40:
+ 506               	.LM46:
+ 507 02ba 80E0      		ldi r24,lo8(0)
+ 508 02bc 90E0      		ldi r25,hi8(0)
+ 509 02be 60E0      		ldi r22,lo8(0)
+ 510 02c0 70E0      		ldi r23,hi8(0)
+ 511 02c2 40E0      		ldi r20,lo8(err89)
+ 512 02c4 50E0      		ldi r21,hi8(err89)
+ 513 02c6 00C0      		rjmp .L65
+ 514               	.L70:
+ 515               	.LM47:
+ 516 02c8 80E0      		ldi r24,lo8(0)
+ 517 02ca 90E0      		ldi r25,hi8(0)
+ 518 02cc 60E0      		ldi r22,lo8(0)
+ 519 02ce 70E0      		ldi r23,hi8(0)
+ 520 02d0 40E0      		ldi r20,lo8(err90)
+ 521 02d2 50E0      		ldi r21,hi8(err90)
+ 522 02d4 00C0      		rjmp .L65
+ 523               	.L42:
+ 524               	.LM48:
+ 525 02d6 80E0      		ldi r24,lo8(0)
+ 526 02d8 90E0      		ldi r25,hi8(0)
+ 527 02da 60E0      		ldi r22,lo8(0)
+ 528 02dc 70E0      		ldi r23,hi8(0)
+ 529 02de 40E0      		ldi r20,lo8(err91)
+ 530 02e0 50E0      		ldi r21,hi8(err91)
+ 531 02e2 00C0      		rjmp .L65
+ 532               	.L71:
+ 533               	.LM49:
+ 534 02e4 80E0      		ldi r24,lo8(0)
+ 535 02e6 90E0      		ldi r25,hi8(0)
+ 536 02e8 60E0      		ldi r22,lo8(0)
+ 537 02ea 70E0      		ldi r23,hi8(0)
+ 538 02ec 40E0      		ldi r20,lo8(err92)
+ 539 02ee 50E0      		ldi r21,hi8(err92)
+ 540 02f0 00C0      		rjmp .L65
+ 541               	.L44:
+ 542               	.LM50:
+ 543 02f2 80E0      		ldi r24,lo8(0)
+ 544 02f4 90E0      		ldi r25,hi8(0)
+ 545 02f6 60E0      		ldi r22,lo8(0)
+ 546 02f8 70E0      		ldi r23,hi8(0)
+ 547 02fa 40E0      		ldi r20,lo8(err93)
+ 548 02fc 50E0      		ldi r21,hi8(err93)
+ 549 02fe 00C0      		rjmp .L65
+ 550               	.L45:
+ 551               	.LM51:
+ 552 0300 80E0      		ldi r24,lo8(0)
+ 553 0302 90E0      		ldi r25,hi8(0)
+ 554 0304 60E0      		ldi r22,lo8(0)
+ 555 0306 70E0      		ldi r23,hi8(0)
+ 556 0308 40E0      		ldi r20,lo8(err94)
+ 557 030a 50E0      		ldi r21,hi8(err94)
+ 558 030c 00C0      		rjmp .L65
+ 559               	.L46:
+ 560               	.LM52:
+ 561 030e 80E0      		ldi r24,lo8(0)
+ 562 0310 90E0      		ldi r25,hi8(0)
+ 563 0312 60E0      		ldi r22,lo8(0)
+ 564 0314 70E0      		ldi r23,hi8(0)
+ 565 0316 40E0      		ldi r20,lo8(err95)
+ 566 0318 50E0      		ldi r21,hi8(err95)
+ 567 031a 00C0      		rjmp .L65
+ 568               	.L72:
+ 569               	.LM53:
+ 570 031c 80E0      		ldi r24,lo8(0)
+ 571 031e 90E0      		ldi r25,hi8(0)
+ 572 0320 60E0      		ldi r22,lo8(0)
+ 573 0322 70E0      		ldi r23,hi8(0)
+ 574 0324 40E0      		ldi r20,lo8(err96)
+ 575 0326 50E0      		ldi r21,hi8(err96)
+ 576 0328 00C0      		rjmp .L65
+ 577               	.L48:
+ 578               	.LM54:
+ 579 032a 80E0      		ldi r24,lo8(0)
+ 580 032c 90E0      		ldi r25,hi8(0)
+ 581 032e 60E0      		ldi r22,lo8(0)
+ 582 0330 70E0      		ldi r23,hi8(0)
+ 583 0332 40E0      		ldi r20,lo8(err99)
+ 584 0334 50E0      		ldi r21,hi8(err99)
+ 585 0336 00C0      		rjmp .L65
+ 586               	.L49:
+ 587               	.LM55:
+ 588 0338 80E0      		ldi r24,lo8(0)
+ 589 033a 90E0      		ldi r25,hi8(0)
+ 590 033c 60E0      		ldi r22,lo8(0)
+ 591 033e 70E0      		ldi r23,hi8(0)
+ 592 0340 40E0      		ldi r20,lo8(err100)
+ 593 0342 50E0      		ldi r21,hi8(err100)
+ 594 0344 00C0      		rjmp .L65
+ 595               	.L50:
+ 596               	.LM56:
+ 597 0346 80E0      		ldi r24,lo8(0)
+ 598 0348 90E0      		ldi r25,hi8(0)
+ 599 034a 60E0      		ldi r22,lo8(0)
+ 600 034c 70E0      		ldi r23,hi8(0)
+ 601 034e 40E0      		ldi r20,lo8(err101)
+ 602 0350 50E0      		ldi r21,hi8(err101)
+ 603 0352 00C0      		rjmp .L65
+ 604               	.L73:
+ 605               	.LM57:
+ 606 0354 80E0      		ldi r24,lo8(0)
+ 607 0356 90E0      		ldi r25,hi8(0)
+ 608 0358 60E0      		ldi r22,lo8(0)
+ 609 035a 70E0      		ldi r23,hi8(0)
+ 610 035c 40E0      		ldi r20,lo8(err102)
+ 611 035e 50E0      		ldi r21,hi8(err102)
+ 612 0360 00C0      		rjmp .L65
+ 613               	.L52:
+ 614               	.LM58:
+ 615 0362 80E0      		ldi r24,lo8(0)
+ 616 0364 90E0      		ldi r25,hi8(0)
+ 617 0366 60E0      		ldi r22,lo8(0)
+ 618 0368 70E0      		ldi r23,hi8(0)
+ 619 036a 40E0      		ldi r20,lo8(err200)
+ 620 036c 50E0      		ldi r21,hi8(err200)
+ 621               	.L65:
+ 622 036e 0E94 0000 		call printxyd_P
+ 623 0372 0895      		ret
+ 624               	.L53:
+ 625               	.LM59:
+ 626 0374 80E0      		ldi r24,lo8(0)
+ 627 0376 90E0      		ldi r25,hi8(0)
+ 628 0378 60E0      		ldi r22,lo8(0)
+ 629 037a 70E0      		ldi r23,hi8(0)
+ 630 037c 40E0      		ldi r20,lo8(err201)
+ 631 037e 50E0      		ldi r21,hi8(err201)
+ 632 0380 0E94 0000 		call printxyd_P
+ 633               	.L61:
+ 634 0384 0895      		ret
+ 635               	.LFE7:
+ 637               	.global	error_scr_draw
+ 639               	error_scr_draw:
+ 640               	.LFB8:
+ 641               	.LM60:
+ 642               	/* prologue: function */
+ 643               	/* frame size = 0 */
+ 644               	.LM61:
+ 645 0386 8091 0000 		lds r24,prev_scr
+ 646 038a 8330      		cpi r24,lo8(3)
+ 647 038c 01F4      		brne .L75
+ 648               	.LM62:
+ 649 038e 1092 0000 		sts prev_scr,__zero_reg__
+ 650               	.L75:
+ 651               	.LM63:
+ 652 0392 0E94 0000 		call clear_dscreen
+ 653               	.LM64:
+ 654 0396 8091 0000 		lds r24,last_err
+ 655 039a 8659      		subi r24,lo8(-(106))
+ 656 039c 8233      		cpi r24,lo8(50)
+ 657 039e 00F4      		brsh .L76
+ 658               	.LM65:
+ 659 03a0 4091 0000 		lds r20,err_str
+ 660 03a4 5091 0000 		lds r21,(err_str)+1
+ 661 03a8 80E0      		ldi r24,lo8(0)
+ 662 03aa 90E0      		ldi r25,hi8(0)
+ 663 03ac 60E0      		ldi r22,lo8(0)
+ 664 03ae 70E0      		ldi r23,hi8(0)
+ 665 03b0 0E94 0000 		call printxyd
+ 666               	.LM66:
+ 667 03b4 8091 0000 		lds r24,err_str
+ 668 03b8 9091 0000 		lds r25,(err_str)+1
+ 669 03bc 0E94 0000 		call free
+ 670               	.LM67:
+ 671 03c0 1092 0000 		sts (err_str)+1,__zero_reg__
+ 672 03c4 1092 0000 		sts err_str,__zero_reg__
+ 673 03c8 0895      		ret
+ 674               	.L76:
+ 675               	.LM68:
+ 676 03ca 0E94 0000 		call print_err
+ 677 03ce 0895      		ret
+ 678               	.LFE8:
+ 680               	.global	prev_scr
+ 681               	.global	prev_scr
+ 682               		.section .bss
+ 685               	prev_scr:
+ 686 0000 00        		.skip 1,0
+ 687               	.global	last_err
+ 688               		.data
+ 691               	last_err:
+ 692 0022 FF        		.byte	-1
+ 693               	.global	err_str
+ 694               	.global	err_str
+ 695               		.section .bss
+ 698               	err_str:
+ 699 0001 0000      		.skip 2,0
+ 700               	.global	new_err
+ 701               	.global	new_err
+ 704               	new_err:
+ 705 0003 00        		.skip 1,0
+ 706               		.section	.progmem.data,"a",@progbits
+ 709               	err1:
+ 710 0000 4572 726F 		.ascii	"Error 1: Doslo k chybe v kontrolnim\nsouc"
+ 710      7220 313A 
+ 710      2044 6F73 
+ 710      6C6F 206B 
+ 710      2063 6879 
+ 711 0028 7475 2070 		.string	"tu pri prijmu zpravy na katru. \nNemusi to znamenat zadne potize."
+ 711      7269 2070 
+ 711      7269 6A6D 
+ 711      7520 7A70 
+ 711      7261 7679 
+ 714               	err4:
+ 715 0069 4572 726F 		.string	"Error 4: Chyba IRC\nRychle otoceni IRC na katru"
+ 715      7220 343A 
+ 715      2043 6879 
+ 715      6261 2049 
+ 715      5243 0A52 
+ 718               	err6:
+ 719 0098 4572 726F 		.string	"Error 6: Chyba IRC\nRychle otoceni IRC na voziku"
+ 719      7220 363A 
+ 719      2043 6879 
+ 719      6261 2049 
+ 719      5243 0A52 
+ 722               	err7:
+ 723 00c8 4572 726F 		.ascii	"Error 7: P"
+ 723      7220 373A 
+ 723      2050 
+ 724 00d2 6C6E 6120 		.string	"lna odesilaci fronta na katru.\nNemusi to znamenat zadny problem."
+ 724      6F64 6573 
+ 724      696C 6163 
+ 724      6920 6672 
+ 724      6F6E 7461 
+ 727               	err10:
+ 728 0113 4572 726F 		.string	"Error 10: \n DEBUG"
+ 728      7220 3130 
+ 728      3A20 0A20 
+ 728      4445 4255 
+ 728      4700 
+ 731               	err11:
+ 732 0125 4572 726F 		.string	"Error 11: \n DEBUG 2"
+ 732      7220 3131 
+ 732      3A20 0A20 
+ 732      4445 4255 
+ 732      4720 3200 
+ 735               	err80:
+ 736 0139 4572 726F 		.string	"Error 80: Chyba LCD\nPrekroceni rozsahu\nLCD po odradkovani"
+ 736      7220 3830 
+ 736      3A20 4368 
+ 736      7962 6120 
+ 736      4C43 440A 
+ 739               	err81:
+ 740 0173 4572 726F 		.string	"Error 81: Chyba LCD\nText presahuje\nokraj LCD"
+ 740      7220 3831 
+ 740      3A20 4368 
+ 740      7962 6120 
+ 740      4C43 440A 
+ 743               	err82:
+ 744 01a0 4572 726F 		.string	"Error 82: Chyba LCD\nPocatek textu\nmimo displej"
+ 744      7220 3832 
+ 744      3A20 4368 
+ 744      7962 6120 
+ 744      4C43 440A 
+ 747               	err83:
+ 748 01cf 4572 726F 		.string	"Error 83: Chyba IRC\nOprava na referen.\nbode o vice nez\n 10 cm"
+ 748      7220 3833 
+ 748      3A20 4368 
+ 748      7962 6120 
+ 748      4952 430A 
+ 751               	err84:
+ 752 020d 4572 726F 		.string	"Error 84: \nNelze zahajit mereni\ndokud neni\nukonceno predchozi."
+ 752      7220 3834 
+ 752      3A20 0A4E 
+ 752      656C 7A65 
+ 752      207A 6168 
+ 755               	err85:
+ 756 024c 4572 726F 		.ascii	"Error 85: Chyba konverze int2string.\n"
+ 756      7220 3835 
+ 756      3A20 4368 
+ 756      7962 6120 
+ 756      6B6F 6E76 
+ 757 0271 5072 6576 		.string	"Prevadene cislo je prilis dlouhe.\nDochazi k pretekani ve vypisu."
+ 757      6164 656E 
+ 757      6520 6369 
+ 757      736C 6F20 
+ 757      6A65 2070 
+ 760               	err86:
+ 761 02b2 4572 726F 		.ascii	"Error 86: Doslo k chybe v kontrolnim\nsouc"
+ 761      7220 3836 
+ 761      3A20 446F 
+ 761      736C 6F20 
+ 761      6B20 6368 
+ 762 02db 7475 2070 		.string	"tu pri prijmu zpravy\nna voziku.\nNemusi to znamenat zadne potize."
+ 762      7269 2070 
+ 762      7269 6A6D 
+ 762      7520 7A70 
+ 762      7261 7679 
+ 765               	err87:
+ 766 031c 4572 726F 		.ascii	"Error 87: Pri p"
+ 766      7220 3837 
+ 766      3A20 5072 
+ 766      6920 70
+ 767 032b 7269 6A6D 		.string	"rijmu zpravy na\nvoziku byla komunikace zahajena\nnesprvnym znakem"
+ 767      7520 7A70 
+ 767      7261 7679 
+ 767      206E 610A 
+ 767      766F 7A69 
+ 770               	err88:
+ 771 036c 4572 726F 		.string	"Error 88: Nedostatek pameti"
+ 771      7220 3838 
+ 771      3A20 4E65 
+ 771      646F 7374 
+ 771      6174 656B 
+ 774               	err89:
+ 775 0388 4572 726F 		.ascii	"Error 89: \nPrekroc"
+ 775      7220 3839 
+ 775      3A20 0A50 
+ 775      7265 6B72 
+ 775      6F63 
+ 776 039a 656E 2072 		.string	"en rozsah ulozitelne delky.\nMaximalni ulozitelna delka je 25.5 m"
+ 776      6F7A 7361 
+ 776      6820 756C 
+ 776      6F7A 6974 
+ 776      656C 6E65 
+ 779               	err90:
+ 780 03db 4572 726F 		.ascii	"Error 90: \nPrekrocen roz"
+ 780      7220 3930 
+ 780      3A20 0A50 
+ 780      7265 6B72 
+ 780      6F63 656E 
+ 781 03f3 7361 6820 		.string	"sah ulozitelneho prumeru.\nMaximalni ulozitelny prumer je 63.5 cm"
+ 781      756C 6F7A 
+ 781      6974 656C 
+ 781      6E65 686F 
+ 781      2070 7275 
+ 784               	err91:
+ 785 0434 4572 726F 		.string	"Error 91: \nPrekrocena maximalni doba odezvy na \nzpravu."
+ 785      7220 3931 
+ 785      3A20 0A50 
+ 785      7265 6B72 
+ 785      6F63 656E 
+ 788               	err92:
+ 789 046c 4572 726F 		.ascii	"Error 92: \nV dusledku odjezdu voziku od katru \nse nepod"
+ 789      7220 3932 
+ 789      3A20 0A56 
+ 789      2064 7573 
+ 789      6C65 646B 
+ 790 04a3 6172 696C 		.string	"arilo provest dostatek mereni.\nNamerena data mohou byt nepresna."
+ 790      6F20 7072 
+ 790      6F76 6573 
+ 790      7420 646F 
+ 790      7374 6174 
+ 793               	err93:
+ 794 04e4 4572 726F 		.ascii	"Error 93: \nV dusledku odjezdu voz"
+ 794      7220 3933 
+ 794      3A20 0A56 
+ 794      2064 7573 
+ 794      6C65 646B 
+ 795 0505 696B 7520 		.string	"iku od katru, \nnebylo zajisteno dostatek dat.\nMereni je zruseno."
+ 795      6F64 206B 
+ 795      6174 7275 
+ 795      2C20 0A6E 
+ 795      6562 796C 
+ 798               	err94:
+ 799 0546 4572 726F 		.string	"Error 94: \nJe nutne nejdrive zadat jmeno zakaznika."
+ 799      7220 3934 
+ 799      3A20 0A4A 
+ 799      6520 6E75 
+ 799      746E 6520 
+ 802               	err95:
+ 803 057a 4572 726F 		.ascii	"Error 95: Zakaznika nelze odstranit. \nBylo pro nej jiz name"
+ 803      7220 3935 
+ 803      3A20 5A61 
+ 803      6B61 7A6E 
+ 803      696B 6120 
+ 804 05b5 72        		.ascii	"r"
+ 805 05b6 656E 6F20 		.string	"eno nekolik kmenu.\nPred odstranenim je nutne tato mereni\nsmazat."
+ 805      6E65 6B6F 
+ 805      6C69 6B20 
+ 805      6B6D 656E 
+ 805      752E 0A50 
+ 808               	err96:
+ 809 05f7 4572 726F 		.ascii	"Error 96: \nDoslo k preplneni odesilaciho buffe"
+ 809      7220 3936 
+ 809      3A20 0A44 
+ 809      6F73 6C6F 
+ 809      206B 2070 
+ 810 0625 7275 200A 		.string	"ru \nserioveho kanalu na katru. Nemusi to \nznamenat zadne potize."
+ 810      7365 7269 
+ 810      6F76 6568 
+ 810      6F20 6B61 
+ 810      6E61 6C75 
+ 813               	err99:
+ 814 0666 4572 726F 		.ascii	"Error 99: \nPokus"
+ 814      7220 3939 
+ 814      3A20 0A50 
+ 814      6F6B 7573 
+ 815 0676 206F 206D 		.string	" o mereni prilis kratkeho kmenu.\nNejkratsi meritelny kmen je 2m."
+ 815      6572 656E 
+ 815      6920 7072 
+ 815      696C 6973 
+ 815      206B 7261 
+ 818               	err100:
+ 819 06b7 4572 726F 		.string	"Error 100: \nNespravne zadane cislo."
+ 819      7220 3130 
+ 819      303A 200A 
+ 819      4E65 7370 
+ 819      7261 766E 
+ 822               	err101:
+ 823 06db 4572 726F 		.ascii	"Error 101: Pamet zaznamu"
+ 823      7220 3130 
+ 823      313A 2050 
+ 823      616D 6574 
+ 823      207A 617A 
+ 824 06f3 207A 6170 		.string	" zaplnena.\nNelze ukladat dalsi zaznamy. Odeslete\ndata na server."
+ 824      6C6E 656E 
+ 824      612E 0A4E 
+ 824      656C 7A65 
+ 824      2075 6B6C 
+ 827               	err102:
+ 828 0734 4572 726F 		.string	"Error 102: \nChyba pri komunikaci se serverem."
+ 828      7220 3130 
+ 828      323A 200A 
+ 828      4368 7962 
+ 828      6120 7072 
+ 831               	err200:
+ 832 0762 0A20 2020 		.string	"\n             Data odeslana."
+ 832      2020 2020 
+ 832      2020 2020 
+ 832      2020 4461 
+ 832      7461 206F 
+ 835               	err201:
+ 836 077f 0A50      		.ascii	"\nP"
+ 837 0781 616D 6574 		.string	"amet zaznamu temer zaplnena.\nZbyva misto na mene nez 10 zaznamu."
+ 837      207A 617A 
+ 837      6E61 6D75 
+ 837      2074 656D 
+ 837      6572 207A 
+ 838               		.comm p_akt_screen,2,1
+ 839               		.comm default_screen,160,1
+ 840               		.comm akt_scr,1,1
+ 841               		.comm menu_pridat,2,1
+ 842               		.comm data_msg,11,1
+ 843               		.comm str_buf,41,1
+ 844               		.comm prumer_v,2,1
+ 845               		.comm prumer_h,2,1
+ 846               		.comm msr_prumer_v,2,1
+ 847               		.comm msr_prumer_h,2,1
+ 848               		.comm msr_prumer,2,1
+ 849               		.comm msr_delka,2,1
+ 850               		.comm msr_objem,2,1
+ 851               		.comm msr_status,1,1
+ 852               		.comm width_src,1,1
+ 933               	.Letext0:
+DEFINED SYMBOLS
+                            *ABS*:00000000 error.c
+C:\Users\mjirik\AppData\Local\Temp/ccRCkKd8.s:2      *ABS*:0000003f __SREG__
+C:\Users\mjirik\AppData\Local\Temp/ccRCkKd8.s:3      *ABS*:0000003e __SP_H__
+C:\Users\mjirik\AppData\Local\Temp/ccRCkKd8.s:4      *ABS*:0000003d __SP_L__
+C:\Users\mjirik\AppData\Local\Temp/ccRCkKd8.s:5      *ABS*:00000034 __CCP__
+C:\Users\mjirik\AppData\Local\Temp/ccRCkKd8.s:6      *ABS*:00000000 __tmp_reg__
+C:\Users\mjirik\AppData\Local\Temp/ccRCkKd8.s:7      *ABS*:00000001 __zero_reg__
+C:\Users\mjirik\AppData\Local\Temp/ccRCkKd8.s:18     .text:00000000 err_scr_open
+                            *COM*:00000001 akt_scr
+C:\Users\mjirik\AppData\Local\Temp/ccRCkKd8.s:685    .bss:00000000 prev_scr
+C:\Users\mjirik\AppData\Local\Temp/ccRCkKd8.s:33     .text:0000000a new_error
+C:\Users\mjirik\AppData\Local\Temp/ccRCkKd8.s:691    .data:00000022 last_err
+C:\Users\mjirik\AppData\Local\Temp/ccRCkKd8.s:704    .bss:00000003 new_err
+C:\Users\mjirik\AppData\Local\Temp/ccRCkKd8.s:56     .text:00000016 new_str_error
+C:\Users\mjirik\AppData\Local\Temp/ccRCkKd8.s:103    .text:0000004a err_assert
+C:\Users\mjirik\AppData\Local\Temp/ccRCkKd8.s:698    .bss:00000001 err_str
+C:\Users\mjirik\AppData\Local\Temp/ccRCkKd8.s:190    .text:000000d4 err_control
+C:\Users\mjirik\AppData\Local\Temp/ccRCkKd8.s:210    .text:000000e8 error_scr_control
+C:\Users\mjirik\AppData\Local\Temp/ccRCkKd8.s:256    .text:0000011c print_err
+C:\Users\mjirik\AppData\Local\Temp/ccRCkKd8.s:709    .progmem.data:00000000 err1
+C:\Users\mjirik\AppData\Local\Temp/ccRCkKd8.s:714    .progmem.data:00000069 err4
+C:\Users\mjirik\AppData\Local\Temp/ccRCkKd8.s:718    .progmem.data:00000098 err6
+C:\Users\mjirik\AppData\Local\Temp/ccRCkKd8.s:722    .progmem.data:000000c8 err7
+C:\Users\mjirik\AppData\Local\Temp/ccRCkKd8.s:727    .progmem.data:00000113 err10
+C:\Users\mjirik\AppData\Local\Temp/ccRCkKd8.s:731    .progmem.data:00000125 err11
+C:\Users\mjirik\AppData\Local\Temp/ccRCkKd8.s:735    .progmem.data:00000139 err80
+C:\Users\mjirik\AppData\Local\Temp/ccRCkKd8.s:739    .progmem.data:00000173 err81
+C:\Users\mjirik\AppData\Local\Temp/ccRCkKd8.s:743    .progmem.data:000001a0 err82
+C:\Users\mjirik\AppData\Local\Temp/ccRCkKd8.s:747    .progmem.data:000001cf err83
+C:\Users\mjirik\AppData\Local\Temp/ccRCkKd8.s:751    .progmem.data:0000020d err84
+C:\Users\mjirik\AppData\Local\Temp/ccRCkKd8.s:755    .progmem.data:0000024c err85
+C:\Users\mjirik\AppData\Local\Temp/ccRCkKd8.s:760    .progmem.data:000002b2 err86
+C:\Users\mjirik\AppData\Local\Temp/ccRCkKd8.s:765    .progmem.data:0000031c err87
+C:\Users\mjirik\AppData\Local\Temp/ccRCkKd8.s:770    .progmem.data:0000036c err88
+C:\Users\mjirik\AppData\Local\Temp/ccRCkKd8.s:774    .progmem.data:00000388 err89
+C:\Users\mjirik\AppData\Local\Temp/ccRCkKd8.s:779    .progmem.data:000003db err90
+C:\Users\mjirik\AppData\Local\Temp/ccRCkKd8.s:784    .progmem.data:00000434 err91
+C:\Users\mjirik\AppData\Local\Temp/ccRCkKd8.s:788    .progmem.data:0000046c err92
+C:\Users\mjirik\AppData\Local\Temp/ccRCkKd8.s:793    .progmem.data:000004e4 err93
+C:\Users\mjirik\AppData\Local\Temp/ccRCkKd8.s:798    .progmem.data:00000546 err94
+C:\Users\mjirik\AppData\Local\Temp/ccRCkKd8.s:802    .progmem.data:0000057a err95
+C:\Users\mjirik\AppData\Local\Temp/ccRCkKd8.s:808    .progmem.data:000005f7 err96
+C:\Users\mjirik\AppData\Local\Temp/ccRCkKd8.s:813    .progmem.data:00000666 err99
+C:\Users\mjirik\AppData\Local\Temp/ccRCkKd8.s:818    .progmem.data:000006b7 err100
+C:\Users\mjirik\AppData\Local\Temp/ccRCkKd8.s:822    .progmem.data:000006db err101
+C:\Users\mjirik\AppData\Local\Temp/ccRCkKd8.s:827    .progmem.data:00000734 err102
+C:\Users\mjirik\AppData\Local\Temp/ccRCkKd8.s:831    .progmem.data:00000762 err200
+C:\Users\mjirik\AppData\Local\Temp/ccRCkKd8.s:835    .progmem.data:0000077f err201
+C:\Users\mjirik\AppData\Local\Temp/ccRCkKd8.s:639    .text:00000386 error_scr_draw
+                            *COM*:00000002 p_akt_screen
+                            *COM*:000000a0 default_screen
+                            *COM*:00000002 menu_pridat
+                            *COM*:0000000b data_msg
+                            *COM*:00000029 str_buf
+                            *COM*:00000002 prumer_v
+                            *COM*:00000002 prumer_h
+                            *COM*:00000002 msr_prumer_v
+                            *COM*:00000002 msr_prumer_h
+                            *COM*:00000002 msr_prumer
+                            *COM*:00000002 msr_delka
+                            *COM*:00000002 msr_objem
+                            *COM*:00000001 msr_status
+                            *COM*:00000001 width_src
+
+UNDEFINED SYMBOLS
+scr_ch
+mmalloc
+sprintf
+get_spec
+kf_zrusit
+send_data
+printxyd_P
+clear_dscreen
+printxyd
+free
+__do_copy_data
+__do_clear_bss

@@ -1,0 +1,26 @@
+/**
+@dir ../maindocsrc Popis adresáøe
+Tohle je popis adresáøe
+
+@dir ../ Hlavní adresáø projektu
+
+*/
+
+
+/**
+@page struktura Soubory
+
+
+
+@verbatim
+<root>
+  +-doc              Dokumentace
+  |  +-global        Globální soubory dokumentace
+  |  +-katr          Dokumentace zaøízení na katru
+  |  +-main          Hlavní èást dokumentace
+  |  +-maindocsrc    Zdroje k hlavní èásti dokumentace
+  |  +-vozik         Dokumentace zaøízení na vozíku
+  |  +-web           
+
+@endverbatim
+*/

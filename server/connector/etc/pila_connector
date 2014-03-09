@@ -1,0 +1,9 @@
+port = /dev/ttyS0
+db_user = root
+db_psswd = moje.heslo
+irc_vozik_otacka_cm = 50.0
+irc_vozik_refer_cm = 50.0
+irc_katr_otacka_cm = 25.0
+irc_katr_refer_cm = 20.0
+int = 6
+float = 0.45

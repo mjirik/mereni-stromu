@@ -1,0 +1,44 @@
+EAGLE Version 4.16 Copyright (c) 1988-2005 CadSoft
+
+Electrical Rule Check for C:/Program Files/EAGLE-4.16/projects/vozik/mega.sch at 19.03.2006 13:05:06 
+
+ERROR: Sheet 1/1: no SUPPLY for POWER Pin IC1 AGND
+ERROR: Sheet 1/1: no SUPPLY for POWER Pin IC1 AVCC
+ERROR: Sheet 1/1: no SUPPLY for POWER Pin IC1 AREF
+WARNING: Sheet 1/1: POWER Pin IC1 VCC connected to UCC5_C
+ERROR: Sheet 1/1: unconnected INPUT Pin: IC1 RESET
+ERROR: Sheet 1/1: unconnected INPUT Pin: IC2 VI
+ERROR: Sheet 1/1: unconnected INPUT Pin: IC3 T1IN
+ERROR: Sheet 1/1: unconnected INPUT Pin: IC3 T2IN
+ERROR: Sheet 1/1: unconnected INPUT Pin: IC3 R1IN
+ERROR: Sheet 1/1: unconnected INPUT Pin: IC3 R2IN
+ERROR: Sheet 1/1: no SUPPLY for implicit POWER Pin IC3P VCC
+ERROR: Sheet 1/1: no SUPPLY for implicit POWER Pin IC3P GND
+ERROR: Sheet 1/1: unconnected INPUT Pin: IC4 T1IN
+ERROR: Sheet 1/1: unconnected INPUT Pin: IC4 T2IN
+ERROR: Sheet 1/1: unconnected INPUT Pin: IC4 R1IN
+ERROR: Sheet 1/1: unconnected INPUT Pin: IC4 R2IN
+ERROR: Sheet 1/1: no SUPPLY for implicit POWER Pin IC4P VCC
+ERROR: Sheet 1/1: no SUPPLY for implicit POWER Pin IC4P GND
+ERROR: Sheet 1/1: unconnected INPUT Pin: IC5 1G
+ERROR: Sheet 1/1: unconnected INPUT Pin: IC5 2G
+ERROR: Sheet 1/1: unconnected INPUT Pin: IC5 2C
+ERROR: Sheet 1/1: no SUPPLY for implicit POWER Pin IC5P GND
+ERROR: Sheet 1/1: no SUPPLY for implicit POWER Pin IC5P VCC
+ERROR: Sheet 1/1: unconnected INPUT Pin: IC6 1G
+ERROR: Sheet 1/1: unconnected INPUT Pin: IC6 1C3
+ERROR: Sheet 1/1: unconnected INPUT Pin: IC6 1C2
+ERROR: Sheet 1/1: unconnected INPUT Pin: IC6 1C1
+ERROR: Sheet 1/1: unconnected INPUT Pin: IC6 1C0
+ERROR: Sheet 1/1: unconnected INPUT Pin: IC6 2C0
+ERROR: Sheet 1/1: unconnected INPUT Pin: IC6 2C1
+ERROR: Sheet 1/1: unconnected INPUT Pin: IC6 2C2
+ERROR: Sheet 1/1: unconnected INPUT Pin: IC6 2C3
+ERROR: Sheet 1/1: unconnected INPUT Pin: IC6 2G
+ERROR: Sheet 1/1: no SUPPLY for implicit POWER Pin IC6P GND
+ERROR: Sheet 1/1: no SUPPLY for implicit POWER Pin IC6P VCC
+
+Board and schematic are consistent
+
+   34 errors
+    1 warnings

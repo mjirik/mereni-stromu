@@ -1,0 +1,127 @@
+   1               		.file	"keyfcn.c"
+   2               	__SREG__ = 0x3f
+   3               	__SP_H__ = 0x3e
+   4               	__SP_L__ = 0x3d
+   5               	__CCP__  = 0x34
+   6               	__tmp_reg__ = 0
+   7               	__zero_reg__ = 1
+  15               	.Ltext0:
+  16               	.global	kf_global_key
+  18               	kf_global_key:
+  19               	.LFB5:
+  20               	.LM1:
+  21               	/* prologue: function */
+  22               	/* frame size = 0 */
+  23               	.LM2:
+  24 0000 80E0      		ldi r24,lo8(0)
+  25 0002 90E0      		ldi r25,hi8(0)
+  26               	/* epilogue start */
+  27 0004 0895      		ret
+  28               	.LFE5:
+  30               	.global	kf_start
+  32               	kf_start:
+  33               	.LFB4:
+  34               	.LM3:
+  35               	/* prologue: function */
+  36               	/* frame size = 0 */
+  37               	.LM4:
+  38 0006 8091 0000 		lds r24,msr_status
+  39 000a 8330      		cpi r24,lo8(3)
+  40 000c 01F0      		breq .L6
+  41 000e 8430      		cpi r24,lo8(4)
+  42 0010 00F4      		brsh .L8
+  43 0012 8823      		tst r24
+  44 0014 01F0      		breq .L5
+  45 0016 0895      		ret
+  46               	.L8:
+  47 0018 8630      		cpi r24,lo8(6)
+  48 001a 00F4      		brsh .L10
+  49 001c 00C0      		rjmp .L12
+  50               	.L6:
+  51               	.LM5:
+  52 001e 0E94 0000 		call get_menu_jmena_i
+  53 0022 8F3F      		cpi r24,lo8(-1)
+  54 0024 01F4      		brne .L9
+  55               	.LM6:
+  56 0026 8EE5      		ldi r24,lo8(94)
+  57 0028 0E94 0000 		call new_error
+  58 002c 0895      		ret
+  59               	.L9:
+  60               	.LM7:
+  61 002e 0E94 0000 		call uloz_posledni_data
+  62               	.L5:
+  63               	.LM8:
+  64 0032 0E94 0000 		call msr_start
+  65 0036 0895      		ret
+  66               	.L12:
+  67               	.LM9:
+  68 0038 0E94 0000 		call msr_unpause
+  69               	.L10:
+  70 003c 0895      		ret
+  71               	.LFE4:
+  73               	.global	kf_zrusit
+  75               	kf_zrusit:
+  76               	.LFB3:
+  77               	.LM10:
+  78               	/* prologue: function */
+  79               	/* frame size = 0 */
+  80               	.LM11:
+  81 003e 8091 0000 		lds r24,msr_status
+  82 0042 8130      		cpi r24,lo8(1)
+  83 0044 00F0      		brlo .L17
+  84 0046 8330      		cpi r24,lo8(3)
+  85 0048 00F0      		brlo .L15
+  86 004a 8450      		subi r24,lo8(-(-4))
+  87 004c 8230      		cpi r24,lo8(2)
+  88 004e 00F4      		brsh .L17
+  89 0050 00C0      		rjmp .L19
+  90               	.L15:
+  91               	.LM12:
+  92 0052 0E94 0000 		call msr_pause
+  93 0056 0895      		ret
+  94               	.L19:
+  95               	.LM13:
+  96 0058 0E94 0000 		call msr_storno
+  97               	.L17:
+  98 005c 0895      		ret
+  99               	.LFE3:
+ 101               		.comm prumer_v,2,1
+ 102               		.comm prumer_h,2,1
+ 103               		.comm msr_prumer_v,2,1
+ 104               		.comm msr_prumer_h,2,1
+ 105               		.comm msr_prumer,2,1
+ 106               		.comm msr_delka,2,1
+ 107               		.comm msr_objem,2,1
+ 108               		.comm msr_status,1,1
+ 109               		.comm width_src,1,1
+ 150               	.Letext0:
+DEFINED SYMBOLS
+                            *ABS*:00000000 keyfcn.c
+C:\Users\mjirik\AppData\Local\Temp/ccf2n1Mq.s:2      *ABS*:0000003f __SREG__
+C:\Users\mjirik\AppData\Local\Temp/ccf2n1Mq.s:3      *ABS*:0000003e __SP_H__
+C:\Users\mjirik\AppData\Local\Temp/ccf2n1Mq.s:4      *ABS*:0000003d __SP_L__
+C:\Users\mjirik\AppData\Local\Temp/ccf2n1Mq.s:5      *ABS*:00000034 __CCP__
+C:\Users\mjirik\AppData\Local\Temp/ccf2n1Mq.s:6      *ABS*:00000000 __tmp_reg__
+C:\Users\mjirik\AppData\Local\Temp/ccf2n1Mq.s:7      *ABS*:00000001 __zero_reg__
+C:\Users\mjirik\AppData\Local\Temp/ccf2n1Mq.s:18     .text:00000000 kf_global_key
+C:\Users\mjirik\AppData\Local\Temp/ccf2n1Mq.s:32     .text:00000006 kf_start
+                            *COM*:00000001 msr_status
+C:\Users\mjirik\AppData\Local\Temp/ccf2n1Mq.s:75     .text:0000003e kf_zrusit
+                            *COM*:00000002 prumer_v
+                            *COM*:00000002 prumer_h
+                            *COM*:00000002 msr_prumer_v
+                            *COM*:00000002 msr_prumer_h
+                            *COM*:00000002 msr_prumer
+                            *COM*:00000002 msr_delka
+                            *COM*:00000002 msr_objem
+                            *COM*:00000001 width_src
+
+UNDEFINED SYMBOLS
+get_menu_jmena_i
+new_error
+uloz_posledni_data
+msr_start
+msr_unpause
+msr_pause
+msr_storno
+__do_clear_bss

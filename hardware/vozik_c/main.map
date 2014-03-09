@@ -1,0 +1,2248 @@
+Archive member included because of file (symbol)
+
+c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libm.a(addsf3.o)
+                              measure.o (__subsf3)
+c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libm.a(addsf3x.o)
+                              c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libm.a(addsf3.o) (__addsf3x)
+c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libm.a(cmpsf2.o)
+                              stp_scr.o (__lesf2)
+c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libm.a(divsf3.o)
+                              measure.o (__divsf3)
+c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libm.a(divsf3x.o)
+                              c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libm.a(divsf3.o) (__divsf3x)
+c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libm.a(fixsfsi.o)
+                              irc.o (__fixsfsi)
+c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libm.a(fixunssfsi.o)
+                              measure.o (__fixunssfsi)
+c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libm.a(floatsisf.o)
+                              measure.o (__floatunsisf)
+c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libm.a(fp_cmp.o)
+                              c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libm.a(cmpsf2.o) (__fp_cmp)
+c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libm.a(fp_inf.o)
+                              c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libm.a(addsf3x.o) (__fp_inf)
+c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libm.a(fp_nan.o)
+                              c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libm.a(addsf3x.o) (__fp_nan)
+c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libm.a(fp_pscA.o)
+                              c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libm.a(addsf3x.o) (__fp_pscA)
+c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libm.a(fp_pscB.o)
+                              c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libm.a(addsf3x.o) (__fp_pscB)
+c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libm.a(fp_round.o)
+                              c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libm.a(addsf3.o) (__fp_round)
+c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libm.a(fp_split3.o)
+                              c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libm.a(addsf3x.o) (__fp_split3)
+c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libm.a(fp_zero.o)
+                              c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libm.a(addsf3x.o) (__fp_zero)
+c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libm.a(gesf2.o)
+                              stp_scr.o (__gesf2)
+c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libm.a(mulsf3.o)
+                              measure.o (__mulsf3)
+c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libm.a(mulsf3x.o)
+                              c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libm.a(mulsf3.o) (__mulsf3x)
+c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/avr5\libgcc.a(_udivmodhi4.o)
+                              irc.o (__udivmodhi4)
+c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/avr5\libgcc.a(_divmodhi4.o)
+                              dat_scr.o (__divmodhi4)
+c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/avr5\libgcc.a(_udivmodsi4.o)
+                              measure.o (__udivmodsi4)
+c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/avr5\libgcc.a(_exit.o)
+                              c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5/crtm32.o (exit)
+c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/avr5\libgcc.a(_copy_data.o)
+                              measure.o (__do_copy_data)
+c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/avr5\libgcc.a(_clear_bss.o)
+                              main.o (__do_clear_bss)
+c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libc.a(malloc.o)
+                              main.o (malloc)
+c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libc.a(memcpy_P.o)
+                              usart.o (memcpy_P)
+c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libc.a(strcpy_P.o)
+                              main.o (strcpy_P)
+c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libc.a(strlen_P.o)
+                              main.o (strlen_P)
+c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libc.a(strcpy.o)
+                              data.o (strcpy)
+c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libc.a(strncpy.o)
+                              data_serial.o (strncpy)
+c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libc.a(eerd_block.o)
+                              eeprom.o (__eerd_block)
+c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libc.a(eerd_word.o)
+                              eeprom.o (__eerd_word)
+c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libc.a(eewr_block.o)
+                              eeprom.o (__eewr_block)
+c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libc.a(eewr_word.o)
+                              eeprom.o (__eewr_word)
+c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libc.a(sprintf.o)
+                              error.o (sprintf)
+c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libc.a(sscanf.o)
+                              dat_scr.o (sscanf)
+c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libc.a(vfprintf_std.o)
+                              c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libc.a(sprintf.o) (vfprintf)
+c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libc.a(vfscanf_std.o)
+                              c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libc.a(sscanf.o) (vfscanf)
+c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libc.a(isspace.o)
+                              c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libc.a(vfscanf_std.o) (isspace)
+c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libc.a(strchr_P.o)
+                              c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libc.a(vfscanf_std.o) (strchr_P)
+c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libc.a(strnlen_P.o)
+                              c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libc.a(vfprintf_std.o) (strnlen_P)
+c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libc.a(strnlen.o)
+                              c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libc.a(vfprintf_std.o) (strnlen)
+c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libc.a(fgetc.o)
+                              c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libc.a(vfscanf_std.o) (fgetc)
+c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libc.a(fputc.o)
+                              c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libc.a(vfprintf_std.o) (fputc)
+c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libc.a(ungetc.o)
+                              c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libc.a(vfscanf_std.o) (ungetc)
+c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libc.a(ultoa_invert.o)
+                              c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libc.a(vfprintf_std.o) (__ultoa_invert)
+c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libc.a(cty_isfalse.o)
+                              c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libc.a(isspace.o) (__ctype_isfalse)
+c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/avr5\libgcc.a(_prologue.o)
+                              c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libc.a(eerd_block.o) (__prologue_saves__)
+c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/avr5\libgcc.a(_epilogue.o)
+                              c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libc.a(eerd_block.o) (__epilogue_restores__)
+
+Allocating common symbols
+Common symbol       size              file
+
+str_buf             0x29              main.o
+usart_trans_buff    0x12              usart.o
+p_akt_screen        0x2               main.o
+prumer_h            0x2               main.o
+prev_state          0x1               irc.o
+msg_buffer          0xa               usart.o
+__brkval            0x2               c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libc.a(malloc.o)
+msr_prumer_h        0x2               main.o
+default_screen      0xa0              main.o
+data                0x2df             data.o
+m_jmena             0x22              main.o
+recived_msg         0xb               usart.o
+usart_recv_buff     0x12              usart.o
+prumer_v            0x2               main.o
+__flp               0x2               c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libc.a(malloc.o)
+msr_prumer_v        0x2               main.o
+data_msg            0xb               main.o
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+text             0x00000000         0x00020000         xr
+data             0x00800060         0x0000ffa0         rw !x
+eeprom           0x00810000         0x00010000         rw !x
+fuse             0x00820000         0x00000400         rw !x
+lock             0x00830000         0x00000400         rw !x
+signature        0x00840000         0x00000400         rw !x
+*default*        0x00000000         0xffffffff
+
+Linker script and memory map
+
+LOAD c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5/crtm32.o
+LOAD main.o
+LOAD measure.o
+LOAD usart.o
+LOAD usart_recv.o
+LOAD irc.o
+LOAD eeprom.o
+LOAD lcd.o
+LOAD convert.o
+LOAD data.o
+LOAD gui.o
+LOAD error.o
+LOAD keyboard.o
+LOAD gui_toolbox.o
+LOAD msr_scr.o
+LOAD hlp_scr.o
+LOAD dat_scr.o
+LOAD dlst_scr.o
+LOAD data_serial.o
+LOAD buttons.o
+LOAD ser_scr.o
+LOAD watchdog.o
+LOAD stp_scr.o
+LOAD keyfcn.o
+LOAD c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libm.a
+LOAD c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/avr5\libgcc.a
+LOAD c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libc.a
+LOAD c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/avr5\libgcc.a
+
+.hash
+ *(.hash)
+
+.dynsym
+ *(.dynsym)
+
+.dynstr
+ *(.dynstr)
+
+.gnu.version
+ *(.gnu.version)
+
+.gnu.version_d
+ *(.gnu.version_d)
+
+.gnu.version_r
+ *(.gnu.version_r)
+
+.rel.init
+ *(.rel.init)
+
+.rela.init
+ *(.rela.init)
+
+.rel.text
+ *(.rel.text)
+ *(.rel.text.*)
+ *(.rel.gnu.linkonce.t*)
+
+.rela.text
+ *(.rela.text)
+ *(.rela.text.*)
+ *(.rela.gnu.linkonce.t*)
+
+.rel.fini
+ *(.rel.fini)
+
+.rela.fini
+ *(.rela.fini)
+
+.rel.rodata
+ *(.rel.rodata)
+ *(.rel.rodata.*)
+ *(.rel.gnu.linkonce.r*)
+
+.rela.rodata
+ *(.rela.rodata)
+ *(.rela.rodata.*)
+ *(.rela.gnu.linkonce.r*)
+
+.rel.data
+ *(.rel.data)
+ *(.rel.data.*)
+ *(.rel.gnu.linkonce.d*)
+
+.rela.data
+ *(.rela.data)
+ *(.rela.data.*)
+ *(.rela.gnu.linkonce.d*)
+
+.rel.ctors
+ *(.rel.ctors)
+
+.rela.ctors
+ *(.rela.ctors)
+
+.rel.dtors
+ *(.rel.dtors)
+
+.rela.dtors
+ *(.rela.dtors)
+
+.rel.got
+ *(.rel.got)
+
+.rela.got
+ *(.rela.got)
+
+.rel.bss
+ *(.rel.bss)
+
+.rela.bss
+ *(.rela.bss)
+
+.rel.plt
+ *(.rel.plt)
+
+.rela.plt
+ *(.rela.plt)
+
+.text           0x00000000     0x781e
+ *(.vectors)
+ .vectors       0x00000000       0x54 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5/crtm32.o
+                0x00000000                __vectors
+                0x00000000                __vector_default
+ *(.vectors)
+ *(.progmem.gcc*)
+ .progmem.gcc_sw_table
+                0x00000054      0x1e0 keyboard.o
+ *(.progmem*)
+ .progmem.data  0x00000234       0x47 main.o
+ .progmem.data  0x0000027b       0x18 usart_recv.o
+ .progmem.data  0x00000293       0x18 gui.o
+ .progmem.data  0x000002ab      0x7c2 error.o
+ .progmem.data  0x00000a6d        0x8 gui_toolbox.o
+ .progmem.data  0x00000a75       0x9c msr_scr.o
+ .progmem.data  0x00000b11      0x10b hlp_scr.o
+ .progmem.data  0x00000c1c       0x50 dat_scr.o
+ .progmem.data  0x00000c6c       0x28 dlst_scr.o
+ .progmem.data  0x00000c94       0x55 watchdog.o
+ .progmem.data  0x00000ce9       0x32 stp_scr.o
+ .progmem.data  0x00000d1b        0xc c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libc.a(vfscanf_std.o)
+                0x00000d28                . = ALIGN (0x2)
+ *fill*         0x00000d27        0x1 00
+                0x00000d28                __trampolines_start = .
+ *(.trampolines)
+ .trampolines   0x00000d28        0x0 linker stubs
+ *(.trampolines*)
+                0x00000d28                __trampolines_end = .
+ *(.jumptables)
+ *(.jumptables*)
+ *(.lowtext)
+ *(.lowtext*)
+                0x00000d28                __ctors_start = .
+ *(.ctors)
+                0x00000d28                __ctors_end = .
+                0x00000d28                __dtors_start = .
+ *(.dtors)
+                0x00000d28                __dtors_end = .
+ SORT(*)(.ctors)
+ SORT(*)(.dtors)
+ *(.init0)
+ .init0         0x00000d28        0x0 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5/crtm32.o
+                0x00000d28                __init
+ *(.init0)
+ *(.init1)
+ *(.init1)
+ *(.init2)
+ .init2         0x00000d28        0xc c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5/crtm32.o
+ *(.init2)
+ *(.init3)
+ *(.init3)
+ *(.init4)
+ .init4         0x00000d34       0x16 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/avr5\libgcc.a(_copy_data.o)
+                0x00000d34                __do_copy_data
+ .init4         0x00000d4a       0x10 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/avr5\libgcc.a(_clear_bss.o)
+                0x00000d4a                __do_clear_bss
+ *(.init4)
+ *(.init5)
+ *(.init5)
+ *(.init6)
+ *(.init6)
+ *(.init7)
+ *(.init7)
+ *(.init8)
+ *(.init8)
+ *(.init9)
+ .init9         0x00000d5a        0x8 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5/crtm32.o
+ *(.init9)
+ *(.text)
+ .text          0x00000d62        0x4 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5/crtm32.o
+                0x00000d62                __vector_1
+                0x00000d62                __vector_12
+                0x00000d62                __bad_interrupt
+                0x00000d62                __vector_6
+                0x00000d62                __vector_3
+                0x00000d62                __vector_11
+                0x00000d62                __vector_17
+                0x00000d62                __vector_19
+                0x00000d62                __vector_5
+                0x00000d62                __vector_4
+                0x00000d62                __vector_9
+                0x00000d62                __vector_15
+                0x00000d62                __vector_8
+                0x00000d62                __vector_10
+                0x00000d62                __vector_16
+                0x00000d62                __vector_18
+                0x00000d62                __vector_20
+ .text          0x00000d66      0x232 main.o
+                0x00000d9e                get_data_from_server
+                0x00000d78                prazdna
+                0x00000e26                __vector_7
+                0x00000e84                test_shutdown
+                0x00000d82                mmalloc
+                0x00000d66                ioinit
+                0x00000f00                main
+                0x00000df2                getstr_P
+                0x00000dbe                get_data_from_katr
+                0x00000d7a                err102
+ .text          0x00000f98      0x81c measure.o
+                0x00001510                msr_zmer_l
+                0x000014f8                msr_unpause
+                0x00000fa2                msr_pause
+                0x00001770                msr_start
+                0x00000fae                prumeruj
+                0x0000164a                measure
+                0x000011a4                get_q
+                0x00000f98                msr_storno
+                0x00000ffe                get_k
+                0x000014f4                msr_init
+ .text          0x000017b4      0x528 usart.o
+                0x00001a3e                new_msg_P
+                0x00001b9c                send_msg
+                0x0000188c                new_msg
+                0x00001832                msg_ack_fcn
+                0x00001aa0                __vector_13
+                0x00001a78                process_recived_msg
+                0x00001918                serial_msg_ack_timer
+                0x00001b42                to_transmitt_buffer
+                0x000017b4                USART_Init
+                0x00001990                new_ack_msg
+                0x00001882                usart_get_recv_buff
+                0x000017e0                test_message
+                0x00001c1a                __vector_14
+                0x0000185a                msg_nack_fcn
+ .text          0x00001cdc      0x166 usart_recv.o
+                0x00001ce6                msg_0A
+                0x00001cf0                recv_msg
+                0x00001cdc                msg_14
+ .text          0x00001e42      0x272 irc.o
+                0x00001ec4                irc_watch
+                0x00001e4c                irc_init
+                0x00001e42                irc_get_k
+                0x00002020                set_irc_set_on_value
+                0x00001e60                irc_get_l
+                0x00002086                set_irc_k
+ .text          0x000020b4      0x25e eeprom.o
+                0x00002260                eeprom_load
+                0x000021b2                eeprom_save
+                0x0000219a                eeprom_w16
+                0x00002102                eeprom_r8
+                0x000020dc                eeprom_w8
+                0x00002112                eeprom_r32
+                0x00002158                eeprom_w32
+                0x00002190                eeprom_r16
+ .text          0x00002312      0x562 lcd.o
+                0x00002768                printxy
+                0x00002860                print
+                0x0000268e                printxyd_P
+                0x00002382                printc
+                0x0000284c                printxyd
+                0x00002326                d10
+                0x0000233c                clear_dscreen
+                0x00002572                lcd_control
+                0x000023f8                printcxyd
+                0x00002454                lcd_init
+                0x00002312                lcd_new_frame
+                0x00002424                lcd_w_inst
+                0x0000235e                clear_screen
+                0x000023dc                printnt_P
+ .text          0x00002874      0x1c4 convert.o
+                0x00002874                mezery
+                0x000028ba                int2strn
+                0x00002a16                int2str
+                0x0000289e                strlen
+ .text          0x00002a38      0x68c data.o
+                0x00002b68                r_rec_prumer
+                0x00002c2e                find_last_record_of_zakaznik
+                0x00002bce                r_rec_druh_dreva
+                0x00002eea                dat_zak_read_eeprom
+                0x00002c8c                dat_add_zakaznik
+                0x00002e62                dat_del_record
+                0x00003084                dat_write_eeprom
+                0x00002d32                w_record
+                0x00002b0a                r_rec_delka
+                0x00002bfa                r_rec_operace
+                0x00002cec                dat_free_m_jmena
+                0x00002e20                new_record
+                0x00002cc8                dat_odstran_zakaznika
+                0x00002d20                dat_del_all
+                0x00002fbe                dat_zak_write_eeprom
+                0x0000304e                dat_read_eeprom
+                0x00002b9e                r_rec_zakaznik
+                0x00002a60                r_record
+ .text          0x000030c4      0x1ce gui.o
+                0x000031aa                gui_control
+                0x00003216                ok_scr
+                0x00003204                gui_init
+                0x000030f4                scr_open
+                0x00003254                ok_scr_init
+                0x00003142                scr_draw
+                0x00003186                scr_ch
+                0x000030c4                scr_close
+ .text          0x00003292      0x3d0 error.o
+                0x000033ae                print_err
+                0x0000329c                new_error
+                0x000032dc                err_assert
+                0x0000337a                error_scr_control
+                0x00003618                error_scr_draw
+                0x000032a8                new_str_error
+                0x00003366                err_control
+                0x00003292                err_scr_open
+ .text          0x00003662      0x426 keyboard.o
+                0x00003a50                keyboard_init
+                0x000039e4                get_spec
+                0x00003978                get_char
+                0x000036b2                zpracuj_kod
+                0x00003662                keyb_in_buff
+                0x000038d8                __vector_2
+                0x00003a62                keyboard_recv_watchdog
+ .text          0x00003a88      0x6d8 gui_toolbox.o
+                0x00003eb6                read_line
+                0x000040b0                read_line_init_edefault
+                0x00003dd2                read_line_init
+                0x00003b72                menu_next_value
+                0x00003af6                menu_next_item
+                0x00003e64                new_menu_item
+                0x00003ccc                menu_draw
+                0x00003a88                menu_prev_item
+                0x00003e84                read_line_kill
+ .text          0x00004160      0x9a8 msr_scr.o
+                0x0000430c                measure_scr_draw
+                0x000042a4                measure_scr_close
+                0x0000422e                uloz_posledni_data
+                0x000041f0                measure_scr_init
+                0x000041a8                load_menu_values
+                0x00004402                measure_scr_control
+                0x000049a4                measure_scr_open
+                0x000041f2                get_stored_menu_jmena_i
+                0x00004212                set_menu_jmena_i
+                0x000041f8                get_menu_jmena_i
+                0x00004160                save_menu_values
+ .text          0x00004b08       0xa8 hlp_scr.o
+                0x00004b1c                help_scr_control
+                0x00004b46                help_scr_draw
+                0x00004b08                hlp_scr_open
+ .text          0x00004bb0      0xd18 dat_scr.o
+                0x00004d1e                data_scr_close
+                0x00004bce                data_down
+                0x00004bb0                data_up
+                0x00005130                data_scr_draw
+                0x00004bec                data_scr_init
+                0x00004dda                data_scr_open
+                0x000051ec                control_ok
+                0x00005238                data_scr_control
+ .text          0x000058c8      0x396 dlst_scr.o
+                0x000059fa                dlst_scr_draw
+                0x0000591c                dlst_scr_open
+                0x00005a16                dlst_scr_control
+                0x000058ca                set_dlst_menu_i
+                0x000058c8                dlst_scr_init
+                0x000058f2                dlst_scr_close
+ .text          0x00005c5e      0x24e data_serial.o
+                0x00005e78                send_data
+                0x00005c5e                send_next_data
+ .text          0x00005eac       0xba buttons.o
+                0x00005eac                buttons_init
+                0x00005eba                buttons
+ .text          0x00005f66       0xa8 ser_scr.o
+                0x00005f66                ser_scr_open
+                0x00005fee                ser_scr_control
+ .text          0x0000600e       0x78 watchdog.o
+                0x0000602a                wtch_main
+                0x0000600e                wtch_init
+ .text          0x00006086      0x34e stp_scr.o
+                0x00006086                stp_scr_close
+                0x000060c4                stp_nastav
+                0x0000635e                stp_scr_open
+                0x0000618a                stp_scr_control
+                0x00006348                stp_scr_draw
+ .text          0x000063d4       0x5e keyfcn.o
+                0x00006412                kf_zrusit
+                0x000063d4                kf_global_key
+                0x000063da                kf_start
+ .text          0x00006432        0x0 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libm.a(addsf3.o)
+ .text          0x00006432        0x0 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libm.a(addsf3x.o)
+ .text          0x00006432        0x0 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libm.a(cmpsf2.o)
+ .text          0x00006432        0x0 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libm.a(divsf3.o)
+ .text          0x00006432        0x0 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libm.a(divsf3x.o)
+ .text          0x00006432        0x0 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libm.a(fixsfsi.o)
+ .text          0x00006432        0x0 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libm.a(fixunssfsi.o)
+ .text          0x00006432        0x0 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libm.a(floatsisf.o)
+ .text          0x00006432        0x0 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libm.a(fp_cmp.o)
+ .text          0x00006432        0x0 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libm.a(fp_inf.o)
+ .text          0x00006432        0x0 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libm.a(fp_nan.o)
+ .text          0x00006432        0x0 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libm.a(fp_pscA.o)
+ .text          0x00006432        0x0 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libm.a(fp_pscB.o)
+ .text          0x00006432        0x0 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libm.a(fp_round.o)
+ .text          0x00006432        0x0 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libm.a(fp_split3.o)
+ .text          0x00006432        0x0 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libm.a(fp_zero.o)
+ .text          0x00006432        0x0 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libm.a(gesf2.o)
+ .text          0x00006432        0x0 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libm.a(mulsf3.o)
+ .text          0x00006432        0x0 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libm.a(mulsf3x.o)
+ .text          0x00006432        0x0 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/avr5\libgcc.a(_udivmodhi4.o)
+ .text          0x00006432        0x0 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/avr5\libgcc.a(_divmodhi4.o)
+ .text          0x00006432        0x0 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/avr5\libgcc.a(_udivmodsi4.o)
+ .text          0x00006432        0x0 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/avr5\libgcc.a(_exit.o)
+ .text          0x00006432        0x0 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/avr5\libgcc.a(_copy_data.o)
+ .text          0x00006432        0x0 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/avr5\libgcc.a(_clear_bss.o)
+ .text          0x00006432      0x20a c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libc.a(malloc.o)
+                0x00006432                malloc
+                0x0000658c                free
+ .text          0x0000663c       0x12 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libc.a(memcpy_P.o)
+                0x0000663c                memcpy_P
+ .text          0x0000664e        0xe c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libc.a(strcpy_P.o)
+                0x0000664e                strcpy_P
+ .text          0x0000665c       0x12 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libc.a(strlen_P.o)
+                0x0000665c                strlen_P
+ .text          0x0000666e        0xe c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libc.a(strcpy.o)
+                0x0000666e                strcpy
+ .text          0x0000667c       0x1e c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libc.a(strncpy.o)
+                0x0000667c                strncpy
+ .text          0x0000669a       0x38 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libc.a(eerd_block.o)
+                0x0000669a                __eerd_block
+ .text          0x000066d2       0x2c c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libc.a(eerd_word.o)
+                0x000066d2                __eerd_word
+ .text          0x000066fe       0x38 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libc.a(eewr_block.o)
+                0x000066fe                __eewr_block
+ .text          0x00006736       0x2a c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libc.a(eewr_word.o)
+                0x00006736                __eewr_word
+ .text          0x00006760       0x48 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libc.a(sprintf.o)
+                0x00006760                sprintf
+ .text          0x000067a8       0x34 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libc.a(sscanf.o)
+                0x000067a8                sscanf
+ .text          0x000067dc      0x3ba c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libc.a(vfprintf_std.o)
+                0x000067dc                vfprintf
+ .text          0x00006b96      0x52a c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libc.a(vfscanf_std.o)
+                0x00006e9e                vfscanf
+ .text          0x000070c0        0x0 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libc.a(isspace.o)
+ .text          0x000070c0       0x16 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libc.a(strchr_P.o)
+                0x000070c0                strchr_P
+ .text          0x000070d6       0x16 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libc.a(strnlen_P.o)
+                0x000070d6                strnlen_P
+ .text          0x000070ec       0x16 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libc.a(strnlen.o)
+                0x000070ec                strnlen
+ .text          0x00007102       0x84 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libc.a(fgetc.o)
+                0x00007102                fgetc
+ .text          0x00007186       0x58 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libc.a(fputc.o)
+                0x00007186                fputc
+ .text          0x000071de       0x34 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libc.a(ungetc.o)
+                0x000071de                ungetc
+ .text          0x00007212       0xbc c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libc.a(ultoa_invert.o)
+                0x00007212                __ultoa_invert
+ .text          0x000072ce        0x0 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libc.a(cty_isfalse.o)
+ .text          0x000072ce        0x0 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/avr5\libgcc.a(_prologue.o)
+ .text          0x000072ce        0x0 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/avr5\libgcc.a(_epilogue.o)
+                0x000072ce                . = ALIGN (0x2)
+ *(.text.*)
+ .text.fplib    0x000072ce        0xa c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libm.a(addsf3.o)
+                0x000072ce                __subsf3
+                0x000072d0                __addsf3
+ .text.fplib    0x000072d8       0xc0 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libm.a(addsf3x.o)
+                0x000072f2                __addsf3x
+ .text.fplib    0x00007398        0x8 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libm.a(cmpsf2.o)
+                0x00007398                __lesf2
+                0x00007398                __nesf2
+                0x00007398                __eqsf2
+                0x00007398                __cmpsf2
+                0x00007398                __ltsf2
+ .text.fplib    0x000073a0        0x4 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libm.a(divsf3.o)
+                0x000073a0                __divsf3
+ .text.fplib    0x000073a4       0xcc c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libm.a(divsf3x.o)
+                0x000073ba                __divsf3x
+                0x000073be                __divsf3_pse
+ .text.fplib    0x00007470        0xa c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libm.a(fixsfsi.o)
+                0x00007470                __fixsfsi
+ .text.fplib    0x0000747a       0x58 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libm.a(fixunssfsi.o)
+                0x0000747a                __fixunssfsi
+ .text.fplib    0x000074d2       0x7a c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libm.a(floatsisf.o)
+                0x000074d6                __floatsisf
+                0x000074d2                __floatunsisf
+ .text.fplib    0x0000754c       0x48 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libm.a(fp_cmp.o)
+                0x0000754c                __fp_cmp
+ .text.fplib    0x00007594        0xc c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libm.a(fp_inf.o)
+                0x00007594                __fp_inf
+ .text.fplib    0x000075a0        0x6 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libm.a(fp_nan.o)
+                0x000075a0                __fp_nan
+ .text.fplib    0x000075a6        0xe c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libm.a(fp_pscA.o)
+                0x000075a6                __fp_pscA
+ .text.fplib    0x000075b4        0xe c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libm.a(fp_pscB.o)
+                0x000075b4                __fp_pscB
+ .text.fplib    0x000075c2       0x22 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libm.a(fp_round.o)
+                0x000075c2                __fp_round
+ .text.fplib    0x000075e4       0x44 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libm.a(fp_split3.o)
+                0x000075e4                __fp_split3
+                0x000075f4                __fp_splitA
+ .text.fplib    0x00007628        0xe c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libm.a(fp_zero.o)
+                0x00007628                __fp_zero
+                0x0000762a                __fp_szero
+ .text.fplib    0x00007636        0x8 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libm.a(gesf2.o)
+                0x00007636                __gtsf2
+                0x00007636                __gesf2
+ .text.fplib    0x0000763e        0x4 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libm.a(mulsf3.o)
+                0x0000763e                __mulsf3
+ .text.fplib    0x00007642       0xc2 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libm.a(mulsf3x.o)
+                0x0000765a                __mulsf3_pse
+                0x00007656                __mulsf3x
+ .text.libgcc   0x00007704       0x28 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/avr5\libgcc.a(_udivmodhi4.o)
+                0x00007704                __udivmodhi4
+ .text.libgcc   0x0000772c       0x26 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/avr5\libgcc.a(_divmodhi4.o)
+                0x0000772c                __divmodhi4
+                0x0000772c                _div
+ .text.libgcc   0x00007752       0x44 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/avr5\libgcc.a(_udivmodsi4.o)
+                0x00007752                __udivmodsi4
+ .text.libgcc   0x00007796        0x0 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/avr5\libgcc.a(_exit.o)
+ .text.libgcc   0x00007796        0x0 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/avr5\libgcc.a(_copy_data.o)
+ .text.libgcc   0x00007796        0x0 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/avr5\libgcc.a(_clear_bss.o)
+ .text.ctype    0x00007796       0x10 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libc.a(isspace.o)
+                0x00007796                isspace
+ .text.ctype    0x000077a6        0x6 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libc.a(cty_isfalse.o)
+                0x000077aa                __ctype_istrue
+                0x000077a6                __ctype_isfalse
+ .text.libgcc   0x000077ac       0x38 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/avr5\libgcc.a(_prologue.o)
+                0x000077ac                __prologue_saves__
+ .text.libgcc   0x000077e4       0x36 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/avr5\libgcc.a(_epilogue.o)
+                0x000077e4                __epilogue_restores__
+                0x0000781a                . = ALIGN (0x2)
+ *(.fini9)
+ .fini9         0x0000781a        0x0 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/avr5\libgcc.a(_exit.o)
+                0x0000781a                exit
+                0x0000781a                _exit
+ *(.fini9)
+ *(.fini8)
+ *(.fini8)
+ *(.fini7)
+ *(.fini7)
+ *(.fini6)
+ *(.fini6)
+ *(.fini5)
+ *(.fini5)
+ *(.fini4)
+ *(.fini4)
+ *(.fini3)
+ *(.fini3)
+ *(.fini2)
+ *(.fini2)
+ *(.fini1)
+ *(.fini1)
+ *(.fini0)
+ .fini0         0x0000781a        0x4 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/avr5\libgcc.a(_exit.o)
+ *(.fini0)
+                0x0000781e                _etext = .
+
+.data           0x00800060       0xdc load address 0x0000781e
+                0x00800060                PROVIDE (__data_start, .)
+ *(.data)
+ .data          0x00800060        0x0 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5/crtm32.o
+ .data          0x00800060        0x0 main.o
+ .data          0x00800060        0x4 measure.o
+                0x00800060                width_src
+ .data          0x00800064       0x10 usart.o
+                0x0080006e                usart_trans_count
+                0x00800070                msg_buffer_counter
+                0x00800072                after_trans_delay_counter
+                0x0080006c                usart_recv_count
+ .data          0x00800074        0x0 usart_recv.o
+ .data          0x00800074        0x6 irc.o
+                0x00800078                irc_k
+                0x00800074                irc_set_on_value
+ .data          0x0080007a        0x0 eeprom.o
+ .data          0x0080007a        0x7 lcd.o
+                0x0080007f                lcd_ctrl_y
+ .data          0x00800081        0xa convert.o
+ .data          0x0080008b        0x1 data.o
+ .data          0x0080008c        0x9 gui.o
+                0x00800093                menu_pridat
+ .data          0x00800095       0x23 error.o
+                0x008000b7                last_err
+ .data          0x008000b8        0x0 keyboard.o
+ .data          0x008000b8        0x9 gui_toolbox.o
+ .data          0x008000c1       0x4c msr_scr.o
+ .data          0x0080010d        0x0 hlp_scr.o
+ .data          0x0080010d       0x25 dat_scr.o
+ .data          0x00800132        0x0 dlst_scr.o
+ .data          0x00800132        0x0 data_serial.o
+ .data          0x00800132        0x0 buttons.o
+ .data          0x00800132        0x0 ser_scr.o
+ .data          0x00800132        0x0 watchdog.o
+ .data          0x00800132        0x3 stp_scr.o
+ .data          0x00800135        0x0 keyfcn.o
+ .data          0x00800135        0x0 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libm.a(addsf3.o)
+ .data          0x00800135        0x0 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libm.a(addsf3x.o)
+ .data          0x00800135        0x0 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libm.a(cmpsf2.o)
+ .data          0x00800135        0x0 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libm.a(divsf3.o)
+ .data          0x00800135        0x0 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libm.a(divsf3x.o)
+ .data          0x00800135        0x0 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libm.a(fixsfsi.o)
+ .data          0x00800135        0x0 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libm.a(fixunssfsi.o)
+ .data          0x00800135        0x0 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libm.a(floatsisf.o)
+ .data          0x00800135        0x0 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libm.a(fp_cmp.o)
+ .data          0x00800135        0x0 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libm.a(fp_inf.o)
+ .data          0x00800135        0x0 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libm.a(fp_nan.o)
+ .data          0x00800135        0x0 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libm.a(fp_pscA.o)
+ .data          0x00800135        0x0 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libm.a(fp_pscB.o)
+ .data          0x00800135        0x0 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libm.a(fp_round.o)
+ .data          0x00800135        0x0 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libm.a(fp_split3.o)
+ .data          0x00800135        0x0 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libm.a(fp_zero.o)
+ .data          0x00800135        0x0 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libm.a(gesf2.o)
+ .data          0x00800135        0x0 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libm.a(mulsf3.o)
+ .data          0x00800135        0x0 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libm.a(mulsf3x.o)
+ .data          0x00800135        0x0 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/avr5\libgcc.a(_udivmodhi4.o)
+ .data          0x00800135        0x0 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/avr5\libgcc.a(_divmodhi4.o)
+ .data          0x00800135        0x0 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/avr5\libgcc.a(_udivmodsi4.o)
+ .data          0x00800135        0x0 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/avr5\libgcc.a(_exit.o)
+ .data          0x00800135        0x0 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/avr5\libgcc.a(_copy_data.o)
+ .data          0x00800135        0x0 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/avr5\libgcc.a(_clear_bss.o)
+ .data          0x00800135        0x6 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libc.a(malloc.o)
+                0x00800137                __malloc_heap_start
+                0x00800139                __malloc_heap_end
+                0x00800135                __malloc_margin
+ .data          0x0080013b        0x0 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libc.a(memcpy_P.o)
+ .data          0x0080013b        0x0 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libc.a(strcpy_P.o)
+ .data          0x0080013b        0x0 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libc.a(strlen_P.o)
+ .data          0x0080013b        0x0 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libc.a(strcpy.o)
+ .data          0x0080013b        0x0 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libc.a(strncpy.o)
+ .data          0x0080013b        0x0 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libc.a(eerd_block.o)
+ .data          0x0080013b        0x0 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libc.a(eerd_word.o)
+ .data          0x0080013b        0x0 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libc.a(eewr_block.o)
+ .data          0x0080013b        0x0 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libc.a(eewr_word.o)
+ .data          0x0080013b        0x0 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libc.a(sprintf.o)
+ .data          0x0080013b        0x0 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libc.a(sscanf.o)
+ .data          0x0080013b        0x0 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libc.a(vfprintf_std.o)
+ .data          0x0080013b        0x0 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libc.a(vfscanf_std.o)
+ .data          0x0080013b        0x0 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libc.a(isspace.o)
+ .data          0x0080013b        0x0 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libc.a(strchr_P.o)
+ .data          0x0080013b        0x0 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libc.a(strnlen_P.o)
+ .data          0x0080013b        0x0 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libc.a(strnlen.o)
+ .data          0x0080013b        0x0 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libc.a(fgetc.o)
+ .data          0x0080013b        0x0 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libc.a(fputc.o)
+ .data          0x0080013b        0x0 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libc.a(ungetc.o)
+ .data          0x0080013b        0x0 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libc.a(ultoa_invert.o)
+ .data          0x0080013b        0x0 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libc.a(cty_isfalse.o)
+ .data          0x0080013b        0x0 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/avr5\libgcc.a(_prologue.o)
+ .data          0x0080013b        0x0 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/avr5\libgcc.a(_epilogue.o)
+ *(.data*)
+ *(.rodata)
+ *(.rodata*)
+ *(.gnu.linkonce.d*)
+                0x0080013c                . = ALIGN (0x2)
+ *fill*         0x0080013b        0x1 00
+                0x0080013c                _edata = .
+                0x0080013c                PROVIDE (__data_end, .)
+
+.bss            0x0080013c      0x506
+                0x0080013c                PROVIDE (__bss_start, .)
+ *(.bss)
+ .bss           0x0080013c        0x0 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5/crtm32.o
+ .bss           0x0080013c        0x2 main.o
+                0x0080013c                t_lcd
+ .bss           0x0080013e       0x39 measure.o
+                0x00800140                msr_prumer
+                0x00800142                msr_objem
+                0x00800144                msr_status
+                0x0080013e                msr_delka
+ .bss           0x00800177       0x1b usart.o
+                0x00800177                prepinani
+ .bss           0x00800192        0x0 usart_recv.o
+ .bss           0x00800192        0x5 irc.o
+                0x00800196                last_oper_with_irc_counter
+                0x00800192                irc_counter
+ .bss           0x00800197        0x0 eeprom.o
+ .bss           0x00800197        0x4 lcd.o
+                0x00800199                lcd_ctrl_x
+                0x00800197                lcd_ctrl_count
+ .bss           0x0080019b        0x0 convert.o
+ .bss           0x0080019b        0xa data.o
+                0x0080019b                data_top
+                0x0080019d                data_akt_zakaznik
+                0x0080019e                data_delka
+                0x008001a0                data_zakaznik
+                0x008001a3                data_druh_dreva
+                0x008001a4                data_operace
+                0x008001a1                data_prumer
+ .bss           0x008001a5        0x1 gui.o
+                0x008001a5                akt_scr
+ .bss           0x008001a6        0x4 error.o
+                0x008001a7                err_str
+                0x008001a6                prev_scr
+                0x008001a9                new_err
+ .bss           0x008001aa        0xb keyboard.o
+ .bss           0x008001b5        0x9 gui_toolbox.o
+ .bss           0x008001be       0x12 msr_scr.o
+ .bss           0x008001d0        0x1 hlp_scr.o
+ .bss           0x008001d1       0x1f dat_scr.o
+ .bss           0x008001f0       0x23 dlst_scr.o
+ .bss           0x00800213        0x3 data_serial.o
+ .bss           0x00800216        0x1 buttons.o
+ .bss           0x00800217        0x0 ser_scr.o
+ .bss           0x00800217        0x2 watchdog.o
+                0x00800217                wtch_counter
+ .bss           0x00800219        0xc stp_scr.o
+ .bss           0x00800225        0x0 keyfcn.o
+ .bss           0x00800225        0x0 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libm.a(addsf3.o)
+ .bss           0x00800225        0x0 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libm.a(addsf3x.o)
+ .bss           0x00800225        0x0 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libm.a(cmpsf2.o)
+ .bss           0x00800225        0x0 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libm.a(divsf3.o)
+ .bss           0x00800225        0x0 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libm.a(divsf3x.o)
+ .bss           0x00800225        0x0 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libm.a(fixsfsi.o)
+ .bss           0x00800225        0x0 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libm.a(fixunssfsi.o)
+ .bss           0x00800225        0x0 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libm.a(floatsisf.o)
+ .bss           0x00800225        0x0 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libm.a(fp_cmp.o)
+ .bss           0x00800225        0x0 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libm.a(fp_inf.o)
+ .bss           0x00800225        0x0 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libm.a(fp_nan.o)
+ .bss           0x00800225        0x0 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libm.a(fp_pscA.o)
+ .bss           0x00800225        0x0 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libm.a(fp_pscB.o)
+ .bss           0x00800225        0x0 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libm.a(fp_round.o)
+ .bss           0x00800225        0x0 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libm.a(fp_split3.o)
+ .bss           0x00800225        0x0 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libm.a(fp_zero.o)
+ .bss           0x00800225        0x0 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libm.a(gesf2.o)
+ .bss           0x00800225        0x0 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libm.a(mulsf3.o)
+ .bss           0x00800225        0x0 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libm.a(mulsf3x.o)
+ .bss           0x00800225        0x0 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/avr5\libgcc.a(_udivmodhi4.o)
+ .bss           0x00800225        0x0 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/avr5\libgcc.a(_divmodhi4.o)
+ .bss           0x00800225        0x0 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/avr5\libgcc.a(_udivmodsi4.o)
+ .bss           0x00800225        0x0 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/avr5\libgcc.a(_exit.o)
+ .bss           0x00800225        0x0 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/avr5\libgcc.a(_copy_data.o)
+ .bss           0x00800225        0x0 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/avr5\libgcc.a(_clear_bss.o)
+ .bss           0x00800225        0x0 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libc.a(malloc.o)
+ .bss           0x00800225        0x0 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libc.a(memcpy_P.o)
+ .bss           0x00800225        0x0 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libc.a(strcpy_P.o)
+ .bss           0x00800225        0x0 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libc.a(strlen_P.o)
+ .bss           0x00800225        0x0 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libc.a(strcpy.o)
+ .bss           0x00800225        0x0 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libc.a(strncpy.o)
+ .bss           0x00800225        0x0 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libc.a(eerd_block.o)
+ .bss           0x00800225        0x0 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libc.a(eerd_word.o)
+ .bss           0x00800225        0x0 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libc.a(eewr_block.o)
+ .bss           0x00800225        0x0 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libc.a(eewr_word.o)
+ .bss           0x00800225        0x0 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libc.a(sprintf.o)
+ .bss           0x00800225        0x0 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libc.a(sscanf.o)
+ .bss           0x00800225        0x0 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libc.a(vfprintf_std.o)
+ .bss           0x00800225        0x0 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libc.a(vfscanf_std.o)
+ .bss           0x00800225        0x0 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libc.a(isspace.o)
+ .bss           0x00800225        0x0 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libc.a(strchr_P.o)
+ .bss           0x00800225        0x0 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libc.a(strnlen_P.o)
+ .bss           0x00800225        0x0 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libc.a(strnlen.o)
+ .bss           0x00800225        0x0 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libc.a(fgetc.o)
+ .bss           0x00800225        0x0 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libc.a(fputc.o)
+ .bss           0x00800225        0x0 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libc.a(ungetc.o)
+ .bss           0x00800225        0x0 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libc.a(ultoa_invert.o)
+ .bss           0x00800225        0x0 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libc.a(cty_isfalse.o)
+ .bss           0x00800225        0x0 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/avr5\libgcc.a(_prologue.o)
+ .bss           0x00800225        0x0 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/avr5\libgcc.a(_epilogue.o)
+ *(.bss*)
+ *(COMMON)
+ COMMON         0x00800225      0x100 main.o
+                0x00800225                str_buf
+                0x0080024e                p_akt_screen
+                0x00800250                prumer_h
+                0x00800252                msr_prumer_h
+                0x00800254                default_screen
+                0x008002f4                m_jmena
+                0x00800316                prumer_v
+                0x00800318                msr_prumer_v
+                0x0080031a                data_msg
+ COMMON         0x00800325       0x39 usart.o
+                0x00800325                usart_trans_buff
+                0x00800337                msg_buffer
+                0x00800341                recived_msg
+                0x0080034c                usart_recv_buff
+ COMMON         0x0080035e        0x1 irc.o
+                0x0080035e                prev_state
+ COMMON         0x0080035f      0x2df data.o
+                0x0080035f                data
+ COMMON         0x0080063e        0x4 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libc.a(malloc.o)
+                0x0080063e                __brkval
+                0x00800640                __flp
+                0x00800642                PROVIDE (__bss_end, .)
+                0x0000781e                __data_load_start = LOADADDR (.data)
+                0x000078fa                __data_load_end = (__data_load_start + SIZEOF (.data))
+
+.noinit         0x00800642        0x0
+                0x00800642                PROVIDE (__noinit_start, .)
+ *(.noinit*)
+                0x00800642                PROVIDE (__noinit_end, .)
+                0x00800642                _end = .
+                0x00800642                PROVIDE (__heap_start, .)
+
+.eeprom         0x00810000        0x0
+ *(.eeprom*)
+                0x00810000                __eeprom_end = .
+
+.fuse
+ *(.fuse)
+ *(.lfuse)
+ *(.hfuse)
+ *(.efuse)
+
+.lock
+ *(.lock*)
+
+.signature
+ *(.signature*)
+
+.stab
+ *(.stab)
+
+.stabstr
+ *(.stabstr)
+
+.stab.excl
+ *(.stab.excl)
+
+.stab.exclstr
+ *(.stab.exclstr)
+
+.stab.index
+ *(.stab.index)
+
+.stab.indexstr
+ *(.stab.indexstr)
+
+.comment
+ *(.comment)
+
+.debug
+ *(.debug)
+
+.line
+ *(.line)
+
+.debug_srcinfo
+ *(.debug_srcinfo)
+
+.debug_sfnames
+ *(.debug_sfnames)
+
+.debug_aranges  0x00000000      0x2e0
+ *(.debug_aranges)
+ .debug_aranges
+                0x00000000       0x20 main.o
+ .debug_aranges
+                0x00000020       0x20 measure.o
+ .debug_aranges
+                0x00000040       0x20 usart.o
+ .debug_aranges
+                0x00000060       0x20 usart_recv.o
+ .debug_aranges
+                0x00000080       0x20 irc.o
+ .debug_aranges
+                0x000000a0       0x20 eeprom.o
+ .debug_aranges
+                0x000000c0       0x20 lcd.o
+ .debug_aranges
+                0x000000e0       0x20 convert.o
+ .debug_aranges
+                0x00000100       0x20 data.o
+ .debug_aranges
+                0x00000120       0x20 gui.o
+ .debug_aranges
+                0x00000140       0x20 error.o
+ .debug_aranges
+                0x00000160       0x20 keyboard.o
+ .debug_aranges
+                0x00000180       0x20 gui_toolbox.o
+ .debug_aranges
+                0x000001a0       0x20 msr_scr.o
+ .debug_aranges
+                0x000001c0       0x20 hlp_scr.o
+ .debug_aranges
+                0x000001e0       0x20 dat_scr.o
+ .debug_aranges
+                0x00000200       0x20 dlst_scr.o
+ .debug_aranges
+                0x00000220       0x20 data_serial.o
+ .debug_aranges
+                0x00000240       0x20 buttons.o
+ .debug_aranges
+                0x00000260       0x20 ser_scr.o
+ .debug_aranges
+                0x00000280       0x20 watchdog.o
+ .debug_aranges
+                0x000002a0       0x20 stp_scr.o
+ .debug_aranges
+                0x000002c0       0x20 keyfcn.o
+
+.debug_pubnames
+                0x00000000     0x1f9d
+ *(.debug_pubnames)
+ .debug_pubnames
+                0x00000000      0x23d main.o
+ .debug_pubnames
+                0x0000023d      0x1dc measure.o
+ .debug_pubnames
+                0x00000419      0x1da usart.o
+ .debug_pubnames
+                0x000005f3       0xe8 usart_recv.o
+ .debug_pubnames
+                0x000006db       0xcd irc.o
+ .debug_pubnames
+                0x000007a8      0x1bd eeprom.o
+ .debug_pubnames
+                0x00000965      0x129 lcd.o
+ .debug_pubnames
+                0x00000a8e       0x7e convert.o
+ .debug_pubnames
+                0x00000b0c      0x25f data.o
+ .debug_pubnames
+                0x00000d6b      0x1df gui.o
+ .debug_pubnames
+                0x00000f4a      0x1a8 error.o
+ .debug_pubnames
+                0x000010f2       0xad keyboard.o
+ .debug_pubnames
+                0x0000119f      0x199 gui_toolbox.o
+ .debug_pubnames
+                0x00001338      0x281 msr_scr.o
+ .debug_pubnames
+                0x000015b9      0x127 hlp_scr.o
+ .debug_pubnames
+                0x000016e0      0x1e5 dat_scr.o
+ .debug_pubnames
+                0x000018c5      0x1d0 dlst_scr.o
+ .debug_pubnames
+                0x00001a95      0x13f data_serial.o
+ .debug_pubnames
+                0x00001bd4       0x2f buttons.o
+ .debug_pubnames
+                0x00001c03       0x90 ser_scr.o
+ .debug_pubnames
+                0x00001c93       0x63 watchdog.o
+ .debug_pubnames
+                0x00001cf6      0x1e4 stp_scr.o
+ .debug_pubnames
+                0x00001eda       0xc3 keyfcn.o
+
+.debug_info     0x00000000     0x7409
+ *(.debug_info)
+ .debug_info    0x00000000      0x690 main.o
+ .debug_info    0x00000690      0x5fd measure.o
+ .debug_info    0x00000c8d      0x5ce usart.o
+ .debug_info    0x0000125b      0x259 usart_recv.o
+ .debug_info    0x000014b4      0x1e2 irc.o
+ .debug_info    0x00001696      0x7a6 eeprom.o
+ .debug_info    0x00001e3c      0xb47 lcd.o
+ .debug_info    0x00002983      0x29d convert.o
+ .debug_info    0x00002c20      0x852 data.o
+ .debug_info    0x00003472      0x454 gui.o
+ .debug_info    0x000038c6      0x7fd error.o
+ .debug_info    0x000040c3      0x2b9 keyboard.o
+ .debug_info    0x0000437c      0x62e gui_toolbox.o
+ .debug_info    0x000049aa      0x810 msr_scr.o
+ .debug_info    0x000051ba      0x34f hlp_scr.o
+ .debug_info    0x00005509      0xa1a dat_scr.o
+ .debug_info    0x00005f23      0x502 dlst_scr.o
+ .debug_info    0x00006425      0x433 data_serial.o
+ .debug_info    0x00006858       0xfc buttons.o
+ .debug_info    0x00006954      0x1d6 ser_scr.o
+ .debug_info    0x00006b2a      0x1ef watchdog.o
+ .debug_info    0x00006d19      0x566 stp_scr.o
+ .debug_info    0x0000727f      0x18a keyfcn.o
+ *(.gnu.linkonce.wi.*)
+
+.debug_abbrev   0x00000000     0x219e
+ *(.debug_abbrev)
+ .debug_abbrev  0x00000000      0x24d main.o
+ .debug_abbrev  0x0000024d      0x204 measure.o
+ .debug_abbrev  0x00000451      0x1ec usart.o
+ .debug_abbrev  0x0000063d       0xf6 usart_recv.o
+ .debug_abbrev  0x00000733       0xfd irc.o
+ .debug_abbrev  0x00000830      0x1e5 eeprom.o
+ .debug_abbrev  0x00000a15      0x201 lcd.o
+ .debug_abbrev  0x00000c16      0x155 convert.o
+ .debug_abbrev  0x00000d6b      0x27a data.o
+ .debug_abbrev  0x00000fe5       0xfb gui.o
+ .debug_abbrev  0x000010e0      0x124 error.o
+ .debug_abbrev  0x00001204      0x191 keyboard.o
+ .debug_abbrev  0x00001395      0x1f1 gui_toolbox.o
+ .debug_abbrev  0x00001586      0x1e7 msr_scr.o
+ .debug_abbrev  0x0000176d       0xd3 hlp_scr.o
+ .debug_abbrev  0x00001840      0x283 dat_scr.o
+ .debug_abbrev  0x00001ac3      0x14e dlst_scr.o
+ .debug_abbrev  0x00001c11      0x13f data_serial.o
+ .debug_abbrev  0x00001d50       0xb7 buttons.o
+ .debug_abbrev  0x00001e07       0xb1 ser_scr.o
+ .debug_abbrev  0x00001eb8      0x10e watchdog.o
+ .debug_abbrev  0x00001fc6      0x14e stp_scr.o
+ .debug_abbrev  0x00002114       0x8a keyfcn.o
+
+.debug_line     0x00000000     0x4eb8
+ *(.debug_line)
+ .debug_line    0x00000000      0x493 main.o
+ .debug_line    0x00000493      0x40f measure.o
+ .debug_line    0x000008a2      0x4db usart.o
+ .debug_line    0x00000d7d      0x18b usart_recv.o
+ .debug_line    0x00000f08      0x1ab irc.o
+ .debug_line    0x000010b3      0x457 eeprom.o
+ .debug_line    0x0000150a      0x695 lcd.o
+ .debug_line    0x00001b9f      0x1c0 convert.o
+ .debug_line    0x00001d5f      0x593 data.o
+ .debug_line    0x000022f2      0x2a0 gui.o
+ .debug_line    0x00002592      0x2d4 error.o
+ .debug_line    0x00002866      0x4bb keyboard.o
+ .debug_line    0x00002d21      0x492 gui_toolbox.o
+ .debug_line    0x000031b3      0x645 msr_scr.o
+ .debug_line    0x000037f8      0x142 hlp_scr.o
+ .debug_line    0x0000393a      0x846 dat_scr.o
+ .debug_line    0x00004180      0x3b1 dlst_scr.o
+ .debug_line    0x00004531      0x2b4 data_serial.o
+ .debug_line    0x000047e5       0xf0 buttons.o
+ .debug_line    0x000048d5       0xd2 ser_scr.o
+ .debug_line    0x000049a7      0x171 watchdog.o
+ .debug_line    0x00004b18      0x2a1 stp_scr.o
+ .debug_line    0x00004db9       0xff keyfcn.o
+
+.debug_frame    0x00000000      0xc20
+ *(.debug_frame)
+ .debug_frame   0x00000000       0xb0 main.o
+ .debug_frame   0x000000b0       0xc0 measure.o
+ .debug_frame   0x00000170       0xf0 usart.o
+ .debug_frame   0x00000260       0x40 usart_recv.o
+ .debug_frame   0x000002a0       0x70 irc.o
+ .debug_frame   0x00000310       0xb0 eeprom.o
+ .debug_frame   0x000003c0       0xf0 lcd.o
+ .debug_frame   0x000004b0       0x50 convert.o
+ .debug_frame   0x00000500      0x150 data.o
+ .debug_frame   0x00000650       0x90 gui.o
+ .debug_frame   0x000006e0       0x90 error.o
+ .debug_frame   0x00000770       0x80 keyboard.o
+ .debug_frame   0x000007f0       0xa0 gui_toolbox.o
+ .debug_frame   0x00000890       0xc0 msr_scr.o
+ .debug_frame   0x00000950       0x40 hlp_scr.o
+ .debug_frame   0x00000990       0xb0 dat_scr.o
+ .debug_frame   0x00000a40       0x70 dlst_scr.o
+ .debug_frame   0x00000ab0       0x40 data_serial.o
+ .debug_frame   0x00000af0       0x30 buttons.o
+ .debug_frame   0x00000b20       0x30 ser_scr.o
+ .debug_frame   0x00000b50       0x30 watchdog.o
+ .debug_frame   0x00000b80       0x60 stp_scr.o
+ .debug_frame   0x00000be0       0x40 keyfcn.o
+
+.debug_str      0x00000000     0x1278
+ *(.debug_str)
+ .debug_str     0x00000000      0x2df main.o
+                                0x392 (size before relaxing)
+ .debug_str     0x000002df      0x114 measure.o
+                                0x342 (size before relaxing)
+ .debug_str     0x000003f3      0x1f5 usart.o
+                                0x2e9 (size before relaxing)
+ .debug_str     0x000005e8       0x30 usart_recv.o
+                                0x1db (size before relaxing)
+ .debug_str     0x00000618       0x84 irc.o
+                                0x174 (size before relaxing)
+ .debug_str     0x0000069c      0x108 eeprom.o
+                                0x32a (size before relaxing)
+ .debug_str     0x000007a4       0xd7 lcd.o
+                                0x1ff (size before relaxing)
+ .debug_str     0x0000087b       0x3d convert.o
+                                0x12a (size before relaxing)
+ .debug_str     0x000008b8      0x151 data.o
+                                0x3a8 (size before relaxing)
+ .debug_str     0x00000a09       0x43 gui.o
+                                0x2d9 (size before relaxing)
+ .debug_str     0x00000a4c      0x148 error.o
+                                0x369 (size before relaxing)
+ .debug_str     0x00000b94       0xb6 keyboard.o
+                                0x198 (size before relaxing)
+ .debug_str     0x00000c4a       0xff gui_toolbox.o
+                                0x32b (size before relaxing)
+ .debug_str     0x00000d49      0x19c msr_scr.o
+                                0x463 (size before relaxing)
+ .debug_str     0x00000ee5       0x45 hlp_scr.o
+                                0x258 (size before relaxing)
+ .debug_str     0x00000f2a      0x15e dat_scr.o
+                                0x454 (size before relaxing)
+ .debug_str     0x00001088       0x6e dlst_scr.o
+                                0x314 (size before relaxing)
+ .debug_str     0x000010f6       0x4f data_serial.o
+                                0x23a (size before relaxing)
+ .debug_str     0x00001145       0x4e buttons.o
+                                 0xff (size before relaxing)
+ .debug_str     0x00001193       0x27 ser_scr.o
+                                0x169 (size before relaxing)
+ .debug_str     0x000011ba       0x2c watchdog.o
+                                0x149 (size before relaxing)
+ .debug_str     0x000011e6       0x68 stp_scr.o
+                                0x32f (size before relaxing)
+ .debug_str     0x0000124e       0x2a keyfcn.o
+                                0x19e (size before relaxing)
+
+.debug_loc      0x00000000     0x2ea2
+ *(.debug_loc)
+ .debug_loc     0x00000000      0x186 main.o
+ .debug_loc     0x00000186      0x3df measure.o
+ .debug_loc     0x00000565      0x286 usart.o
+ .debug_loc     0x000007eb       0xc8 usart_recv.o
+ .debug_loc     0x000008b3       0xd8 irc.o
+ .debug_loc     0x0000098b      0x1a5 eeprom.o
+ .debug_loc     0x00000b30      0x6a3 lcd.o
+ .debug_loc     0x000011d3      0x1f3 convert.o
+ .debug_loc     0x000013c6      0x60e data.o
+ .debug_loc     0x000019d4      0x163 gui.o
+ .debug_loc     0x00001b37       0xfd error.o
+ .debug_loc     0x00001c34      0x19b keyboard.o
+ .debug_loc     0x00001dcf      0x4b8 gui_toolbox.o
+ .debug_loc     0x00002287      0x1bd msr_scr.o
+ .debug_loc     0x00002444       0x34 hlp_scr.o
+ .debug_loc     0x00002478      0x509 dat_scr.o
+ .debug_loc     0x00002981      0x1bd dlst_scr.o
+ .debug_loc     0x00002b3e       0xf8 data_serial.o
+ .debug_loc     0x00002c36       0x59 buttons.o
+ .debug_loc     0x00002c8f       0x54 ser_scr.o
+ .debug_loc     0x00002ce3       0x18 watchdog.o
+ .debug_loc     0x00002cfb      0x1a7 stp_scr.o
+
+.debug_macinfo
+ *(.debug_macinfo)
+OUTPUT(main.elf elf32-avr)
+LOAD linker stubs
+
+.debug_ranges   0x00000000      0x220
+ .debug_ranges  0x00000000       0xd8 main.o
+ .debug_ranges  0x000000d8       0x18 convert.o
+ .debug_ranges  0x000000f0       0x40 keyboard.o
+ .debug_ranges  0x00000130       0x48 msr_scr.o
+ .debug_ranges  0x00000178       0xa8 dat_scr.o
+
+Cross Reference Table
+
+Symbol                                            File
+USART_Init                                        usart.o
+                                                  main.o
+__addsf3                                          c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libm.a(addsf3.o)
+                                                  measure.o
+__addsf3x                                         c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libm.a(addsf3x.o)
+                                                  c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libm.a(addsf3.o)
+__bad_interrupt                                   c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5/crtm32.o
+__brkval                                          c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libc.a(malloc.o)
+__bss_end                                         c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/avr5\libgcc.a(_clear_bss.o)
+__bss_start                                       c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/avr5\libgcc.a(_clear_bss.o)
+__cmpsf2                                          c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libm.a(cmpsf2.o)
+__ctype_isfalse                                   c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libc.a(cty_isfalse.o)
+                                                  c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libc.a(isspace.o)
+__ctype_istrue                                    c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libc.a(cty_isfalse.o)
+__data_end                                        c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/avr5\libgcc.a(_copy_data.o)
+__data_load_start                                 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/avr5\libgcc.a(_copy_data.o)
+__data_start                                      c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/avr5\libgcc.a(_copy_data.o)
+__divmodhi4                                       c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/avr5\libgcc.a(_divmodhi4.o)
+                                                  dlst_scr.o
+                                                  dat_scr.o
+__divsf3                                          c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libm.a(divsf3.o)
+                                                  irc.o
+                                                  measure.o
+__divsf3_pse                                      c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libm.a(divsf3x.o)
+__divsf3x                                         c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libm.a(divsf3x.o)
+                                                  c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libm.a(divsf3.o)
+__do_clear_bss                                    c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/avr5\libgcc.a(_clear_bss.o)
+                                                  c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libc.a(malloc.o)
+                                                  keyfcn.o
+                                                  stp_scr.o
+                                                  watchdog.o
+                                                  ser_scr.o
+                                                  buttons.o
+                                                  data_serial.o
+                                                  dlst_scr.o
+                                                  dat_scr.o
+                                                  hlp_scr.o
+                                                  msr_scr.o
+                                                  gui_toolbox.o
+                                                  keyboard.o
+                                                  error.o
+                                                  gui.o
+                                                  data.o
+                                                  convert.o
+                                                  lcd.o
+                                                  eeprom.o
+                                                  irc.o
+                                                  usart_recv.o
+                                                  usart.o
+                                                  measure.o
+                                                  main.o
+__do_copy_data                                    c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/avr5\libgcc.a(_copy_data.o)
+                                                  c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libc.a(malloc.o)
+                                                  stp_scr.o
+                                                  dat_scr.o
+                                                  msr_scr.o
+                                                  gui_toolbox.o
+                                                  keyboard.o
+                                                  error.o
+                                                  gui.o
+                                                  data.o
+                                                  convert.o
+                                                  lcd.o
+                                                  irc.o
+                                                  usart.o
+                                                  measure.o
+__eerd_block                                      c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libc.a(eerd_block.o)
+                                                  data.o
+                                                  eeprom.o
+__eerd_word                                       c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libc.a(eerd_word.o)
+                                                  eeprom.o
+__eewr_block                                      c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libc.a(eewr_block.o)
+                                                  data.o
+                                                  eeprom.o
+__eewr_word                                       c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libc.a(eewr_word.o)
+                                                  eeprom.o
+__epilogue_restores__                             c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/avr5\libgcc.a(_epilogue.o)
+                                                  c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libc.a(vfscanf_std.o)
+                                                  c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libc.a(vfprintf_std.o)
+                                                  c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libc.a(sscanf.o)
+                                                  c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libc.a(sprintf.o)
+                                                  c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libc.a(eewr_block.o)
+                                                  c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libc.a(eerd_block.o)
+__eqsf2                                           c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libm.a(cmpsf2.o)
+__fixsfsi                                         c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libm.a(fixsfsi.o)
+                                                  stp_scr.o
+                                                  irc.o
+__fixunssfsi                                      c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libm.a(fixunssfsi.o)
+                                                  c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libm.a(fixsfsi.o)
+                                                  stp_scr.o
+                                                  irc.o
+                                                  measure.o
+__floatsisf                                       c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libm.a(floatsisf.o)
+                                                  stp_scr.o
+                                                  irc.o
+                                                  measure.o
+__floatunsisf                                     c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libm.a(floatsisf.o)
+                                                  irc.o
+                                                  measure.o
+__flp                                             c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libc.a(malloc.o)
+__fp_cmp                                          c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libm.a(fp_cmp.o)
+                                                  c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libm.a(gesf2.o)
+                                                  c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libm.a(cmpsf2.o)
+__fp_inf                                          c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libm.a(fp_inf.o)
+                                                  c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libm.a(mulsf3x.o)
+                                                  c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libm.a(divsf3x.o)
+                                                  c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libm.a(addsf3x.o)
+__fp_nan                                          c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libm.a(fp_nan.o)
+                                                  c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libm.a(mulsf3x.o)
+                                                  c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libm.a(divsf3x.o)
+                                                  c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libm.a(addsf3x.o)
+__fp_pscA                                         c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libm.a(fp_pscA.o)
+                                                  c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libm.a(mulsf3x.o)
+                                                  c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libm.a(divsf3x.o)
+                                                  c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libm.a(addsf3x.o)
+__fp_pscB                                         c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libm.a(fp_pscB.o)
+                                                  c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libm.a(mulsf3x.o)
+                                                  c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libm.a(divsf3x.o)
+                                                  c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libm.a(addsf3x.o)
+__fp_round                                        c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libm.a(fp_round.o)
+                                                  c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libm.a(mulsf3.o)
+                                                  c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libm.a(divsf3.o)
+                                                  c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libm.a(addsf3.o)
+__fp_split3                                       c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libm.a(fp_split3.o)
+                                                  c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libm.a(mulsf3x.o)
+                                                  c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libm.a(divsf3x.o)
+                                                  c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libm.a(addsf3x.o)
+__fp_splitA                                       c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libm.a(fp_split3.o)
+                                                  c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libm.a(fixunssfsi.o)
+__fp_szero                                        c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libm.a(fp_zero.o)
+                                                  c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libm.a(mulsf3x.o)
+                                                  c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libm.a(fixsfsi.o)
+                                                  c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libm.a(divsf3x.o)
+__fp_zero                                         c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libm.a(fp_zero.o)
+                                                  c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libm.a(fixunssfsi.o)
+                                                  c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libm.a(addsf3x.o)
+__gesf2                                           c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libm.a(gesf2.o)
+                                                  stp_scr.o
+__gtsf2                                           c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libm.a(gesf2.o)
+                                                  irc.o
+__heap_end                                        c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5/crtm32.o
+                                                  c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libc.a(malloc.o)
+__heap_start                                      c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libc.a(malloc.o)
+__init                                            c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5/crtm32.o
+__lesf2                                           c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libm.a(cmpsf2.o)
+                                                  stp_scr.o
+__ltsf2                                           c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libm.a(cmpsf2.o)
+__malloc_heap_end                                 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libc.a(malloc.o)
+__malloc_heap_start                               c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libc.a(malloc.o)
+__malloc_margin                                   c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libc.a(malloc.o)
+__mulsf3                                          c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libm.a(mulsf3.o)
+                                                  irc.o
+                                                  measure.o
+__mulsf3_pse                                      c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libm.a(mulsf3x.o)
+__mulsf3x                                         c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libm.a(mulsf3x.o)
+                                                  c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libm.a(mulsf3.o)
+__nesf2                                           c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libm.a(cmpsf2.o)
+__prologue_saves__                                c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/avr5\libgcc.a(_prologue.o)
+                                                  c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libc.a(vfscanf_std.o)
+                                                  c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libc.a(vfprintf_std.o)
+                                                  c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libc.a(sscanf.o)
+                                                  c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libc.a(sprintf.o)
+                                                  c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libc.a(eewr_block.o)
+                                                  c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libc.a(eerd_block.o)
+__stack                                           c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5/crtm32.o
+__subsf3                                          c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libm.a(addsf3.o)
+                                                  measure.o
+__udivmodhi4                                      c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/avr5\libgcc.a(_udivmodhi4.o)
+                                                  c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/avr5\libgcc.a(_divmodhi4.o)
+                                                  data_serial.o
+                                                  dat_scr.o
+                                                  msr_scr.o
+                                                  data.o
+                                                  convert.o
+                                                  irc.o
+__udivmodsi4                                      c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/avr5\libgcc.a(_udivmodsi4.o)
+                                                  measure.o
+__ultoa_invert                                    c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libc.a(ultoa_invert.o)
+                                                  c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libc.a(vfprintf_std.o)
+__vector_1                                        c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5/crtm32.o
+__vector_10                                       c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5/crtm32.o
+__vector_11                                       c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5/crtm32.o
+__vector_12                                       c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5/crtm32.o
+__vector_13                                       usart.o
+                                                  c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5/crtm32.o
+__vector_14                                       usart.o
+                                                  c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5/crtm32.o
+__vector_15                                       c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5/crtm32.o
+__vector_16                                       c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5/crtm32.o
+__vector_17                                       c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5/crtm32.o
+__vector_18                                       c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5/crtm32.o
+__vector_19                                       c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5/crtm32.o
+__vector_2                                        keyboard.o
+                                                  c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5/crtm32.o
+__vector_20                                       c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5/crtm32.o
+__vector_3                                        c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5/crtm32.o
+__vector_4                                        c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5/crtm32.o
+__vector_5                                        c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5/crtm32.o
+__vector_6                                        c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5/crtm32.o
+__vector_7                                        main.o
+                                                  c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5/crtm32.o
+__vector_8                                        c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5/crtm32.o
+__vector_9                                        c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5/crtm32.o
+__vector_default                                  c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5/crtm32.o
+__vectors                                         c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5/crtm32.o
+_div                                              c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/avr5\libgcc.a(_divmodhi4.o)
+_exit                                             c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/avr5\libgcc.a(_exit.o)
+after_trans_delay_counter                         usart.o
+akt_scr                                           gui.o
+                                                  stp_scr.o
+                                                  ser_scr.o
+                                                  dlst_scr.o
+                                                  dat_scr.o
+                                                  hlp_scr.o
+                                                  msr_scr.o
+                                                  gui_toolbox.o
+                                                  error.o
+                                                  data.o
+                                                  main.o
+buttons                                           buttons.o
+                                                  main.o
+buttons_init                                      buttons.o
+                                                  main.o
+clear_dscreen                                     lcd.o
+                                                  stp_scr.o
+                                                  ser_scr.o
+                                                  dlst_scr.o
+                                                  dat_scr.o
+                                                  hlp_scr.o
+                                                  msr_scr.o
+                                                  error.o
+                                                  gui.o
+clear_screen                                      lcd.o
+control_ok                                        dat_scr.o
+d10                                               lcd.o
+dat_add_zakaznik                                  data.o
+                                                  dlst_scr.o
+                                                  msr_scr.o
+dat_del_all                                       data.o
+                                                  data_serial.o
+dat_del_record                                    data.o
+                                                  dat_scr.o
+dat_free_m_jmena                                  data.o
+                                                  eeprom.o
+dat_odstran_zakaznika                             data.o
+                                                  dlst_scr.o
+                                                  msr_scr.o
+dat_read_eeprom                                   data.o
+                                                  eeprom.o
+dat_write_eeprom                                  data.o
+                                                  eeprom.o
+dat_zak_read_eeprom                               data.o
+                                                  eeprom.o
+dat_zak_write_eeprom                              data.o
+                                                  eeprom.o
+data                                              data.o
+data_akt_zakaznik                                 data.o
+data_delka                                        data.o
+                                                  stp_scr.o
+                                                  data_serial.o
+                                                  dlst_scr.o
+                                                  dat_scr.o
+                                                  msr_scr.o
+                                                  gui.o
+                                                  eeprom.o
+                                                  measure.o
+                                                  main.o
+data_down                                         dat_scr.o
+data_druh_dreva                                   data.o
+                                                  stp_scr.o
+                                                  data_serial.o
+                                                  dlst_scr.o
+                                                  dat_scr.o
+                                                  msr_scr.o
+                                                  gui.o
+                                                  eeprom.o
+                                                  measure.o
+                                                  main.o
+data_msg                                          stp_scr.o
+                                                  ser_scr.o
+                                                  data_serial.o
+                                                  dlst_scr.o
+                                                  dat_scr.o
+                                                  hlp_scr.o
+                                                  msr_scr.o
+                                                  gui_toolbox.o
+                                                  error.o
+                                                  data.o
+                                                  convert.o
+                                                  usart.o
+                                                  main.o
+data_operace                                      data.o
+                                                  stp_scr.o
+                                                  data_serial.o
+                                                  dlst_scr.o
+                                                  dat_scr.o
+                                                  msr_scr.o
+                                                  gui.o
+                                                  eeprom.o
+                                                  measure.o
+                                                  main.o
+data_prumer                                       data.o
+                                                  stp_scr.o
+                                                  data_serial.o
+                                                  dlst_scr.o
+                                                  dat_scr.o
+                                                  msr_scr.o
+                                                  gui.o
+                                                  eeprom.o
+                                                  measure.o
+                                                  main.o
+data_scr_close                                    dat_scr.o
+                                                  gui.o
+data_scr_control                                  dat_scr.o
+                                                  gui.o
+data_scr_draw                                     dat_scr.o
+                                                  gui.o
+data_scr_init                                     dat_scr.o
+                                                  gui.o
+data_scr_open                                     dat_scr.o
+                                                  gui.o
+data_top                                          data.o
+                                                  stp_scr.o
+                                                  data_serial.o
+                                                  dlst_scr.o
+                                                  dat_scr.o
+                                                  msr_scr.o
+                                                  gui.o
+                                                  eeprom.o
+                                                  measure.o
+                                                  main.o
+data_up                                           dat_scr.o
+data_zakaznik                                     data.o
+                                                  stp_scr.o
+                                                  data_serial.o
+                                                  dlst_scr.o
+                                                  dat_scr.o
+                                                  msr_scr.o
+                                                  gui.o
+                                                  eeprom.o
+                                                  measure.o
+                                                  main.o
+default_screen                                    stp_scr.o
+                                                  watchdog.o
+                                                  ser_scr.o
+                                                  dlst_scr.o
+                                                  dat_scr.o
+                                                  hlp_scr.o
+                                                  msr_scr.o
+                                                  gui_toolbox.o
+                                                  keyboard.o
+                                                  error.o
+                                                  gui.o
+                                                  data.o
+                                                  convert.o
+                                                  lcd.o
+                                                  measure.o
+                                                  main.o
+dlst_scr_close                                    dlst_scr.o
+                                                  gui.o
+dlst_scr_control                                  dlst_scr.o
+                                                  gui.o
+dlst_scr_draw                                     dlst_scr.o
+                                                  gui.o
+dlst_scr_init                                     dlst_scr.o
+dlst_scr_open                                     dlst_scr.o
+                                                  gui.o
+eeprom_load                                       eeprom.o
+                                                  main.o
+eeprom_r16                                        eeprom.o
+                                                  data.o
+eeprom_r32                                        eeprom.o
+eeprom_r8                                         eeprom.o
+                                                  data.o
+eeprom_save                                       eeprom.o
+                                                  watchdog.o
+                                                  usart_recv.o
+                                                  main.o
+eeprom_w16                                        eeprom.o
+                                                  data.o
+                                                  irc.o
+                                                  usart_recv.o
+eeprom_w32                                        eeprom.o
+                                                  irc.o
+                                                  usart_recv.o
+eeprom_w8                                         eeprom.o
+err102                                            main.o
+err_assert                                        error.o
+                                                  usart.o
+err_control                                       error.o
+                                                  main.o
+err_scr_open                                      error.o
+                                                  gui.o
+err_str                                           error.o
+error_scr_control                                 error.o
+                                                  gui.o
+error_scr_draw                                    error.o
+                                                  gui.o
+exit                                              c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/avr5\libgcc.a(_exit.o)
+                                                  c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5/crtm32.o
+fgetc                                             c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libc.a(fgetc.o)
+                                                  c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libc.a(vfscanf_std.o)
+find_last_record_of_zakaznik                      data.o
+                                                  dlst_scr.o
+                                                  msr_scr.o
+fputc                                             c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libc.a(fputc.o)
+                                                  c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libc.a(vfprintf_std.o)
+free                                              c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libc.a(malloc.o)
+                                                  stp_scr.o
+                                                  dlst_scr.o
+                                                  dat_scr.o
+                                                  msr_scr.o
+                                                  gui_toolbox.o
+                                                  error.o
+                                                  data.o
+                                                  usart.o
+get_char                                          keyboard.o
+                                                  dat_scr.o
+                                                  msr_scr.o
+                                                  gui_toolbox.o
+get_data_from_katr                                main.o
+get_data_from_server                              main.o
+get_k                                             measure.o
+get_menu_jmena_i                                  msr_scr.o
+                                                  keyfcn.o
+get_q                                             measure.o
+get_spec                                          keyboard.o
+                                                  stp_scr.o
+                                                  ser_scr.o
+                                                  dlst_scr.o
+                                                  dat_scr.o
+                                                  hlp_scr.o
+                                                  msr_scr.o
+                                                  gui_toolbox.o
+                                                  error.o
+                                                  gui.o
+get_stored_menu_jmena_i                           msr_scr.o
+                                                  dlst_scr.o
+                                                  dat_scr.o
+getstr_P                                          main.o
+                                                  dat_scr.o
+gui_control                                       gui.o
+                                                  main.o
+gui_init                                          gui.o
+                                                  main.o
+help_scr_control                                  hlp_scr.o
+                                                  gui.o
+help_scr_draw                                     hlp_scr.o
+                                                  gui.o
+hlp_scr_open                                      hlp_scr.o
+                                                  gui.o
+int2str                                           convert.o
+int2strn                                          convert.o
+                                                  ser_scr.o
+                                                  dat_scr.o
+                                                  msr_scr.o
+ioinit                                            main.o
+irc_counter                                       irc.o
+                                                  stp_scr.o
+                                                  msr_scr.o
+                                                  gui.o
+                                                  eeprom.o
+                                                  usart_recv.o
+                                                  measure.o
+                                                  main.o
+irc_get_k                                         irc.o
+                                                  usart_recv.o
+irc_get_l                                         irc.o
+                                                  msr_scr.o
+                                                  measure.o
+irc_init                                          irc.o
+                                                  main.o
+irc_k                                             irc.o
+                                                  stp_scr.o
+                                                  msr_scr.o
+                                                  gui.o
+                                                  eeprom.o
+                                                  usart_recv.o
+                                                  measure.o
+                                                  main.o
+irc_set_on_value                                  irc.o
+                                                  stp_scr.o
+                                                  msr_scr.o
+                                                  gui.o
+                                                  eeprom.o
+                                                  usart_recv.o
+                                                  measure.o
+                                                  main.o
+irc_watch                                         irc.o
+                                                  main.o
+isspace                                           c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libc.a(isspace.o)
+                                                  c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libc.a(vfscanf_std.o)
+keyb_in_buff                                      keyboard.o
+                                                  buttons.o
+keyboard_init                                     keyboard.o
+                                                  main.o
+keyboard_recv_watchdog                            keyboard.o
+                                                  main.o
+kf_global_key                                     keyfcn.o
+kf_start                                          keyfcn.o
+                                                  msr_scr.o
+kf_zrusit                                         keyfcn.o
+                                                  dlst_scr.o
+                                                  dat_scr.o
+                                                  hlp_scr.o
+                                                  msr_scr.o
+                                                  gui_toolbox.o
+                                                  error.o
+                                                  gui.o
+last_err                                          error.o
+last_oper_with_irc_counter                        irc.o
+lcd_control                                       lcd.o
+                                                  main.o
+lcd_ctrl_count                                    lcd.o
+lcd_ctrl_x                                        lcd.o
+lcd_ctrl_y                                        lcd.o
+lcd_init                                          lcd.o
+                                                  main.o
+lcd_new_frame                                     lcd.o
+                                                  gui.o
+lcd_w_inst                                        lcd.o
+                                                  watchdog.o
+                                                  main.o
+load_menu_values                                  msr_scr.o
+m_jmena                                           stp_scr.o
+                                                  data_serial.o
+                                                  dlst_scr.o
+                                                  dat_scr.o
+                                                  msr_scr.o
+                                                  gui.o
+                                                  data.o
+                                                  eeprom.o
+                                                  measure.o
+                                                  main.o
+main                                              main.o
+                                                  c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5/crtm32.o
+malloc                                            c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libc.a(malloc.o)
+                                                  stp_scr.o
+                                                  dlst_scr.o
+                                                  gui_toolbox.o
+                                                  data.o
+                                                  usart_recv.o
+                                                  usart.o
+                                                  main.o
+measure                                           measure.o
+                                                  main.o
+measure_scr_close                                 msr_scr.o
+                                                  gui.o
+measure_scr_control                               msr_scr.o
+                                                  gui.o
+measure_scr_draw                                  msr_scr.o
+                                                  gui.o
+measure_scr_init                                  msr_scr.o
+                                                  gui.o
+measure_scr_open                                  msr_scr.o
+                                                  gui.o
+memcpy_P                                          c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libc.a(memcpy_P.o)
+                                                  usart.o
+menu_draw                                         gui_toolbox.o
+                                                  dlst_scr.o
+                                                  msr_scr.o
+menu_next_item                                    gui_toolbox.o
+                                                  stp_scr.o
+                                                  dlst_scr.o
+                                                  dat_scr.o
+                                                  msr_scr.o
+menu_next_value                                   gui_toolbox.o
+                                                  dat_scr.o
+                                                  msr_scr.o
+menu_prev_item                                    gui_toolbox.o
+                                                  stp_scr.o
+                                                  dlst_scr.o
+                                                  dat_scr.o
+                                                  msr_scr.o
+menu_pridat                                       gui.o
+                                                  stp_scr.o
+                                                  ser_scr.o
+                                                  dlst_scr.o
+                                                  dat_scr.o
+                                                  hlp_scr.o
+                                                  msr_scr.o
+                                                  gui_toolbox.o
+                                                  error.o
+                                                  data.o
+                                                  main.o
+mezery                                            convert.o
+                                                  stp_scr.o
+                                                  dlst_scr.o
+                                                  dat_scr.o
+                                                  msr_scr.o
+mmalloc                                           main.o
+                                                  stp_scr.o
+                                                  data_serial.o
+                                                  dat_scr.o
+                                                  msr_scr.o
+                                                  gui_toolbox.o
+                                                  error.o
+                                                  usart.o
+msg_0A                                            usart_recv.o
+msg_14                                            usart_recv.o
+msg_ack_fcn                                       usart.o
+                                                  usart_recv.o
+msg_buffer                                        usart.o
+msg_buffer_counter                                usart.o
+msg_nack_fcn                                      usart.o
+msr_delka                                         measure.o
+                                                  keyfcn.o
+                                                  stp_scr.o
+                                                  data_serial.o
+                                                  dlst_scr.o
+                                                  dat_scr.o
+                                                  hlp_scr.o
+                                                  msr_scr.o
+                                                  gui_toolbox.o
+                                                  error.o
+                                                  gui.o
+                                                  eeprom.o
+                                                  usart_recv.o
+                                                  main.o
+msr_init                                          measure.o
+                                                  main.o
+msr_objem                                         measure.o
+                                                  keyfcn.o
+                                                  stp_scr.o
+                                                  data_serial.o
+                                                  dlst_scr.o
+                                                  dat_scr.o
+                                                  hlp_scr.o
+                                                  msr_scr.o
+                                                  gui_toolbox.o
+                                                  error.o
+                                                  gui.o
+                                                  eeprom.o
+                                                  usart_recv.o
+                                                  main.o
+msr_pause                                         measure.o
+                                                  keyfcn.o
+msr_prumer                                        measure.o
+                                                  keyfcn.o
+                                                  stp_scr.o
+                                                  data_serial.o
+                                                  dlst_scr.o
+                                                  dat_scr.o
+                                                  hlp_scr.o
+                                                  msr_scr.o
+                                                  gui_toolbox.o
+                                                  error.o
+                                                  gui.o
+                                                  eeprom.o
+                                                  usart_recv.o
+                                                  main.o
+msr_prumer_h                                      keyfcn.o
+                                                  stp_scr.o
+                                                  data_serial.o
+                                                  dlst_scr.o
+                                                  dat_scr.o
+                                                  hlp_scr.o
+                                                  msr_scr.o
+                                                  gui_toolbox.o
+                                                  error.o
+                                                  gui.o
+                                                  eeprom.o
+                                                  usart_recv.o
+                                                  measure.o
+                                                  main.o
+msr_prumer_v                                      keyfcn.o
+                                                  stp_scr.o
+                                                  data_serial.o
+                                                  dlst_scr.o
+                                                  dat_scr.o
+                                                  hlp_scr.o
+                                                  msr_scr.o
+                                                  gui_toolbox.o
+                                                  error.o
+                                                  gui.o
+                                                  eeprom.o
+                                                  usart_recv.o
+                                                  measure.o
+                                                  main.o
+msr_start                                         measure.o
+                                                  keyfcn.o
+msr_status                                        measure.o
+                                                  keyfcn.o
+                                                  stp_scr.o
+                                                  data_serial.o
+                                                  dlst_scr.o
+                                                  dat_scr.o
+                                                  hlp_scr.o
+                                                  msr_scr.o
+                                                  gui_toolbox.o
+                                                  error.o
+                                                  gui.o
+                                                  eeprom.o
+                                                  usart_recv.o
+                                                  main.o
+msr_storno                                        measure.o
+                                                  keyfcn.o
+                                                  data_serial.o
+msr_unpause                                       measure.o
+                                                  keyfcn.o
+msr_zmer_l                                        measure.o
+new_ack_msg                                       usart.o
+                                                  data_serial.o
+                                                  main.o
+new_err                                           error.o
+new_error                                         error.o
+                                                  keyfcn.o
+                                                  data_serial.o
+                                                  dlst_scr.o
+                                                  dat_scr.o
+                                                  msr_scr.o
+                                                  gui_toolbox.o
+                                                  data.o
+                                                  lcd.o
+                                                  irc.o
+                                                  usart_recv.o
+                                                  usart.o
+                                                  measure.o
+                                                  main.o
+new_menu_item                                     gui_toolbox.o
+                                                  stp_scr.o
+                                                  dlst_scr.o
+                                                  dat_scr.o
+                                                  msr_scr.o
+new_msg                                           usart.o
+                                                  stp_scr.o
+                                                  data_serial.o
+                                                  usart_recv.o
+                                                  main.o
+new_msg_P                                         usart.o
+                                                  usart_recv.o
+new_record                                        data.o
+                                                  dat_scr.o
+                                                  msr_scr.o
+new_str_error                                     error.o
+ok_scr                                            gui.o
+                                                  dlst_scr.o
+                                                  dat_scr.o
+                                                  msr_scr.o
+ok_scr_init                                       gui.o
+                                                  dlst_scr.o
+                                                  dat_scr.o
+                                                  msr_scr.o
+p_akt_screen                                      stp_scr.o
+                                                  watchdog.o
+                                                  ser_scr.o
+                                                  dlst_scr.o
+                                                  dat_scr.o
+                                                  hlp_scr.o
+                                                  msr_scr.o
+                                                  gui_toolbox.o
+                                                  keyboard.o
+                                                  error.o
+                                                  gui.o
+                                                  data.o
+                                                  convert.o
+                                                  lcd.o
+                                                  measure.o
+                                                  main.o
+prazdna                                           main.o
+prepinani                                         usart.o
+prev_scr                                          error.o
+prev_state                                        irc.o
+print                                             lcd.o
+print_err                                         error.o
+printc                                            lcd.o
+printcxyd                                         lcd.o
+                                                  ser_scr.o
+                                                  dat_scr.o
+                                                  msr_scr.o
+                                                  gui_toolbox.o
+printnt_P                                         lcd.o
+                                                  watchdog.o
+                                                  main.o
+printxy                                           lcd.o
+printxyd                                          lcd.o
+                                                  stp_scr.o
+                                                  ser_scr.o
+                                                  dat_scr.o
+                                                  hlp_scr.o
+                                                  msr_scr.o
+                                                  gui_toolbox.o
+                                                  error.o
+printxyd_P                                        lcd.o
+                                                  stp_scr.o
+                                                  hlp_scr.o
+                                                  msr_scr.o
+                                                  error.o
+                                                  gui.o
+process_recived_msg                               usart.o
+prumer_h                                          keyfcn.o
+                                                  stp_scr.o
+                                                  data_serial.o
+                                                  dlst_scr.o
+                                                  dat_scr.o
+                                                  hlp_scr.o
+                                                  msr_scr.o
+                                                  gui_toolbox.o
+                                                  error.o
+                                                  gui.o
+                                                  eeprom.o
+                                                  usart_recv.o
+                                                  measure.o
+                                                  main.o
+prumer_v                                          keyfcn.o
+                                                  stp_scr.o
+                                                  data_serial.o
+                                                  dlst_scr.o
+                                                  dat_scr.o
+                                                  hlp_scr.o
+                                                  msr_scr.o
+                                                  gui_toolbox.o
+                                                  error.o
+                                                  gui.o
+                                                  eeprom.o
+                                                  usart_recv.o
+                                                  measure.o
+                                                  main.o
+prumeruj                                          measure.o
+r_rec_delka                                       data.o
+r_rec_druh_dreva                                  data.o
+r_rec_operace                                     data.o
+r_rec_prumer                                      data.o
+r_rec_zakaznik                                    data.o
+r_record                                          data.o
+                                                  data_serial.o
+                                                  dat_scr.o
+read_line                                         gui_toolbox.o
+                                                  stp_scr.o
+                                                  dlst_scr.o
+                                                  dat_scr.o
+                                                  msr_scr.o
+read_line_init                                    gui_toolbox.o
+                                                  stp_scr.o
+                                                  dat_scr.o
+                                                  msr_scr.o
+read_line_init_edefault                           gui_toolbox.o
+                                                  dlst_scr.o
+read_line_kill                                    gui_toolbox.o
+                                                  dlst_scr.o
+                                                  dat_scr.o
+recived_msg                                       usart.o
+recv_msg                                          usart_recv.o
+                                                  usart.o
+save_menu_values                                  msr_scr.o
+scr_ch                                            gui.o
+                                                  stp_scr.o
+                                                  ser_scr.o
+                                                  dlst_scr.o
+                                                  dat_scr.o
+                                                  hlp_scr.o
+                                                  msr_scr.o
+                                                  error.o
+scr_close                                         gui.o
+scr_draw                                          gui.o
+                                                  msr_scr.o
+scr_open                                          gui.o
+send_data                                         data_serial.o
+                                                  dlst_scr.o
+                                                  dat_scr.o
+                                                  hlp_scr.o
+                                                  msr_scr.o
+                                                  gui_toolbox.o
+                                                  error.o
+                                                  gui.o
+send_msg                                          usart.o
+send_next_data                                    data_serial.o
+ser_scr_control                                   ser_scr.o
+                                                  gui.o
+ser_scr_open                                      ser_scr.o
+                                                  gui.o
+serial_msg_ack_timer                              usart.o
+                                                  main.o
+set_dlst_menu_i                                   dlst_scr.o
+set_irc_k                                         irc.o
+                                                  stp_scr.o
+                                                  eeprom.o
+                                                  usart_recv.o
+set_irc_set_on_value                              irc.o
+                                                  stp_scr.o
+                                                  eeprom.o
+                                                  usart_recv.o
+set_menu_jmena_i                                  msr_scr.o
+                                                  dlst_scr.o
+sprintf                                           c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libc.a(sprintf.o)
+                                                  stp_scr.o
+                                                  dat_scr.o
+                                                  error.o
+sscanf                                            c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libc.a(sscanf.o)
+                                                  stp_scr.o
+                                                  dat_scr.o
+stp_nastav                                        stp_scr.o
+stp_scr_close                                     stp_scr.o
+                                                  gui.o
+stp_scr_control                                   stp_scr.o
+                                                  gui.o
+stp_scr_draw                                      stp_scr.o
+                                                  gui.o
+stp_scr_open                                      stp_scr.o
+                                                  gui.o
+str_buf                                           stp_scr.o
+                                                  ser_scr.o
+                                                  data_serial.o
+                                                  dlst_scr.o
+                                                  dat_scr.o
+                                                  hlp_scr.o
+                                                  msr_scr.o
+                                                  gui_toolbox.o
+                                                  error.o
+                                                  data.o
+                                                  convert.o
+                                                  usart.o
+                                                  main.o
+strchr_P                                          c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libc.a(strchr_P.o)
+                                                  c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libc.a(vfscanf_std.o)
+strcpy                                            c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libc.a(strcpy.o)
+                                                  gui_toolbox.o
+                                                  data.o
+strcpy_P                                          c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libc.a(strcpy_P.o)
+                                                  msr_scr.o
+                                                  gui_toolbox.o
+                                                  main.o
+strlen                                            convert.o
+strlen_P                                          c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libc.a(strlen_P.o)
+                                                  main.o
+strncpy                                           c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libc.a(strncpy.o)
+                                                  data_serial.o
+strnlen                                           c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libc.a(strnlen.o)
+                                                  c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libc.a(vfprintf_std.o)
+strnlen_P                                         c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libc.a(strnlen_P.o)
+                                                  c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libc.a(vfprintf_std.o)
+t_lcd                                             main.o
+test_message                                      usart.o
+test_shutdown                                     main.o
+to_transmitt_buffer                               usart.o
+uloz_posledni_data                                msr_scr.o
+                                                  keyfcn.o
+                                                  eeprom.o
+ungetc                                            c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libc.a(ungetc.o)
+                                                  c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libc.a(vfscanf_std.o)
+usart_get_recv_buff                               usart.o
+                                                  ser_scr.o
+usart_recv_buff                                   usart.o
+usart_recv_count                                  usart.o
+usart_trans_buff                                  usart.o
+usart_trans_count                                 usart.o
+vfprintf                                          c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libc.a(vfprintf_std.o)
+                                                  c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libc.a(sprintf.o)
+vfscanf                                           c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libc.a(vfscanf_std.o)
+                                                  c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr5\libc.a(sscanf.o)
+w_record                                          data.o
+                                                  dat_scr.o
+width_src                                         measure.o
+                                                  keyfcn.o
+                                                  stp_scr.o
+                                                  data_serial.o
+                                                  dlst_scr.o
+                                                  dat_scr.o
+                                                  hlp_scr.o
+                                                  msr_scr.o
+                                                  gui_toolbox.o
+                                                  error.o
+                                                  gui.o
+                                                  eeprom.o
+                                                  usart_recv.o
+                                                  main.o
+wtch_counter                                      watchdog.o
+                                                  eeprom.o
+                                                  main.o
+wtch_init                                         watchdog.o
+                                                  main.o
+wtch_main                                         watchdog.o
+                                                  main.o
+zpracuj_kod                                       keyboard.o

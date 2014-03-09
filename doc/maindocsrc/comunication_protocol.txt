@@ -1,0 +1,42 @@
+/** 
+@page comunication_protocol Komunikaèní protokol
+
+@section cp_popis Popis protokolu
+
+
+@section cp_katr Kódy zpráv - katr
+
+ - 01 & out & Chyba pøenosu - neshoda v~kontrolních bytech
+ - 02 & out & Chyba pøenosu - zahájeno nesprávným znakem
+ - 03 & out & Chyba mìøení šíøky - více zastínìných ploch
+ - 04 & out & Chyba IRC - zmìna obou vstupù
+ - 05 & out & Chyba IRC - rozdíl IRC oproti referenci
+ - 07 & out & Chyba pøenosu - plná odesílací fronta
+ - 09 & in  & zastavuje nebo spouší odesílání z katru
+ - 0A & in  & Ulož do EEPROM
+ - 10 & in  & Nastav konstantu pro pøenásobení hodnoty
+ - 11 & in  & Nastav vzálenost referenèního bodu
+ - 13 & in  & Vypíná pøepoèet prùmìru na skuteèný
+ - 16 & in  & Pokyn k odeslání datové zprávy
+ - 14 & out & Potvrení pøíjmu
+ - 40 & out & Datová zpráva
+
+@section cp_vozik Kódy zpráv - vozík
+
+ - 04 & in  & Chyba IRC - zmìna obou vstupù
+ - 0A & in/out  & Ulož do EEPROM (i na katru)
+ - 0E & in  & Nastav konstantu pro pøenásobení hodnoty (vozík)
+ - 0F & in  & Nastav vzálenost referenèního bodu (vozík)
+ - 14 & out & Potvrení pøíjmu
+ - 16 & out & Pokyn k odeslání datové zprávy z katru
+ - 1A & in  & Nastavení zdroje dat mìøení šíøky
+ - 40 & in  & Datová zpráva
+ - 41 & out & Jméno zákazníka
+ - 42 & out & Namìøený strom
+ - 43 & out & Odesláno poslední mìøení
+ - 44 & out & Zahájení odesílání dat
+ - 46 & z vozíku & výzva pro server, zda nemá nìjaká data.
+ - 47 & ze serveru & ukonèení odesílání dat
+ - 48 & in(server) & data o šíøce ze serveru
+
+*/

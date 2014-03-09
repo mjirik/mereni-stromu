@@ -1,0 +1,9 @@
+/**
+@page glob_prace_s_jednocipem Práce s jednoèipem
+
+@section glob_nahravani_programu Nahrávání programu
+Program je do jednoèipu nahráván prostøednictvím ISP programátoru STK500.Konektor pro pøipojení tohoto programátoru je na obrázku.
+
+@image html isp_pin.png "ISP konektor pro programování jednoèipu"
+
+*/

@@ -1,0 +1,39 @@
+EAGLE Version 4.16 Copyright (c) 1988-2005 CadSoft
+
+Electrical Rule Check for C:/Program Files/EAGLE-4.16/projects/vozik/7seg.sch at 17.04.2006 18:16:17 
+
+ERROR: Sheet 1/1: unconnected INPUT Pin: IC1 LT
+ERROR: Sheet 1/1: unconnected INPUT Pin: IC1 BI
+ERROR: Sheet 1/1: unconnected INPUT Pin: IC1 LE
+WARNING: Sheet 1/1: POWER Pin IC1P VSS connected to N$49
+WARNING: Sheet 1/1: POWER Pin IC1P VDD connected to N$48
+ERROR: Sheet 1/1: unconnected INPUT Pin: IC2 LT
+ERROR: Sheet 1/1: unconnected INPUT Pin: IC2 BI
+ERROR: Sheet 1/1: unconnected INPUT Pin: IC2 LE
+WARNING: Sheet 1/1: POWER Pin IC2P VSS connected to N$49
+WARNING: Sheet 1/1: POWER Pin IC2P VDD connected to N$48
+ERROR: Sheet 1/1: unconnected INPUT Pin: IC3 LT
+ERROR: Sheet 1/1: unconnected INPUT Pin: IC3 BI
+ERROR: Sheet 1/1: unconnected INPUT Pin: IC3 LE
+WARNING: Sheet 1/1: POWER Pin IC3P VSS connected to N$49
+WARNING: Sheet 1/1: POWER Pin IC3P VDD connected to N$48
+ERROR: Sheet 1/1: unconnected INPUT Pin: IC4 LT
+ERROR: Sheet 1/1: unconnected INPUT Pin: IC4 BI
+ERROR: Sheet 1/1: unconnected INPUT Pin: IC4 LE
+WARNING: Sheet 1/1: POWER Pin IC4P VSS connected to N$49
+WARNING: Sheet 1/1: POWER Pin IC4P VDD connected to N$48
+ERROR: Sheet 1/1: unconnected INPUT Pin: IC5 B
+ERROR: Sheet 1/1: unconnected INPUT Pin: IC5 CLR
+WARNING: Sheet 1/1: POWER Pin IC5P GND connected to N$49
+WARNING: Sheet 1/1: POWER Pin IC5P VCC connected to N$48
+ERROR: Sheet 1/1: unconnected INPUT Pin: IC6 B
+ERROR: Sheet 1/1: unconnected INPUT Pin: IC6 CLR
+WARNING: Sheet 1/1: POWER Pin IC6P GND connected to N$49
+WARNING: Sheet 1/1: POWER Pin IC6P VCC connected to N$48
+ERROR: Only INPUT Pins on net N$46
+WARNING: Only 1 Pin on net N$46
+
+Board and schematic are consistent
+
+   17 errors
+   13 warnings

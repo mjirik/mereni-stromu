@@ -1,0 +1,321 @@
+/* $Id: style.css 108 2007-08-20 20:06:55Z Mira $ /*
+/** 
+ * @file style.css
+ * Souboru obsahuje styly aplikace pro správu dat získaných v projektu "Měření 
+ * objemu dřeva na pile".    
+ */
+
+* {
+  margin: 0;
+}
+html{ 
+  height: 100%;
+  background-color: white;
+  background-image: url('./pic/strom2.jpg');
+  background-repeat: no-repeat;  
+  background-position: right bottom;
+
+  font-family: Helvetica, Verdana, Tahoma , sans-serif;
+  _background-image: none;
+ }
+
+body {
+}
+
+body.print{
+  background-color: White;
+}
+#head{
+  _padding: 0px;
+  _margin: 0px;
+  background-color: black;
+  background-repeat: no-repeat;  
+}
+#headLeft{
+  float:left;
+  background-repeat: no-repeat;
+  background-position: right bottom;
+  width: 140;
+  height: 50px;
+  _height: 49px;
+  _margin: 0px;
+  _padding: 0px;
+  _width: 130;
+}
+#headMain {
+  background-position: right bottom;
+  padding: 5 10 5 160;
+  _padding: 5 0 5 10px;
+  _margin: 0px;
+  color: #E6FFBF;
+  height: 40px;
+}
+
+#bodyLeft {
+  padding: 5px;
+  margin-top:10px;
+
+  width: 130px;
+  float: left;
+  background-color: #6BB300;
+}
+
+#bodyLeftIn {
+}
+
+#login{
+  display: block;
+  text-align: center;
+}
+
+#bodyMain {
+
+  float: left;  
+}
+
+
+.druheOkno{
+  float:left;
+}
+
+.obtekany{
+  float:left;
+}
+
+.vnitrni{
+  background-color: #E6FFBF;
+  padding: 5px ;
+  margin: 10px 0px 0px 10px;
+  _padding: 5px;
+  _margin: 10px 0px 0px 5px;
+}
+
+
+h1, h2, h3, h4{ 
+  font-family: Tahoma, Helvetica, sans-serif;
+}
+h2, h3, h4{
+  margin-bottom: 10px;
+}
+
+#headMain h2{
+margin-bottom: 0px;
+}
+
+table{
+  border-collapse: collapse;
+}
+
+td{
+
+}
+
+th{ 
+background: #6BB300;
+}
+div.print th{
+background: white;
+}
+
+input.tlacitko {
+  cursor: hand;
+  margin: 1px; 
+  padding: 2px 4px 2px 4px ; 
+  border: outset 1px;
+}
+td a, input.tlacitko {
+  font:  bold 70%/1 Tahoma ,Helvetica, sans-serif;
+  color: #000000;
+}
+
+a.tlacitko, td a { 
+  text-align: center; margin: 1px; padding: 4px 6px 4px 6px ; border: outset 1px; text-decoration: none; display: block; }
+a.tlacitko:link, a.tlacitko:visited, td a:link, td a:visited, input.tlacitko { 
+  background: #FF80DF;
+  color: #000; 
+}
+a.tlacitko:active, td a:active, input.tlacitko:active{border: inset 1px; } 
+a.tlacitko:hover, tr td a:hover ,input.tlacitko:hover{
+background: #FFBFEF;
+}
+
+p.err {
+  color:red;
+}
+
+a.smazat:link, a.smazat:visited {background: #fc0}
+a.smazat:hover { background: #fa0}
+
+a:hover { 
+background-color: rgb(204,204,102);
+} 
+a { 
+text-decoration: none;
+color: rgb(0,51,0);
+}
+tr.archiv td{
+  
+  color: #777;
+
+}
+
+tr a{
+  background-color: red;
+ }
+
+/*obarvuje řádek s inputy a selecty nad kterým je kurzor*/
+tr:hover td input, tr:hover td select{
+}
+
+tr.chyba td input, tr.chyba td select, tr.chyba td checkbox{
+  background-color: rgb(255,204,204);
+}
+
+th.odsazeni{ 
+  width: 20px;
+}
+
+/*zvyrazneni dlouheho radku*/
+table.longtab tr:hover{
+  padding: 0px;
+  margin: 0px;
+  background-color: #CCFF80;
+}
+table.longtab tr{ 
+ }
+table.longtab tr td { 
+  padding: 0px;
+  margin: 0px;
+}
+
+tr.archiv td a{
+color:black;
+background-color: #9c9
+}
+
+tr.archiv td a:hover{
+background-color: #ada
+}
+
+ul{
+  display: block;
+  list-style-type:none;
+  padding:0;
+  margin:0;
+}
+
+a.menu {
+font-size: 90%;
+display: block;
+padding: 3px 10px 3px 10px;
+margin: 5px;
+text-align:center;
+color:#000;
+font-family:  Verdana, sans-serif;
+border: 1px solid black;
+background-color: #CCFF80;
+
+}
+a.menu:hover { 
+background-color: #E6FFBF;
+} 
+
+a.red { 
+font-size: 80%;
+display: block;
+padding: 3px 10px 3px 10px;
+margin: 5px;
+text-align:center;
+font-family: Verdana, sans-serif;
+border: 1px solid black;
+background-color: #E6FFBF;
+color: rgb(0,0,0);
+}
+a.red:hover { 
+background-color: #FFF0E6;
+} 
+
+
+
+.chyba_vnitrni{
+  background-color: #FFBFEF;
+  padding: 5px ;
+}
+
+.chyba{
+  background-color: #FFBFEF;
+  padding: 5px ;
+  margin: 10px 0px 0px 10px;
+}
+
+
+
+tr.focus{
+  background-color: #99BF60;
+}
+
+tr.focus:hover{
+  background-color: White;
+}
+
+
+tr.focus td a {
+}
+
+tr.focus:hover td a {
+}
+
+.print_head{
+  padding: 20px;
+}
+@media display{
+  .skryty_print{
+    visibility: hidden;
+  }
+}
+
+@media print {
+  .skryty_print{
+    page-break-before: always;
+    display: run-in;
+    visibility: visible;
+  }
+  th, tr, td{
+    background-color: White;
+  }
+  div {
+    visibility: hidden;
+    background-color: White;
+  }
+    
+  .print_ignore {
+    visibility: hidden;
+  }
+  div.print{
+    visibility: visible;    
+    background-color: White;
+  }
+  .print_head{
+    padding: 20px;
+    visibility: visible;
+  } 
+}
+
+/* Styly jednotlivých prvků*/
+table.tab_edit_seznam td, table.tab_edit_seznam th{
+  text-align: center;
+  padding: 0 3 0 0;
+}
+
+.resetovac
+{
+border: 0px none;
+margin: 0px;
+padding: 0px;
+float: none;
+clear: both;
+width: 0px;
+height: 0px;
+line-height: 0px;
+font-size: 0px;
+} 

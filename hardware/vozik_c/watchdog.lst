@@ -1,0 +1,161 @@
+   1               		.file	"watchdog.c"
+   2               	__SREG__ = 0x3f
+   3               	__SP_H__ = 0x3e
+   4               	__SP_L__ = 0x3d
+   5               	__CCP__  = 0x34
+   6               	__tmp_reg__ = 0
+   7               	__zero_reg__ = 1
+  15               	.Ltext0:
+  16               	.global	wtch_init
+  18               	wtch_init:
+  19               	.LFB6:
+  20               	.LM1:
+  21               	/* prologue: function */
+  22               	/* frame size = 0 */
+  23               	.LM2:
+  24 0000 1092 0000 		sts (wtch_counter)+1,__zero_reg__
+  25 0004 1092 0000 		sts wtch_counter,__zero_reg__
+  26 0008 2FE0      		ldi r18,lo8(15)
+  27 000a 88E1      		ldi r24,lo8(24)
+  28 000c 90E0      		ldi r25,hi8(24)
+  29               	/* #APP */
+  30               	 ;  31 "watchdog.c" 1
+  31 000e 0FB6      		in __tmp_reg__,__SREG__
+  32 0010 F894      		cli
+  33 0012 A895      		wdr
+  34 0014 81BD      		out 33,r24
+  35 0016 0FBE      		out __SREG__,__tmp_reg__
+  36 0018 21BD      		out 33,r18
+  37               	 ;  0 "" 2
+  38               	/* epilogue start */
+  39               	.LM3:
+  40               	/* #NOAPP */
+  41 001a 0895      		ret
+  42               	.LFE6:
+  44               	.global	wtch_main
+  46               	wtch_main:
+  47               	.LFB7:
+  48               	.LM4:
+  49               	/* prologue: function */
+  50               	/* frame size = 0 */
+  51               	.LM5:
+  52 001c 8091 0000 		lds r24,wtch_counter
+  53 0020 9091 0000 		lds r25,(wtch_counter)+1
+  54 0024 27E2      		ldi r18,hi8(10000)
+  55 0026 8031      		cpi r24,lo8(10000)
+  56 0028 9207      		cpc r25,r18
+  57 002a 00F4      		brsh .L4
+  58               	.LM6:
+  59 002c 0196      		adiw r24,1
+  60 002e 9093 0000 		sts (wtch_counter)+1,r25
+  61 0032 8093 0000 		sts wtch_counter,r24
+  62               	/* epilogue start */
+  63               	.LM7:
+  64 0036 0895      		ret
+  65               	.L4:
+  66               	.LBB13:
+  67               	.LM8:
+  68 0038 81E0      		ldi r24,lo8(1)
+  69 003a 0E94 0000 		call lcd_w_inst
+  70               	.LM9:
+  71 003e 80E0      		ldi r24,lo8(err97)
+  72 0040 90E0      		ldi r25,hi8(err97)
+  73 0042 0E94 0000 		call printnt_P
+  74               	.LM10:
+  75 0046 0E94 0000 		call eeprom_save
+  76               	.LM11:
+  77 004a 81E0      		ldi r24,lo8(1)
+  78 004c 0E94 0000 		call lcd_w_inst
+  79               	.LM12:
+  80 0050 80E0      		ldi r24,lo8(err97b)
+  81 0052 90E0      		ldi r25,hi8(err97b)
+  82 0054 0E94 0000 		call printnt_P
+  83               	.LM13:
+  84               	/* #APP */
+  85               	 ;  59 "watchdog.c" 1
+  86 0058 A895      		wdr
+  87               	 ;  0 "" 2
+  88               	/* #NOAPP */
+  89 005a 20E0      		ldi r18,lo8(0)
+  90 005c 30E0      		ldi r19,hi8(0)
+  91               	.LVL0:
+  92               	.LBB14:
+  93               	.LBB15:
+  94               	.LBB16:
+  95               	.LBB17:
+  96               	.LM14:
+  97 005e 40ED      		ldi r20,lo8(2000)
+  98 0060 57E0      		ldi r21,hi8(2000)
+  99               	.L5:
+ 100 0062 CA01      		movw r24,r20
+ 101               	.LVL1:
+ 102               	/* #APP */
+ 103               	 ;  105 "c:/winavr-20090313/lib/gcc/../../avr/include/util/delay_basic.h" 1
+ 104 0064 0197      		1: sbiw r24,1
+ 105 0066 01F4      		brne 1b
+ 106               	 ;  0 "" 2
+ 107               	/* #NOAPP */
+ 108               	.LBE17:
+ 109               	.LBE16:
+ 110               	.LBE15:
+ 111               	.LBE14:
+ 112               	.LM15:
+ 113               	/* #APP */
+ 114               	 ;  63 "watchdog.c" 1
+ 115 0068 A895      		wdr
+ 116               	 ;  0 "" 2
+ 117               	.LM16:
+ 118               	/* #NOAPP */
+ 119 006a 2F5F      		subi r18,lo8(-(1))
+ 120 006c 3F4F      		sbci r19,hi8(-(1))
+ 121 006e 87E0      		ldi r24,hi8(2000)
+ 122 0070 203D      		cpi r18,lo8(2000)
+ 123 0072 3807      		cpc r19,r24
+ 124               	.LVL2:
+ 125 0074 01F4      		brne .L5
+ 126               	.L6:
+ 127 0076 00C0      		rjmp .L6
+ 128               	.LBE13:
+ 129               	.LFE7:
+ 131               	.global	wtch_counter
+ 132               	.global	wtch_counter
+ 133               		.section .bss
+ 136               	wtch_counter:
+ 137 0000 0000      		.skip 2,0
+ 138               		.section	.progmem.data,"a",@progbits
+ 141               	err97:
+ 142 0000 4572 726F 		.string	"Error 97: Vazna chyba behu programu.    Ukladani dat."
+ 142      7220 3937 
+ 142      3A20 5661 
+ 142      7A6E 6120 
+ 142      6368 7962 
+ 145               	err97b:
+ 146 0036 4572 726F 		.string	"Error 97: Data ulozena. Reset."
+ 146      7220 3937 
+ 146      3A20 4461 
+ 146      7461 2075 
+ 146      6C6F 7A65 
+ 147               		.comm p_akt_screen,2,1
+ 148               		.comm default_screen,160,1
+ 181               	.Letext0:
+DEFINED SYMBOLS
+                            *ABS*:00000000 watchdog.c
+C:\Users\mjirik\AppData\Local\Temp/ccqexnIM.s:2      *ABS*:0000003f __SREG__
+C:\Users\mjirik\AppData\Local\Temp/ccqexnIM.s:3      *ABS*:0000003e __SP_H__
+C:\Users\mjirik\AppData\Local\Temp/ccqexnIM.s:4      *ABS*:0000003d __SP_L__
+C:\Users\mjirik\AppData\Local\Temp/ccqexnIM.s:5      *ABS*:00000034 __CCP__
+C:\Users\mjirik\AppData\Local\Temp/ccqexnIM.s:6      *ABS*:00000000 __tmp_reg__
+C:\Users\mjirik\AppData\Local\Temp/ccqexnIM.s:7      *ABS*:00000001 __zero_reg__
+C:\Users\mjirik\AppData\Local\Temp/ccqexnIM.s:18     .text:00000000 wtch_init
+C:\Users\mjirik\AppData\Local\Temp/ccqexnIM.s:136    .bss:00000000 wtch_counter
+C:\Users\mjirik\AppData\Local\Temp/ccqexnIM.s:46     .text:0000001c wtch_main
+C:\Users\mjirik\AppData\Local\Temp/ccqexnIM.s:141    .progmem.data:00000000 err97
+C:\Users\mjirik\AppData\Local\Temp/ccqexnIM.s:145    .progmem.data:00000036 err97b
+                            *COM*:00000002 p_akt_screen
+                            *COM*:000000a0 default_screen
+
+UNDEFINED SYMBOLS
+lcd_w_inst
+printnt_P
+eeprom_save
+__do_clear_bss

@@ -1,0 +1,8 @@
+/**
+@bug
+Pøi odeslání jména dlouhého 8 znakù se na konec pøidá nìjaký znak.
+Chyba je pravdìpodobnì v connectoru.
+
+@bug
+
+*/

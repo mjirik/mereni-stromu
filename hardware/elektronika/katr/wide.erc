@@ -1,0 +1,36 @@
+EAGLE Version 4.16 Copyright (c) 1988-2005 CadSoft
+
+Electrical Rule Check for D:/Dokumenty/work/pila/!zalohy/katr_10_4_06/wide.sch at 11.04.2006 18:34:00 
+
+WARNING: Sheet 1/1: POWER Pin IC3P V+ connected to VCC
+WARNING: Sheet 1/1: POWER Pin IC3P V- connected to GND
+WARNING: Sheet 1/1: POWER Pin IC1P V+ connected to VCC
+WARNING: Sheet 1/1: POWER Pin IC1P V- connected to GND
+WARNING: Sheet 1/1: Nets N$11 and N$18 too close at (3.7 2.3)
+WARNING: Sheet 1/1: Nets N$11 and N$19 too close at (3.3 2.3)
+WARNING: Sheet 1/1: Nets N$30 and N$6 too close at (2.5 1.1)
+WARNING: Sheet 1/1: Nets N$28 and N$2 too close at (1.9 1.7)
+WARNING: Sheet 1/1: Nets N$28 and N$3 too close at (1.9 1)
+WARNING: Sheet 1/1: Nets N$28 and N$11 too close at (4.9 2.2)
+WARNING: Sheet 1/1: Nets N$28 and N$12 too close at (4.9 1.6)
+WARNING: Sheet 1/1: Nets N$28 and N$5 too close at (1.9 -0.4)
+WARNING: Sheet 1/1: Nets N$28 and N$4 too close at (1.9 0.4)
+WARNING: Sheet 1/1: Nets N$28 and N$9 too close at (4.9 3.4)
+WARNING: Sheet 1/1: Nets N$28 and N$1 too close at (4.9 2.8)
+WARNING: Sheet 1/1, Net N$28: wire overlaps pin at (4.9 1.6)
+WARNING: Sheet 1/1, Net N$28: wire overlaps pin at (4.9 3.4)
+WARNING: Sheet 1/1, Net N$28: wire overlaps pin at (4.9 2.8)
+WARNING: Sheet 1/1, Net N$28: wire overlaps pin at (4.9 2.2)
+WARNING: Sheet 1/1, Net N$28: wire overlaps pin at (1.9 1.7)
+WARNING: Sheet 1/1, Net N$28: wire overlaps pin at (1.9 -0.4)
+WARNING: Sheet 1/1, Net N$28: wire overlaps pin at (1.9 0.4)
+WARNING: Sheet 1/1, Net N$28: wire overlaps pin at (1.9 1)
+WARNING: Sheet 1/1, Net N$30: wire overlaps pin at (2.5 1.1)
+WARNING: Sheet 1/1, Net N$11: wire overlaps pin at (2.9 2.3)
+WARNING: Sheet 1/1, Net N$11: wire overlaps pin at (3.3 2.3)
+WARNING: Sheet 1/1, Net N$11: wire overlaps pin at (3.7 2.3)
+
+Board and schematic are consistent
+
+    0 errors
+   27 warnings

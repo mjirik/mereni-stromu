@@ -1,0 +1,1101 @@
+   1               		.file	"keyboard.c"
+   2               	__SREG__ = 0x3f
+   3               	__SP_H__ = 0x3e
+   4               	__SP_L__ = 0x3d
+   5               	__CCP__  = 0x34
+   6               	__tmp_reg__ = 0
+   7               	__zero_reg__ = 1
+  15               	.Ltext0:
+  16               	.global	keyb_in_buff
+  18               	keyb_in_buff:
+  19               	.LFB3:
+  20               	.LM1:
+  21               	.LVL0:
+  22               	/* prologue: function */
+  23               	/* frame size = 0 */
+  24 0000 282F      		mov r18,r24
+  25               	.LM2:
+  26 0002 8823      		tst r24
+  27 0004 01F0      		breq .L6
+  28               	.LM3:
+  29 0006 9091 0000 		lds r25,keyb_buff+2
+  30 000a 9923      		tst r25
+  31 000c 01F4      		brne .L3
+  32 000e E0E0      		ldi r30,lo8(0)
+  33 0010 F0E0      		ldi r31,hi8(0)
+  34               	.LVL1:
+  35 0012 00C0      		rjmp .L4
+  36               	.LVL2:
+  37               	.L3:
+  38               	.LM4:
+  39 0014 8091 0000 		lds r24,keyb_buff+3
+  40               	.LVL3:
+  41 0018 8093 0000 		sts keyb_buff+1,r24
+  42 001c 9093 0000 		sts keyb_buff,r25
+  43               	.LM5:
+  44 0020 9091 0000 		lds r25,keyb_buff+4
+  45 0024 9923      		tst r25
+  46 0026 01F0      		breq .L5
+  47               	.LM6:
+  48 0028 8091 0000 		lds r24,keyb_buff+5
+  49 002c 8093 0000 		sts keyb_buff+3,r24
+  50 0030 9093 0000 		sts keyb_buff+2,r25
+  51               	.LM7:
+  52 0034 2093 0000 		sts keyb_buff+4,r18
+  53               	.LM8:
+  54 0038 6093 0000 		sts keyb_buff+5,r22
+  55 003c 0895      		ret
+  56               	.L5:
+  57 003e E1E0      		ldi r30,lo8(1)
+  58 0040 F0E0      		ldi r31,hi8(1)
+  59               	.LVL4:
+  60               	.L4:
+  61               	.LM9:
+  62 0042 EE0F      		lsl r30
+  63 0044 FF1F      		rol r31
+  64               	.LVL5:
+  65 0046 E050      		subi r30,lo8(-(keyb_buff))
+  66 0048 F040      		sbci r31,hi8(-(keyb_buff))
+  67 004a 2083      		st Z,r18
+  68               	.LM10:
+  69 004c 6183      		std Z+1,r22
+  70               	.LVL6:
+  71               	.L6:
+  72 004e 0895      		ret
+  73               	.LFE3:
+  75               	.global	zpracuj_kod
+  77               	zpracuj_kod:
+  78               	.LFB6:
+  79               	.LM11:
+  80               	.LVL7:
+  81               	/* prologue: function */
+  82               	/* frame size = 0 */
+  83               	.LM12:
+  84 0050 9091 0000 		lds r25,minuly_kod
+  85 0054 9923      		tst r25
+  86 0056 01F0      		breq .+2
+  87 0058 00C0      		rjmp .L8
+  88               	.LM13:
+  89 005a 90E0      		ldi r25,lo8(0)
+  90               	.LVL8:
+  91 005c FC01      		movw r30,r24
+  92               	.LVL9:
+  93 005e 3197      		sbiw r30,1
+  94 0060 E03F      		cpi r30,240
+  95 0062 F105      		cpc r31,__zero_reg__
+  96 0064 00F0      		brlo .+2
+  97 0066 00C0      		rjmp .L105
+  98 0068 E050      		subi r30,lo8(-(gs(.L90)))
+  99 006a F040      		sbci r31,hi8(-(gs(.L90)))
+ 100 006c EE0F      		lsl r30
+ 101 006e FF1F      		rol r31
+ 102 0070 0590      		lpm __tmp_reg__,Z+
+ 103 0072 F491      		lpm r31,Z
+ 104 0074 E02D      		mov r30,__tmp_reg__
+ 105 0076 0994      		ijmp
+ 106               		.data
+ 107               		.section .progmem.gcc_sw_table, "a", @progbits
+ 108               		.p2align 1
+ 109               	.L90:
+ 110               		.data
+ 111               		.section .progmem.gcc_sw_table, "a", @progbits
+ 112               		.p2align 1
+ 113 0000 0000      		.word gs(.L10)
+ 114 0002 0000      		.word gs(.L105)
+ 115 0004 0000      		.word gs(.L11)
+ 116 0006 0000      		.word gs(.L12)
+ 117 0008 0000      		.word gs(.L13)
+ 118 000a 0000      		.word gs(.L14)
+ 119 000c 0000      		.word gs(.L15)
+ 120 000e 0000      		.word gs(.L105)
+ 121 0010 0000      		.word gs(.L16)
+ 122 0012 0000      		.word gs(.L17)
+ 123 0014 0000      		.word gs(.L18)
+ 124 0016 0000      		.word gs(.L19)
+ 125 0018 0000      		.word gs(.L20)
+ 126 001a 0000      		.word gs(.L105)
+ 127 001c 0000      		.word gs(.L105)
+ 128 001e 0000      		.word gs(.L105)
+ 129 0020 0000      		.word gs(.L105)
+ 130 0022 0000      		.word gs(.L105)
+ 131 0024 0000      		.word gs(.L105)
+ 132 0026 0000      		.word gs(.L105)
+ 133 0028 0000      		.word gs(.L21)
+ 134 002a 0000      		.word gs(.L71)
+ 135 002c 0000      		.word gs(.L105)
+ 136 002e 0000      		.word gs(.L105)
+ 137 0030 0000      		.word gs(.L105)
+ 138 0032 0000      		.word gs(.L23)
+ 139 0034 0000      		.word gs(.L24)
+ 140 0036 0000      		.word gs(.L25)
+ 141 0038 0000      		.word gs(.L26)
+ 142 003a 0000      		.word gs(.L76)
+ 143 003c 0000      		.word gs(.L105)
+ 144 003e 0000      		.word gs(.L105)
+ 145 0040 0000      		.word gs(.L28)
+ 146 0042 0000      		.word gs(.L29)
+ 147 0044 0000      		.word gs(.L30)
+ 148 0046 0000      		.word gs(.L31)
+ 149 0048 0000      		.word gs(.L72)
+ 150 004a 0000      		.word gs(.L83)
+ 151 004c 0000      		.word gs(.L105)
+ 152 004e 0000      		.word gs(.L105)
+ 153 0050 0000      		.word gs(.L34)
+ 154 0052 0000      		.word gs(.L35)
+ 155 0054 0000      		.word gs(.L36)
+ 156 0056 0000      		.word gs(.L37)
+ 157 0058 0000      		.word gs(.L38)
+ 158 005a 0000      		.word gs(.L77)
+ 159 005c 0000      		.word gs(.L105)
+ 160 005e 0000      		.word gs(.L105)
+ 161 0060 0000      		.word gs(.L40)
+ 162 0062 0000      		.word gs(.L41)
+ 163 0064 0000      		.word gs(.L42)
+ 164 0066 0000      		.word gs(.L43)
+ 165 0068 0000      		.word gs(.L44)
+ 166 006a 0000      		.word gs(.L78)
+ 167 006c 0000      		.word gs(.L105)
+ 168 006e 0000      		.word gs(.L105)
+ 169 0070 0000      		.word gs(.L105)
+ 170 0072 0000      		.word gs(.L46)
+ 171 0074 0000      		.word gs(.L47)
+ 172 0076 0000      		.word gs(.L48)
+ 173 0078 0000      		.word gs(.L73)
+ 174 007a 0000      		.word gs(.L79)
+ 175 007c 0000      		.word gs(.L105)
+ 176 007e 0000      		.word gs(.L105)
+ 177 0080 0000      		.word gs(.L51)
+ 178 0082 0000      		.word gs(.L52)
+ 179 0084 0000      		.word gs(.L53)
+ 180 0086 0000      		.word gs(.L54)
+ 181 0088 0000      		.word gs(.L74)
+ 182 008a 0000      		.word gs(.L86)
+ 183 008c 0000      		.word gs(.L105)
+ 184 008e 0000      		.word gs(.L105)
+ 185 0090 0000      		.word gs(.L75)
+ 186 0092 0000      		.word gs(.L92)
+ 187 0094 0000      		.word gs(.L59)
+ 188 0096 0000      		.word gs(.L60)
+ 189 0098 0000      		.word gs(.L61)
+ 190 009a 0000      		.word gs(.L84)
+ 191 009c 0000      		.word gs(.L105)
+ 192 009e 0000      		.word gs(.L105)
+ 193 00a0 0000      		.word gs(.L105)
+ 194 00a2 0000      		.word gs(.L63)
+ 195 00a4 0000      		.word gs(.L105)
+ 196 00a6 0000      		.word gs(.L64)
+ 197 00a8 0000      		.word gs(.L65)
+ 198 00aa 0000      		.word gs(.L105)
+ 199 00ac 0000      		.word gs(.L105)
+ 200 00ae 0000      		.word gs(.L66)
+ 201 00b0 0000      		.word gs(.L105)
+ 202 00b2 0000      		.word gs(.L93)
+ 203 00b4 0000      		.word gs(.L68)
+ 204 00b6 0000      		.word gs(.L105)
+ 205 00b8 0000      		.word gs(.L69)
+ 206 00ba 0000      		.word gs(.L105)
+ 207 00bc 0000      		.word gs(.L105)
+ 208 00be 0000      		.word gs(.L105)
+ 209 00c0 0000      		.word gs(.L105)
+ 210 00c2 0000      		.word gs(.L105)
+ 211 00c4 0000      		.word gs(.L105)
+ 212 00c6 0000      		.word gs(.L105)
+ 213 00c8 0000      		.word gs(.L105)
+ 214 00ca 0000      		.word gs(.L70)
+ 215 00cc 0000      		.word gs(.L105)
+ 216 00ce 0000      		.word gs(.L105)
+ 217 00d0 0000      		.word gs(.L71)
+ 218 00d2 0000      		.word gs(.L105)
+ 219 00d4 0000      		.word gs(.L72)
+ 220 00d6 0000      		.word gs(.L73)
+ 221 00d8 0000      		.word gs(.L105)
+ 222 00da 0000      		.word gs(.L105)
+ 223 00dc 0000      		.word gs(.L105)
+ 224 00de 0000      		.word gs(.L74)
+ 225 00e0 0000      		.word gs(.L75)
+ 226 00e2 0000      		.word gs(.L76)
+ 227 00e4 0000      		.word gs(.L77)
+ 228 00e6 0000      		.word gs(.L78)
+ 229 00e8 0000      		.word gs(.L79)
+ 230 00ea 0000      		.word gs(.L80)
+ 231 00ec 0000      		.word gs(.L105)
+ 232 00ee 0000      		.word gs(.L81)
+ 233 00f0 0000      		.word gs(.L82)
+ 234 00f2 0000      		.word gs(.L83)
+ 235 00f4 0000      		.word gs(.L84)
+ 236 00f6 0000      		.word gs(.L85)
+ 237 00f8 0000      		.word gs(.L86)
+ 238 00fa 0000      		.word gs(.L105)
+ 239 00fc 0000      		.word gs(.L105)
+ 240 00fe 0000      		.word gs(.L105)
+ 241 0100 0000      		.word gs(.L105)
+ 242 0102 0000      		.word gs(.L105)
+ 243 0104 0000      		.word gs(.L87)
+ 244 0106 0000      		.word gs(.L105)
+ 245 0108 0000      		.word gs(.L105)
+ 246 010a 0000      		.word gs(.L105)
+ 247 010c 0000      		.word gs(.L105)
+ 248 010e 0000      		.word gs(.L105)
+ 249 0110 0000      		.word gs(.L105)
+ 250 0112 0000      		.word gs(.L105)
+ 251 0114 0000      		.word gs(.L105)
+ 252 0116 0000      		.word gs(.L105)
+ 253 0118 0000      		.word gs(.L105)
+ 254 011a 0000      		.word gs(.L105)
+ 255 011c 0000      		.word gs(.L105)
+ 256 011e 0000      		.word gs(.L105)
+ 257 0120 0000      		.word gs(.L105)
+ 258 0122 0000      		.word gs(.L105)
+ 259 0124 0000      		.word gs(.L105)
+ 260 0126 0000      		.word gs(.L105)
+ 261 0128 0000      		.word gs(.L105)
+ 262 012a 0000      		.word gs(.L105)
+ 263 012c 0000      		.word gs(.L105)
+ 264 012e 0000      		.word gs(.L105)
+ 265 0130 0000      		.word gs(.L105)
+ 266 0132 0000      		.word gs(.L105)
+ 267 0134 0000      		.word gs(.L105)
+ 268 0136 0000      		.word gs(.L105)
+ 269 0138 0000      		.word gs(.L105)
+ 270 013a 0000      		.word gs(.L105)
+ 271 013c 0000      		.word gs(.L105)
+ 272 013e 0000      		.word gs(.L105)
+ 273 0140 0000      		.word gs(.L105)
+ 274 0142 0000      		.word gs(.L105)
+ 275 0144 0000      		.word gs(.L105)
+ 276 0146 0000      		.word gs(.L105)
+ 277 0148 0000      		.word gs(.L105)
+ 278 014a 0000      		.word gs(.L105)
+ 279 014c 0000      		.word gs(.L105)
+ 280 014e 0000      		.word gs(.L105)
+ 281 0150 0000      		.word gs(.L105)
+ 282 0152 0000      		.word gs(.L105)
+ 283 0154 0000      		.word gs(.L105)
+ 284 0156 0000      		.word gs(.L105)
+ 285 0158 0000      		.word gs(.L105)
+ 286 015a 0000      		.word gs(.L105)
+ 287 015c 0000      		.word gs(.L105)
+ 288 015e 0000      		.word gs(.L105)
+ 289 0160 0000      		.word gs(.L105)
+ 290 0162 0000      		.word gs(.L105)
+ 291 0164 0000      		.word gs(.L105)
+ 292 0166 0000      		.word gs(.L105)
+ 293 0168 0000      		.word gs(.L105)
+ 294 016a 0000      		.word gs(.L105)
+ 295 016c 0000      		.word gs(.L105)
+ 296 016e 0000      		.word gs(.L105)
+ 297 0170 0000      		.word gs(.L105)
+ 298 0172 0000      		.word gs(.L105)
+ 299 0174 0000      		.word gs(.L105)
+ 300 0176 0000      		.word gs(.L105)
+ 301 0178 0000      		.word gs(.L105)
+ 302 017a 0000      		.word gs(.L105)
+ 303 017c 0000      		.word gs(.L105)
+ 304 017e 0000      		.word gs(.L105)
+ 305 0180 0000      		.word gs(.L105)
+ 306 0182 0000      		.word gs(.L105)
+ 307 0184 0000      		.word gs(.L105)
+ 308 0186 0000      		.word gs(.L105)
+ 309 0188 0000      		.word gs(.L105)
+ 310 018a 0000      		.word gs(.L105)
+ 311 018c 0000      		.word gs(.L105)
+ 312 018e 0000      		.word gs(.L105)
+ 313 0190 0000      		.word gs(.L105)
+ 314 0192 0000      		.word gs(.L105)
+ 315 0194 0000      		.word gs(.L105)
+ 316 0196 0000      		.word gs(.L105)
+ 317 0198 0000      		.word gs(.L105)
+ 318 019a 0000      		.word gs(.L105)
+ 319 019c 0000      		.word gs(.L105)
+ 320 019e 0000      		.word gs(.L105)
+ 321 01a0 0000      		.word gs(.L105)
+ 322 01a2 0000      		.word gs(.L105)
+ 323 01a4 0000      		.word gs(.L105)
+ 324 01a6 0000      		.word gs(.L105)
+ 325 01a8 0000      		.word gs(.L105)
+ 326 01aa 0000      		.word gs(.L105)
+ 327 01ac 0000      		.word gs(.L105)
+ 328 01ae 0000      		.word gs(.L105)
+ 329 01b0 0000      		.word gs(.L105)
+ 330 01b2 0000      		.word gs(.L105)
+ 331 01b4 0000      		.word gs(.L105)
+ 332 01b6 0000      		.word gs(.L105)
+ 333 01b8 0000      		.word gs(.L105)
+ 334 01ba 0000      		.word gs(.L105)
+ 335 01bc 0000      		.word gs(.L105)
+ 336 01be 0000      		.word gs(.L88)
+ 337 01c0 0000      		.word gs(.L105)
+ 338 01c2 0000      		.word gs(.L105)
+ 339 01c4 0000      		.word gs(.L105)
+ 340 01c6 0000      		.word gs(.L105)
+ 341 01c8 0000      		.word gs(.L105)
+ 342 01ca 0000      		.word gs(.L105)
+ 343 01cc 0000      		.word gs(.L105)
+ 344 01ce 0000      		.word gs(.L105)
+ 345 01d0 0000      		.word gs(.L105)
+ 346 01d2 0000      		.word gs(.L105)
+ 347 01d4 0000      		.word gs(.L105)
+ 348 01d6 0000      		.word gs(.L105)
+ 349 01d8 0000      		.word gs(.L105)
+ 350 01da 0000      		.word gs(.L105)
+ 351 01dc 0000      		.word gs(.L105)
+ 352 01de 0000      		.word gs(.L89)
+ 353               		.text
+ 354               	.L65:
+ 355               	.LM14:
+ 356 0078 81E0      		ldi r24,lo8(1)
+ 357 007a 6DE3      		ldi r22,lo8(61)
+ 358 007c 00C0      		rjmp .L106
+ 359               	.L70:
+ 360               	.LM15:
+ 361 007e 82E0      		ldi r24,lo8(2)
+ 362 0080 61E0      		ldi r22,lo8(1)
+ 363 0082 00C0      		rjmp .L106
+ 364               	.L20:
+ 365               	.LM16:
+ 366 0084 82E0      		ldi r24,lo8(2)
+ 367 0086 62E0      		ldi r22,lo8(2)
+ 368 0088 00C0      		rjmp .L106
+ 369               	.L21:
+ 370               	.LM17:
+ 371 008a 81E0      		ldi r24,lo8(1)
+ 372 008c 61E5      		ldi r22,lo8(81)
+ 373 008e 00C0      		rjmp .L106
+ 374               	.L26:
+ 375               	.LM18:
+ 376 0090 81E0      		ldi r24,lo8(1)
+ 377 0092 67E5      		ldi r22,lo8(87)
+ 378 0094 00C0      		rjmp .L106
+ 379               	.L31:
+ 380               	.LM19:
+ 381 0096 81E0      		ldi r24,lo8(1)
+ 382 0098 65E4      		ldi r22,lo8(69)
+ 383 009a 00C0      		rjmp .L106
+ 384               	.L38:
+ 385               	.LM20:
+ 386 009c 81E0      		ldi r24,lo8(1)
+ 387 009e 62E5      		ldi r22,lo8(82)
+ 388 00a0 00C0      		rjmp .L106
+ 389               	.L37:
+ 390               	.LM21:
+ 391 00a2 81E0      		ldi r24,lo8(1)
+ 392 00a4 64E5      		ldi r22,lo8(84)
+ 393 00a6 00C0      		rjmp .L106
+ 394               	.L44:
+ 395               	.LM22:
+ 396 00a8 81E0      		ldi r24,lo8(1)
+ 397 00aa 69E5      		ldi r22,lo8(89)
+ 398 00ac 00C0      		rjmp .L106
+ 399               	.L48:
+ 400               	.LM23:
+ 401 00ae 81E0      		ldi r24,lo8(1)
+ 402 00b0 65E5      		ldi r22,lo8(85)
+ 403 00b2 00C0      		rjmp .L106
+ 404               	.L53:
+ 405               	.LM24:
+ 406 00b4 81E0      		ldi r24,lo8(1)
+ 407 00b6 69E4      		ldi r22,lo8(73)
+ 408 00b8 00C0      		rjmp .L106
+ 409               	.L54:
+ 410               	.LM25:
+ 411 00ba 81E0      		ldi r24,lo8(1)
+ 412 00bc 6FE4      		ldi r22,lo8(79)
+ 413 00be 00C0      		rjmp .L106
+ 414               	.L61:
+ 415               	.LM26:
+ 416 00c0 81E0      		ldi r24,lo8(1)
+ 417 00c2 60E5      		ldi r22,lo8(80)
+ 418 00c4 00C0      		rjmp .L106
+ 419               	.L64:
+ 420               	.LM27:
+ 421 00c6 81E0      		ldi r24,lo8(1)
+ 422 00c8 6BE5      		ldi r22,lo8(91)
+ 423 00ca 00C0      		rjmp .L106
+ 424               	.L68:
+ 425               	.LM28:
+ 426 00cc 81E0      		ldi r24,lo8(1)
+ 427 00ce 6DE5      		ldi r22,lo8(93)
+ 428 00d0 00C0      		rjmp .L106
+ 429               	.L69:
+ 430               	.LM29:
+ 431 00d2 81E0      		ldi r24,lo8(1)
+ 432 00d4 6CE5      		ldi r22,lo8(92)
+ 433 00d6 00C0      		rjmp .L106
+ 434               	.L66:
+ 435               	.LM30:
+ 436 00d8 82E0      		ldi r24,lo8(2)
+ 437 00da 63E0      		ldi r22,lo8(3)
+ 438 00dc 00C0      		rjmp .L106
+ 439               	.L25:
+ 440               	.LM31:
+ 441 00de 81E0      		ldi r24,lo8(1)
+ 442 00e0 61E4      		ldi r22,lo8(65)
+ 443 00e2 00C0      		rjmp .L106
+ 444               	.L24:
+ 445               	.LM32:
+ 446 00e4 81E0      		ldi r24,lo8(1)
+ 447 00e6 63E5      		ldi r22,lo8(83)
+ 448 00e8 00C0      		rjmp .L106
+ 449               	.L30:
+ 450               	.LM33:
+ 451 00ea 81E0      		ldi r24,lo8(1)
+ 452 00ec 64E4      		ldi r22,lo8(68)
+ 453 00ee 00C0      		rjmp .L106
+ 454               	.L36:
+ 455               	.LM34:
+ 456 00f0 81E0      		ldi r24,lo8(1)
+ 457 00f2 66E4      		ldi r22,lo8(70)
+ 458 00f4 00C0      		rjmp .L106
+ 459               	.L43:
+ 460               	.LM35:
+ 461 00f6 81E0      		ldi r24,lo8(1)
+ 462 00f8 67E4      		ldi r22,lo8(71)
+ 463 00fa 00C0      		rjmp .L106
+ 464               	.L42:
+ 465               	.LM36:
+ 466 00fc 81E0      		ldi r24,lo8(1)
+ 467 00fe 68E4      		ldi r22,lo8(72)
+ 468 0100 00C0      		rjmp .L106
+ 469               	.L47:
+ 470               	.LM37:
+ 471 0102 81E0      		ldi r24,lo8(1)
+ 472 0104 6AE4      		ldi r22,lo8(74)
+ 473 0106 00C0      		rjmp .L106
+ 474               	.L52:
+ 475               	.LM38:
+ 476 0108 81E0      		ldi r24,lo8(1)
+ 477 010a 6BE4      		ldi r22,lo8(75)
+ 478 010c 00C0      		rjmp .L106
+ 479               	.L59:
+ 480               	.LM39:
+ 481 010e 81E0      		ldi r24,lo8(1)
+ 482 0110 6CE4      		ldi r22,lo8(76)
+ 483 0112 00C0      		rjmp .L106
+ 484               	.L60:
+ 485               	.LM40:
+ 486 0114 81E0      		ldi r24,lo8(1)
+ 487 0116 6BE3      		ldi r22,lo8(59)
+ 488 0118 00C0      		rjmp .L106
+ 489               	.L63:
+ 490               	.LM41:
+ 491 011a 81E0      		ldi r24,lo8(1)
+ 492 011c 67E2      		ldi r22,lo8(39)
+ 493 011e 00C0      		rjmp .L106
+ 494               	.L23:
+ 495               	.LM42:
+ 496 0120 81E0      		ldi r24,lo8(1)
+ 497 0122 6AE5      		ldi r22,lo8(90)
+ 498 0124 00C0      		rjmp .L106
+ 499               	.L29:
+ 500               	.LM43:
+ 501 0126 81E0      		ldi r24,lo8(1)
+ 502 0128 68E5      		ldi r22,lo8(88)
+ 503 012a 00C0      		rjmp .L106
+ 504               	.L28:
+ 505               	.LM44:
+ 506 012c 81E0      		ldi r24,lo8(1)
+ 507 012e 63E4      		ldi r22,lo8(67)
+ 508 0130 00C0      		rjmp .L106
+ 509               	.L35:
+ 510               	.LM45:
+ 511 0132 81E0      		ldi r24,lo8(1)
+ 512 0134 66E5      		ldi r22,lo8(86)
+ 513 0136 00C0      		rjmp .L106
+ 514               	.L41:
+ 515               	.LM46:
+ 516 0138 81E0      		ldi r24,lo8(1)
+ 517 013a 62E4      		ldi r22,lo8(66)
+ 518 013c 00C0      		rjmp .L106
+ 519               	.L40:
+ 520               	.LM47:
+ 521 013e 81E0      		ldi r24,lo8(1)
+ 522 0140 6EE4      		ldi r22,lo8(78)
+ 523 0142 00C0      		rjmp .L106
+ 524               	.L46:
+ 525               	.LM48:
+ 526 0144 81E0      		ldi r24,lo8(1)
+ 527 0146 6DE4      		ldi r22,lo8(77)
+ 528 0148 00C0      		rjmp .L106
+ 529               	.L51:
+ 530               	.LM49:
+ 531 014a 81E0      		ldi r24,lo8(1)
+ 532 014c 6CE2      		ldi r22,lo8(44)
+ 533 014e 00C0      		rjmp .L106
+ 534               	.L34:
+ 535               	.LM50:
+ 536 0150 81E0      		ldi r24,lo8(1)
+ 537 0152 60E2      		ldi r22,lo8(32)
+ 538 0154 00C0      		rjmp .L106
+ 539               	.L80:
+ 540               	.LM51:
+ 541 0156 82E0      		ldi r24,lo8(2)
+ 542 0158 65E0      		ldi r22,lo8(5)
+ 543 015a 00C0      		rjmp .L106
+ 544               	.L74:
+ 545               	.LM52:
+ 546 015c 81E0      		ldi r24,lo8(1)
+ 547 015e 60E3      		ldi r22,lo8(48)
+ 548 0160 00C0      		rjmp .L106
+ 549               	.L71:
+ 550               	.LM53:
+ 551 0162 81E0      		ldi r24,lo8(1)
+ 552 0164 61E3      		ldi r22,lo8(49)
+ 553 0166 00C0      		rjmp .L106
+ 554               	.L76:
+ 555               	.LM54:
+ 556 0168 81E0      		ldi r24,lo8(1)
+ 557 016a 62E3      		ldi r22,lo8(50)
+ 558 016c 00C0      		rjmp .L106
+ 559               	.L83:
+ 560               	.LM55:
+ 561 016e 81E0      		ldi r24,lo8(1)
+ 562 0170 63E3      		ldi r22,lo8(51)
+ 563 0172 00C0      		rjmp .L106
+ 564               	.L72:
+ 565               	.LM56:
+ 566 0174 81E0      		ldi r24,lo8(1)
+ 567 0176 64E3      		ldi r22,lo8(52)
+ 568 0178 00C0      		rjmp .L106
+ 569               	.L77:
+ 570               	.LM57:
+ 571 017a 81E0      		ldi r24,lo8(1)
+ 572 017c 65E3      		ldi r22,lo8(53)
+ 573 017e 00C0      		rjmp .L106
+ 574               	.L78:
+ 575               	.LM58:
+ 576 0180 81E0      		ldi r24,lo8(1)
+ 577 0182 66E3      		ldi r22,lo8(54)
+ 578 0184 00C0      		rjmp .L106
+ 579               	.L73:
+ 580               	.LM59:
+ 581 0186 81E0      		ldi r24,lo8(1)
+ 582 0188 67E3      		ldi r22,lo8(55)
+ 583 018a 00C0      		rjmp .L106
+ 584               	.L79:
+ 585               	.LM60:
+ 586 018c 81E0      		ldi r24,lo8(1)
+ 587 018e 68E3      		ldi r22,lo8(56)
+ 588 0190 00C0      		rjmp .L106
+ 589               	.L86:
+ 590               	.LM61:
+ 591 0192 81E0      		ldi r24,lo8(1)
+ 592 0194 69E3      		ldi r22,lo8(57)
+ 593 0196 00C0      		rjmp .L106
+ 594               	.L84:
+ 595               	.LM62:
+ 596 0198 81E0      		ldi r24,lo8(1)
+ 597 019a 6DE2      		ldi r22,lo8(45)
+ 598 019c 00C0      		rjmp .L106
+ 599               	.L75:
+ 600               	.LM63:
+ 601 019e 81E0      		ldi r24,lo8(1)
+ 602 01a0 6EE2      		ldi r22,lo8(46)
+ 603 01a2 00C0      		rjmp .L106
+ 604               	.L85:
+ 605               	.LM64:
+ 606 01a4 81E0      		ldi r24,lo8(1)
+ 607 01a6 6AE2      		ldi r22,lo8(42)
+ 608 01a8 00C0      		rjmp .L106
+ 609               	.L82:
+ 610               	.LM65:
+ 611 01aa 81E0      		ldi r24,lo8(1)
+ 612 01ac 6BE2      		ldi r22,lo8(43)
+ 613 01ae 00C0      		rjmp .L106
+ 614               	.L13:
+ 615               	.LM66:
+ 616 01b0 82E0      		ldi r24,lo8(2)
+ 617 01b2 6BE0      		ldi r22,lo8(11)
+ 618 01b4 00C0      		rjmp .L106
+ 619               	.L14:
+ 620               	.LM67:
+ 621 01b6 82E0      		ldi r24,lo8(2)
+ 622 01b8 6CE0      		ldi r22,lo8(12)
+ 623 01ba 00C0      		rjmp .L106
+ 624               	.L12:
+ 625               	.LM68:
+ 626 01bc 82E0      		ldi r24,lo8(2)
+ 627 01be 6DE0      		ldi r22,lo8(13)
+ 628 01c0 00C0      		rjmp .L106
+ 629               	.L19:
+ 630               	.LM69:
+ 631 01c2 82E0      		ldi r24,lo8(2)
+ 632 01c4 6EE0      		ldi r22,lo8(14)
+ 633 01c6 00C0      		rjmp .L106
+ 634               	.L11:
+ 635               	.LM70:
+ 636 01c8 82E0      		ldi r24,lo8(2)
+ 637 01ca 6FE0      		ldi r22,lo8(15)
+ 638 01cc 00C0      		rjmp .L106
+ 639               	.L18:
+ 640               	.LM71:
+ 641 01ce 82E0      		ldi r24,lo8(2)
+ 642 01d0 60E1      		ldi r22,lo8(16)
+ 643 01d2 00C0      		rjmp .L106
+ 644               	.L87:
+ 645               	.LM72:
+ 646 01d4 82E0      		ldi r24,lo8(2)
+ 647 01d6 61E1      		ldi r22,lo8(17)
+ 648 01d8 00C0      		rjmp .L106
+ 649               	.L17:
+ 650               	.LM73:
+ 651 01da 82E0      		ldi r24,lo8(2)
+ 652 01dc 62E1      		ldi r22,lo8(18)
+ 653 01de 00C0      		rjmp .L106
+ 654               	.L10:
+ 655               	.LM74:
+ 656 01e0 82E0      		ldi r24,lo8(2)
+ 657 01e2 63E1      		ldi r22,lo8(19)
+ 658 01e4 00C0      		rjmp .L106
+ 659               	.L16:
+ 660               	.LM75:
+ 661 01e6 82E0      		ldi r24,lo8(2)
+ 662 01e8 64E1      		ldi r22,lo8(20)
+ 663 01ea 00C0      		rjmp .L106
+ 664               	.L81:
+ 665               	.LM76:
+ 666 01ec 82E0      		ldi r24,lo8(2)
+ 667 01ee 65E1      		ldi r22,lo8(21)
+ 668 01f0 00C0      		rjmp .L106
+ 669               	.L15:
+ 670               	.LM77:
+ 671 01f2 82E0      		ldi r24,lo8(2)
+ 672 01f4 66E1      		ldi r22,lo8(22)
+ 673 01f6 00C0      		rjmp .L106
+ 674               	.L88:
+ 675               	.LM78:
+ 676 01f8 80EE      		ldi r24,lo8(-32)
+ 677 01fa 00C0      		rjmp .L99
+ 678               	.L89:
+ 679               	.LM79:
+ 680 01fc 80EF      		ldi r24,lo8(-16)
+ 681 01fe 00C0      		rjmp .L99
+ 682               	.LVL10:
+ 683               	.L8:
+ 684               	.LM80:
+ 685 0200 903E      		cpi r25,lo8(-32)
+ 686 0202 01F4      		brne .L91
+ 687               	.LM81:
+ 688 0204 8237      		cpi r24,lo8(114)
+ 689 0206 01F0      		breq .L96
+ 690 0208 8337      		cpi r24,lo8(115)
+ 691 020a 00F4      		brsh .L101
+ 692 020c 8A35      		cpi r24,lo8(90)
+ 693 020e 01F0      		breq .L93
+ 694 0210 8B35      		cpi r24,lo8(91)
+ 695 0212 00F4      		brsh .L102
+ 696 0214 8A34      		cpi r24,lo8(74)
+ 697 0216 01F4      		brne .L105
+ 698 0218 00C0      		rjmp .L92
+ 699               	.L102:
+ 700 021a 8B36      		cpi r24,lo8(107)
+ 701 021c 01F0      		breq .L94
+ 702 021e 8137      		cpi r24,lo8(113)
+ 703 0220 01F4      		brne .L105
+ 704 0222 00C0      		rjmp .L107
+ 705               	.L101:
+ 706 0224 8537      		cpi r24,lo8(117)
+ 707 0226 01F0      		breq .L98
+ 708 0228 8637      		cpi r24,lo8(118)
+ 709 022a 00F4      		brsh .L103
+ 710 022c 8437      		cpi r24,lo8(116)
+ 711 022e 01F4      		brne .L105
+ 712 0230 00C0      		rjmp .L108
+ 713               	.L103:
+ 714 0232 803E      		cpi r24,lo8(-32)
+ 715 0234 01F0      		breq .L99
+ 716 0236 803F      		cpi r24,lo8(-16)
+ 717 0238 01F4      		brne .L105
+ 718 023a 00C0      		rjmp .L99
+ 719               	.L107:
+ 720               	.LM82:
+ 721 023c 82E0      		ldi r24,lo8(2)
+ 722               	.LVL11:
+ 723 023e 66E0      		ldi r22,lo8(6)
+ 724 0240 00C0      		rjmp .L106
+ 725               	.LVL12:
+ 726               	.L98:
+ 727               	.LM83:
+ 728 0242 82E0      		ldi r24,lo8(2)
+ 729               	.LVL13:
+ 730 0244 67E0      		ldi r22,lo8(7)
+ 731 0246 00C0      		rjmp .L106
+ 732               	.LVL14:
+ 733               	.L96:
+ 734               	.LM84:
+ 735 0248 82E0      		ldi r24,lo8(2)
+ 736               	.LVL15:
+ 737 024a 68E0      		ldi r22,lo8(8)
+ 738 024c 00C0      		rjmp .L106
+ 739               	.LVL16:
+ 740               	.L94:
+ 741               	.LM85:
+ 742 024e 82E0      		ldi r24,lo8(2)
+ 743               	.LVL17:
+ 744 0250 69E0      		ldi r22,lo8(9)
+ 745 0252 00C0      		rjmp .L106
+ 746               	.LVL18:
+ 747               	.L108:
+ 748               	.LM86:
+ 749 0254 82E0      		ldi r24,lo8(2)
+ 750               	.LVL19:
+ 751 0256 6AE0      		ldi r22,lo8(10)
+ 752 0258 00C0      		rjmp .L106
+ 753               	.LVL20:
+ 754               	.L93:
+ 755               	.LM87:
+ 756 025a 82E0      		ldi r24,lo8(2)
+ 757               	.LVL21:
+ 758 025c 64E0      		ldi r22,lo8(4)
+ 759 025e 00C0      		rjmp .L106
+ 760               	.LVL22:
+ 761               	.L92:
+ 762               	.LM88:
+ 763 0260 81E0      		ldi r24,lo8(1)
+ 764               	.LVL23:
+ 765 0262 6FE2      		ldi r22,lo8(47)
+ 766               	.L106:
+ 767 0264 0E94 0000 		call keyb_in_buff
+ 768               	.LVL24:
+ 769 0268 0895      		ret
+ 770               	.LVL25:
+ 771               	.L99:
+ 772               	.LM89:
+ 773 026a 8093 0000 		sts minuly_kod,r24
+ 774 026e 0895      		ret
+ 775               	.LVL26:
+ 776               	.L91:
+ 777               	.LM90:
+ 778 0270 1092 0000 		sts minuly_kod,__zero_reg__
+ 779               	.LVL27:
+ 780               	.L105:
+ 781 0274 0895      		ret
+ 782               	.LFE6:
+ 784               	.global	__vector_2
+ 786               	__vector_2:
+ 787               	.LFB5:
+ 788               	.LM91:
+ 789 0276 1F92      		push __zero_reg__
+ 790 0278 0F92      		push r0
+ 791 027a 0FB6      		in r0,__SREG__
+ 792 027c 0F92      		push r0
+ 793 027e 1124      		clr __zero_reg__
+ 794 0280 2F93      		push r18
+ 795 0282 3F93      		push r19
+ 796 0284 4F93      		push r20
+ 797 0286 5F93      		push r21
+ 798 0288 6F93      		push r22
+ 799 028a 7F93      		push r23
+ 800 028c 8F93      		push r24
+ 801 028e 9F93      		push r25
+ 802 0290 AF93      		push r26
+ 803 0292 BF93      		push r27
+ 804 0294 EF93      		push r30
+ 805 0296 FF93      		push r31
+ 806               	/* prologue: Signal */
+ 807               	/* frame size = 0 */
+ 808               	.LM92:
+ 809 0298 1092 0000 		sts (keyb_recv_watchdog)+1,__zero_reg__
+ 810 029c 1092 0000 		sts keyb_recv_watchdog,__zero_reg__
+ 811               	.LM93:
+ 812 02a0 2091 0000 		lds r18,data_counter
+ 813 02a4 822F      		mov r24,r18
+ 814 02a6 8150      		subi r24,lo8(-(-1))
+ 815 02a8 8830      		cpi r24,lo8(8)
+ 816 02aa 00F4      		brsh .L110
+ 817               	.LM94:
+ 818 02ac 83B3      		in r24,51-32
+ 819 02ae 90E0      		ldi r25,lo8(0)
+ 820 02b0 8170      		andi r24,lo8(1)
+ 821 02b2 9070      		andi r25,hi8(1)
+ 822 02b4 3327      		clr r19
+ 823 02b6 27FD      		sbrc r18,7
+ 824 02b8 3095      		com r19
+ 825 02ba 2150      		subi r18,lo8(-(-1))
+ 826 02bc 3040      		sbci r19,hi8(-(-1))
+ 827 02be 00C0      		rjmp 2f
+ 828 02c0 880F      	1:	lsl r24
+ 829 02c2 991F      		rol r25
+ 830 02c4 2A95      	2:	dec r18
+ 831 02c6 02F4      		brpl 1b
+ 832 02c8 2091 0000 		lds r18,recivedc
+ 833 02cc 282B      		or r18,r24
+ 834 02ce 2093 0000 		sts recivedc,r18
+ 835 02d2 00C0      		rjmp .L111
+ 836               	.L110:
+ 837               	.LM95:
+ 838 02d4 2A30      		cpi r18,lo8(10)
+ 839 02d6 01F4      		brne .L111
+ 840               	.LM96:
+ 841 02d8 8FEF      		ldi r24,lo8(-1)
+ 842 02da 8093 0000 		sts data_counter,r24
+ 843               	.LM97:
+ 844 02de 8091 0000 		lds r24,recivedc
+ 845 02e2 0E94 0000 		call zpracuj_kod
+ 846               	.LM98:
+ 847 02e6 1092 0000 		sts recivedc,__zero_reg__
+ 848               	.L111:
+ 849               	.LM99:
+ 850 02ea 8091 0000 		lds r24,data_counter
+ 851 02ee 8F5F      		subi r24,lo8(-(1))
+ 852 02f0 8093 0000 		sts data_counter,r24
+ 853               	/* epilogue start */
+ 854               	.LM100:
+ 855 02f4 FF91      		pop r31
+ 856 02f6 EF91      		pop r30
+ 857 02f8 BF91      		pop r27
+ 858 02fa AF91      		pop r26
+ 859 02fc 9F91      		pop r25
+ 860 02fe 8F91      		pop r24
+ 861 0300 7F91      		pop r23
+ 862 0302 6F91      		pop r22
+ 863 0304 5F91      		pop r21
+ 864 0306 4F91      		pop r20
+ 865 0308 3F91      		pop r19
+ 866 030a 2F91      		pop r18
+ 867 030c 0F90      		pop r0
+ 868 030e 0FBE      		out __SREG__,r0
+ 869 0310 0F90      		pop r0
+ 870 0312 1F90      		pop __zero_reg__
+ 871 0314 1895      		reti
+ 872               	.LFE5:
+ 874               	.global	get_char
+ 876               	get_char:
+ 877               	.LFB7:
+ 878               	.LM101:
+ 879               	/* prologue: function */
+ 880               	/* frame size = 0 */
+ 881               	.LM102:
+ 882 0316 8091 0000 		lds r24,keyb_buff
+ 883 031a 8130      		cpi r24,lo8(1)
+ 884 031c 01F0      		breq .L114
+ 885 031e 20E0      		ldi r18,lo8(0)
+ 886 0320 00C0      		rjmp .L115
+ 887               	.L114:
+ 888               	.LBB6:
+ 889               	.LBB7:
+ 890               	.LM103:
+ 891 0322 2091 0000 		lds r18,keyb_buff+1
+ 892               	.LM104:
+ 893 0326 9091 0000 		lds r25,keyb_buff+2
+ 894 032a 9923      		tst r25
+ 895 032c 01F4      		brne .L116
+ 896 032e A1E0      		ldi r26,lo8(1)
+ 897 0330 B0E0      		ldi r27,hi8(1)
+ 898               	.LVL28:
+ 899 0332 E0E0      		ldi r30,lo8(0)
+ 900 0334 F0E0      		ldi r31,hi8(0)
+ 901               	.LVL29:
+ 902 0336 00C0      		rjmp .L117
+ 903               	.LVL30:
+ 904               	.L116:
+ 905               	.LBE7:
+ 906               	.LM105:
+ 907 0338 8091 0000 		lds r24,keyb_buff+3
+ 908 033c 8093 0000 		sts keyb_buff+1,r24
+ 909 0340 9093 0000 		sts keyb_buff,r25
+ 910               	.LBB8:
+ 911               	.LM106:
+ 912 0344 9091 0000 		lds r25,keyb_buff+4
+ 913 0348 9923      		tst r25
+ 914 034a 01F0      		breq .L118
+ 915               	.LBE8:
+ 916               	.LM107:
+ 917 034c 8091 0000 		lds r24,keyb_buff+5
+ 918 0350 8093 0000 		sts keyb_buff+3,r24
+ 919 0354 9093 0000 		sts keyb_buff+2,r25
+ 920               	.LBB9:
+ 921               	.LM108:
+ 922 0358 1092 0000 		sts keyb_buff+4,__zero_reg__
+ 923 035c 00C0      		rjmp .L115
+ 924               	.L118:
+ 925 035e A2E0      		ldi r26,lo8(2)
+ 926 0360 B0E0      		ldi r27,hi8(2)
+ 927               	.LVL31:
+ 928 0362 E1E0      		ldi r30,lo8(1)
+ 929 0364 F0E0      		ldi r31,hi8(1)
+ 930               	.LVL32:
+ 931               	.L117:
+ 932               	.LBE9:
+ 933               	.LM109:
+ 934 0366 EE0F      		lsl r30
+ 935 0368 FF1F      		rol r31
+ 936               	.LVL33:
+ 937 036a E050      		subi r30,lo8(-(keyb_buff))
+ 938 036c F040      		sbci r31,hi8(-(keyb_buff))
+ 939 036e AA0F      		lsl r26
+ 940 0370 BB1F      		rol r27
+ 941               	.LVL34:
+ 942 0372 A050      		subi r26,lo8(-(keyb_buff))
+ 943 0374 B040      		sbci r27,hi8(-(keyb_buff))
+ 944 0376 1196      		adiw r26,1
+ 945 0378 8C91      		ld r24,X
+ 946 037a 8183      		std Z+1,r24
+ 947 037c 1082      		st Z,__zero_reg__
+ 948               	.L115:
+ 949               	.LBE6:
+ 950               	.LM110:
+ 951 037e 822F      		mov r24,r18
+ 952               	/* epilogue start */
+ 953 0380 0895      		ret
+ 954               	.LFE7:
+ 956               	.global	get_spec
+ 958               	get_spec:
+ 959               	.LFB8:
+ 960               	.LM111:
+ 961               	/* prologue: function */
+ 962               	/* frame size = 0 */
+ 963               	.LM112:
+ 964 0382 8091 0000 		lds r24,keyb_buff
+ 965 0386 8230      		cpi r24,lo8(2)
+ 966 0388 01F0      		breq .L121
+ 967 038a 20E0      		ldi r18,lo8(0)
+ 968 038c 00C0      		rjmp .L122
+ 969               	.L121:
+ 970               	.LBB10:
+ 971               	.LBB11:
+ 972               	.LM113:
+ 973 038e 2091 0000 		lds r18,keyb_buff+1
+ 974               	.LM114:
+ 975 0392 9091 0000 		lds r25,keyb_buff+2
+ 976 0396 9923      		tst r25
+ 977 0398 01F4      		brne .L123
+ 978 039a A1E0      		ldi r26,lo8(1)
+ 979 039c B0E0      		ldi r27,hi8(1)
+ 980               	.LVL35:
+ 981 039e E0E0      		ldi r30,lo8(0)
+ 982 03a0 F0E0      		ldi r31,hi8(0)
+ 983               	.LVL36:
+ 984 03a2 00C0      		rjmp .L124
+ 985               	.LVL37:
+ 986               	.L123:
+ 987               	.LBE11:
+ 988               	.LM115:
+ 989 03a4 8091 0000 		lds r24,keyb_buff+3
+ 990 03a8 8093 0000 		sts keyb_buff+1,r24
+ 991 03ac 9093 0000 		sts keyb_buff,r25
+ 992               	.LBB12:
+ 993               	.LM116:
+ 994 03b0 9091 0000 		lds r25,keyb_buff+4
+ 995 03b4 9923      		tst r25
+ 996 03b6 01F0      		breq .L125
+ 997               	.LBE12:
+ 998               	.LM117:
+ 999 03b8 8091 0000 		lds r24,keyb_buff+5
+ 1000 03bc 8093 0000 		sts keyb_buff+3,r24
+ 1001 03c0 9093 0000 		sts keyb_buff+2,r25
+ 1002               	.LBB13:
+ 1003               	.LM118:
+ 1004 03c4 1092 0000 		sts keyb_buff+4,__zero_reg__
+ 1005 03c8 00C0      		rjmp .L122
+ 1006               	.L125:
+ 1007 03ca A2E0      		ldi r26,lo8(2)
+ 1008 03cc B0E0      		ldi r27,hi8(2)
+ 1009               	.LVL38:
+ 1010 03ce E1E0      		ldi r30,lo8(1)
+ 1011 03d0 F0E0      		ldi r31,hi8(1)
+ 1012               	.LVL39:
+ 1013               	.L124:
+ 1014               	.LBE13:
+ 1015               	.LM119:
+ 1016 03d2 EE0F      		lsl r30
+ 1017 03d4 FF1F      		rol r31
+ 1018               	.LVL40:
+ 1019 03d6 E050      		subi r30,lo8(-(keyb_buff))
+ 1020 03d8 F040      		sbci r31,hi8(-(keyb_buff))
+ 1021 03da AA0F      		lsl r26
+ 1022 03dc BB1F      		rol r27
+ 1023               	.LVL41:
+ 1024 03de A050      		subi r26,lo8(-(keyb_buff))
+ 1025 03e0 B040      		sbci r27,hi8(-(keyb_buff))
+ 1026 03e2 1196      		adiw r26,1
+ 1027 03e4 8C91      		ld r24,X
+ 1028 03e6 8183      		std Z+1,r24
+ 1029 03e8 1082      		st Z,__zero_reg__
+ 1030               	.L122:
+ 1031               	.LBE10:
+ 1032               	.LM120:
+ 1033 03ea 822F      		mov r24,r18
+ 1034               	/* epilogue start */
+ 1035 03ec 0895      		ret
+ 1036               	.LFE8:
+ 1038               	.global	keyboard_init
+ 1040               	keyboard_init:
+ 1041               	.LFB9:
+ 1042               	.LM121:
+ 1043               	/* prologue: function */
+ 1044               	/* frame size = 0 */
+ 1045               	.LM122:
+ 1046 03ee 85B7      		in r24,85-32
+ 1047 03f0 8860      		ori r24,lo8(8)
+ 1048 03f2 85BF      		out 85-32,r24
+ 1049               	.LM123:
+ 1050 03f4 8BB7      		in r24,91-32
+ 1051 03f6 8068      		ori r24,lo8(-128)
+ 1052 03f8 8BBF      		out 91-32,r24
+ 1053               	.LM124:
+ 1054 03fa A89A      		sbi 53-32,0
+ 1055               	.LM125:
+ 1056 03fc 939A      		sbi 50-32,3
+ 1057               	/* epilogue start */
+ 1058               	.LM126:
+ 1059 03fe 0895      		ret
+ 1060               	.LFE9:
+ 1062               	.global	keyboard_recv_watchdog
+ 1064               	keyboard_recv_watchdog:
+ 1065               	.LFB10:
+ 1066               	.LM127:
+ 1067               	/* prologue: function */
+ 1068               	/* frame size = 0 */
+ 1069               	.LM128:
+ 1070 0400 8091 0000 		lds r24,keyb_recv_watchdog
+ 1071 0404 9091 0000 		lds r25,(keyb_recv_watchdog)+1
+ 1072 0408 23E0      		ldi r18,hi8(1001)
+ 1073 040a 893E      		cpi r24,lo8(1001)
+ 1074 040c 9207      		cpc r25,r18
+ 1075 040e 00F0      		brlo .L130
+ 1076               	.LM129:
+ 1077 0410 1092 0000 		sts data_counter,__zero_reg__
+ 1078               	.LM130:
+ 1079 0414 1092 0000 		sts recivedc,__zero_reg__
+ 1080 0418 0895      		ret
+ 1081               	.L130:
+ 1082               	.LM131:
+ 1083 041a 0196      		adiw r24,1
+ 1084 041c 9093 0000 		sts (keyb_recv_watchdog)+1,r25
+ 1085 0420 8093 0000 		sts keyb_recv_watchdog,r24
+ 1086 0424 0895      		ret
+ 1087               	.LFE10:
+ 1089               		.lcomm keyb_recv_watchdog,2
+ 1090               		.lcomm data_counter,1
+ 1091               		.lcomm recivedc,1
+ 1092               		.lcomm minuly_kod,1
+ 1093               		.lcomm keyb_buff,6
+ 1094               		.comm p_akt_screen,2,1
+ 1095               		.comm default_screen,160,1
+ 1168               	.Letext0:
+DEFINED SYMBOLS
+                            *ABS*:00000000 keyboard.c
+C:\Users\mjirik\AppData\Local\Temp/ccCmHMgu.s:2      *ABS*:0000003f __SREG__
+C:\Users\mjirik\AppData\Local\Temp/ccCmHMgu.s:3      *ABS*:0000003e __SP_H__
+C:\Users\mjirik\AppData\Local\Temp/ccCmHMgu.s:4      *ABS*:0000003d __SP_L__
+C:\Users\mjirik\AppData\Local\Temp/ccCmHMgu.s:5      *ABS*:00000034 __CCP__
+C:\Users\mjirik\AppData\Local\Temp/ccCmHMgu.s:6      *ABS*:00000000 __tmp_reg__
+C:\Users\mjirik\AppData\Local\Temp/ccCmHMgu.s:7      *ABS*:00000001 __zero_reg__
+C:\Users\mjirik\AppData\Local\Temp/ccCmHMgu.s:18     .text:00000000 keyb_in_buff
+C:\Users\mjirik\AppData\Local\Temp/ccCmHMgu.s:1092   .bss:00000005 keyb_buff
+C:\Users\mjirik\AppData\Local\Temp/ccCmHMgu.s:77     .text:00000050 zpracuj_kod
+C:\Users\mjirik\AppData\Local\Temp/ccCmHMgu.s:1091   .bss:00000004 minuly_kod
+C:\Users\mjirik\AppData\Local\Temp/ccCmHMgu.s:786    .text:00000276 __vector_2
+                             .bss:00000000 keyb_recv_watchdog
+C:\Users\mjirik\AppData\Local\Temp/ccCmHMgu.s:1089   .bss:00000002 data_counter
+C:\Users\mjirik\AppData\Local\Temp/ccCmHMgu.s:1090   .bss:00000003 recivedc
+C:\Users\mjirik\AppData\Local\Temp/ccCmHMgu.s:876    .text:00000316 get_char
+C:\Users\mjirik\AppData\Local\Temp/ccCmHMgu.s:958    .text:00000382 get_spec
+C:\Users\mjirik\AppData\Local\Temp/ccCmHMgu.s:1040   .text:000003ee keyboard_init
+C:\Users\mjirik\AppData\Local\Temp/ccCmHMgu.s:1064   .text:00000400 keyboard_recv_watchdog
+                            *COM*:00000002 p_akt_screen
+                            *COM*:000000a0 default_screen
+
+UNDEFINED SYMBOLS
+__do_copy_data
+__do_clear_bss

@@ -1,0 +1,170 @@
+   1               		.file	"buttons.c"
+   2               	__SREG__ = 0x3f
+   3               	__SP_H__ = 0x3e
+   4               	__SP_L__ = 0x3d
+   5               	__CCP__  = 0x34
+   6               	__tmp_reg__ = 0
+   7               	__zero_reg__ = 1
+  15               	.Ltext0:
+  16               	.global	buttons_init
+  18               	buttons_init:
+  19               	.LFB2:
+  20               	.LM1:
+  21               	/* prologue: function */
+  22               	/* frame size = 0 */
+  23               	.LM2:
+  24 0000 85B3      		in r24,53-32
+  25 0002 8E6F      		ori r24,lo8(-2)
+  26 0004 85BB      		out 53-32,r24
+  27               	.LM3:
+  28 0006 8EEF      		ldi r24,lo8(-2)
+  29 0008 8093 0000 		sts minuly_stav,r24
+  30               	/* epilogue start */
+  31               	.LM4:
+  32 000c 0895      		ret
+  33               	.LFE2:
+  35               	.global	buttons
+  37               	buttons:
+  38               	.LFB3:
+  39               	.LM5:
+  40 000e FF92      		push r15
+  41 0010 0F93      		push r16
+  42 0012 1F93      		push r17
+  43 0014 CF93      		push r28
+  44 0016 DF93      		push r29
+  45               	/* prologue: function */
+  46               	/* frame size = 0 */
+  47               	.LM6:
+  48 0018 F3B2      		in r15,51-32
+  49               	.LVL0:
+  50               	.LM7:
+  51 001a 8091 0000 		lds r24,minuly_stav
+  52 001e 8F25      		eor r24,r15
+  53 0020 C1E0      		ldi r28,lo8(1)
+  54 0022 D0E0      		ldi r29,hi8(1)
+  55               	.LVL1:
+  56               	.LM8:
+  57 0024 082F      		mov r16,r24
+  58               	.LVL2:
+  59 0026 10E0      		ldi r17,lo8(0)
+  60               	.LVL3:
+  61               	.L13:
+  62 0028 C801      		movw r24,r16
+  63 002a 0C2E      		mov r0,r28
+  64 002c 00C0      		rjmp 2f
+  65 002e 9595      	1:	asr r25
+  66 0030 8795      		ror r24
+  67 0032 0A94      	2:	dec r0
+  68 0034 02F4      		brpl 1b
+  69 0036 80FF      		sbrs r24,0
+  70 0038 00C0      		rjmp .L4
+  71               	.LM9:
+  72 003a 8091 0000 		lds r24,minuly_stav
+  73 003e 90E0      		ldi r25,lo8(0)
+  74 0040 0C2E      		mov r0,r28
+  75 0042 00C0      		rjmp 2f
+  76 0044 9595      	1:	asr r25
+  77 0046 8795      		ror r24
+  78 0048 0A94      	2:	dec r0
+  79 004a 02F4      		brpl 1b
+  80 004c 80FF      		sbrs r24,0
+  81 004e 00C0      		rjmp .L4
+  82               	.LBB4:
+  83               	.LBB5:
+  84               	.LM10:
+  85 0050 C430      		cpi r28,lo8(4)
+  86 0052 01F0      		breq .L8
+  87 0054 C530      		cpi r28,lo8(5)
+  88 0056 00F4      		brsh .L12
+  89 0058 C230      		cpi r28,lo8(2)
+  90 005a 01F0      		breq .L6
+  91 005c C330      		cpi r28,lo8(3)
+  92 005e 00F4      		brsh .L7
+  93 0060 C130      		cpi r28,lo8(1)
+  94 0062 01F4      		brne .L4
+  95 0064 00C0      		rjmp .L17
+  96               	.L12:
+  97 0066 C630      		cpi r28,lo8(6)
+  98 0068 01F0      		breq .L10
+  99 006a C630      		cpi r28,lo8(6)
+ 100 006c 00F0      		brlo .L9
+ 101 006e C730      		cpi r28,lo8(7)
+ 102 0070 01F4      		brne .L4
+ 103 0072 00C0      		rjmp .L18
+ 104               	.L17:
+ 105               	.LM11:
+ 106 0074 82E0      		ldi r24,lo8(2)
+ 107 0076 66E1      		ldi r22,lo8(22)
+ 108 0078 00C0      		rjmp .L16
+ 109               	.L6:
+ 110               	.LM12:
+ 111 007a 82E0      		ldi r24,lo8(2)
+ 112 007c 63E1      		ldi r22,lo8(19)
+ 113 007e 00C0      		rjmp .L16
+ 114               	.L7:
+ 115               	.LM13:
+ 116 0080 82E0      		ldi r24,lo8(2)
+ 117 0082 65E1      		ldi r22,lo8(21)
+ 118 0084 00C0      		rjmp .L16
+ 119               	.L8:
+ 120               	.LM14:
+ 121 0086 82E0      		ldi r24,lo8(2)
+ 122 0088 67E0      		ldi r22,lo8(7)
+ 123 008a 00C0      		rjmp .L16
+ 124               	.L9:
+ 125               	.LM15:
+ 126 008c 82E0      		ldi r24,lo8(2)
+ 127 008e 68E0      		ldi r22,lo8(8)
+ 128 0090 00C0      		rjmp .L16
+ 129               	.L10:
+ 130               	.LM16:
+ 131 0092 82E0      		ldi r24,lo8(2)
+ 132 0094 64E0      		ldi r22,lo8(4)
+ 133 0096 00C0      		rjmp .L16
+ 134               	.L18:
+ 135               	.LM17:
+ 136 0098 82E0      		ldi r24,lo8(2)
+ 137 009a 65E0      		ldi r22,lo8(5)
+ 138               	.L16:
+ 139 009c 0E94 0000 		call keyb_in_buff
+ 140               	.L4:
+ 141               	.LBE5:
+ 142               	.LBE4:
+ 143               	.LM18:
+ 144 00a0 2196      		adiw r28,1
+ 145 00a2 C830      		cpi r28,8
+ 146 00a4 D105      		cpc r29,__zero_reg__
+ 147 00a6 01F0      		breq .+2
+ 148 00a8 00C0      		rjmp .L13
+ 149               	.LM19:
+ 150 00aa F092 0000 		sts minuly_stav,r15
+ 151               	/* epilogue start */
+ 152               	.LM20:
+ 153 00ae DF91      		pop r29
+ 154 00b0 CF91      		pop r28
+ 155               	.LVL4:
+ 156 00b2 1F91      		pop r17
+ 157               	.LVL5:
+ 158 00b4 0F91      		pop r16
+ 159               	.LVL6:
+ 160 00b6 FF90      		pop r15
+ 161               	.LVL7:
+ 162 00b8 0895      		ret
+ 163               	.LFE3:
+ 165               		.lcomm minuly_stav,1
+ 198               	.Letext0:
+DEFINED SYMBOLS
+                            *ABS*:00000000 buttons.c
+C:\Users\mjirik\AppData\Local\Temp/cc2tE1Od.s:2      *ABS*:0000003f __SREG__
+C:\Users\mjirik\AppData\Local\Temp/cc2tE1Od.s:3      *ABS*:0000003e __SP_H__
+C:\Users\mjirik\AppData\Local\Temp/cc2tE1Od.s:4      *ABS*:0000003d __SP_L__
+C:\Users\mjirik\AppData\Local\Temp/cc2tE1Od.s:5      *ABS*:00000034 __CCP__
+C:\Users\mjirik\AppData\Local\Temp/cc2tE1Od.s:6      *ABS*:00000000 __tmp_reg__
+C:\Users\mjirik\AppData\Local\Temp/cc2tE1Od.s:7      *ABS*:00000001 __zero_reg__
+C:\Users\mjirik\AppData\Local\Temp/cc2tE1Od.s:18     .text:00000000 buttons_init
+                             .bss:00000000 minuly_stav
+C:\Users\mjirik\AppData\Local\Temp/cc2tE1Od.s:37     .text:0000000e buttons
+
+UNDEFINED SYMBOLS
+keyb_in_buff
+__do_clear_bss

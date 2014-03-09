@@ -1,0 +1,221 @@
+\documentclass[a4paper,11pt,titlepage,fleqn]{article}
+\usepackage{latexsym}
+\usepackage{czech}
+\usepackage[pdftex]{graphicx} % for .eps images
+\usepackage{amsmath}
+\usepackage{float} % vkládat obrázek pøímo tam kde je
+\usepackage{psfrag}
+
+% European layout (no extra space after `.')
+\frenchspacing
+
+% no indent, free space between paragraphs
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{1ex plus 0.5ex minus 0.2ex}
+\pagestyle{headings}
+
+
+%\title{ Bakaláøská práce \linebreak[4] Mìøení objemu stromù }
+%\author{Miroslav Jiøík}
+%\date{}
+\DeclareMathOperator{\mydiv}{div}
+\begin{document}
+
+\section{Popis systému}
+
+
+
+\begin{table}[htp]
+\begin{center}
+\begin{tabular}{|c|c|c|l|}
+\hline
+Kód &&\\
+zprávy & hexa & Smìr &  Popis  \\
+\hline
+1   & 01 & out & Chyba pøenosu - neshoda v~kontrolních bytech\\
+2   & 02 & out & Chyba pøenosu - zahájeno nesprávnım znakem\\
+3   & 03 & out & Chyba mìøení šíøky - více zastínìnıch ploch\\
+4   & 04 & out & Chyba IRC - zmìna obou vstupù\\
+5   & 05 & out & Chyba IRC - rozdíl IRC oproti referenci\\
+7   & 07 & out & Chyba pøenosu - plná odesílací fronta\\
+%8   & 08 & in  & Vrací hodnotu irc_counteru
+9   & 09 & in  & zastavuje nebo spouší odesílání z katru\\
+10  & 0A & in  & Ulo do EEPROM \\
+17  & 10 & in  & Nastav konstantu pro pøenásobení hodnoty\\
+18  & 11 & in  & Nastav vzálenost referenèního bodu \\
+19  & 13 & in  & Vypíná pøepoèet prùmìru na skuteènı\\
+    & 16 & in  & Pokyn k odeslání datové zprávy\\
+20  & 14 & out & Potvrení pøíjmu\\
+64  & 40 & out & Datová zpráva\\
+\hline
+vozík\\
+\hline
+%1   & out & Chyba pøenosu - neshoda v~kontrolních bytech\\
+%2   & in  & Chyba pøenosu - zahájeno nesprávnım znakem\\
+%3   & out & Chyba mìøení šíøky - více zastínìnıch ploch\\
+4   & 04 & in  & Chyba IRC - zmìna obou vstupù\\
+%5   & out & Chyba IRC - rozdil IRC oproti referenci\\
+%7   & out & Chyba pøenosu - plná odesílací fronta\\
+10  & 0A & in/out  & Ulo do EEPROM (i na katru)\\
+17  & 0E & in  & Nastav konstantu pro pøenásobení hodnoty (vozík)\\
+18  & 0F & in  & Nastav vzálenost referenèního bodu (vozík)\\
+20  & 14 & out & Potvrení pøíjmu\\
+    & 16 & out & Pokyn k odeslání datové zprávy z katru\\
+    & 1A & in  & Nastavení zdroje dat mìøení šíøky\\
+64  & 40 & in  & Datová zpráva\\
+    & 41 & out & Jméno zákazníka\\
+    & 42 & out & Namìøenı strom \\
+    & 43 & out & Odesláno poslední mìøení\\
+    & 44 & out & Zahájení odesílání dat\\
+    & 46 & z vozíku & vızva pro server, zda nemá nìjaká data.\\
+    & 47 & ze serveru & ukonèení odesílání dat \\
+\hline
+\end{tabular}
+\caption{Tabulka typù zpráv - katr}
+\label{zpravy}
+\end{center}
+\end{table}
+
+Následuje podrobnìjší popis nìkterıch zpráv a situací, v~nich mohou bıt zprávy vyslány.
+
+\begin{description}
+  \item [(1) Chyba pøenosu]
+  Pøi pøíjmu zprávy byla nalezena chyba v~posledních tøech kontrolních bytech.
+
+  \item [(2) Chyba pøenosu]
+  Tato zpráva je vyslána v~pøípadì e pøi pøíjmu zprávy není první byte 255.
+
+  \item [(3) Chyba mìøení šíøky]
+  Tato zpráva informuje o~tom, e na mìøící lištì se objevuje více zastínìnıch ploch.
+
+  \item [(4) Chyba IRC]
+  Pøi zpracování vstupù z~inkrementálního èidla bylo zjištìno, e oproti
+  minulému zpracování došlo ke zmìnì hodnot na obou vstupech. To znemoòuje
+  urèit, na kterou stranu se IRC pootoèilo. Znaèí to, e se èidlo otáèí pøíliš
+  rychle, nebo e je tøeba zkrátit dobu mezi voláním obsluné funkce.
+
+  \item [(5) Chyba IRC]
+  Pøi dosaení referenèního bodu se lišila dosavadní hodnota èítaèe IRC a
+  pøednastavená hodnota referenèního bodu. Velikost ($\Delta_{IRC}$) lze urèit
+  dle prvních dvou datovıch bytù ($B_1$ a $B_2$):
+
+  \begin{align}
+  \Delta_{IRC} = (B_1 \cdot 256 ) + B_2
+  \end{align}
+  
+  Vıstup ve stejnıch jednotkách jako data ve zprávì s~kódem 64.
+
+  \item [(7) Chyba pøenosu]
+  Došlo k~naplnìní odesílací fronty.
+
+  \item[(20) Potvrzení pøíjmu]
+  Tato zpráva je vysílána v~pøípadì správného pøíjmu nìkterıch zpráv.
+
+  \item[(64) Datová zpráva]
+  Obsahem této zprávy jsou namìøené velikosti $d_v$ a $d_{h\_namer}$. Zpráva je
+  odesílána pøi zmìnì nìkteré z~hodnot. Velikosti jsou dány vzorci
+  \ref{zpravy:dv} a \ref{zpravy:dh_namer}, kde $B_1$, $B_2$, $B_3$ a $B_4$ jsou
+  ètyøi datové byty.
+  
+  \begin{align}
+  d_v = (B_1 \cdot 256 ) + B_2  \label{zpravy:dv} \\
+  d_{h\_namer} = (B_3 \cdot 256 ) + B_4 \label{zpravy:dh_namer}
+  \end{align}
+
+  \item [(16) Ulo do EEPROM]
+  Obdrí-li jednoèip tuto zprávu, uloí do pamìti EEPROM obsah èítaèe IRC.
+
+  \item [(17) Nastav $irc_k$]
+  Po obdrení této zprávy je nastavena hodnota $irc\_k$ dle vzorce \ref{zpravy:irck}
+
+  \begin{align}
+  irc\_k =  (B_1 \cdot 256 ) + B_2 \label{zpravy:irck}
+  \end{align}
+
+  Hodnoty bytù $B_1$ a $B_2$ lze získat následujícím zpùsobem:
+  \begin{align}
+  B_1 &= irc\_k \mydiv 256 \\
+  B_2 &= irc\_k\bmod 256 
+  \end{align}
+
+
+\end{description}
+
+\section{Software}
+\subsection{Uivatelské rozhraní}
+
+Systém komunikuje s uivatelem prostøednictvím 40x4 LCD displeje, klávesnice a nìkolika tlaèítek.
+Displej je pøekreslován nìkolikrát za vteøinu. Modul, kterı se o toto stará se jmenuje \texttt{lcd.c} . 
+Data která jsou vypisována na LCD jsou uloena v poli. 
+
+
+Uivatelské rozhraní je tvoøeno obrazovkami s nìkolika rozdílımi funkcemi. O správu 
+jednotlivıch obrazovek se stará modul \texttt{gui.c} Zajišuje správné pøepínání, 
+alokaci všech promìnnıch pøed vykreslením obrazovky a uvolnìní pamìti pøi jejím 
+nahrazení jinou obrazovkou.
+Jednotlivé obrazovky jsou v naimplementovány v modulech, jejich jména jsou \texttt{*\_scr.c}.
+V modulu je obvykle funkce \texttt{void *\_scr\_init(void)}, která inicializuje potøebné 
+promìnné pøi startu jednoèipu. Funkce \texttt{void *\_scr\_draw(void)} se stará o vykreslování 
+pøíslušné obrazovky, ale poèítá s tím, e jsou ji naalokovány všechny prostøedky.
+Alokace je zajištìna prostøednictvím funkce \texttt{void *\_scr\_open(void)}. Uvolòování 
+naalokovanıch promìnnıch je provádìno funkcí \texttt{void *\_scr\_close(void)}. 
+
+\section{Hardware}
+
+\subsection{Pøevodník \emph{RS232 - RS422}}
+Pøevodník je realizován prostøednictvím obvodu \emph{MAX232} a dvojice
+budièù linky \emph{RS485}, které zajišují pøevod z TTL. Zapojení má
+nìkolik moností napájení. Jednou monstí je napájet z venkovního
+napájeèe, druhou moností je napájení po volém vodièi vedení
+\emph{RS422} (tab \ref{zapojeni_cannon}). Další moností je napájení
+pøímo ze sériového portu. To pøedpokládá nastavení flagù \emph{DTR} a
+\emph{RTS}. Pro úplnost je na obrázku \ref{rs232_cannon9} schéma
+zapojení sériové linky. 
+
+\begin{figure}[htp]
+\begin{center}
+\includegraphics[width=0.4\textwidth]{fig/rs232_cannon9.png}
+\end{center}
+\caption{Schéma zapojení \emph{RS232} na konektor \emph{Cannon - 9}}
+\label{rs232_cannon9}
+\end{figure}
+
+\subsection{Napájení}
+Celı systém je napájen z jednoho zdroje. Napájení je vedeno k dílèím
+zaøízením prostøednictvím nevyuitıch vodièù. Napájení je
+12~V. Stabilizace by nemìla bıt nezbytná, nebo všechny dílší systémy
+dále napìtí stabilizují na 5~V.
+
+\subsection{Kabelá}
+
+Kabelá zajišuje spojení jednotlivıch èástí systému. Propojení je
+realizováno prostøednictvím linky \emph{RS422}.
+
+\begin{figure}[htp]
+\begin{center}
+\includegraphics[width=0.7\textwidth]{fig/sch_rs422.png}
+\end{center}
+\caption{Schéma propojení zaøízení prostøednictvím linky \emph{RS422}}
+\label{sch_rs422}
+\end{figure}
+
+\begin{table}
+\caption{Zapojení konektoru Cannon-9 pro RS422}
+\begin{center}
+\begin{tabular}{|c|l|}
+\hline
+Pin & Popis \\
+\hline
+1 & GND \\
+2 & $\rm{U_{0}}$ (12V) (nestandartní!)\\
+4 & TxD+\\
+5 & TxD-\\
+8 & RxD+\\
+9 & RxD-\\
+\hline
+\end{tabular}
+\end{center}
+\label{zapojeni_cannon}
+\end{table}
+
+\end{document}

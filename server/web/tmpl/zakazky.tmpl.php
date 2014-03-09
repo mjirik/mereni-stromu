@@ -1,0 +1,107 @@
+<?php
+  //$jmeno=NULL;
+  $hr = "";
+  if (!empty($_GET["id"])){
+    $hr = "&amp;id=".$_GET["id"];
+  }
+
+  
+  echo "<div class=\"vnitrni\" style=\"float:left\">";//" class=\"vnitrni\">";
+  echo "<h2>Zákazníci</h2>";
+  echo "<table><tr><td>";
+  if ($_SESSION["archivZakaznik"]==true){
+    echo odkaz("Skryj archiv","zakazky.php?archivZakaznik=-1$hr")."";
+  }
+  else{
+    echo odkaz("Zobraz archiv","zakazky.php?archivZakaznik=1$hr")."";
+  }
+  echo "</td><td title=\"Počet zákazníků v archivu\">($zakaznikuVArchivu)</td></tr><tr><td>";
+  echo odkaz("Nový zákazník","add_zakaznik.php","Přidání nového zákazníka");
+  echo "</td></tr></table>";
+//echo "<hr size=3 align=\"center\">";
+
+if (!empty($zaznamy)){
+  echo "<table class=\"longtab\" >";  //cellspacing=0 cellpadding=2>";
+  foreach ($zaznamy as $zaznam){
+    if ($id == $zaznam["IDZakaznik"]){
+      echo "<tr class = \"focus\">";
+      //$jmeno = $zaznam["Jmeno"];
+    }
+    else {
+      if (bit2bool($zaznam["Archiv"])){
+        echo "<tr class=\"archiv\">";
+      }
+      else {
+        echo "<tr>";
+      }
+    }
+    echo "<td>";
+//     if (bit2bool($zaznam["Archiv"])){
+//       echo "<a class=\"archiv\" href = zakazky.php?id=".$zaznam["IDZakaznik"].">".$zaznam["Jmeno"]." </a>";
+//     }
+//     else {
+//       echo "<a href = zakazky.php?id=".$zaznam["IDZakaznik"].">".$zaznam["Jmeno"]." </a>";
+//     }
+    echo $zaznam["Jmeno"];
+    echo "</td><td>";
+    echo odkaz("Zobrazit","zakazky.php?id=".$zaznam["IDZakaznik"]."");
+    //echo "<a href = zakazky.php?id=".$zaznam["IDZakaznik"]."\">Zobrazit</a>\n";
+    echo "</td><td>";
+    echo odkaz("Upravit","edit_zakaznik.php?id=".$zaznam["IDZakaznik"]."");
+    //echo "<a href = edit_zakaznik.php?id=".$zaznam["IDZakaznik"].">Upravit</a>\n";
+    echo "</td><td>";
+    $ok = "zakazky.php?delid=".$zaznam["IDZakaznik"];
+    $storno = "zakazky.php";
+    echo ref_ok("Smazat",$ok,$storno);
+    //echo "<a href = zakaznici.php?delid=".$zaznam["IDZakaznik"].">"."Smazat"." </a>\n";
+    echo "</td><td>";
+    if (!bit2bool($zaznam["Archiv"])){
+      echo odkaz("Do archivu","zakazky.php?archZakID=".$zaznam["IDZakaznik"]."$hr",
+        "Přesune zákazníka do archivu");
+    }
+    else {
+      echo odkaz("Z archivu","zakazky.php?archZakID=".-$zaznam["IDZakaznik"]."$hr",
+      "Vrátí zákazníka z archivu");
+
+    }
+    echo "</td>";
+//     echo "<br>\n";
+    echo "</tr>\n";
+  }
+  echo "</table>";
+  echo "</div >";
+  if (!empty($id)){ 
+  echo "<div class=\"druheOkno\">";
+  
+    echo "<div class=\"vnitrni\" style=\"float:left;\">";
+
+    echo "<h2>";
+    echo "Zakázky : ";
+    if (strlen($jmeno) > 15){
+      echo "</h2><h2>";
+    }
+    echo $jmeno;
+    echo "</h2>";
+    echo "<table><tr><td>";
+    if ($_SESSION["archivSeznam"]==true){
+      echo odkaz("Skryj archiv","zakazky.php?archivSeznam=-1$hr")."";
+    }
+    else{
+      echo odkaz("Zobraz archiv","zakazky.php?archivSeznam=1$hr")."";
+    }
+    echo "</td><td title=\"Počet zakázek v archivu\">($seznamuVArchivu)</td></tr><tr><td>";
+    //echo odkaz("Nový","zakazky.php?archIDZakaznik=$id")."<br>";
+    echo odkaz("Nová zakázka","zakazky.php?insertSeznam=$id$hr");
+    echo "</td></tr></table>";
+    echo $sez_div;
+  
+  
+  echo "</div>";
+  
+  echo "</div>";
+  }
+}
+else {
+  echo "Nenalezeni žádní zakázníci.";
+} 
+?>

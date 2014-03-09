@@ -1,0 +1,414 @@
+   1               		.file	"irc.c"
+   2               	__SREG__ = 0x3f
+   3               	__SP_H__ = 0x3e
+   4               	__SP_L__ = 0x3d
+   5               	__CCP__  = 0x34
+   6               	__tmp_reg__ = 0
+   7               	__zero_reg__ = 1
+  15               	.Ltext0:
+  16               	.global	irc_get_k
+  18               	irc_get_k:
+  19               	.LFB4:
+  20               	.LM1:
+  21               	/* prologue: function */
+  22               	/* frame size = 0 */
+  23               	.LM2:
+  24 0000 8091 0000 		lds r24,irc_k
+  25 0004 9091 0000 		lds r25,irc_k+1
+  26               	/* epilogue start */
+  27 0008 0895      		ret
+  28               	.LFE4:
+  30               	.global	irc_init
+  32               	irc_init:
+  33               	.LFB6:
+  34               	.LM3:
+  35               	/* prologue: function */
+  36               	/* frame size = 0 */
+  37               	.LM4:
+  38 000a 82B3      		in r24,50-32
+  39 000c 806E      		ori r24,lo8(-32)
+  40 000e 82BB      		out 50-32,r24
+  41               	.LM5:
+  42 0010 80B3      		in r24,48-32
+  43 0012 8295      		swap r24
+  44 0014 8695      		lsr r24
+  45 0016 8770      		andi r24,lo8(7)
+  46 0018 8093 0000 		sts prev_state,r24
+  47               	/* epilogue start */
+  48               	.LM6:
+  49 001c 0895      		ret
+  50               	.LFE6:
+  52               	.global	irc_get_l
+  54               	irc_get_l:
+  55               	.LFB8:
+  56               	.LM7:
+  57 001e EF92      		push r14
+  58 0020 FF92      		push r15
+  59 0022 0F93      		push r16
+  60 0024 1F93      		push r17
+  61               	/* prologue: function */
+  62               	/* frame size = 0 */
+  63               	.LM8:
+  64 0026 6091 0000 		lds r22,irc_counter
+  65 002a 7091 0000 		lds r23,(irc_counter)+1
+  66 002e 8091 0000 		lds r24,(irc_counter)+2
+  67 0032 9091 0000 		lds r25,(irc_counter)+3
+  68 0036 97FF      		sbrs r25,7
+  69 0038 00C0      		rjmp .L6
+  70 003a 60E0      		ldi r22,lo8(0)
+  71 003c 70E0      		ldi r23,hi8(0)
+  72 003e 80E0      		ldi r24,hlo8(0)
+  73 0040 90E0      		ldi r25,hhi8(0)
+  74               	.L6:
+  75 0042 0E94 0000 		call __floatsisf
+  76 0046 27E1      		ldi r18,lo8(0x38d1b717)
+  77 0048 37EB      		ldi r19,hi8(0x38d1b717)
+  78 004a 41ED      		ldi r20,hlo8(0x38d1b717)
+  79 004c 58E3      		ldi r21,hhi8(0x38d1b717)
+  80 004e 0E94 0000 		call __mulsf3
+  81 0052 7B01      		movw r14,r22
+  82 0054 8C01      		movw r16,r24
+  83 0056 6091 0000 		lds r22,irc_k
+  84 005a 7091 0000 		lds r23,(irc_k)+1
+  85 005e 80E0      		ldi r24,lo8(0)
+  86 0060 90E0      		ldi r25,hi8(0)
+  87 0062 0E94 0000 		call __floatunsisf
+  88 0066 9B01      		movw r18,r22
+  89 0068 AC01      		movw r20,r24
+  90 006a C801      		movw r24,r16
+  91 006c B701      		movw r22,r14
+  92 006e 0E94 0000 		call __mulsf3
+  93 0072 0E94 0000 		call __fixunssfsi
+  94               	.LM9:
+  95 0076 CB01      		movw r24,r22
+  96               	/* epilogue start */
+  97 0078 1F91      		pop r17
+  98 007a 0F91      		pop r16
+  99 007c FF90      		pop r15
+ 100 007e EF90      		pop r14
+ 101 0080 0895      		ret
+ 102               	.LFE8:
+ 104               	.global	irc_watch
+ 106               	irc_watch:
+ 107               	.LFB7:
+ 108               	.LM10:
+ 109 0082 DF92      		push r13
+ 110 0084 EF92      		push r14
+ 111 0086 FF92      		push r15
+ 112 0088 0F93      		push r16
+ 113 008a 1F93      		push r17
+ 114               	/* prologue: function */
+ 115               	/* frame size = 0 */
+ 116               	.LM11:
+ 117 008c D0B2      		in r13,48-32
+ 118               	.LVL0:
+ 119 008e D294      		swap r13
+ 120 0090 D694      		lsr r13
+ 121 0092 87E0      		ldi r24,lo8(7)
+ 122 0094 D822      		and r13,r24
+ 123               	.LM12:
+ 124 0096 E090 0000 		lds r14,prev_state
+ 125               	.LVL1:
+ 126 009a ED24      		eor r14,r13
+ 127               	.LM13:
+ 128 009c 2D2D      		mov r18,r13
+ 129               	.LVL2:
+ 130 009e 2695      		lsr r18
+ 131 00a0 2D25      		eor r18,r13
+ 132 00a2 2170      		andi r18,lo8(1)
+ 133               	.LM14:
+ 134 00a4 8E2D      		mov r24,r14
+ 135 00a6 90E0      		ldi r25,lo8(0)
+ 136 00a8 8370      		andi r24,lo8(3)
+ 137 00aa 9070      		andi r25,hi8(3)
+ 138 00ac 8230      		cpi r24,2
+ 139 00ae 9105      		cpc r25,__zero_reg__
+ 140 00b0 01F0      		breq .L11
+ 141 00b2 8330      		cpi r24,3
+ 142 00b4 9105      		cpc r25,__zero_reg__
+ 143 00b6 01F0      		breq .L12
+ 144 00b8 0197      		sbiw r24,1
+ 145 00ba 01F4      		brne .L9
+ 146 00bc 8091 0000 		lds r24,irc_counter
+ 147 00c0 9091 0000 		lds r25,(irc_counter)+1
+ 148 00c4 A091 0000 		lds r26,(irc_counter)+2
+ 149 00c8 B091 0000 		lds r27,(irc_counter)+3
+ 150               	.LM15:
+ 151 00cc 2223      		tst r18
+ 152 00ce 01F4      		brne .L20
+ 153 00d0 00C0      		rjmp .L14
+ 154               	.L11:
+ 155 00d2 8091 0000 		lds r24,irc_counter
+ 156 00d6 9091 0000 		lds r25,(irc_counter)+1
+ 157 00da A091 0000 		lds r26,(irc_counter)+2
+ 158 00de B091 0000 		lds r27,(irc_counter)+3
+ 159               	.LM16:
+ 160 00e2 2223      		tst r18
+ 161 00e4 01F4      		brne .L14
+ 162               	.L20:
+ 163               	.LM17:
+ 164 00e6 0197      		sbiw r24,1
+ 165 00e8 A109      		sbc r26,__zero_reg__
+ 166 00ea B109      		sbc r27,__zero_reg__
+ 167 00ec 8093 0000 		sts irc_counter,r24
+ 168 00f0 9093 0000 		sts (irc_counter)+1,r25
+ 169 00f4 A093 0000 		sts (irc_counter)+2,r26
+ 170 00f8 B093 0000 		sts (irc_counter)+3,r27
+ 171               	.LM18:
+ 172 00fc 1092 0000 		sts last_oper_with_irc_counter,__zero_reg__
+ 173 0100 00C0      		rjmp .L9
+ 174               	.L14:
+ 175               	.LM19:
+ 176 0102 0196      		adiw r24,1
+ 177 0104 A11D      		adc r26,__zero_reg__
+ 178 0106 B11D      		adc r27,__zero_reg__
+ 179 0108 8093 0000 		sts irc_counter,r24
+ 180 010c 9093 0000 		sts (irc_counter)+1,r25
+ 181 0110 A093 0000 		sts (irc_counter)+2,r26
+ 182 0114 B093 0000 		sts (irc_counter)+3,r27
+ 183               	.LM20:
+ 184 0118 81E0      		ldi r24,lo8(1)
+ 185 011a 8093 0000 		sts last_oper_with_irc_counter,r24
+ 186 011e 00C0      		rjmp .L9
+ 187               	.L12:
+ 188               	.LM21:
+ 189 0120 86E0      		ldi r24,lo8(6)
+ 190 0122 0E94 0000 		call new_error
+ 191               	.LVL3:
+ 192               	.L9:
+ 193               	.LM22:
+ 194 0126 8E2D      		mov r24,r14
+ 195 0128 8695      		lsr r24
+ 196 012a 8695      		lsr r24
+ 197 012c 80FF      		sbrs r24,0
+ 198 012e 00C0      		rjmp .L15
+ 199 0130 8091 0000 		lds r24,last_oper_with_irc_counter
+ 200 0134 8130      		cpi r24,lo8(1)
+ 201 0136 01F0      		breq .+2
+ 202 0138 00C0      		rjmp .L15
+ 203 013a 8D2D      		mov r24,r13
+ 204 013c 8695      		lsr r24
+ 205 013e 8695      		lsr r24
+ 206 0140 01F0      		breq .+2
+ 207 0142 00C0      		rjmp .L15
+ 208               	.LBB2:
+ 209               	.LM23:
+ 210 0144 8091 0000 		lds r24,irc_set_on_value
+ 211 0148 9091 0000 		lds r25,(irc_set_on_value)+1
+ 212 014c A091 0000 		lds r26,(irc_set_on_value)+2
+ 213 0150 B091 0000 		lds r27,(irc_set_on_value)+3
+ 214 0154 2091 0000 		lds r18,irc_counter
+ 215 0158 3091 0000 		lds r19,(irc_counter)+1
+ 216               	.LVL4:
+ 217 015c AC01      		movw r20,r24
+ 218 015e 421B      		sub r20,r18
+ 219 0160 530B      		sbc r21,r19
+ 220 0162 9A01      		movw r18,r20
+ 221               	.LVL5:
+ 222               	.LM24:
+ 223 0164 8093 0000 		sts irc_counter,r24
+ 224 0168 9093 0000 		sts (irc_counter)+1,r25
+ 225 016c A093 0000 		sts (irc_counter)+2,r26
+ 226 0170 B093 0000 		sts (irc_counter)+3,r27
+ 227               	.LM25:
+ 228 0174 57FF      		sbrs r21,7
+ 229 0176 00C0      		rjmp .L16
+ 230               	.LVL6:
+ 231 0178 3095      		com r19
+ 232 017a 2195      		neg r18
+ 233 017c 3F4F      		sbci r19,lo8(-1)
+ 234               	.LVL7:
+ 235               	.L16:
+ 236 017e B901      		movw r22,r18
+ 237 0180 8827      		clr r24
+ 238 0182 77FD      		sbrc r23,7
+ 239 0184 8095      		com r24
+ 240 0186 982F      		mov r25,r24
+ 241               	.LVL8:
+ 242 0188 0E94 0000 		call __floatsisf
+ 243               	.LVL9:
+ 244 018c 27E1      		ldi r18,lo8(0x38d1b717)
+ 245 018e 37EB      		ldi r19,hi8(0x38d1b717)
+ 246 0190 41ED      		ldi r20,hlo8(0x38d1b717)
+ 247 0192 58E3      		ldi r21,hhi8(0x38d1b717)
+ 248 0194 0E94 0000 		call __mulsf3
+ 249 0198 7B01      		movw r14,r22
+ 250 019a 8C01      		movw r16,r24
+ 251               	.LVL10:
+ 252 019c 6091 0000 		lds r22,irc_k
+ 253 01a0 7091 0000 		lds r23,(irc_k)+1
+ 254 01a4 80E0      		ldi r24,lo8(0)
+ 255 01a6 90E0      		ldi r25,hi8(0)
+ 256 01a8 0E94 0000 		call __floatunsisf
+ 257 01ac 9B01      		movw r18,r22
+ 258 01ae AC01      		movw r20,r24
+ 259 01b0 C801      		movw r24,r16
+ 260 01b2 B701      		movw r22,r14
+ 261 01b4 0E94 0000 		call __mulsf3
+ 262 01b8 20E0      		ldi r18,lo8(0x41200000)
+ 263 01ba 30E0      		ldi r19,hi8(0x41200000)
+ 264 01bc 40E2      		ldi r20,hlo8(0x41200000)
+ 265 01be 51E4      		ldi r21,hhi8(0x41200000)
+ 266 01c0 0E94 0000 		call __gtsf2
+ 267 01c4 1816      		cp __zero_reg__,r24
+ 268 01c6 04F4      		brge .L15
+ 269               	.LM26:
+ 270 01c8 83E5      		ldi r24,lo8(83)
+ 271 01ca 0E94 0000 		call new_error
+ 272               	.LVL11:
+ 273               	.L15:
+ 274               	.LBE2:
+ 275               	.LM27:
+ 276 01ce D092 0000 		sts prev_state,r13
+ 277               	/* epilogue start */
+ 278               	.LM28:
+ 279 01d2 1F91      		pop r17
+ 280 01d4 0F91      		pop r16
+ 281 01d6 FF90      		pop r15
+ 282 01d8 EF90      		pop r14
+ 283               	.LVL12:
+ 284 01da DF90      		pop r13
+ 285               	.LVL13:
+ 286 01dc 0895      		ret
+ 287               	.LFE7:
+ 289               	.global	set_irc_set_on_value
+ 291               	set_irc_set_on_value:
+ 292               	.LFB5:
+ 293               	.LM29:
+ 294               	.LVL14:
+ 295 01de EF92      		push r14
+ 296 01e0 FF92      		push r15
+ 297 01e2 0F93      		push r16
+ 298 01e4 1F93      		push r17
+ 299               	/* prologue: function */
+ 300               	/* frame size = 0 */
+ 301               	.LM30:
+ 302 01e6 0E94 0000 		call __floatsisf
+ 303               	.LVL15:
+ 304 01ea 7B01      		movw r14,r22
+ 305 01ec 8C01      		movw r16,r24
+ 306 01ee 6091 0000 		lds r22,irc_k
+ 307 01f2 7091 0000 		lds r23,(irc_k)+1
+ 308 01f6 80E0      		ldi r24,lo8(0)
+ 309 01f8 90E0      		ldi r25,hi8(0)
+ 310 01fa 0E94 0000 		call __floatunsisf
+ 311 01fe 9B01      		movw r18,r22
+ 312 0200 AC01      		movw r20,r24
+ 313 0202 60E0      		ldi r22,lo8(0x447a0000)
+ 314 0204 70E0      		ldi r23,hi8(0x447a0000)
+ 315 0206 8AE7      		ldi r24,hlo8(0x447a0000)
+ 316 0208 94E4      		ldi r25,hhi8(0x447a0000)
+ 317 020a 0E94 0000 		call __divsf3
+ 318 020e 9B01      		movw r18,r22
+ 319 0210 AC01      		movw r20,r24
+ 320 0212 C801      		movw r24,r16
+ 321 0214 B701      		movw r22,r14
+ 322 0216 0E94 0000 		call __mulsf3
+ 323 021a 0E94 0000 		call __fixsfsi
+ 324 021e AB01      		movw r20,r22
+ 325 0220 BC01      		movw r22,r24
+ 326 0222 4093 0000 		sts irc_set_on_value,r20
+ 327 0226 5093 0000 		sts (irc_set_on_value)+1,r21
+ 328 022a 6093 0000 		sts (irc_set_on_value)+2,r22
+ 329 022e 7093 0000 		sts (irc_set_on_value)+3,r23
+ 330               	.LM31:
+ 331 0232 84E0      		ldi r24,lo8(4)
+ 332 0234 90E0      		ldi r25,hi8(4)
+ 333 0236 0E94 0000 		call eeprom_w32
+ 334               	/* epilogue start */
+ 335               	.LM32:
+ 336 023a 1F91      		pop r17
+ 337 023c 0F91      		pop r16
+ 338 023e FF90      		pop r15
+ 339 0240 EF90      		pop r14
+ 340 0242 0895      		ret
+ 341               	.LFE5:
+ 343               	.global	set_irc_k
+ 345               	set_irc_k:
+ 346               	.LFB3:
+ 347               	.LM33:
+ 348               	.LVL16:
+ 349               	/* prologue: function */
+ 350               	/* frame size = 0 */
+ 351               	.LM34:
+ 352 0244 29E1      		ldi r18,lo8(25)
+ 353 0246 30E0      		ldi r19,hi8(25)
+ 354 0248 AC01      		movw r20,r24
+ 355 024a 429F      		mul r20,r18
+ 356 024c C001      		movw r24,r0
+ 357 024e 439F      		mul r20,r19
+ 358 0250 900D      		add r25,r0
+ 359 0252 529F      		mul r21,r18
+ 360 0254 900D      		add r25,r0
+ 361 0256 1124      		clr r1
+ 362               	.LVL17:
+ 363 0258 6CE0      		ldi r22,lo8(12)
+ 364 025a 70E0      		ldi r23,hi8(12)
+ 365 025c 0E94 0000 		call __udivmodhi4
+ 366 0260 6093 0000 		sts irc_k,r22
+ 367 0264 7093 0000 		sts irc_k+1,r23
+ 368               	.LM35:
+ 369 0268 84E0      		ldi r24,lo8(4)
+ 370 026a 90E0      		ldi r25,hi8(4)
+ 371 026c 0E94 0000 		call eeprom_w16
+ 372               	/* epilogue start */
+ 373               	.LM36:
+ 374 0270 0895      		ret
+ 375               	.LFE3:
+ 377               	.global	irc_counter
+ 378               	.global	irc_counter
+ 379               		.section .bss
+ 382               	irc_counter:
+ 383 0000 0000 0000 		.skip 4,0
+ 384               	.global	irc_set_on_value
+ 385               		.data
+ 388               	irc_set_on_value:
+ 389 0000 64        		.byte	100
+ 390 0001 00        		.byte	0
+ 391 0002 00        		.byte	0
+ 392 0003 00        		.byte	0
+ 393               	.global	last_oper_with_irc_counter
+ 394               	.global	last_oper_with_irc_counter
+ 395               		.section .bss
+ 398               	last_oper_with_irc_counter:
+ 399 0004 00        		.skip 1,0
+ 400               	.global	irc_k
+ 401               		.data
+ 404               	irc_k:
+ 405 0004 6400      		.word	100
+ 406               		.comm prev_state,1,1
+ 471               	.Letext0:
+DEFINED SYMBOLS
+                            *ABS*:00000000 irc.c
+C:\Users\mjirik\AppData\Local\Temp/ccGOxCVh.s:2      *ABS*:0000003f __SREG__
+C:\Users\mjirik\AppData\Local\Temp/ccGOxCVh.s:3      *ABS*:0000003e __SP_H__
+C:\Users\mjirik\AppData\Local\Temp/ccGOxCVh.s:4      *ABS*:0000003d __SP_L__
+C:\Users\mjirik\AppData\Local\Temp/ccGOxCVh.s:5      *ABS*:00000034 __CCP__
+C:\Users\mjirik\AppData\Local\Temp/ccGOxCVh.s:6      *ABS*:00000000 __tmp_reg__
+C:\Users\mjirik\AppData\Local\Temp/ccGOxCVh.s:7      *ABS*:00000001 __zero_reg__
+C:\Users\mjirik\AppData\Local\Temp/ccGOxCVh.s:18     .text:00000000 irc_get_k
+C:\Users\mjirik\AppData\Local\Temp/ccGOxCVh.s:404    .data:00000004 irc_k
+C:\Users\mjirik\AppData\Local\Temp/ccGOxCVh.s:32     .text:0000000a irc_init
+                            *COM*:00000001 prev_state
+C:\Users\mjirik\AppData\Local\Temp/ccGOxCVh.s:54     .text:0000001e irc_get_l
+C:\Users\mjirik\AppData\Local\Temp/ccGOxCVh.s:382    .bss:00000000 irc_counter
+C:\Users\mjirik\AppData\Local\Temp/ccGOxCVh.s:106    .text:00000082 irc_watch
+C:\Users\mjirik\AppData\Local\Temp/ccGOxCVh.s:398    .bss:00000004 last_oper_with_irc_counter
+C:\Users\mjirik\AppData\Local\Temp/ccGOxCVh.s:388    .data:00000000 irc_set_on_value
+C:\Users\mjirik\AppData\Local\Temp/ccGOxCVh.s:291    .text:000001de set_irc_set_on_value
+C:\Users\mjirik\AppData\Local\Temp/ccGOxCVh.s:345    .text:00000244 set_irc_k
+
+UNDEFINED SYMBOLS
+__floatsisf
+__mulsf3
+__floatunsisf
+__fixunssfsi
+new_error
+__gtsf2
+__divsf3
+__fixsfsi
+eeprom_w32
+__udivmodhi4
+eeprom_w16
+__do_copy_data
+__do_clear_bss

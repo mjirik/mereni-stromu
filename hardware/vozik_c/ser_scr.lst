@@ -1,0 +1,156 @@
+   1               		.file	"ser_scr.c"
+   2               	__SREG__ = 0x3f
+   3               	__SP_H__ = 0x3e
+   4               	__SP_L__ = 0x3d
+   5               	__CCP__  = 0x34
+   6               	__tmp_reg__ = 0
+   7               	__zero_reg__ = 1
+  15               	.Ltext0:
+  16               	.global	ser_scr_open
+  18               	ser_scr_open:
+  19               	.LFB2:
+  20               	.LM1:
+  21 0000 DF92      		push r13
+  22 0002 EF92      		push r14
+  23 0004 FF92      		push r15
+  24 0006 0F93      		push r16
+  25 0008 1F93      		push r17
+  26 000a CF93      		push r28
+  27 000c DF93      		push r29
+  28               	/* prologue: function */
+  29               	/* frame size = 0 */
+  30               	.LM2:
+  31 000e 87E0      		ldi r24,lo8(7)
+  32 0010 8093 0000 		sts akt_scr,r24
+  33               	.LM3:
+  34 0014 0E94 0000 		call clear_dscreen
+  35 0018 C0E0      		ldi r28,lo8(0)
+  36 001a D0E0      		ldi r29,hi8(0)
+  37               	.LVL0:
+  38               	.L2:
+  39               	.LBB2:
+  40               	.LM4:
+  41 001c CE01      		movw r24,r28
+  42 001e 0E94 0000 		call usart_get_recv_buff
+  43 0022 D82E      		mov r13,r24
+  44               	.LVL1:
+  45               	.LM5:
+  46 0024 43E0      		ldi r20,lo8(3)
+  47 0026 E42E      		mov r14,r20
+  48 0028 F12C      		mov r15,__zero_reg__
+  49 002a EC22      		and r14,r28
+  50 002c FD22      		and r15,r29
+  51 002e CE01      		movw r24,r28
+  52 0030 9595      		asr r25
+  53 0032 8795      		ror r24
+  54 0034 9595      		asr r25
+  55 0036 8795      		ror r24
+  56 0038 8C01      		movw r16,r24
+  57 003a 23E0      		ldi r18,3
+  58 003c 000F      	1:	lsl r16
+  59 003e 111F      		rol r17
+  60 0040 2A95      		dec r18
+  61 0042 01F4      		brne 1b
+  62 0044 081B      		sub r16,r24
+  63 0046 190B      		sbc r17,r25
+  64 0048 C701      		movw r24,r14
+  65 004a B801      		movw r22,r16
+  66 004c 4D2D      		mov r20,r13
+  67 004e 0E94 0000 		call printcxyd
+  68               	.LM6:
+  69 0052 80E0      		ldi r24,lo8(str_buf)
+  70 0054 90E0      		ldi r25,hi8(str_buf)
+  71 0056 63E0      		ldi r22,lo8(3)
+  72 0058 70E0      		ldi r23,hi8(3)
+  73 005a 4D2D      		mov r20,r13
+  74 005c 50E0      		ldi r21,lo8(0)
+  75 005e 0E94 0000 		call int2strn
+  76 0062 AC01      		movw r20,r24
+  77 0064 0E5F      		subi r16,lo8(-(2))
+  78 0066 1F4F      		sbci r17,hi8(-(2))
+  79 0068 C701      		movw r24,r14
+  80 006a B801      		movw r22,r16
+  81 006c 0E94 0000 		call printxyd
+  82               	.LBE2:
+  83               	.LM7:
+  84 0070 2196      		adiw r28,1
+  85 0072 C231      		cpi r28,18
+  86 0074 D105      		cpc r29,__zero_reg__
+  87 0076 01F4      		brne .L2
+  88               	/* epilogue start */
+  89               	.LM8:
+  90 0078 DF91      		pop r29
+  91 007a CF91      		pop r28
+  92               	.LVL2:
+  93 007c 1F91      		pop r17
+  94 007e 0F91      		pop r16
+  95 0080 FF90      		pop r15
+  96 0082 EF90      		pop r14
+  97 0084 DF90      		pop r13
+  98               	.LVL3:
+  99 0086 0895      		ret
+ 100               	.LFE2:
+ 102               	.global	ser_scr_control
+ 104               	ser_scr_control:
+ 105               	.LFB3:
+ 106               	.LM9:
+ 107               	/* prologue: function */
+ 108               	/* frame size = 0 */
+ 109               	.LM10:
+ 110 0088 0E94 0000 		call get_spec
+ 111 008c 8823      		tst r24
+ 112               	.LVL4:
+ 113 008e 01F0      		breq .L9
+ 114               	.LM11:
+ 115 0090 8530      		cpi r24,lo8(5)
+ 116 0092 01F0      		breq .L7
+ 117 0094 8D30      		cpi r24,lo8(13)
+ 118 0096 01F4      		brne .L9
+ 119 0098 00C0      		rjmp .L10
+ 120               	.L7:
+ 121               	.LM12:
+ 122 009a 80E0      		ldi r24,lo8(0)
+ 123               	.LVL5:
+ 124 009c 0E94 0000 		call scr_ch
+ 125 00a0 0895      		ret
+ 126               	.LVL6:
+ 127               	.L10:
+ 128               	.LM13:
+ 129 00a2 0E94 0000 		call ser_scr_open
+ 130               	.LVL7:
+ 131               	.L9:
+ 132 00a6 0895      		ret
+ 133               	.LFE3:
+ 135               		.comm p_akt_screen,2,1
+ 136               		.comm default_screen,160,1
+ 137               		.comm akt_scr,1,1
+ 138               		.comm menu_pridat,2,1
+ 139               		.comm data_msg,11,1
+ 140               		.comm str_buf,41,1
+ 173               	.Letext0:
+DEFINED SYMBOLS
+                            *ABS*:00000000 ser_scr.c
+C:\Users\mjirik\AppData\Local\Temp/ccOU6XAx.s:2      *ABS*:0000003f __SREG__
+C:\Users\mjirik\AppData\Local\Temp/ccOU6XAx.s:3      *ABS*:0000003e __SP_H__
+C:\Users\mjirik\AppData\Local\Temp/ccOU6XAx.s:4      *ABS*:0000003d __SP_L__
+C:\Users\mjirik\AppData\Local\Temp/ccOU6XAx.s:5      *ABS*:00000034 __CCP__
+C:\Users\mjirik\AppData\Local\Temp/ccOU6XAx.s:6      *ABS*:00000000 __tmp_reg__
+C:\Users\mjirik\AppData\Local\Temp/ccOU6XAx.s:7      *ABS*:00000001 __zero_reg__
+C:\Users\mjirik\AppData\Local\Temp/ccOU6XAx.s:18     .text:00000000 ser_scr_open
+                            *COM*:00000001 akt_scr
+                            *COM*:00000029 str_buf
+C:\Users\mjirik\AppData\Local\Temp/ccOU6XAx.s:104    .text:00000088 ser_scr_control
+                            *COM*:00000002 p_akt_screen
+                            *COM*:000000a0 default_screen
+                            *COM*:00000002 menu_pridat
+                            *COM*:0000000b data_msg
+
+UNDEFINED SYMBOLS
+clear_dscreen
+usart_get_recv_buff
+printcxyd
+int2strn
+printxyd
+get_spec
+scr_ch
+__do_clear_bss

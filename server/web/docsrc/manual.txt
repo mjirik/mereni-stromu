@@ -1,0 +1,37 @@
+/**
+@page web_manual Manuál k webové aplikaci
+
+Webová aplikace slouží pro zpracování dat získaných mìøícím systémem.
+Po pøihlášení je v levé èásti obrazovky vykresleno menu obsahující následující položky:
+
+- Mìøení
+- Zakázky
+- Ceník
+- Úèet
+
+@section web_mereni Mìøení
+
+Stránka "Mìøení" obsahuje seznam nezpracovaných mìøení, která byla naètena do databáze. Zde je nutné namøené záznamy, které jsou dosud spojeny s identifikátorem pøiøadit k nìjakému zákazníkovi. Identifikátor pøedstavuje 
+doèasné pojmenování zákazníka, které je pøiøazeno pøi mìøení. Identifikátor
+se v databázi na jiném místì neprojeví. Je možné jej zvolit jakýkoliv. K
+zákazníkovi je možné pøiøadit záznamy od rùzných identifikátorù. V systému 
+mohou být zavedeny shodné identifikátory.
+
+Pøiøazení identifikátoru lze provést nìkolika zpùsoby. Buï je možné vybrat
+zákazníka ze seznamu, nebo je možné založit zákazníka nového a nebo je možné
+využít volby, kterou nabízí systém. 
+
+@section web_zakazky Zakázky
+
+Na obrazovce zakázek je vysán seznam zákazníkù. Po zvolení nìkterého z nich je 
+vyobrazen seznam jeho zakázek.
+
+@section web_cenik Ceník
+Formuláø ceníku lze využít pro zmìnu globálích cen, z nichž jsou pak pøednastavovány ceny pro každou zakázku.
+
+@section web_ucet Úèet
+
+Na této obrazovce lze editovat pøihlašovací údeje.
+Lze mìnit jak heslo, tak i pøihlašovací jméno. Heslo je nutno zopakovat.
+
+*/

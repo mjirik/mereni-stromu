@@ -1,0 +1,15 @@
+/**
+@mainpage Zaøíení na vozíku
+Tento dokument tvoøí dokumentaci k programu pro jednoèip ATmega32, kterı
+zajišuje chod zaøízení na vozíku. Dokument obsahuje manuál pro obsluhu \ref Manual . 
+<a href="./../katr_c/doc/html/index.html">seznam.cz</a>
+
+http://www.filmweb.cz
+
+./../katr_c/doc/html/index.html
+
+file:///./../katr_c/doc/html/index.html
+
+\link ./../katr_c/doc/html/index.html \endlink
+
+*/

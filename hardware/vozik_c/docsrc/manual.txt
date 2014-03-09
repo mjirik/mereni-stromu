@@ -1,0 +1,108 @@
+/**
+@page Manual Manuál obsluhy
+
+@section uvod Úvod
+
+Tyto manuálové stránky patøí do rukou obsluhy systému automatického
+mìøení objìmu stromù. Mìøící systém je rozdìlen na dvì èásti:
+- èást pro získání dat
+- èást pro zpracování dat
+
+Zaøízení zajišující získání dat se nalézá v prostorách pily,
+zpracování je provádìno prostøednictvím webové aplikace provozované na
+serveru v administraèní budovì.
+
+Zaøízení slouící ke sbìru dat se skládá z:
+- inkrementálního èidla pro mìøení polohy pøítlaèného válce
+- magnetického èidla pro získání referenèní vzdálenosti
+- mìøcí lišty pro mìøení vodorovného prùmìru 
+- krabice s elektronikou pro vyhodnocení dat získanıch vıše zmínìnımi
+prostøedky
+- inkrementálním èidlem pro získání polohy vozíku
+- magnetického èidla pro získání referenèní vzdálenosti
+- hlavní obsluné jednotky, která zajišuje zpracování dat a jejich
+bezpeèné odeslání na server.
+
+@section proces_mereni Proces mìøení
+Mìøení je zahájeno stisknutím pøíslušného tlaèítka. V ten okamik je
+namìøena vzdálenost vozíku od katru a ta je dále povaována za délku
+øezaného kmene. Jak je strom postupnì rozezáván je prùbìnì mìøen
+jeho svislı i vodorovnı prùmìr. Po ukonèení mìøení je z prùbìnì
+získanıch dat vypoèítána hodnota støedového prùmìru.
+
+V pøípadì, e se vozík pøestane pohybovat s øezanou kládou nelze v
+mìøení pokraèovat. V okamiku kdy se zaène vozík pohybovat vzad, je
+mìøení automaticky pøerušeno. Pokud ji bylo získáno dostatek dat, je
+z nich vypoèítán prùmìr a data jsou zaznamenána. V opaèném pøípadì je
+mìøení neúspìšné a je vypsána chybová hláška a data jsou ztracena.
+
+
+@section obsluzna_jednotka Uivatelské rozhraní obsluné jednotky
+Obsluná jednotka komunikuje s uivatelem prostøednicvím panelu ,
+kterı obsahuje LCD displej a nìkolik tlaèítek. K systému je dále
+pøipojena klávesnice, která slouí zejména pro zadávání jmen
+zákazníkù. 
+
+
+K ovkádání vìtšiny funckí postaèuje sedmice tlaèítek v okolí displeje.
+- tlaèítko "ODESLAT" slouí pro odesílání namìøenıch dat na server
+- tlaèítko "START" je urèeno pro zahájení procesu mìøení
+- tlaèítko "STOP" pøeruší probíhající mìøení
+- tlaèítka šipek slouøí pro ovládání kurzoru
+- tlaèítko "OK" slouší pro potvrzování 
+- tlaèítko "ZRUŠIT" je urèeno pro pøerušení akce, návrat k pøedchozí
+obrazovce atd.
+
+Horní tøi tlaèítka (ODESLAT, START, STOP) pracují ve všech reimech
+stejnì.
+
+Po stisknutí tlaèítka "ODESLAT" se ovládací jednotka pokusí odeslat
+dosud namìøená data na server. V pøípadì úspìchu je vypsána hláška
+oznamující úspìšné odeslání a dosud namìøená data jsou uvolnìna z
+pamìti. V pøípadì, e server nìbìí, nebo v pøípadì jiné poruchy je
+zobrazena pøíslušná chybová zpráva.
+
+Tlaèíto "START" slouí pro zahájení mìøení. Je zmìøena vzdálenost
+vozíku od katru a je povaována za délku mìøeného stromu. Je proto
+nutné, aby bylo stiskuto v okamiku, kdy je mìenı kmen v tìsné
+blízkosti katru. Další mìøení je moné zahájit a po ukonèení
+pøedchozího mìøení.
+
+Tlaèítko "STOP" je urèeno pro pøerušení probíhajícího mìøení. Po jeho
+stisknutí jsou dosud získaná data ztracena a systém je pøipraven mìøit
+znova.
+
+
+Uivatelské rozhraní je tvoøeno nìkolika obrazovkami:
+- obrazovka mìøení
+- obrazovka namìenıch dat
+- obrazovka zákazníkù
+- obrazovka pro vıpis chyb
+
+
+@subsection obrazovka_mereni Obrazovka mìøení 
+Tato obrazovka zobrazuje nejdùleitìjší informace z probíhajícího
+mìøení a umoòuje nastavit informace pro urèení ceny za rozøezání.
+
+V levé èásti je menu, jeho prostøednictvím lze nastavit, zda bude
+danı kmen úètován jako manipulovanı, zda jde dvakrát katrem,
+atd. Volba se provádí tak, e se šipkami pøemístí kurzor k pøíslušné
+poloce a postupnım stiskáváním tlaèítka "OK" je hodnota poloky
+mìnìna. V pøípadì vybrání jména zákazníka, dojde k pøepnutí do
+obrazovky zákazníkù, pokud je zvolena poloka "Data", zobrazí se
+obrazovka s namìøenımi daty.
+
+@subsection obrazovka_data Obrazovka namìøenıch dat
+Zde jsou zobrazena všechna zmìøená mìøení (s vıjimkou toho, které
+ještì nebylo dokonèeno). Informace pro vıpoèet ceny lze dodateènì
+upravovat. K tomu je nutno navolit šipkami pøíslušnı øádek a
+stisknout tlaèítko "OK". Kurzor se pøesune mezi jednotlivé poloky
+(zákazník, druh døeva, atd.). Tlaèítkem "OK" lze poloky
+mìnit. Tlaèítkem "ZRUŠIT" se opouští úprava tohoto øádku. Pro úplné
+opuštìní obrazovky s daty staèí opìt stisknou tlaèítko "ZRUŠIT".
+
+@subsection obrazovka_zakaznici Obrazovka zákazníkù
+
+
+@image html pic.jpg Toto je mùj obrázek
+*/

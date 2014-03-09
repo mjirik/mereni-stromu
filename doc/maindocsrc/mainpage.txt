@@ -1,0 +1,39 @@
+/**
+@mainpage Dokumentace k meøení objemu øeziva
+
+Tento text pøedstavuje dokumentaci k projektu mìøení objemu øeziva na pile.
+
+Vzhledem k relativní jednoduchosti jsou jako vıpoèetní prostøedky zvoleny
+jednoèipové mikropoèítaèe. V jejich prospìch hovoøí, nízká poøizovací cena,
+široká dostupnost technologie, ale i to, e díky nim lze zaøízení snadno
+rozdìlit na dvì èásti.
+
+@image html schema.png Schéma rozdìlení systému
+
+První èást zajišuje obsluhu mìøení prùmìrù na katru a odeslání získanıch
+dat do druhé èásti na vozíku. Mìøení vertikálního prùmìru provádí inkrementální 
+èidlo spojené s osou motoru, kterı pohybuje horním pøítlaènım
+válcem nahoru a dolu. Dále je instalováno jednoduché magnetické relé, které
+slouí jako referenèní bod. Pokadé, kdy spínaè sepne a prùmìr dv se zvìtšuje, 
+dojde k nastavení èítaèe vzdálenosti na pøednastavenou hodnotu. Horizontální prùmìr 
+bude experimentálnì mìøen bezkontaktní metodou s pouitím jednoho zdroje svìtla. 
+Nad øezanım døevem bude umístìn halogenovı svìtelnı zdroj a pod døevem bude mìøící lišta. 
+Na té bude øada fotodiod,
+které budou slouit k mìøení svìtelné intenzity v jednotlivıch bodech.
+Druhá èást se nalézá na pojízdném vozíku. Zajišuje obsluhu mìøení délky
+stromu, shromaïování dat, uivatelské rozhraní a komunikaci s kanceláøskım PC. 
+Délka stromu se mìøí s vyuitím inkrementálního èidla. To je
+pøidìláno na koleèko, které se odvaluje po kolejnici, po ní vozík jezdí. Uivatelské 
+rozhraní je realizováno znakovım LCD displejem a bìnou poèítaèovou klávesnicí, 
+která bude v budoucnu nahrazena prùmyslovou klávesnicí.
+Jako vıpoèetní prvky byly zvoleny jednoèipy Atmel. Vyznaèují se nízkou
+cenou, slušnımi vıkony a lze je programovat bez dalšího pøíslušenství pouze
+prostøednictvím paralelního portu bìného PC. Pro zaøízení na katru byl
+vybrán typ ATmega8 pro zaøízení na vozíku byl zvolen typ ATmega32.
+
+@section Odkazy
+
+http://winavr.sourceforge.net
+
+http://www.mysql.com
+*/
