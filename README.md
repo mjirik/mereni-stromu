@@ -7,7 +7,7 @@ Mereni reziva pred vstupem do katru
 
 
 
-## Testování funkčnosti
+## Testování spojení
 
 
 Zapojení:
