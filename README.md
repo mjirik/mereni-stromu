@@ -33,3 +33,15 @@ Nastavení rychlosti komunikace
     cat /dev/ttyUSB0 
     
 Při pootočení inkrementálního čidla by měla přicházet data
+
+
+
+
+Instalace
+=========
+
+Instalace LAMP:
+http://howtoubuntu.org/how-to-install-lamp-on-ubuntu
+DAtabáze:
+Vytvoreni symvbolickeho linku do apache
+ln -s ~/mereni-stromu/server/web/ /var/www/mereni-stomu 

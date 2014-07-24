@@ -1,4 +1,5 @@
-#! /bin/sh
+#!/bin/sh
+
 # Zajistit spouštìcí práva k tomuto skriptu:
 # chmod +x install.sh
 
@@ -8,7 +9,9 @@ cp -f -R web/* /var/www/html
 
 #db
 echo "Instalace databaze"
-mysql --user=root --password=moje.heslo < ./db/start.sql
+# mysql --user=root --password=moje.heslo < ./db/start.sql
+mysql -u root -p < ./db/start.sql
+echo "Heslo MySQL bylo zmeneno"
 
 #connector
 echo "Nastaveni spoustecich prav k prislusnym souborum"
