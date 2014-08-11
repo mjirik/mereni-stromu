@@ -1,4 +1,5 @@
-drop database if exists Pila;
+set password = password ('moje.heslo');
+drop database Pila;
 create database Pila;
 use Pila;
 source ./db/crebas.sql

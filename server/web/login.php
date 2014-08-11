@@ -1,4 +1,7 @@
 <?php
+echo "login ok";
+?>
+<?php
 // $Id: login.php 100 2007-08-20 18:27:25Z Mira $
 /**
  * @file login.php
@@ -55,6 +58,7 @@ if ($BudemeZobrazovat){ ?>
 <?php
   if (!empty($error)){
     echo "<div class=\"chyba\">";
+    echo "Error: ";
     echo $error;
     echo "</div>"; 
   }
@@ -77,3 +81,10 @@ if ($BudemeZobrazovat){ ?>
 </body>
 </html>
 <?php } ?>
+<?php
+echo "<hmtl>" ;
+echo "<body>";
+echo"test";
+echo"</body>";
+echo "</html>";
+?>

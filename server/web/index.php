@@ -4,6 +4,8 @@
  * @file index.php
  * Soubor zajistí připojení logovacího okna. 
  */
+//
 include ("login.php");
 
 ?>
+
